@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>酶科研雷达 · 文献档案馆</title>
+<style>
+  :root {
+    --text-1: #1a1a1a; --text-2: #555; --text-3: #888; --text-4: #aaa;
+    --border: #e4e4e4; --surface: #fff; --surface-mute: #f6f6f6;
+    --accent: #2563eb; --positive: #16a34a; --warning: #d97706; --purple: #7c3aed;
+    --radius-chip: 6px; --radius-input: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-1: #e8e8e8; --text-2: #aaa; --text-3: #888; --text-4: #666;
+      --border: #333; --surface: #161616; --surface-mute: #1e1e1e;
+      --accent: #6ea8fe; --positive: #4ade80; --warning: #fbbf24; --purple: #a78bfa;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--surface); color: var(--text-1);
+    font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 16px; line-height: 24px;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
+  h1 { font-size: 22px; font-weight: 500; margin: 0; }
+  .sub { color: var(--text-3); font-size: 13px; margin-top: 4px; }
+  .stats { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; }
+  .stat { font-size: 13px; color: var(--text-3); font-variant-numeric: tabular-nums; }
+  .stat b { font-weight: 500; color: var(--text-1); }
+
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  button, input, select { font: inherit; }
+  #q {
+    flex: 1 1 220px; min-width: 160px; padding: 8px 12px;
+    border: 1px solid var(--border); border-radius: var(--radius-input);
+    background: var(--surface); color: var(--text-1); outline: none;
+  }
+  #q:focus { border-color: var(--text-3); }
+  #week {
+    padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius-input);
+    background: var(--surface); color: var(--text-1);
+  }
+  .cats { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .chip {
+    padding: 4px 12px; font-size: 13px; cursor: pointer;
+    border: 1px solid var(--border); border-radius: 999px;
+    background: transparent; color: var(--text-2);
+  }
+  .chip:hover { border-color: var(--text-3); color: var(--text-1); }
+  .chip[aria-pressed="true"] { background: var(--text-1); color: var(--surface); border-color: var(--text-1); }
+
+  .week-head {
+    display: flex; align-items: baseline; gap: 10px;
+    margin-top: 28px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+  }
+  .week-head .w { font-size: 16px; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .week-head .n { font-size: 12px; color: var(--text-3); font-variant-numeric: tabular-nums; }
+
+  .entry { padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .entry:last-child { border-bottom: none; }
+  .line1 { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .t { font-size: 15px; line-height: 22px; }
+  .cat {
+    flex: 0 0 auto; font-size: 12px; line-height: 18px; padding: 0 8px;
+    border-radius: var(--radius-chip); white-space: nowrap;
+  }
+  .cat-must  { color: var(--accent);   background: color-mix(in srgb, var(--accent) 12%, transparent); }
+  .cat-read  { color: var(--positive); background: color-mix(in srgb, var(--positive) 14%, transparent); }
+  .cat-watch { color: var(--warning);  background: color-mix(in srgb, var(--warning) 16%, transparent); }
+  .cat-hist  { color: var(--purple);   background: color-mix(in srgb, var(--purple) 13%, transparent); }
+  .cat-other { color: var(--text-3);   background: color-mix(in srgb, var(--text-3) 14%, transparent); }
+
+  .idline { margin-top: 3px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  code {
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: 12px; color: var(--text-2);
+    background: var(--surface-mute); padding: 1px 6px; border-radius: 4px;
+  }
+  a.idlink { text-decoration: none; }
+  a.idlink code { border-bottom: 1px dashed var(--text-4); }
+  a.idlink:hover code { color: var(--text-1); border-bottom-color: var(--text-1); }
+  .dt { font-size: 12px; color: var(--text-4); font-variant-numeric: tabular-nums; }
+  .disp { margin-top: 3px; font-size: 13px; line-height: 20px; color: var(--text-2); }
+
+  .empty { padding: 48px 0; text-align: center; color: var(--text-3); font-size: 14px; }
+  .foot { margin-top: 32px; font-size: 12px; color: var(--text-4); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>酶科研雷达 · 文献档案馆</h1>
+  <div class="sub">AI 酶工程周报归档 · 处置与备注均为当期周报原文</div>
+  <div class="stats" id="stats"></div>
+  <div class="controls">
+    <input id="q" type="search" placeholder="搜索标题 / 编号 / 备注…" aria-label="搜索">
+    <select id="week" aria-label="按周筛选"></select>
+  </div>
+  <div class="cats" id="cats" aria-label="按处置筛选"></div>
+  <div id="list"></div>
+  <div class="foot">数据来自各期周报归档（reported_index）。点击编号跳转 DOI / arXiv 原文。</div>
+</div>
+
+<script id="radar-data" type="application/json">[
+ {
+  "week": "2026-11-02",
+  "id": "arXiv:2610.07607",
+  "title": "LFS/SGES（10-06首发）",
+  "date": "2026-11-02",
+  "disp": "必读；assay-specific突变fitness，基准oracle非新wetlab",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-11-02",
+  "id": "10.1021/acs.jafc.6c10140",
+  "title": "三种黄芪UGT/AmUGT88E37（10-22）",
+  "date": "2026-11-02",
+  "disp": "必读；受体/区域选择性参照，摘要级",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-11-02",
+  "id": "10.1038/s41557-026-02288-2",
+  "title": "OxiEs氧化酯化（10-26）",
+  "date": "2026-11-02",
+  "disp": "可读；序列×条件交互，非AI",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-11-02",
+  "id": "10.1038/s41929-026-01629-1 / 10.64898/2026.10.15.759323",
+  "title": "PLP–photocatalyst cooperation（期刊10-28，月内早期稿线索）",
+  "date": "2026-11-02",
+  "disp": "可读；月内补检，不计本周首发；版本日期待核",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-11-02",
+  "id": "10.1016/j.jare.2026.10.044（PMID 42962915）",
+  "title": "ItFMO 靛蓝生物合成（J. Adv. Res. online 10-30）",
+  "date": "2026-11-02",
+  "disp": "必读；摘要级含定量；kcat/Km 0.22±0.05、共培养 60.03±0.82 mg/L、残基 Q51/Y160/K212/S213/F373/N427",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-11-02",
+  "id": "10.64898/2026.10.26.761089",
+  "title": "THOR 跨家族热稳定迁移（bioRxiv posted 10-28）",
+  "date": "2026-11-02",
+  "disp": "必读；摘要级；Tm 单位缺失待核；资源未确认",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-11-02",
+  "id": "10.1021/acsomega.6c08242（PMC13717662）",
+  "title": "pdb2reaction MLIP 反应路径自动化（ACS Omega eCollection 10-27）",
+  "date": "2026-11-02",
+  "disp": "必读；开放获取；BezA 两步机理、23 步基准 19 吻合；仓库/许可待正文",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-11-02",
+  "id": "10.64898/2026.10.24.761503",
+  "title": "葡萄 UGT 簇与 piceid 顺/反分工（bioRxiv posted 10-27）",
+  "date": "2026-11-02",
+  "disp": "必读；摘要级；6 UGT 生化+结构表征",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-11-02",
+  "id": "10.64898/2026.10.26.762003",
+  "title": "AlphaFold 口袋 apo-holo 轴（bioRxiv posted 10-30）",
+  "date": "2026-11-02",
+  "disp": "必读；摘要级；对接成功率差 19pp",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-11-02",
+  "id": "10.1021/jacs.6c15079",
+  "title": "GCE 存活偶联体内选择（JACS 10-28）",
+  "date": "2026-11-02",
+  "disp": "可读；摘要级；36.8 g/L ncAA",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-11-02",
+  "id": "10.1002/anie.9814409",
+  "title": "人工三重态光酶立体反转（Angew 10-31）",
+  "date": "2026-11-02",
+  "disp": "可读；摘要级；99.5:0.5→2:98 e.r.",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-11-02",
+  "id": "10.1073/pnas.2621329123（PMID 42961939）",
+  "title": "UGGT1 全长 cryo-EM（PNAS epub 10-30）",
+  "date": "2026-11-02",
+  "disp": "可读；摘要级",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-11-02",
+  "id": "10.1002/biot.70332（PMID 42961177）",
+  "title": "Taxifolin 生长偶联 DLE（Biotechnol. J.）",
+  "date": "2026-11-02",
+  "disp": "可读；摘要级；+301.28%（22 h）",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-11-02",
+  "id": "2610.37410",
+  "title": "GlycoWeave 蛋白-糖链结构（arXiv 10-27）",
+  "date": "2026-11-02",
+  "disp": "可读/观察；Top-25 71.9% vs AF3 19.2%；非催化构象",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-11-02",
+  "id": "10.34133/csbj.0246（PMC13716986）",
+  "title": "ESM-ECForest EC 注释（CSBJ 10-29）",
+  "date": "2026-11-02",
+  "disp": "可读；注释层非活性；F1 0.94→0.90",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-11-02",
+  "id": "10.64898/2026.03.29.715152",
+  "title": "EnzyArena ML 酶工程基准+湿实验（bioRxiv v1 03-30/v2 04-18，窗口外）",
+  "date": "2026-11-02",
+  "disp": "历史补课·必读；20 模型 4 策略、25 独立集、150 突变前瞻验证",
+  "cat": "历史补课"
+ },
+ {
+  "week": "2026-10-26",
+  "id": "10.1021/acs.jafc.6c02514（PMID 42905006）",
+  "title": "Cyanidin 3-O-glycoside/rhamnoside 组合生物合成（J. Agric. Food Chem. 10-21）",
+  "date": "2026-10-26",
+  "disp": "必读；摘要级；标题 rutinoside 与摘要 rhamnoside 不一致待全文核",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-10-26",
+  "id": "10.64898/2026.10.19.760152",
+  "title": "AlphaVariant RL+进化先验多位点优化（bioRxiv posted 10-21）",
+  "date": "2026-10-26",
+  "disp": "必读；摘要级；7.1×/17 位点为作者报告；fitness≠kcat；Bestzyme 专利冲突",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-10-26",
+  "id": "10.64898/2026.10.20.760405",
+  "title": "PmHS2 hexosyl transfer 共价中间体（bioRxiv posted 10-21）",
+  "date": "2026-10-26",
+  "disp": "必读；摘要级；共价机制为证据链建议非定论",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-10-26",
+  "id": "10.64898/2026.10.15.759462",
+  "title": "SSL kcat 半监督动力学参数预测（bioRxiv posted 10-21）",
+  "date": "2026-10-26",
+  "disp": "必读；摘要级；clustered CataPro @40% 严格基准；具体数值未引用",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-10-26",
+  "id": "10.1016/j.xplc.2026.102161（PMID 42920296）",
+  "title": "Salicortin 途径解析（Plant Commun. online 10-23）",
+  "date": "2026-10-26",
+  "disp": "可读；摘要级；PtUGT71L1 次序参照",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-10-26",
+  "id": "10.1002/anie.3845288",
+  "title": "P450BM3 表面 hole-trap 工程（Angew，Crossref published 10-24）",
+  "date": "2026-10-26",
+  "disp": "可读；摘要级；理性设计无 ML；M8 TON/半衰期提升",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-10-26",
+  "id": "10.1021/jacs.6c14337",
+  "title": "光生物催化 PLP 立体发散 ncAA 合成（JACS，Crossref published 10-22）",
+  "date": "2026-10-26",
+  "disp": "可读；摘要级；定向进化+光催化，非 ML",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-10-26",
+  "id": "10.64898/2026.10.24.761505",
+  "title": "gmx_MMPBSA end-state 结合自由能扩展（bioRxiv posted 10-24）",
+  "date": "2026-10-26",
+  "disp": "观察；binding 工具，非催化势垒，不计精选",
+  "cat": "观察"
+ },
+ {
+  "week": "2026-10-19",
+  "id": "10.1038/s41467-026-78636-0",
+  "title": "Enhancing ω-transaminase catalysis…（期刊10-14）",
+  "date": "2026-10-19",
+  "disp": "必读；摘要级，106× activity非已核kcat；更早沿革未检出",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-10-19",
+  "id": "10.1021/acs.biomac.6c01393",
+  "title": "SeqSol-FECS（online10-03）",
+  "date": "2026-10-19",
+  "disp": "必读；表达救援候选，split/资源/UGT迁移待核",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-10-19",
+  "id": "10.64898/2026.10.06.756934",
+  "title": "Generalizing Protein Fitness…（posted10-07）",
+  "date": "2026-10-19",
+  "disp": "可读；新位点/新骨架评测，非催化活性模型",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-10-19",
+  "id": "arXiv:2610.18481",
+  "title": "ProTok（submitted10-13）",
+  "date": "2026-10-19",
+  "disp": "观察；tokenizer而非activity模型",
+  "cat": "观察"
+ },
+ {
+  "week": "2026-10-19",
+  "id": "arXiv:2610.16980",
+  "title": "PRAISE（submitted10-12）",
+  "date": "2026-10-19",
+  "disp": "工作流观察；不计4项精选，不作性能升级",
+  "cat": "其他"
+ },
+ {
+  "week": "2026-10-19",
+  "id": "10.1101/2025.11.21.689808 / 10.1038/s41586-026-11143-w",
+  "title": "De novo cysteine proteases（期刊10-14，旧预印本）",
+  "date": "2026-10-19",
+  "disp": "历史补课；09-21v3为小修，无确认实质更新",
+  "cat": "历史补课"
+ },
+ {
+  "week": "2026-10-19",
+  "id": "10.1016/j.biortech.2026.135025",
+  "title": "Gln:Ser动态控制Trp（article date05-30，10月卷期）",
+  "date": "2026-10-19",
+  "disp": "历史补课；非10月新稿，不跨底盘套5:4",
+  "cat": "历史补课"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "10.64898/2026.09.25.751968",
+  "title": "OpenKinetics Predictor（bioRxiv 09-28）",
+  "date": "2026-09-30",
+  "disp": "必读（合并稿 Top 5 候选）",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "arXiv:2609.09293",
+  "title": "eSEN-omol 整酶 MLIP 反应自由能（v2 09-16）",
+  "date": "2026-09-30",
+  "disp": "必读（验证队列）",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "10.26434/chemrxiv.15005529",
+  "title": "Sun/Li/Cui/Xie 机械嵌入 ML/MM 突变效应（JCTC 2026-08）",
+  "date": "2026-09-30",
+  "disp": "必读（注意极性突变低估边界）",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "10.1016/j.ymben.2026.102547",
+  "title": "Jiang 等 L-Trp 基因组规模过表达筛选（Metab. Eng. 09-04）",
+  "date": "2026-09-30",
+  "disp": "必读",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "10.64898/2026.09.11.750617",
+  "title": "Multistate Enzyme Design（bioRxiv 09-14）",
+  "date": "2026-09-30",
+  "disp": "必读",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "10.1021/acssuschemeng.6c03808",
+  "title": "MPNN-Guided PET Hydrolase Redesign（ACS Sustain. 09-14）",
+  "date": "2026-09-30",
+  "disp": "必读",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "10.64898/2026.09.09.750330",
+  "title": "Kemp eliminase 集合 QM/MM（bioRxiv 09-11）",
+  "date": "2026-09-30",
+  "disp": "必读",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "preprints.org 202609.1302",
+  "title": "EraGene（Preprints.org 09-16）",
+  "date": "2026-09-30",
+  "disp": "必读（只读核查）",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "10.1038/s41467-026-74506-x",
+  "title": "Zhang 等 UGT ProteinMPNN 重设计（Nat. Commun. 06-17）",
+  "date": "2026-09-30",
+  "disp": "历史补课·必读",
+  "cat": "历史补课"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "rs-10471634（Research Square）",
+  "title": "溶解度预测器独立评测（07-28 预印本）",
+  "date": "2026-09-30",
+  "disp": "历史补课·必读",
+  "cat": "历史补课"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "ChemRxiv 2026-08-07（DOI 未逐项确认）",
+  "title": "Lepikhov & Nunes-Alves co-folding 酶-底物评测",
+  "date": "2026-09-30",
+  "disp": "历史补课·必读",
+  "cat": "历史补课"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "anthropic.com 技术报告（09-21）",
+  "title": "Claude 加速开源生物分子模型（14 结构模型）",
+  "date": "2026-09-30",
+  "disp": "可读（基础设施）",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "arXiv:2609.34001",
+  "title": "Assay-Aware BindingDB（09-27）",
+  "date": "2026-09-30",
+  "disp": "可读",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "arXiv:2609.24157",
+  "title": "Interkcat（09-21）",
+  "date": "2026-09-30",
+  "disp": "可读（探索基线，须重切分）",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "10.1002/advs.77474",
+  "title": "Robots + Physics-Informed Features（Adv. Sci. 09-11）",
+  "date": "2026-09-30",
+  "disp": "可读（数据设计）",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "arXiv:2609.30621",
+  "title": "HetCat26 MLIP 异相催化迁移性（09-24）",
+  "date": "2026-09-30",
+  "disp": "可读",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "10.7554/eLife.108186.3",
+  "title": "Squidly 催化残基预测（eLife 09-04 正式版）",
+  "date": "2026-09-30",
+  "disp": "可读（工具箱：残基检查）",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "JCTC 2026 接受（DOI 未确认）",
+  "title": "Arattu Thodika Δ-ML in CHARMM",
+  "date": "2026-09-30",
+  "disp": "可读",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "10.1039/D6SC01279E",
+  "title": "MAPLE（Chem. Sci. 17:12394）",
+  "date": "2026-09-30",
+  "disp": "观察",
+  "cat": "观察"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "10.64898/2026.09.09.750355",
+  "title": "Fluxion 酶功能条件生成（bioRxiv 09-11）",
+  "date": "2026-09-30",
+  "disp": "观察",
+  "cat": "观察"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "10.26434/chemrxiv.15009330/v1",
+  "title": "Physics+ML Pose Generator（ChemRxiv 09-23）",
+  "date": "2026-09-30",
+  "disp": "观察",
+  "cat": "观察"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "10.1038/s41467-026-77978-z",
+  "title": "正交能量系统 E. coli（Nat. Commun. 09-26）",
+  "date": "2026-09-30",
+  "disp": "观察",
+  "cat": "观察"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "10.1039/d6sc01156j",
+  "title": "Gradisteanu EMLE（Chem. Sci. 17(17):8542，首次公开 2026-03-10）",
+  "date": "2026-09-30",
+  "disp": "可读（窗口外背景，非 8-9 月新工作）",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "10.64898/2026.03.13.711695",
+  "title": "Glydentify GT 供体特异性（bioRxiv 03-17）",
+  "date": "2026-09-30",
+  "disp": "可读（窗口外背景）",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "Metab. Eng.（DOI 未确认）",
+  "title": "GENKI 动力学模型集合富集",
+  "date": "2026-09-30",
+  "disp": "观察",
+  "cat": "观察"
+ },
+ {
+  "week": "2026-09-30",
+  "id": "PubMed 42751666",
+  "title": "MiLaSol（article date 2026-08-13）",
+  "date": "2026-09-30",
+  "disp": "忽略（日期窗口外，不计新进展）",
+  "cat": "忽略"
+ },
+ {
+  "week": "2026-10-05",
+  "id": "10.64898/2026.10.01.754751",
+  "title": "Design-Evolution Synergy（bioRxiv posted 10-02）",
+  "date": "2026-10-05",
+  "disp": "必读；摘要级，催化数字/设计命中率待核",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-10-05",
+  "id": "10.1093/nar/gkag879",
+  "title": "epiSCANEER（online 09-08）",
+  "date": "2026-10-05",
+  "disp": "必读；可做双突变候选小试，非底物条件活性模型",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-10-05",
+  "id": "10.1021/acssynbio.6c00417",
+  "title": "Reticuline 前体与植物酶表达工程（online 09-23）",
+  "date": "2026-10-05",
+  "disp": "必读；联合终点不能归因于 ProteinMPNN 单独酶活改善",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-10-05",
+  "id": "10.1038/s41467-026-78191-8",
+  "title": "ATHENA（09-25 接受稿公开）",
+  "date": "2026-10-05",
+  "disp": "必读；动态碳/能量诊断，indigo 迁移待证",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-10-05",
+  "id": "10.1038/s41467-026-78205-5",
+  "title": "SURE Cas12a2 editing（09-30 论文公开）",
+  "date": "2026-10-05",
+  "disp": "可读；同主题专利首次公开待核，资源/目标底盘待证",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-10-05",
+  "id": "10.1038/s41467-026-72904-9",
+  "title": "Wang Diels-Alderase ML/MM（期刊 05-13，VoR 07-17）",
+  "date": "2026-10-05",
+  "disp": "历史补课；ME 与 ANI 元素支持限制，非 UGT 已验证方法",
+  "cat": "历史补课"
+ },
+ {
+  "week": "2026-10-05",
+  "id": "10.64898/2026.09.15.751901",
+  "title": "High-throughput physics-based enzyme engineering（MACEPOL-EF，bioRxiv 09-17）",
+  "date": "2026-10-05",
+  "disp": "必读（10-05 下午全文核实升级）；EE-ML/MM+微动力学+湿实验闭环，注意 kcat-产率 r=0.48 边界",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-10-05",
+  "id": "10.64898/2026.05.29.728685",
+  "title": "Interplay of stability and dynamics（KABLE；v3 09-10 实质版本）",
+  "date": "2026-10-05",
+  "disp": "可读；Michaelis 复合物 pre-attack 几何设计论据",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-10-05",
+  "id": "10.26434/chemrxiv.15004671",
+  "title": "Yamauchi & Sato PETase 全酶 MLIP（疑似 2026-06，窗口外）",
+  "date": "2026-10-05",
+  "disp": "观察；身份确认，数字未核",
+  "cat": "观察"
+ },
+ {
+  "week": "2026-10-05",
+  "id": "10.1038/s41467-026-75283-3",
+  "title": "EnzGFM 酶特异 PLM（Nat. Commun. 2026-07，窗口外）",
+  "date": "2026-10-05",
+  "disp": "观察；表示层增量，backbone 替换候选",
+  "cat": "观察"
+ },
+ {
+  "week": "2026-10-05",
+  "id": "10.1021/acssynbio.5c00755",
+  "title": "EZPro-Cat pairwise 突变排序（ACS Synth. Biol. 2025-12-21 Epub，窗口外）",
+  "date": "2026-10-05",
+  "disp": "可读；不输出绝对 kcat，无独立外部测试",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-10-05",
+  "id": "PMC13115177（Foods 2026 上半年）",
+  "title": "Gao 等 indigo mtr/acrA 转运工程（窗口外）",
+  "date": "2026-10-05",
+  "disp": "可读；Jiang 耐受/外排主题独立佐证，BL21 背景",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-10-05",
+  "id": "Biol. Methods Protoc. 2024, 9, bpae061",
+  "title": "Kroll & Lercher DLKcat 批评（背景文献）",
+  "date": "2026-10-05",
+  "disp": "背景；<60% identity R²<0，训练外突变 R²=0.03",
+  "cat": "其他"
+ },
+ {
+  "week": "2026-10-12",
+  "id": "10.64898/2026.10.02.756307",
+  "title": "CaGE（posted 10-06）",
+  "date": "2026-10-12",
+  "disp": "必读；摘要级，复杂催化位点/湿实验分母待核",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-10-12",
+  "id": "10.64898/2026.10.01.756017",
+  "title": "AlphaProtein Novo（posted 10-05，月内补检）",
+  "date": "2026-10-12",
+  "disp": "必读；代码公开、权重独立条款；nitrene部分与754751关联，勿算独立重复",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-10-12",
+  "id": "10.64898/2026.10.08.757560",
+  "title": "MINT（posted 10-09）",
+  "date": "2026-10-12",
+  "disp": "观察；辅因子关联非突变活性；family-stratified非自动family-disjoint",
+  "cat": "观察"
+ },
+ {
+  "week": "2026-10-12",
+  "id": "arXiv:2610.11694",
+  "title": "VenusRX（submitted 10-08）",
+  "date": "2026-10-12",
+  "disp": "可读；反应/EC任务，无蛋白输入；MLCD库与round-trip条件须分开",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-10-12",
+  "id": "10.64898/2026.10.01.755914",
+  "title": "E. coli adaptive respiratory bypass（posted10-01）",
+  "date": "2026-10-12",
+  "disp": "必读；4谱系ALE，调控/实际底盘迁移待核",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-10-12",
+  "id": "10.1007/s10822-026-00954-8",
+  "title": "QM/MM CA binding敏感性（期刊10-07）",
+  "date": "2026-10-12",
+  "disp": "必读；23配体静态亲和力，非催化ΔΔG‡；更早沿革待查",
+  "cat": "必读"
+ },
+ {
+  "week": "2026-10-12",
+  "id": "10.1038/s41586-026-11140-z",
+  "title": "RNase P ensembles（期刊10-07）",
+  "date": "2026-10-12",
+  "disp": "可读；76构象及活性实验；更早沿革待查",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-10-12",
+  "id": "10.64898/2026.02.26.708291 / 10.1093/bioinformatics/btag733",
+  "title": "Information Leakage（预印本03-01，期刊10-01）",
+  "date": "2026-10-12",
+  "disp": "历史补课；期刊新增内容未确认，不计新进展",
+  "cat": "历史补课"
+ },
+ {
+  "week": "2026-10-12",
+  "id": "ScienceDirect S2212429226011193（DOI 未逐项确认）",
+  "title": "Zheng 等 MG1655 NDO+TnaA indigo（Food Bioscience 2026，窗口外）",
+  "date": "2026-10-12",
+  "disp": "可读；背景佐证，摘要级",
+  "cat": "可读"
+ },
+ {
+  "week": "2026-10-12",
+  "id": "Zenodo 15701301 / PREreview 15707440",
+  "title": "Boltz-2 affinity 公开同行评审（2025-06-20，背景）",
+  "date": "2026-10-12",
+  "disp": "背景；split/泄漏批评，支撑自建切分与禁用 affinity 代替活性",
+  "cat": "其他"
+ },
+ {
+  "week": "2026-10-12",
+  "id": "10.1016/j.bbapap.2026.141186（PMID 42810701）",
+  "title": "Xia & Auclair moist-solid PET fractal kinetics（BBA Proteins Proteom.，09-29 online）",
+  "date": "2026-10-12",
+  "disp": "已核实未入选；窗口内低水体系表观动力学，下期评估候选",
+  "cat": "其他"
+ }
+]</script>
+<script>
+(function () {
+  var DATA = JSON.parse(document.getElementById('radar-data').textContent);
+  var CAT_ORDER = ['必读', '可读', '观察', '历史补课', '其他', '忽略'];
+  var CAT_CLASS = { '必读': 'cat-must', '可读': 'cat-read', '观察': 'cat-watch', '历史补课': 'cat-hist', '其他': 'cat-other', '忽略': 'cat-other' };
+  var state = { q: '', cat: '全部', week: '全部' };
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function linkFor(id) {
+    var m = id.match(/arXiv:(\S+)/i);
+    if (m) return 'https://arxiv.org/abs/' + m[1].replace(/[，。（）()、\s].*$/, '');
+    if (/^\d{4}\.\d{4,5}$/.test(id)) return 'https://arxiv.org/abs/' + id;
+    var first = id.split(/[\s（(]/)[0];
+    if (/^10\.\d{4,}\/\S+$/.test(first)) return 'https://doi.org/' + first;
+    return null;
+  }
+
+  var weeks = {}, must = 0;
+  DATA.forEach(function (e) { weeks[e.week] = true; if (e.cat === '必读') must++; });
+  var weekList = Object.keys(weeks).sort().reverse();
+  document.getElementById('stats').innerHTML =
+    '<span class="stat">共 <b>' + DATA.length + '</b> 条</span>' +
+    '<span class="stat">必读 <b>' + must + '</b> 条</span>' +
+    '<span class="stat">覆盖 <b>' + weekList.length + '</b> 期（' + weekList[weekList.length - 1] + ' ~ ' + weekList[0] + '）</span>';
+
+  var sel = document.getElementById('week');
+  sel.innerHTML = '<option value="全部">全部周期</option>' + weekList.map(function (w) {
+    return '<option value="' + esc(w) + '">' + esc(w) + ' 期</option>';
+  }).join('');
+  sel.addEventListener('change', function () { state.week = sel.value; render(); });
+
+  var catsEl = document.getElementById('cats');
+  var catNames = ['全部'].concat(CAT_ORDER.filter(function (c) { return DATA.some(function (e) { return e.cat === c; }); }));
+  catsEl.innerHTML = catNames.map(function (c) {
+    return '<button class="chip" aria-pressed="' + (c === '全部') + '" data-cat="' + esc(c) + '">' + esc(c) + '</button>';
+  }).join('');
+  catsEl.addEventListener('click', function (ev) {
+    var b = ev.target.closest('button[data-cat]');
+    if (!b) return;
+    state.cat = b.getAttribute('data-cat');
+    catsEl.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+    render();
+  });
+
+  document.getElementById('q').addEventListener('input', function (ev) {
+    state.q = ev.target.value.trim().toLowerCase();
+    render();
+  });
+
+  function match(e) {
+    if (state.cat !== '全部' && e.cat !== state.cat) return false;
+    if (state.week !== '全部' && e.week !== state.week) return false;
+    if (state.q) {
+      var hay = (e.title + ' ' + e.id + ' ' + e.disp).toLowerCase();
+      if (hay.indexOf(state.q) === -1) return false;
+    }
+    return true;
+  }
+
+  function render() {
+    var list = document.getElementById('list');
+    var groups = [], byWeek = {};
+    DATA.forEach(function (e) {
+      if (!match(e)) return;
+      if (!byWeek[e.week]) { byWeek[e.week] = []; groups.push(e.week); }
+      byWeek[e.week].push(e);
+    });
+    groups.sort().reverse();
+    if (!groups.length) {
+      list.innerHTML = '<div class="empty">没有匹配的条目，试试放宽筛选条件。</div>';
+      return;
+    }
+    var html = '';
+    groups.forEach(function (w) {
+      var items = byWeek[w];
+      html += '<div class="week-head"><span class="w">' + esc(w) + ' 期</span><span class="n">' + items.length + ' 条</span></div>';
+      items.forEach(function (e) {
+        var url = linkFor(e.id);
+        var inner = '<code>' + esc(e.id) + '</code>';
+        var idHtml = url
+          ? '<a class="idlink" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + inner + '</a>'
+          : inner;
+        html += '<div class="entry">' +
+          '<div class="line1"><span class="cat ' + (CAT_CLASS[e.cat] || 'cat-other') + '">' + esc(e.cat) + '</span>' +
+          '<span class="t">' + esc(e.title) + '</span></div>' +
+          '<div class="idline">' + idHtml + '<span class="dt">收录 ' + esc(e.date) + '</span></div>' +
+          '<div class="disp">' + esc(e.disp) + '</div>' +
+          '</div>';
+      });
+    });
+    list.innerHTML = html;
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>
