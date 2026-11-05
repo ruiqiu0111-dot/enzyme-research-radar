@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>weekly_2026-11-02 · 酶科研雷达</title>
+<style>
+
+  :root {
+    --text-1: #1a1a1a; --text-2: #4d4d4d; --text-3: #7a7a7a; --text-4: #a8a8a8;
+    --border: #e4e4e4; --surface: #fff; --surface-mute: #f5f5f5;
+    --accent: #2563eb; --positive: #16a34a; --warning: #b45309; --purple: #7c3aed;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-1: #e8e8e8; --text-2: #b5b5b5; --text-3: #8a8a8a; --text-4: #606060;
+      --border: #333; --surface: #161616; --surface-mute: #1f1f1f;
+      --accent: #6ea8fe; --positive: #4ade80; --warning: #fbbf24; --purple: #a78bfa;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--surface); color: var(--text-1);
+    font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 16px; line-height: 1.7;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 28px 20px 80px; }
+  .back { font-size: 13px; color: var(--text-3); text-decoration: none; }
+  .back:hover { color: var(--text-1); }
+  .doc h1 { font-size: 21px; font-weight: 500; line-height: 1.4; margin: 18px 0 6px; }
+  .doc h2 { font-size: 17.5px; font-weight: 500; margin: 34px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .doc h3 { font-size: 15.5px; font-weight: 500; margin: 24px 0 8px; }
+  .doc p { margin: 10px 0; }
+  .doc a { color: var(--accent); text-decoration: none; }
+  .doc a:hover { text-decoration: underline; }
+  .doc table { border-collapse: collapse; width: 100%; font-size: 13.5px; margin: 12px 0; display: block; overflow-x: auto; }
+  .doc th, .doc td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; vertical-align: top; }
+  .doc th { background: var(--surface-mute); font-weight: 500; }
+  .doc code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 12.5px; background: var(--surface-mute); padding: 1px 6px; border-radius: 4px; }
+  .doc ul, .doc ol { padding-left: 22px; }
+  .doc li { margin: 6px 0; }
+  .doc hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  .doc blockquote { margin: 12px 0; padding-left: 14px; border-left: 3px solid var(--border); color: var(--text-2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../index.html">← 返回文献档案馆</a>
+  <div class="doc"><h1>Weekly Research Intelligence（定稿）</h1>
+<p>时间：2026-10-27 ～ 2026-11-02（运行机 Asia/Shanghai，D=2026-11-02；与 Asia/Tokyo 同日）<br />
+月内补检：2026-10-04 ～ 2026-11-02。截止：11 月 2 日上午。</p>
+<p>本期为<strong>双侧合并定稿</strong>：合并后共 <strong>16 项——本周窗口 12 项、月内补检 3 项、历史补课 1 项</strong>，按 DOI/arXiv 去重无重叠（Kimi 侧 bioRxiv/PubMed/Crossref 全量，Codex 侧期刊官网与全文图读数，双方覆盖零重合）。<strong>Top 5 已经用户确认（2026-11-02）</strong>。另完成 <strong>3 项资源核实</strong>（SSL 仓库、AlphaVariant 仓库、EzHit 检索）与 <strong>AlphaVariant 图版目验</strong>；10-30 内部文献拆解稿（runs/20261030）已审阅，其引用六篇全部在已报索引内，无新线索。</p>
+<p><strong>检索覆盖与缺口（如实声明）：</strong> bioRxiv 官方 API 全量抓取本周 1405 条（去重 1373）逐条标题过滤 + 高相关摘要精读；PubMed 664 条检索命中人工筛查，8 篇摘要一手核实；Crossref 期刊目录 12 刊（Nat Commun 175 条全扫、PNAS 90、JACS 83、Angew 98、ACS Catal 30、Nat Catal、Nat Chem Biol、Nat Methods、Nat Biotechnol、JACS Au、Nat Struct Mol Biol、Chem Sci 窗口内 0 条）；<strong>arXiv 通道本周恢复</strong>，已回补 10-20～11-02，确认上期故障期间无酶-ML 漏项；期刊官网全文/用户 PDF 图版（Codex 侧）；<strong>ChemRxiv API 仍 403（连续第二周未覆盖，缺口保持不关闭）</strong>；Nature 官网对 Kimi 侧反爬。不以新闻稿或二手报道为证据。</p>
+<p><strong>决策重点：EnzyArena 历史补课 + 既有批评文献使“监督 kcat 模型直接排新体系突变”的默认假设不再成立——选型必须先做目标家族校准；ItFMO 为靛蓝路线提供有动力学图谱的新氧化酶候选（滴度不支持替换现有路线）；pdb2reaction 类 MLIP 路径工具达可用门槛，须先过 DFT 校准门；AF 口袋状态判别应前置到对接流程；PLP–光催化剂矩阵提示“酶×外源催化剂”组合空间值得主动扫描。</strong> 下文“作者报告”是文献主张，“判断”是本报告推断；仅见摘要处明确标注；分歧条目双标注；未核实不等于论文没有做。</p>
+<h2>1. 本周最重要的 5 个进展（用户确认定稿）</h2>
+<p>| 工作 | 领域 | 核心突破 | 对当前研究价值 |
+|---|---|---|---|
+| ItFMO 靛蓝生物合成（J. Adv. Res.，10-30） | 靛蓝 / FMO 酶学 | 植物 FMO 动力学（kcat/Km 0.22±0.05 s⁻¹mM⁻¹）+16 种取代吲哚谱+MD/丙氨酸扫描+E. coli 共培养 60.03 mg/L | 靛蓝项目新候选酶与关键残基清单（Q51/Y160/K212/S213/F373/N427）；TnaA 共表达最优的线路经验 |
+| THOR 跨家族热稳定迁移（bioRxiv，10-28） | AI 酶工程 | 生成式学习非配对嗜中温/嗜热序列变换，跨家族迁移；MDH zero-shot 表观 Tm 提升，多数设计保留活性 | 不依赖同源嗜热序列的稳定性设计路线；须核单位与统计 |
+| pdb2reaction（ACS Omega，10-27） | QM/MM / MLIP 工具 | 开源 CLI：PDB→活性位点→MEP→TS→IRC→QRRHO 全流水线单 MLIP 后端；BezA 两步机理无中间体输入恢复；23 步基准 19 步吻合 | 反应路径初筛成本降至单 GPU；甲基转移酶案例直接贴近 SeNMT 类项目 |
+| PLP–光催化剂协同（Nat. Catal.，10-28；预印本 10-16） | 生物催化新方法 | 酶×光催化剂矩阵发现双方单独均不具备的新 C–C 偶联（含迁移 β-偶联）+底物通道定向进化 | “酶×外源催化剂”组合空间的系统性实证；新反应性来源思路 |
+| AlphaFold 口袋 apo-holo 定位（bioRxiv，10-30） | 结构预测 / 对接基准 | 237,922 个 AF 口袋放上 apo-holo 轴：多数偏 holo；holo-like 口袋对接成功率 +19pp；AF 置信度报告的是口袋变异非状态 | 用 AF 模型对接前先判口袋状态；直接服务 UGT 受体对接流程 |</p>
+<p>未进 Top 5 的高强度条目：葡萄 UGT 簇（异构体分工）、AmUGT 三酶（区域选择性+突变）、OxiEs（Nat. Chem. 区域选择性氧化酯化）、EnzyArena（历史补课不占名额）、GCE 存活选择（JACS）。LFS/SGES 为 fitness 基准方法（fitness≠活性）。</p>
+<h2>2. AI + 酶工程</h2>
+<h3>历史补课 1：Benchmarking and Experimental Validation of ML Strategies for Enzyme Engineering（EnzyArena）</h3>
+<p><strong>窗口外高相关；bioRxiv v1 2026-03-30、v2 2026-04-18，CC-BY-NC-ND，未同行评审。</strong> DOI <strong>10.64898/2026.03.29.715152</strong>。Zeng/Jin/Xu/Luo。依据官方摘要与公开全文片段，未逐表复核。<a href="https://www.biorxiv.org/content/10.64898/2026.03.29.715152v2">原始论文</a></p>
+<p>作者构建 EnzyArena：按实验批次分组、条件匹配（pH/温度/反应/批次）的 kcat、Km、kcat/Km 基准，系统评测 <strong>20 个模型、四类策略</strong>（结合亲和力、稳定性、zero-shot fitness、动力学参数预测），覆盖公共数据库子集与 <strong>25 个独立突变数据集</strong>。作者报告：多数模型与催化活性的相关性弱、脆弱或不一致；<strong>动力学参数预测器在数据库子集上强，但在独立数据集上失去优势；zero-shot 预测器泛化更一致；多 zero-shot 模型的简单共识进一步提高有益突变识别的 precision</strong>。前瞻性湿实验：150 个突变（PTS 萜烯合酶，酵母体系），比较随机 50 vs UniKP top50 vs ESM-1v top50（摘要截断处之前的信息；具体命中率数值未在已读片段中，待全文 Table S2 复核）。</p>
+<p><strong>判断：本期对模型选型冲击最大的一篇，虽为补课。</strong> ① 与已报 Kroll &amp; Lercher（&lt;60% identity R²&lt;0）、Boltz-2 评审批评、上周 SSL 的 40% clustered 基准同属一条证据链：<strong>数据库来源的 kcat 成绩不能外推到你的目标体系</strong>；② 对 UGT 项目的直接含义：UniKP/CataPro 类监督模型用于新受体突变排序前，必须用自有小数据集做校准实验，zero-shot 共识作为对照臂；③ 局限：PTS/酵母单体系前瞻验证，25 个独立数据集的构成与统计重复待读全文；④ 不因此宣布监督模型无用——“数据库子集强、独立集弱”恰说明它们学到了什么、没学到什么。</p>
+<h3>Cross-family learning transfers thermal adaptation between enzymes（THOR）</h3>
+<p><strong>本周新增；bioRxiv，posted 2026-10-28，v1，CC-BY-NC，未同行评审。</strong> DOI <strong>10.64898/2026.10.26.761089</strong>。Viknander 等，Zelezniak 组。依据官方摘要，未读全文。<a href="https://www.biorxiv.org/content/10.64898/2026.10.26.761089v1">原始论文</a></p>
+<p>作者报告：THOR（THermally Optimised Representations）生成式框架学习<strong>非配对</strong>嗜中温/嗜热序列群体间的背景特异性序列变换，训练时不暴露目标家族的嗜热同源物；跨趋异酶家族迁移热稳定性。在<strong>排除出训练的 malate dehydrogenase</strong> 上 zero-shot 设计使表观熔点最高提升约 <strong>15（°C，摘要 API 文本单位缺失，按上下文推断，待全文确认）</strong>，有限家族微调后最高约 <strong>36</strong>；多数设计变体经长时间热挑战后保留活性，<strong>个别变体催化周转约为 WT 的近 3 倍</strong>；MD 模拟显示相似热表型由背景依赖的不同柔性/相互作用变化实现。</p>
+<p><strong>判断：</strong> ① “不依赖进化祖先的跨家族稳定性迁移”若成立，对缺嗜热同源物的植物 UGT/甲基转移酶有直接价值；② 关键审读点：MDH 单家族 zero-shot 证据、活性保留的统计分母、“近 3 倍 turnover”的 assay 条件、与 FireProt/ ThermoMPNN 类基线的比较是否同预算；③ 稳定性≠活性，作者自己也把活性保留与周转提升分开报告，态度端正；④ 代码/权重可用性摘要未提及，待查。</p>
+<h3>LFS/SGES（Linear Fitness Subspace，月内补检）</h3>
+<p><strong>首发 arXiv 2026-10-06（2610.07607），月内补检；Codex 侧全文读数，Kimi 侧经 arXiv API 核实身份与日期、未复核读数。</strong> LFS 假设：突变诱导的残基层表示变化中存在紧凑的 assay 特异方向集，使 fitness 从小样本线性可达；SGES 在学习子空间内做代理建模/不确定度/采集。作者结果（Codex 侧读数）：10 个核心 ProteinGym assay + 87 个扩展静态验证 + 18 个预算搜索；87 assay 上 site-delta Ridge mean rho 0.584 vs zero-shot 0.438；32 初始标签/500 oracle/5 seeds。<strong>判断（双方一致）：assay 特异 fitness 搜索方法，无新 wet-lab；预训练暴露与多突变隔离待核；fitness≠催化活性，不直接用于 UGT 活性排序。</strong> 列可读。</p>
+<h3>Coupling Enzyme Activity to Host Survival via Genetic Code Expansion（JACS）</h3>
+<p><strong>本周期刊公开；JACS，Crossref published 2026-10-28。</strong> DOI <strong>10.1021/jacs.6c15079</strong>。依据 Crossref 摘要，未读全文。</p>
+<p>作者报告：把胞内生成的 ncAA 作为正交 aaRS 底物，琥珀密码子通读产生氯霉素抗性蛋白，从而把<strong>生物催化剂活性与宿主存活偶联</strong>；用 TPL、TrpB、SmLcar 三个体系验证；进化 TPL/TrpB 处理此前无活性的底物，目标 ncAA 克级制备，终滴度最高 <strong>36.8 g/L</strong>；双重依赖允许同时选择上游催化剂与下游 aaRS 变体。</p>
+<p><strong>判断：</strong> 存活偶联选择是定向进化方法学的硬进展（选择压力直接绑定催化活性而非结合/荧光），对缺高通量 assay 的酶有借鉴；局限是体系要求产物为 ncAA 且能被 aaRS 利用，<strong>不能直接搬到糖基转移</strong>；作为“选择/筛选设计”的方法储备记录。</p>
+<h3>其他本周条目（摘要级，简列）</h3>
+<ul>
+<li><strong>Reprogramming Stereocontrol…Artificial Triplet Photoenzymes</strong>，Angew，Crossref published <strong>10-31</strong>，DOI <strong>10.1002/anie.9814409</strong>：晶体+动力学+模拟+工程化，底物组装重构使 [2+2] 环加成对映偏好从 99.5:0.5 反转到 2:98 e.r.，光敏剂位置不变。立体控制的机制驱动工程范例；人工光酶，与天然酶工程距离中等，列可读。</li>
+<li><strong>ESM-ECForest</strong>，Comput. Struct. Biotechnol. J. 10-29，DOI <strong>10.34133/csbj.0246</strong>（PMC13716986）：ESM-2 嵌入+随机森林两段式 EC 预测；外部基准 25,778 序列，weighted F1 0.94(L1)→0.90(L4)。<strong>EC 注释≠活性预测</strong>；可作 UGT 库初筛注释层候选，工具表记录。</li>
+<li><strong>KINBERT + phospho-PCA</strong>（bioRxiv 10-28，DOI <strong>10.64898/2026.10.26.762004</strong>）：PLM 联合编码激酶催化域+底物肽，配 pooled phospho-PCA 实验闭环，Bayesian 层次模型解耦生化识别与激酶适应性。<strong>方法范式（联合编码+pooled assay+解耦）对 UGT-受体筛选有借鉴</strong>，激酶体系本身非目标；列可读。</li>
+<li><strong>Directed Evolution of Multimodal Plastic Degrading Enzymes</strong>（bioRxiv 10-28，DOI <strong>10.64898/2026.10.25.761710</strong>）：4 位点 &gt;300,000 文库、平板筛选，单突变株获得聚氨酯活性并保留聚酯酶活性。摘要仅见 n=1 命中、无动力学数字；列观察。</li>
+</ul>
+<p><strong>资源核实（更新 pending）：</strong> SSL kcat 仓库 <strong>ali-malli/SSL 确认存在，MIT 许可</strong>，含 data/experiments/results/scripts（创建 10-05）——资源状态由“未验证”升为“代码可得”；AlphaVariant 脚注仓库 charlesxu90/dgc-libgen <strong>最后 push 为 2026-08-21（早于预印本 posted 10-21）、无许可</strong>——不能确认其覆盖 AlphaVariant，复现性存疑，维持“待核”；EzHit 代码仓库 GitHub 检索仍为零，维持观察。</p>
+<p><strong>AlphaVariant 补核（双方分歧已解决）：</strong> Codex 侧据用户 10-30 PDF 图版报告“7.1× 为 Fig 5F kcat/KM”；Kimi 侧 bioRxiv HTML 文本层确认 assay 链为 milk-halo 初筛→suc-AAPF-pNA ΔOD410/min 相对 WT（前两轮筛选）、第三轮 casein 底物 32 变体中 3 个超 Uno 100 L（含 GB/T 洗涤测试）、IP-conflict 打分入 RL 奖励，但文本层无 kcat 字样。本期 Kimi 侧直接目验本地图版文件（runs/20261030_mutation_ppt/input/P4_F5f.png）：<strong>Fig 5F 确为纯化酶 kcat/Km（μM⁻¹ s⁻¹）柱状图，R2-10-B11 = 7.1× WT，另有 5.9×/6.3×/6.9× 等</strong>；Fig 5E 复筛活性约 4× 以上。双方结论合并：<strong>7.1× 是纯化酶 kcat/Km 倍数（非 fitness 代理），筛选期数字（75.4%/83.8%）是相对活性命中率</strong>；处置由“必读（摘要级）”升为<strong>必读（全文+图版已部分核实）</strong>；待核仍为：kcat/Km 测定条件与重复、专利范围、代码可用性（脚注仓库停更）。</p>
+<h2>3. 酶催化机理 / QM/MM</h2>
+<h3>pdb2reaction: End-to-End Reaction-Path Elucidation from PDB Structures Using MLIPs</h3>
+<p><strong>本周期刊公开；ACS Omega 11(42):65454-65462，eCollection 2026-10-27（稿件 10-07）</strong>，DOI <strong>10.1021/acsomega.6c08242</strong>，PMCID <strong>PMC13717662</strong>，开放获取。Ohmura/Sato/Terada（东京大学）。依据 PubMed 摘要一手核实。<a href="https://pubmed.ncbi.nlm.nih.gov/42959874/">PubMed</a></p>
+<p>作者报告：开源 Python CLI，从人工整理的 PDB 出发自动完成活性位点提取→最小能量路径搜索→TS 精修→IRC 验证→QRRHO 热化学，全部用单一 MLIP 后端；捆绑 GPU 加速 pysisyphus fork 在同卡上做 Hessian/IRC/振动分析。键变驱动递归路径搜索<strong>无需用户给定中间体</strong>即恢复 <strong>BezA（geranyl pyrophosphate C6-甲基转移酶）</strong> 的两步机理（SN2 样甲基转移→谷氨酸介导去质子，经阳离子中间体），并找到两个 TS 与中间体；在 6 个酶、23 个反应步的基准上，覆盖最广的后端 <strong>UMA-m-1.1 重现了 19 步的文献机理</strong>（各 TS 单一虚频）；BezA 上全部 5 个后端给出同一两步路径与同一步限速。</p>
+<p><strong>判断：本期最可能进入工作流的工具。</strong> ① 甲基转移酶案例与 SeNMT/克拉霉素甲基化项目高度贴近；② 定位为 DFT 簇模型与全酶 QM/MM 之前的<strong>高通量初筛层</strong>，作者自己也如此定位，不声称替代；③ 必须自验的边界：MLIP 对各自体系的元素/电荷/自旋覆盖、与 DFT 参考的势垒差、糖基转移（强极性 TS）精度——已报 Sun 等 ME-ML/MM 在极性突变低估的教训提示必须校准；④ 开源（PMC 开放获取，代码可用性待从正文确认仓库地址与许可）。<strong>建议列入小试：用 BezA 复现→再用一个有 DFT 参考的自有甲基化体系校准。</strong></p>
+<h3>机理研究简列（摘要级）</h3>
+<ul>
+<li><strong>JACS ThDP ketyl radical EPR/ENDOR</strong>（10-30，DOI <strong>10.1021/jacs.6c16863</strong>）：工程化 BFD 的氧化型光生物催化交叉偶联；冻淬多频 EPR/ENDOR 直接表征 TPP 结合 ketyl 自由基，显示同一化学组成的中间体在 BFD 与 BAL 中电子结构不同——蛋白骨架通过活性位点构象重塑自由基电子结构。机理深度高，与辐射化学/光酶项目相关者精读；列可读。</li>
+<li><strong>Isonitrile synthase Rv0097 第二配位层 Thr</strong>（bioRxiv 10-30，DOI <strong>10.64898/2026.10.26.761392</strong>，Kulik 组）：原子分辨率结构+生化+计算，第二壳层 T92 引导 Fe(IV)-oxo 的 HAT 取向并管理 αKG 在线/离线构象。第二壳层遥控催化的清晰案例；列可读。</li>
+<li><strong>ChrH/DybH MNIO 机理</strong>（bioRxiv 10-28，DOI <strong>10.64898/2026.10.27.762324</strong>，van der Donk）：突变体产物快照支持硫醛中间体与大环化末步。列可读。</li>
+<li><strong>凝聚酶拥挤激活</strong>（Nat. Commun. 10-30，DOI <strong>10.1038/s41467-026-77666-y</strong>，Codex 侧全文）：LDH/ADH 在 BSA/PEG 拥挤下激活，特定构象 QM/MM 势垒差约 4 kcal/mol；<strong>有更早近标题预印本、diff 未核，不计新增</strong>；势垒差不可换算为总速率倍数。列观察。</li>
+</ul>
+<p>本轮未确认 ChemShell/ORCA 实质功能更新；通用 MLIP 整酶自由能路线（eSEN、MACEPOL-EF）无新版本，维持原处置。</p>
+<h2>4. 蛋白结构与 enzyme-substrate prediction</h2>
+<h3>A tale of two states: AlphaFold binding pockets on the apo-holo continuum</h3>
+<p><strong>本周新增；bioRxiv，posted 2026-10-30，v1，CC-BY，未同行评审。</strong> DOI <strong>10.64898/2026.10.26.762003</strong>。Feidakis/Krivak 等（Vondrasek 组方向）。依据官方摘要，未读全文。<a href="https://www.biorxiv.org/content/10.64898/2026.10.26.762003v1">原始论文</a></p>
+<p>作者报告：把 <strong>237,922 个 AlphaFold 口袋（12,255 蛋白）</strong> 放到由实验结构张成的 apo-holo 轴上：多数偏 holo-like（<strong>62%</strong>；apo/holo 等采样时 56%）；三个结合位点预测器对 holo-like 口袋的检出高 <strong>13–21 个百分点</strong>，同源配体对接成功率高 <strong>19 个百分点</strong>，且差距随实验状态分离增大、重叠处消失；<strong>AlphaFold 置信度报告的是口袋变异程度而非所处状态</strong>；作者释出口袋级分类与描述符。</p>
+<p><strong>判断：对 UGT 受体对接流程直接有用。</strong> ① 给了“这个 AF 模型能不能拿去对接”的可操作判别层——先判口袋状态再对接，而非只看 pLDDT；② 与既有立场一致并定量化：高结构置信度≠正确催化构象；③ 注意其终点是<strong>结合</strong>而非催化——holo-like 口袋对接成功不保证 near-attack 几何；④ 待核：分类器在 UDP-糖供体口袋与大受体位点上的表现、分类资源的形式与许可。</p>
+<h3>其他结构条目（摘要级）</h3>
+<ul>
+<li><strong>UGGT1 全长 cryo-EM</strong>（PNAS 123(44)，epub <strong>2026-10-30</strong>，DOI <strong>10.1073/pnas.2621329123</strong>，PMID <strong>42961939</strong>）：人源折叠质控传感器 UDP-glucose:glycoprotein glucosyltransferase 全长多域结构，单体开/闭两种构象态+中间态模型（3D variability+MD）。GT-B 大结构域重排与底物识别的结构基础；对理解 GT 底物识别有参照价值；列可读。</li>
+<li><strong>GlycoWeave</strong>（arXiv <strong>2610.37410</strong>，10-27）：糖链特异 diffusion 框架做蛋白-糖链复合物结构；698 复合物基准 Top-25 高质量成功率 <strong>71.9% vs AF3 19.2%</strong>，0.34 s/pose。<strong>注意是蛋白-聚糖识别复合物，不是酶-底物催化构象</strong>；Top-25 非 Top-1；对 UGT 的意义在糖基化产物/供体识别建模而非活性预测；代码可用性未核。列可读/工具观察。</li>
+<li><strong>AMARO v2.0</strong>（arXiv <strong>2610.37606</strong>，10-27，De Fabritiis 组）：全重原子粗粒化 NNP，隐溶剂，复合物动力学；结合自由能估计系统性偏负。<strong>binding 而非 catalysis</strong>；观察。</li>
+</ul>
+<h2>5. UGT / glycosyltransferase</h2>
+<h3>Genetic analysis of grapevine wood composition identifies glycosyltransferases involved in the biosynthesis of stilbene glycosides</h3>
+<p><strong>本周新增；bioRxiv，posted 2026-10-27，v1，CC-BY-NC-ND，未同行评审。</strong> DOI <strong>10.64898/2026.10.24.761503</strong>。Chepca/Rety 等（法国团队）。依据官方摘要，未读全文。<a href="https://www.biorxiv.org/content/10.64898/2026.10.24.761503v1">原始论文</a></p>
+<p>作者报告：葡萄（Riesling × Gewurztraminer 后代）木质部浸提物非靶向代谢组 + mQTL 分析，定位到一个 <strong>6 个 UGT 基因的簇</strong>与 resveratrol-glucoside（piceid）积累连锁；对这 6 个 UGT 做<strong>生化与结构表征</strong>，发现小基因家族内显著功能分化，其中一个 UGT 是木质化组织 piceid 组成型积累的关键决定子；分子进化分析显示该簇整体受强纯化选择；<strong>不同 UGT 分别负责顺式与反式 piceid 的合成</strong>。</p>
+<p><strong>判断：</strong> ① 对 UGT 筛选的直接提示：<strong>同一基因簇内的近缘 UGT 可分管不同异构体</strong>——以“总糖苷”为终点的筛选会错过这种分工，assay 须分辨顺/反异构体；② mQTL→基因簇→生化/结构表征是植物 UGT 功能发掘的完整范式，与已报 cyanidin 组合筛选（10-26 期）互补：一个从遗传定位出发，一个从组合构建出发；③ 待核：6 个 UGT 的体外动力学参数、结构解析方式（晶体还是 AF）、底物谱宽度。</p>
+<h3>三种黄芪黄酮 UGT（月内补检）</h3>
+<p><strong>JAFC published 2026-10-22，月内补检；Codex 侧发现，Kimi 侧 Crossref 摘要复核确认。</strong> DOI <strong>10.1021/acs.jafc.6c10140</strong>。AmUGT73AC19/88E36/88E37 均糖基化 calycosin/formononetin（金属离子非依赖）；功能分化——AmUGT88E36 偏异黄酮 7-O-糖基化，AmUGT73AC19 区域选择性灵活，<strong>AmUGT88E37 接受异黄酮/黄酮醇/黄酮/二氢黄酮并产生 7-O/4′-O/6-O 糖苷</strong>；docking+突变鉴定 Glu383 与区域选择性位点（Val144/Tyr135/Leu195/Val141）。<strong>判断（双方一致）：受体/区域选择性参照，湿实验扎实；SI 逐酶动力学与产物确证待全文；不是大库排序器。</strong> 列必读（参照价值）。</p>
+<h3>PLP–光催化剂协同（Nat. Catal.）</h3>
+<p><strong>期刊版 published 2026-10-28（本周窗口内）；同题预印本 bioRxiv 10.64898/2026.10.15.759323，posted 10-16、CC-BY（Kimi 侧 API 确认）。</strong> DOI <strong>10.1038/s41929-026-01629-1</strong>。Codex 侧发现，Kimi 侧经预印本一手确认摘要：系统性排查 PLP 酶×光催化剂矩阵（覆盖宽激发态氧化还原窗口），发现双方单独均不具备的新 C–C 偶联反应性，含<strong>此前未知的迁移 β-交叉偶联</strong>与 canonical γ-偶联；随后经底物通道工程定向进化（摘要截断，突变分母待全文）。<strong>处置分歧已按用户确认解决：列必读并进 Top 5</strong>；以全文突变分母与矩阵规模为后续精读依据。</p>
+<p><strong>相关动态：</strong> 病毒 GT 结构信息学（arXiv <strong>2610.39662</strong>，10-29）用结构字母表搜索+结构相似网络发现序列注释漏掉的病毒 GT 新谱系（jumbo phage 五串联 GT 基因座）——无湿实验，作为 GT 挖掘方法参考列观察；与已报 EzHit（仍未释放代码）同属“序列之外找 GT”的路线。UGGT1 结构见 §4。本期无可直接提高 1000–10000 UGT→10–50 命中率的新算法；ESM-ECForest 的 EC 注释层可作粗筛补充，但不能分辨受体特异性。</p>
+<h2>6. 蛋白表达与溶解度</h2>
+<p>本期未确认窗口内新的溶解度/表达预测模型或既有工具实质更新。SeqSol-FECS、SurfSol、Pro4S 待核问题维持。<strong>Codex 侧补核（据用户 PDF）</strong>：SeqSol-FECS 的 AcN（Fig 4）与 Nit10（Fig 6）<strong>各</strong>有 30 个单点突变、后续组合另算，数据集 62478/6942/2005；<strong>不能称“两酶共 30 实验”</strong>，M2/M3 为粗酶活比较非逐点因果——该图读数待 Kimi 侧 SI 复核，10-19 期表述按此修正方向理解。THOR（§2）虽以热稳定性为表型，但其“多数设计保留活性”的报告方式（活性与稳定性分开）值得表达/稳定性改造工作借鉴。</p>
+<h2>7. 代谢工程</h2>
+<h3>From discovery to engineering: revealing and optimizing the indigoids biosynthesis by FMO from Indigofera tinctoria</h3>
+<p><strong>本周期刊公开；J. Adv. Res.，online 2026-10-30</strong>，DOI <strong>10.1016/j.jare.2026.10.044</strong>，PMID <strong>42962915</strong>。上海高校/医院团队。依据 PubMed 摘要一手核实（含定量结果），未读全文。<a href="https://pubmed.ncbi.nlm.nih.gov/42962915/">PubMed</a></p>
+<p>作者报告：转录组挖掘+功能筛选从木蓝（I. tinctoria）鉴定 <strong>ItFMO、ItTSA、ItINS</strong> 三个基因并功能验证；<strong>ItFMO 对 indole 的 kcat/Km = 0.22±0.05 s⁻¹mM⁻¹</strong>，高于所测其它植物 FMO；可将 <strong>16 种取代吲哚</strong>转化为各色靛类染料；供 2-oxindole 时经酶生 indoxyl 缩合联产 indirubin（约占总色素 70%）。E. coli 中 ItFMO 与 TnaA 共表达靛蓝滴度最高（<strong>41.27±0.84 mg/L</strong>），其次 ItINS（30.54±0.33）、ItFMO 单独（27.58±0.19），ItTSA 严重减产（5.68±0.20）；<strong>双菌共培养较单培养提高 2.7 倍至 60.03±0.82 mg/L</strong>。MD（催化活性构象态）+丙氨酸扫描鉴定 <strong>Q51、Y160、K212、S213、F373、N427</strong> 为关键残基并经定点突变验证。</p>
+<p><strong>判断：靛蓝项目的直接新证据，但须正确定位。</strong> ① 价值在<strong>酶学与底物谱</strong>：一个有动力学表征、16 种取代吲哚谱和关键残基清单的植物 FMO，为吲哚→靛蓝氧化步骤提供新候选与突变起点；② 滴度定位：60 mg/L 远低于已报工程化路线（如 Jiang L-Trp 74.3 g/L 为色氨酸而非靛蓝；既有靛蓝工程株亦远高于此），本文价值不在产量纪录；③ 方法学细节可借鉴：MD 用“催化活性构象态”而非任意构象、共培养分工策略；④ 待核：kcat/Km 的 assay 条件、与已报 NDO/TnaA 路线的同一底盘可比性、indirubin 联产对纯度的影响。</p>
+<h3>OxiEs 氧化酯化（Nat. Chem.，月内补检）</h3>
+<p><strong>Nat. Chem. published 2026-10-26，月内补检；Codex 侧摘要读数，Kimi 侧经 Crossref 确认身份与日期但摘要不可得（官网反爬）。</strong> DOI <strong>10.1038/s41557-026-02288-2</strong>。OxiEs1 偏伯醇/依赖 imidazole，OxiEs2 偏仲醇/不依赖，非常规区域选择性控制，有应用展示。<strong>判断：非 ML 酶学新反应类型；序列×条件交互提示同一酶在不同条件下选择性可切换；具体库/倍数/动力学待双方可读全文后复核。</strong> 列可读。</p>
+<h3>其他代谢条目（摘要级）</h3>
+<ul>
+<li><strong>Taxifolin 全细胞生产 + 生长偶联 DLE</strong>（Biotechnol. J. 2026-11 期，DOI <strong>10.1002/biot.70332</strong>，PMID <strong>42961177</strong>）：F3H 为限速节点；重建 TCA 循环把定向进化与生长偶联，42,360 理论文库 4 天 DLE；SlF3Hv01 使 taxifolin 较 WT +301.28%（22 h，93.82 mg/L）、+29.73%（46 h，119.87 mg/L）。生长偶联选择用于 α-KG 双加氧酶的实例；与 cyanidin 的供体平衡同属黄酮细胞工厂主题；列可读。</li>
+<li><strong>蓝色素生物合成综述</strong>（Biotechnol. Adv. 10-31，DOI <strong>10.1016/j.biotechadv.2026.109088</strong>，PMID <strong>42966607</strong>）：violacein/indigo/indigoidine/phycocyanobilin 四体系的途径优化、前体工程、膜工程比较框架。综述，无新数据；靛蓝背景资料，列可读。</li>
+</ul>
+<p>本周无 W3110/BW25113 芳香族前体或 ecGEM 方法学的高价值窗口内新增。</p>
+<h2>8. 新工具与模型</h2>
+<p>| Tool / Model | 用途 | 输入 | 输出 | 是否开源 | 是否值得测试 |
+|---|---|---|---|---|---|
+| pdb2reaction | PDB→反应路径/TS/热化学自动化 | 人工整理 PDB + 扫描清单 | 机理路径、TS、QRRHO 热化学 | 论文开放获取；仓库/许可待正文确认 | <strong>是：先复现 BezA，再校准自有甲基化体系</strong> |
+| SSL kcat（ali-malli/SSL） | 半监督 kcat 预测 | 酶/底物特征+不完整动力学记录 | kcat | <strong>已确认 MIT</strong>，含数据与实验脚本 | 是：借其 clustered 40% 协议审查现有模型 |
+| THOR | 跨家族热稳定迁移设计 | 目标序列（+少量家族微调） | 设计序列 | 可用性未提及，待查 | 待全文与资源核查后评估 |
+| GlycoWeave | 蛋白-糖链复合物结构 | 蛋白+糖链 | 结合构象 | 未核 | 观察；非催化构象工具 |
+| ESM-ECForest | EC 编号注释 | 序列 | EC 多级分类 | 期刊开放；代码待核 | 可作 UGT 库粗注释层 |
+| LFS/SGES | 小样本 fitness 搜索 | PLM 表示+少标签 | 子空间搜索 | 待核 | 观察（fitness≠活性） |
+| AlphaVariant（更新） | 多位点优化 | — | — | 脚注仓库最后更新 2026-08-21、无许可，<strong>不能确认覆盖 AlphaVariant</strong> | 维持：先全文核 assay/split |</p>
+<h2>9. 本周值得重点阅读</h2>
+<p><strong>必读（5 篇）：</strong></p>
+<ol>
+<li><strong>EnzyArena 全文</strong>（历史补课）：25 个独立数据集构成、150 突变湿实验的三分臂统计、consensus 细节。</li>
+<li><strong>ItFMO 全文</strong>：kcat/Km assay 条件、16 种底物谱、关键残基突变体表、共培养分工。</li>
+<li><strong>pdb2reaction 全文+仓库</strong>：23 步基准的失败 4 步是什么、UGT 类强极性 TS 的适用性、许可。</li>
+<li><strong>THOR 全文</strong>：MDH zero-shot 的分母与统计、Tm 单位确认、与现有稳定性工具同预算比较。</li>
+<li><strong>PLP–光催化剂协同全文</strong>：矩阵规模、突变分母、迁移 β-偶联的底物范围。</li>
+</ol>
+<p><strong>可读（8 篇）：</strong> AF apo-holo 口袋（口袋状态判别层）；葡萄 UGT 簇（异构体分工）；AmUGT 三酶 SI；GCE 存活偶联选择；Angew 人工光酶立体反转；UGGT1 cryo-EM；Taxifolin DLE；JACS ThDP ketyl EPR/ENDOR。</p>
+<p><strong>暂时不用读：</strong> OGT“protein co-scientist”论文（全计算 docking 评估功能，无湿实验，正是 docking≠function 的风险样本）；AltereGO（GO 注释层，与活性距离远）；ViPER（回顾性、寡聚化界面非催化）；AMARO v2.0（binding 工具）；Catalytic RNAs、流感 fitness landscape、protease specificity v4（版本沿革未核）；OxiEs 全文可待摘要双方复核后再排期。</p>
+<h2>10. 对当前项目可立即尝试的 3 件事</h2>
+<p>以下均为<strong>建议小试，未执行</strong>；验收阈值为本报告建议，非论文承诺。正式采用须另通过目标项目验证。</p>
+<ol>
+<li>
+<p><strong>用 pdb2reaction 复现 BezA 并校准一个自有甲基化体系。</strong> 输入：pdb2reaction 仓库与示例 PDB；自有体系（如 SeNMT 或克拉霉素甲基化）的 QM/MM 或 DFT 参考势垒。对照：同一参考态/电荷下 MLIP 路径与 DFT 路径的势垒差、TS 虚频与 IRC 完整性。输出：该工具在目标反应类型上的误差区间与单路径成本。验收：势垒差 &lt;2 kcal/mol 且路径化学一致，才允许用于突变体间相对比较；元素/自旋不支持即停止。正式采用须多体系复验。</p>
+</li>
+<li>
+<p><strong>按 EnzyArena 结论设计 UGT 突变排序的校准实验。</strong> 输入：目标 UGT 的既有小数据（或先测 24 个 WT 近缘突变）；候选模型含监督 kcat 类与 zero-shot 类（ESM-1v 等）及其简单共识。对照：随机选样臂不可省略；统一 assay 条件（向 EnzyArena 的批次匹配原则看齐）。输出：各模型 top-N 命中率与排序相关。验收：任一模型臂显著优于随机才允许进入下一轮扩容；zero-shot 共识作为默认对照臂。正式采用须在第二个受体/家族复验。</p>
+</li>
+<li>
+<p><strong>把 ItFMO 的关键残基与底物谱纳入靛蓝路线评估表，并给黄酮 UGT 筛选加异构体分辨通道。</strong> 输入：ItFMO 序列与 Q51/Y160/K212/S213/F373/N427 位点、现有路线的氧化酶（NDO 等）动力学与滴度记录；葡萄/黄芪 UGT 的启示——assay 增加顺/反与位置异构体分辨。对照：同一底盘、同一 indole 供给强度下的比活性与色素谱（靛蓝 vs indirubin 比例）。输出：是否引入 ItFMO 作为氧化步骤备选/互补的判定；异构体分辨纳入筛选 SOP。验收：以等酶量初速和产物谱为准，不以滴度论文值跨体系比较。注意 indirubin 联产对目标产物纯度的影响。</p>
+</li>
+</ol>
+<h2>11. Potential Research Opportunities</h2>
+<p>| 待验证问题 | 可做研究 | 判别证据 |
+|---|---|---|
+| 监督 kcat 模型在目标 UGT 家族上是否优于 zero-shot 共识？ | 固定批次条件的家族内小数据校准实验 | 随机臂对照、top-N 命中率、第二家族复验 |
+| MLIP 反应路径工具对强极性糖基转移 TS 的精度 | pdb2reaction vs DFT/QM-MM 参考的系统比较 | 势垒差、路径化学、元素覆盖边界 |
+| UGT 基因簇内异构体分工有多普遍？ | 已表征 UGT 簇的顺/反、位置异构产物谱复查 | 分异构体 assay；总糖苷终点会掩盖分工 |
+| AF 口袋状态判别能否提高 UGT 对接命中率？ | 用已释出的口袋分类重排既有对接队列 | 对接成功与催化命中的分层统计 |
+| 酶×光催化剂矩阵的系统性有多强？ | 更多酶家族×光敏剂矩阵扫描 | 新反应性须双方单独对照缺失 |</p>
+<p>这些是待验证课题方向，不声称无人研究或已确立新颖性。</p>
+<h2>12. 本周科研决策建议</h2>
+<ul>
+<li><strong>建议立即跟进：</strong> pdb2reaction 仓库与许可确认并复现 BezA；EnzyArena 全文（尤其 150 突变湿实验统计）；ItFMO 全文动力学与残基表；PLP–光催化剂协同全文（矩阵规模与突变分母）。</li>
+<li><strong>建议加入工具箱：</strong> SSL 的 clustered 40% 审查协议（代码 MIT 已确认）；AF 口袋 apo-holo 判别层（待资源核查后）；异构体分辨 assay 纳入 UGT 筛选 SOP；THOR 待资源与统计复核后评估。</li>
+<li><strong>建议继续观察：</strong> AlphaVariant（仓库停更疑云，7.1× 已经图版目验确认为 kcat/Km）；EzHit（代码仍未释放）；CascadeMAP（版本沿革未核）；LFS/SGES 资源；GlycoWeave、AMARO v2.0；ChemRxiv 连续两周不可达，下期再试；OxiEs 摘要双方复核。</li>
+<li><strong>暂时可以忽略：</strong> 纯 docking 评估功能的 agentic 包装论文；GO 注释模型的排名宣传；单命中无动力学的定向进化摘要；旧稿 typeset/correction 当新进展。</li>
+</ul>
+<p><strong>可能改变既有决策：</strong> ① EnzyArena（虽为补课）加上既有批评文献，使“监督 kcat 模型直接用于新 UGT 突变排序”的默认假设不再成立——选型必须先做目标家族校准，zero-shot 共识进对照臂；② pdb2reaction 类工具让反应路径初筛从周级降到 GPU 小时级，甲基化项目的机制排查顺序可以前移，但须先过 DFT 校准门；③ ItFMO 给靛蓝路线提供了一个有动力学与残基图谱的新氧化酶候选，但滴度证据不支持替换现有路线，只支持并行评估；④ PLP–光催化剂矩阵提示“酶×外源催化剂”组合空间值得主动扫描而非逐个试。<strong>还缺什么证据：</strong> ① EnzyArena 的独立数据集构成与湿实验三分臂统计；② THOR 的 Tm 单位、统计分母与资源可用性；③ pdb2reaction 在糖基转移/强极性体系上的误差；④ AF 口袋分类资源对 UDP-糖口袋的表现；⑤ AlphaVariant 的 kcat/Km 测定条件与专利范围；⑥ OxiEs 摘要双方复核；⑦ ChemRxiv 两周缺口。</p>
+<p>本期合并覆盖 bioRxiv API 全量、PubMed、Crossref 12 刊、arXiv（恢复后含 10-20～26 回补）、GitHub 检索、期刊官网与用户 PDF 图版；ChemRxiv 连续第二周不可达、Nature 官网反爬受限，未声称穷尽所有数据库。多数条目仍缺全文分母、严格 split 或目标 UGT 验证；相关线索已写回 pending_leads，历史索引同步更新。未安装软件、未执行服务器或科研计算。</p>
+</div>
+</div>
+</body>
+</html>

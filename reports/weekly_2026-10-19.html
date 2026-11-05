@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>weekly_2026-10-19 · 酶科研雷达</title>
+<style>
+
+  :root {
+    --text-1: #1a1a1a; --text-2: #4d4d4d; --text-3: #7a7a7a; --text-4: #a8a8a8;
+    --border: #e4e4e4; --surface: #fff; --surface-mute: #f5f5f5;
+    --accent: #2563eb; --positive: #16a34a; --warning: #b45309; --purple: #7c3aed;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-1: #e8e8e8; --text-2: #b5b5b5; --text-3: #8a8a8a; --text-4: #606060;
+      --border: #333; --surface: #161616; --surface-mute: #1f1f1f;
+      --accent: #6ea8fe; --positive: #4ade80; --warning: #fbbf24; --purple: #a78bfa;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--surface); color: var(--text-1);
+    font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 16px; line-height: 1.7;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 28px 20px 80px; }
+  .back { font-size: 13px; color: var(--text-3); text-decoration: none; }
+  .back:hover { color: var(--text-1); }
+  .doc h1 { font-size: 21px; font-weight: 500; line-height: 1.4; margin: 18px 0 6px; }
+  .doc h2 { font-size: 17.5px; font-weight: 500; margin: 34px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .doc h3 { font-size: 15.5px; font-weight: 500; margin: 24px 0 8px; }
+  .doc p { margin: 10px 0; }
+  .doc a { color: var(--accent); text-decoration: none; }
+  .doc a:hover { text-decoration: underline; }
+  .doc table { border-collapse: collapse; width: 100%; font-size: 13.5px; margin: 12px 0; display: block; overflow-x: auto; }
+  .doc th, .doc td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; vertical-align: top; }
+  .doc th { background: var(--surface-mute); font-weight: 500; }
+  .doc code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 12.5px; background: var(--surface-mute); padding: 1px 6px; border-radius: 4px; }
+  .doc ul, .doc ol { padding-left: 22px; }
+  .doc li { margin: 6px 0; }
+  .doc hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  .doc blockquote { margin: 12px 0; padding-left: 14px; border-left: 3px solid var(--border); color: var(--text-2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../index.html">← 返回文献档案馆</a>
+  <div class="doc"><h1>Weekly Research Intelligence</h1>
+<p>时间：2026-10-13 ～ 2026-10-19（Asia/Tokyo）<br />
+月内补检：2026-09-20 ～ 2026-10-19。截止：10 月 19 日上午；采用自动任务指定的东京日期窗口，不随本机显示时区改变。</p>
+<p>本期精选 <strong>4 项：本周公开 2 项，月内补检 2 项</strong>；另列 1 项复现工作流观察、2 项窗口外补课。没有确认值得单列的实质版本更新。已读取 review_rules、pending_leads、历史索引与既往报告，包含上期下午复核记录；不重复计算已报论文。不凑足 Top 5 或 8–20 项。本期没有新的 Kimi 报告。</p>
+<p><strong>决策重点：把底物进入、有效结合和化学步骤拆开；表达救援同时要求比活性保持；模型选型按实际分布偏移而非总体排名。</strong> 尚无新证据支持更换 UGT 主筛选模型、ChemShell + ORCA 或 indigo 的代谢建模主流程。下文“作者报告”是文献主张，“判断”是本报告推断；未核实不等于论文没有做。</p>
+<h2>1. 本周最重要的 5 个进展</h2>
+<p>本期仅列 4 项，月内补检明确标注；窗口外研究不占名额。</p>
+<p>| 工作 | 领域 | 核心突破 | 对当前研究价值 |
+|---|---|---|---|
+| Enhancing ω-transaminase catalysis…，Nat. Commun.，10-14，本周 | 结合机制 / 酶工程 | 结合自由能分析与远端突变实验，处理通道进入和有效结合的权衡 | 提醒大受体 UGT 不能只优化口袋 docking 分数 |
+| SeqSol-FECS，Biomacromolecules，10-03，补检 | 溶解度 / 表达 | 单突变重评分与结构/保守性过滤结合，有溶解度及比活性实验 | 适合优先审查为 UGT 表达救援的小试候选 |
+| Generalizing Protein Fitness…，bioRxiv，10-07，补检 | 分布外突变预测 | 分开考察新位点与新骨架，分析结构/共进化表示的贡献 | 候选模型要按任务留出评估；fitness 仍不等于催化活性 |
+| ProTok，arXiv，10-13，本周 | 蛋白表示 / foundation model | sequence、structure、function 的统一离散表示 | 属未来表示层候选，不能据此升级当前活性排序 |</p>
+<p>前两项有更直接的实验设计价值；后两项影响评测和表示选型，但缺目标 UGT 活性证据。ω-TA 按已确认期刊日期列入，更早预印本未检出，不能保证不存在。</p>
+<h2>2. AI + 酶工程</h2>
+<h3>Generalizing Protein Fitness Prediction Across Distribution Shifts via Structural and Co-evolutionary Priors</h3>
+<p><strong>月内补检；bioRxiv，posted 2026-10-07，未同行评审。</strong> DOI <strong>10.64898/2026.10.06.756934</strong>。依据官方摘要，全文访问受限。<a href="https://www.biorxiv.org/content/10.64898/2026.10.06.756934v1">原始论文</a></p>
+<p>作者结合 structure-aware PLM、序列/MSA 驱动的 AlphaFold-style trunk 特征及轻量 probe，在 FLIP2 比较新突变位点和新骨架留出。报告结构先验对新骨架、trunk 特征对新位点的收益更明显。数据集规模、逐任务数值、WT/多突变隔离、预训练暴露、代码许可及新湿实验未完成核实，不引用“最佳”作为通用结论。</p>
+<p><strong>定位：</strong> 输入蛋白序列及结构/共进化表示，输出 fitness；未确认底物条件输入或 mutation→catalytic activity 训练。不能替代绝对 kcat/Km 或受体特异性预测。<strong>判断：待读全文，先借鉴分布偏移评测。</strong> 在目标 UGT 上应区分“同一骨架新位点”和“新同源酶”，否则一次汇总相关性无法指导选型。</p>
+<h3>ProTok: Unified Protein Tokenization via Modular Multi-Codebook Quantization</h3>
+<p><strong>本周新增；arXiv:2610.18481，submitted 2026-10-13，预印本。</strong> 本次读取官方 HTML 正文/附录。<a href="https://arxiv.org/html/2610.18481v1">论文</a></p>
+<p>在约 <strong>311K protein chains</strong> 上训练统一 tokenizer，允许不同模态子集输入；作者报告 28 个测试切分中 21 个第一，CATH 重建 lDDT <strong>0.939</strong>。包含 fold/superfamily/family 留出；附录的 conformational-switch 温度扫描报告最佳相关，不能与验证集选定参数的监督结果混作严格盲测。预训练与下游去重未独立复核。</p>
+<p>无底物、kcat 或突变催化标签，无湿实验；设计可折叠性不是催化命中率。代码/权重发布入口未确认，所用上游模型许可不同。<strong>判断：表示层观察，不纳入筛酶。</strong> 若未来资源完整，可在固定数据和回归器下比较表示增量；当前不值得为它重建 UGT 流程。</p>
+<h2>3. 酶催化机理 / QM/MM</h2>
+<h3>Enhancing ω-transaminase catalysis of bulky substrates guided by binding mechanism</h3>
+<p><strong>本周期刊公开；Nature Communications 接受稿，2026-10-14</strong>，DOI <strong>10.1038/s41467-026-78636-0</strong>；不是二手页面的 10-15。本期上午复核：文章为 Open Access，SI、reporting summary、transparent peer review file 与 source data 均已公开可下载；本报告内容仍基于摘要级，activity 定义与采样细节待逐节读全文。<a href="https://www.nature.com/articles/s41467-026-78636-0">原始论文</a></p>
+<p>作者在 B. megaterium ω-TA 上结合 Funnel metadynamics、PathDetect-SOM、path CV 重建底物结合自由能面，结合动态互相关找远端位点；迭代实验所得 <strong>13M</strong> 变体 activity 为 WT 的 <strong>106 倍</strong>，<strong>ee &gt;99%</strong>。activity 的具体定义、突变组合规模、采样重复/收敛和代码资源待全文确认；不能把 106 倍改写成 kcat 或 kcat/Km 提升。</p>
+<p><strong>判断：本期最优先阅读。</strong> 其新增价值是诊断通道与有效结合之间的权衡；结合 FES 不是化学反应 FES。对 UGT 大受体迁移是机制启发，PLP 转氨机制不能代替糖基转移 QM/MM。先用已有正负底物确定是否真有进入瓶颈，再考虑增强采样。</p>
+<p>本轮未确认其他未报、窗口内的通用 QM/MM/MLIP 原始方法或 ChemShell/ORCA 实质功能更新。已报 MACEPOL-EF、eSEN、MAPLE 不重复计数；本期不推荐更换势能方法。近期 CAZyme QM/MM 综述不作为新定量基准。</p>
+<h2>4. 蛋白结构与 enzyme-substrate prediction</h2>
+<p>ω-TA 研究提示可区分三层证据：能否进入、能否形成有效结合、能否发生化学转化。更好 binding 或更高结构置信度都不能单独回答最后一层。ProTok 的重建/功能检索同样不是 reactive pose 验证。</p>
+<p><strong>历史补课 1：De novo design of cysteine proteases。</strong> Nature <strong>2026-10-14</strong>，DOI <strong>10.1038/s41586-026-11143-w</strong>；已有 <strong>10.1101/2025.11.21.689808</strong> 早期预印本，09-21 v3 注明仅文本/图例小修，未确认期刊新增实验，故不算新进展。<a href="https://www.nature.com/articles/s41586-026-11143-w">期刊</a>、<a href="https://www.biorxiv.org/content/10.1101/2025.11.21.689808v3">旧版本</a></p>
+<p>作者报告 <strong>13/69</strong> 活性设计、相对背景反应最高 <strong>3×10⁷</strong> 倍速率增强及 6 个晶体结构；这不是相对天然酶 3×10⁷ 倍。剩余性能差距与活性位点预组织/底物定位有关。序列与结构公开，分析流程<a href="https://github.com/hojaec/RFD2_MI_cysteine_protease_pipeline">仓库</a>不打包模型权重及运行环境。<strong>判断：可读失败边界，不能以晶体吻合代替高催化效率。</strong></p>
+<h2>5. UGT / glycosyltransferase</h2>
+<p>没有确认可直接提高 1000–10000 UGT → 10–50 候选命中率的新算法。SeqSol-FECS 可作为表达救援候选，ω-TA 可启发大受体通道诊断，但都缺植物 UGT 目标分布验证。仍应保留序列多样性和简单基线，不用未校准分数硬筛掉整个分支。</p>
+<p><strong>高相关，本期上午已全文级核实，仍不入精选：EzHit / Scalable Enzyme Reaction Retrieval Enables Metagenomic Biocatalyst Discovery</strong>，DOI <strong>10.64898/2026.10.15.759509</strong>，posted <strong>2026-10-18</strong>，厦门大学，未同行评审（CC-BY-NC-ND）。本次读取官方摘要及 PDF 全文。<a href="https://www.biorxiv.org/content/10.64898/2026.10.15.759509v1">原始论文</a></p>
+<p>ProtT5 序列 + DRFP/ECFP 反应指纹 + KAN 的轻量双向检索，不需结构输入。训练 1,513,592 酶-反应对（RHEA 正例 + 1:5 负例：取相似反应的酶并排除真阳性）；内部测试为 time split（RHEA 2023-07～2025-02 新收录，剔除反应相似度 &gt;0.9）。Enzyme-405（295 反应 / 405 酶，序列不在训练集）Top-1 约 25%、Top-10 超 65%、EF 约 45（EnzymeCAGE 约 33）；Orphan-335 为反应留出并按 Morgan Tanimoto 分层，各区间仍优于 ESP/CLIPZyme/EnzymeCAGE。Mahalanobis 几何置信优于概率与 evidential 不确定度（与训练相似度 r=0.57）。大筛选：30.27M 宏基因组序列 × 30,136 RHEA 反应，P&gt;0.5 且 Mahalanobis&lt;20 保留 8.20 billion 关联（19,489 个反应）。</p>
+<p>湿实验：RHEA:11480（NADPH 依赖 3-hydroxybenzoate → protocatechuate）5 个候选全部有可测转化（22.6–99.3%，参照 MHBH 82.9%）；<strong>但每酶仅单次测量、30 h 保温、候选与参照 identity 45.3–46.8%（中度分歧）</strong>，作者明示不能确立催化效率差异。代码承诺 MIT 许可、含 checkpoint 与 Colab，但 v1 全文所有链接均为占位符，实际未释放，GitHub 未检索到仓库。<strong>判断：time split、反应分层、几何置信与置信过滤漏斗值得借鉴到 UGT 候选优先排序；5/5 单次转化不能外推为 UGT 命中率。待资源实际释放与 SI 复核后再评估精选。</strong></p>
+<h2>6. 蛋白表达与溶解度</h2>
+<h3>SeqSol-FECS: An Integrated Deep Learning and Structural Modeling Framework for Protein Solubility Engineering</h3>
+<p><strong>月内补检；Biomacromolecules，online 2026-10-03</strong>，DOI <strong>10.1021/acs.biomac.6c01393</strong>。依据官网摘要与 SI 目录，未完成正文/SI 逐表复核。<a href="https://pubs.acs.org/bomaf6/article/doi/10.1021/acs.biomac.6c01393/5444219/SeqSol-FECS-An-Integrated-Deep-Learning-and">论文与 SI</a></p>
+<p>SeqSol 用 <strong>71,425</strong> 蛋白开发，sequence-level WT–mutant 重评分；作者报告独立集 accuracy <strong>75.8%</strong>、AUROC <strong>0.840</strong>。结合柔性、可及性和保守性过滤后，<strong>30 个实验突变</strong>使两种工业酶溶解度分别从 <strong>56.18% / 10.53% 到 &gt;95%</strong>，报告比活性保持。严格 identity/time split、突变组隔离、独立集分母及代码许可未知；不是用 mutation→activity 标签训练的活性模型。</p>
+<p><strong>判断：优先补读，可准备小试。</strong> sequence 重评分本身成本低，完整 FECS 还需结构/动态信息。该路线与 E. coli 表达需求匹配，但植物 UGT 迁移未证实；溶解比例不能等同每升可溶酶产量。SI 列有原始分数、消融和动力学/表达数据，应先审查实际实验分母，再选少量保守设计。</p>
+<p>本轮未确认 PLM_Sol、DeepSoluE、SoluProt、DeepSol/DeepSolNet、NetSolP 的重要新版本；不据此认定它们被 SeqSol 全面超越。</p>
+<h2>7. 代谢工程</h2>
+<p>未确认葡萄糖下 W3110/BW25113、PEP/E4P→Trp→indole→indigo 的高价值窗口内新增研究，亦未确认可直接优于现有 FBA 工作流的新模型。下列研究有项目价值，但日期核查后应放历史，而非当作 10 月新进展。</p>
+<p><strong>历史补课 2：Efficient production of l-tryptophan by dynamic regulation of the intracellular l-Gln:l-Ser ratio in Escherichia coli。</strong> DOI <strong>10.1016/j.biortech.2026.135025</strong>；PubMed article date <strong>2026-05-30</strong>，10 月为卷期。依据 PubMed 摘要和期刊公开片段。<a href="https://pubmed.ncbi.nlm.nih.gov/42217805/">PubMed</a>、<a href="https://www.sciencedirect.com/science/article/pii/S0960852426011077">期刊</a></p>
+<p>作者以代谢/转录诊断构建 Gln 响应 RNAi-SG，保持 Gln:Ser 约 <strong>5:4</strong>；最终 TRPA 在 <strong>52 h</strong> 达 <strong>68.2 g/L、0.260 g/g</strong>。属静态前体工程、动态调控与发酵优化的联合结果，不是单个线路的独立增益。底盘遗传背景和具体供料还需全文核实；不能跨论文比滴度或把 5:4 当 W3110/indigo 的通用最优比例。</p>
+<p><strong>判断：先测前体而非直接加线路。</strong> 对经过 Trp 的 indigo 路径可审查氮供体/Ser 与生长竞争；对直接 indole 供料体系适用性不同。FBA 检查收支可行性，不能单独预测细胞内浓度比例或反馈时序。</p>
+<h2>8. 新工具与模型</h2>
+<p>| Tool / Model | 用途 | 输入 | 输出 | 是否开源 | 是否值得测试 |
+|---|---|---|---|---|---|
+| SeqSol-FECS | 表达救援突变优选 | 序列；完整框架另需结构/动态/保守性 | 溶解度重评分和位点优选 | 获取/许可待核；SI 公开 | 补读后少量小试 |
+| Structural/co-evolutionary fitness framework | 分布外 fitness 预测 | 序列、MSA/结构先验 | fitness | 代码/权重待核 | 先读新位点/新骨架切分 |
+| ProTok | 多模态 tokenizer | sequence/structure/function 子集 | token、重建表示 | 发布入口未确认，上游许可不同 | 观察；非活性模型 |
+| PRAISE | 复现文献 AI 的操作流程 | 已发表模型、资源、自有数据 | 实现/验证/排错记录 | 工作流论文公开，非新预测器 | 可借鉴复现清单 |</p>
+<p><strong>工作流观察：PRAISE: A Reproducible Workflow for Non-Programmer Scientists to Implement Published AI Models</strong>，arXiv <strong>2610.16980</strong>，submitted <strong>10-12</strong>，月内未报。<a href="https://arxiv.org/html/2610.16980v1">全文</a>。3 名 BSc 学生及导师复现 ProSmith，Table 1 的训练各仅一次，ROC-AUC 约 0.95–0.96；不构成新酶活模型或泛化证明。正文也澄清一次“疑似泄漏”经代码检查并非该问题，不能借此宣布原模型已彻底排除所有泄漏。<strong>判断：可借鉴把环境、验证、测试、模型对象固定的记录方式，不升级工具性能推荐。</strong></p>
+<p>GERO 与 KcatNet 的近期消息亦不按新技术入选：GERO 的期刊 DOI <strong>10.1093/bioinformatics/btag764</strong>（10-12）的预印本 <strong>10.64898/2026.05.19.726405</strong>（posted <strong>2026-05-21</strong>）已一手确认，摘要含 enzyme-/reaction-similarity split 与 Hit@k-TR 指标；期刊与预印本的实质版本差异待逐节核；KcatNet DOI <strong>10.1186/s13059-026-03986-3</strong> 的正式 online 为 <strong>02-11</strong>，10 月实验室新闻不是发布日期。<a href="https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btag764/8911835">GERO期刊</a>、<a href="https://www.biorxiv.org/content/10.64898/2026.05.19.726405v1">GERO预印本</a>、<a href="https://pubmed.ncbi.nlm.nih.gov/41673757/">KcatNet记录</a>。</p>
+<h2>9. 本周值得重点阅读</h2>
+<p><strong>必读（2 篇）：</strong></p>
+<ol>
+<li>ω-TA binding mechanism：确认 activity 定义、采样收敛、远端位点与实验因果链。</li>
+<li>SeqSol-FECS：先看独立 split、30 突变分母、比活性保持和 per-liter 可溶产量。</li>
+</ol>
+<p><strong>可读（6 篇）：</strong> FLIP2 结构/共进化先验；ProTok；PRAISE；EzHit（全文已核，重点 time split、反应分层与置信过滤设计）；cysteine proteases（历史）；Gln:Ser 动态控制（历史）。重点分别是分布外任务、表示限制、复现规范、检索评测设计、催化几何失效、前体诊断。链接见各栏目。</p>
+<p><strong>暂时不用读：</strong> 仅正式出版、没有确认内容更新的旧稿；只改善结构重建/结合而无催化证据的结果，不升级为活性优化方案。已报 PET moist-solid fractal kinetics 本期无新增证据，继续观察，不重复计新。</p>
+<h2>10. 对当前项目可立即尝试的 3 件事</h2>
+<p>以下均为<strong>建议小试，未执行</strong>；验收阈值为本报告建议，非论文承诺。正式采用须另通过目标项目验证。</p>
+<ol>
+<li>
+<p><strong>把 UGT 大受体筛选失败拆成入口与反应几何问题。</strong> 输入：一个已知活性 UGT、目标受体、已知可转化/不可转化对照及现有复合物。对照：静态 docking 排名、参照有效 pose、不同入口构象。输出：通道瓶颈、有效结合几何与未知项；先做已有证据复核，只有出现一致入口障碍才设计增强采样。验收：可用同一规则解释独立正负底物，不能只解释挑选的单个 pose；若只有 docking 分数差异，停止“转运限制”结论。正式纳入需固定规则后盲测新受体，证明同预算命中改善。</p>
+</li>
+<li>
+<p><strong>准备 SeqSol-FECS 风格的低表达 UGT 救援小试。</strong> 输入：已确认低可溶表达的 WT、结构域/保守位点、可用资源审查；资源未取得则先止于设计表。对照：WT、简单溶解度/组成基线，以及结构保守过滤前后候选；统一标签与诱导条件。输出：总表达、可溶比例、每升可溶酶量、等酶量初速和产物身份。建议验收：独立表达重复下可溶酶产量 ≥2 倍且比活性保留 ≥80%；仅比例提高不算通过。正式采用需不同 UGT/受体复验，不因分数高直接扩库。</p>
+</li>
+<li>
+<p><strong>为 indigo 路线建立前体约束诊断表。</strong> 输入：实际菌株/碳源、现有 Trp/indole/产物、生长及副产物数据，Gln/Ser 未测则保留未知。对照：现有 iML1515 映射下的不同氮/Ser 供给、增长约束；不要把浓度比例硬设成通量比。输出：前体收支敏感性、必需补测及模型可识别/不可识别事项。验收：先解释未改造表型，瓶颈结论对合理参数稳定且有实测支持；否则不推荐 knockout 或 5:4 动态线路。正式采用需实际底盘扰动与发酵数据确认；本期不运行计算。</p>
+</li>
+</ol>
+<h2>11. Potential Research Opportunities</h2>
+<p>| 待验证问题 | 可做研究 | 判别证据 |
+|---|---|---|
+| 大受体 UGT 的入口障碍与化学步骤何者限速？ | 结合路径诊断与等酶量底物谱相结合 | 入口突变、有效pose、kcat/Km变化分开；不要只用产率 |
+| WT–mutant 溶解度重评分能否迁移植物 UGT？ | 小预算盲测 SeqSol 类方法与简单基线 | 绝对可溶产量、比活性、分支覆盖；保留失败样本 |
+| 新位点/新骨架的最佳表示是否不同？ | 固定训练预算下的多模态消融 | WT/突变成组、各留出任务单报，不平均掩盖失败 |
+| Gln/Ser 是否限制现有 indigo 路线？ | 实测前体与碳氮收支诊断后再调控 | 实际底盘与供料下因果扰动；不外推他人最优比例 |</p>
+<p>这些是待验证课题方向，不声称无人研究或已确立新颖性。</p>
+<h2>12. 本周科研决策建议</h2>
+<ul>
+<li><strong>建议立即跟进：</strong> ω-TA 的原始 assay/采样条件；SeqSol-FECS 的数据切分、资源与湿实验细节。</li>
+<li><strong>建议加入工具箱：</strong> 入口—有效结合—化学步骤的诊断表；表达救援同时报告可溶产量和比活性的验收表。尚无新模型通过目标项目验证。</li>
+<li><strong>建议继续观察：</strong> ProTok、分布外 fitness 表示；EzHit 资源实际释放与 SI 复核（全文已核，代码链接仍为占位符）；GERO 版本差异。已报 CaGE/MINT 的未核问题仍保持，不因重复出现升级。</li>
+<li><strong>暂时可以忽略：</strong> 近期新闻替代旧论文日期；将 fitness、foldability、binding、solubility 分数直接称为催化活性。</li>
+</ul>
+<p><strong>可能改变既有决策：</strong> 先诊断大底物进入与有效定位，再决定是否投入 QM/MM；溶解度救援优先要求活性保持证据。<strong>保持的决策：</strong> 不替换 UGT 活性主模型，不把结合 FES 当反应势垒，不直接采用跨菌株前体比例。</p>
+<p>本期覆盖官网、bioRxiv 官方目录、arXiv HTML、PubMed 记录及作者仓库；未声称穷尽所有数据库。多数条目仍缺全文分母、严格 split 或目标 UGT 验证；相关线索已写回 pending_leads，历史索引同步更新。未安装软件、未执行服务器或科研计算。</p>
+</div>
+</div>
+</body>
+</html>

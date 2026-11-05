@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>weekly_2026-10-26 · 酶科研雷达</title>
+<style>
+
+  :root {
+    --text-1: #1a1a1a; --text-2: #4d4d4d; --text-3: #7a7a7a; --text-4: #a8a8a8;
+    --border: #e4e4e4; --surface: #fff; --surface-mute: #f5f5f5;
+    --accent: #2563eb; --positive: #16a34a; --warning: #b45309; --purple: #7c3aed;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-1: #e8e8e8; --text-2: #b5b5b5; --text-3: #8a8a8a; --text-4: #606060;
+      --border: #333; --surface: #161616; --surface-mute: #1f1f1f;
+      --accent: #6ea8fe; --positive: #4ade80; --warning: #fbbf24; --purple: #a78bfa;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--surface); color: var(--text-1);
+    font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 16px; line-height: 1.7;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 28px 20px 80px; }
+  .back { font-size: 13px; color: var(--text-3); text-decoration: none; }
+  .back:hover { color: var(--text-1); }
+  .doc h1 { font-size: 21px; font-weight: 500; line-height: 1.4; margin: 18px 0 6px; }
+  .doc h2 { font-size: 17.5px; font-weight: 500; margin: 34px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .doc h3 { font-size: 15.5px; font-weight: 500; margin: 24px 0 8px; }
+  .doc p { margin: 10px 0; }
+  .doc a { color: var(--accent); text-decoration: none; }
+  .doc a:hover { text-decoration: underline; }
+  .doc table { border-collapse: collapse; width: 100%; font-size: 13.5px; margin: 12px 0; display: block; overflow-x: auto; }
+  .doc th, .doc td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; vertical-align: top; }
+  .doc th { background: var(--surface-mute); font-weight: 500; }
+  .doc code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 12.5px; background: var(--surface-mute); padding: 1px 6px; border-radius: 4px; }
+  .doc ul, .doc ol { padding-left: 22px; }
+  .doc li { margin: 6px 0; }
+  .doc hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  .doc blockquote { margin: 12px 0; padding-left: 14px; border-left: 3px solid var(--border); color: var(--text-2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../index.html">← 返回文献档案馆</a>
+  <div class="doc"><h1>Weekly Research Intelligence</h1>
+<p>时间：2026-10-20 ～ 2026-10-26（Asia/Tokyo）<br />
+月内补检：2026-09-27 ～ 2026-10-26。截止：10 月 26 日上午；采用自动任务指定的东京日期窗口，不随本机显示时区改变。</p>
+<p>本期精选 <strong>8 项：本周窗口 8 项（bioRxiv 4、期刊 4）</strong>；另完成 <strong>2 项已报条目补核</strong>（ω-TA 评审文件、CaGE 全文，不重复计数）；历史补课 <strong>0 项</strong>（不凑数）。已读取 review_rules、pending_leads、历史索引与既往报告；无新 Kimi 报告。</p>
+<p><strong>检索覆盖与缺口（如实声明）：</strong> bioRxiv 官方 archive 10 月页 1275 条（10-20～26）人工标题过滤 + bioRxiv API 逐条核验标题/日期/许可；PubMed esearch 37 条逐条审标题，2 篇摘要一手核实（PMID 42905006、42920296）；Crossref 期刊目录抽查 11 刊（Nat Catal、ACS Catal、JACS Au、Nat Commun 174 条全扫、Nat Chem Biol、Nat Methods、Nat Biotechnol、PNAS 86 条全扫、JACS 90 条全扫、Angew 73 条全扫、Chem Sci 窗口内 0 条）；WebSearch 补检未命中本周新 MLIP/酶稿。<strong>arXiv 通道故障（export.arxiv.org 无响应、list 页 400、RSS 空），本周 arXiv 覆盖不全；ChemRxiv API 返回非 JSON，本周 ChemRxiv 未系统覆盖</strong>——两类缺口列入下周回补。不以新闻稿或二手报道为证据。</p>
+<p><strong>决策重点：严格 split 下的增量才是真增量；供体平衡与外排是和筛酶同等重要的产量变量；已报“106×”经评审文件补核为低基数表观活性倍数，证据强度降档。</strong> 下文“作者报告”是文献主张，“判断”是本报告推断；仅见摘要处明确标注；未核实不等于论文没有做。</p>
+<h2>1. 本周最重要的 5 个进展</h2>
+<p>本期恰好 5 项达到精选线，全部为本周窗口内一手核实（摘要级及以上）。</p>
+<p>| 工作 | 领域 | 核心突破 | 对当前研究价值 |
+|---|---|---|---|
+| Cyanidin 3-O-glycoside/rhamnoside 组合生物合成，J. Agric. Food Chem.，10-21 | UGT 筛选 + 代谢工程 | 植物 GT 组合筛选 + UDP-糖供体平衡（+120%）+ MdtH/yadH 外排（+16%/+31%），529.01 mg/L C3R、926.47 mg/L C3G | 供体平衡与外排诊断可直接嵌入糖苷类项目；GT 组合筛选范式 |
+| AlphaVariant（Reinforcement learning with evolutionary priors…），bioRxiv，10-21 | AI 酶工程 | RL+进化先验+迭代 low-N fitness 模型，savinase 两轮 7.1×、17 位点组合、超商业蛋白酶 Uno 100 L | 稀疏实验反馈下多位点优化的最硬湿实验案例；注意 fitness≠kcat 与专利冲突声明 |
+| PmHS2 hexosyl transfer via covalent intermediate，bioRxiv，10-21 | GT 催化机理 | 双功能 GT 的 retaining GlcNAc 转移倾向此前未描述的共价机制；首例糖基供体被征用作受体 | GT 按供体注释分类可能系统性漏检；机理证据链范式 |
+| Going beyond labels: SSL for enzyme kinetic parameter prediction，bioRxiv，10-21 | kcat 预测方法 | 无伪标签半监督（neural consistency、graph-Laplacian）+ clustered CataPro @ 40% identity 严格基准 | 与 Kroll &amp; Lercher 批评呼应：严格切分下的增量评估协议可直接借用 |
+| Salicortin 途径解析，Plant Commun.，10-23 | 植物途径 / UGT | CYP92 P450 + PRISE + PtUGT71L1 + PtACT47 + PtCNL5，N. benthamiana 重构 | 途径内已知 UGT 的角色与底物谱参照；可读级 |</p>
+<p>前两项对 UGT 项目流程有直接可迁移价值；AlphaVariant 与 SSL 分别代表“湿实验闭环优化”和“严格基准方法”两条 AI 路线；PmHS2 是机理层进展。期刊抽查另补 2 项工程研究（P450 hole-trap、光生物催化 PLP），见 §2。</p>
+<h2>2. AI + 酶工程</h2>
+<h3>Reinforcement learning with evolutionary priors unlocks multi-site enzyme optimization from sparse experimental feedback（AlphaVariant）</h3>
+<p><strong>本周新增；bioRxiv，posted 2026-10-21，v1，CC-BY-NC-ND，未同行评审。</strong> DOI <strong>10.64898/2026.10.19.760152</strong>。KAUST + 南科大 + Bestzyme。依据官方摘要，未读全文。<a href="https://www.biorxiv.org/content/10.64898/2026.10.19.760152v1">原始论文</a></p>
+<p>作者报告：RL 智能体结合生成式进化先验与迭代 low-N fitness 模型，在 <strong>6 个实验 fitness landscape</strong> 上评测，3 个大型多位点 landscape 排名第一；savinase（商业蛋白酶）两轮优化，<strong>75.4% / 83.8%</strong> 表征变体活性提升，突变空间从 <strong>25 → 67 位点</strong>，最多组合 <strong>17 个分散位点</strong>，两轮后 <strong>7.1× WT 活性</strong>；多目标优化（活性+热稳定+专利规避）产物在生化与洗涤测试中超过商业蛋白酶 Uno 100 L。代码脚注 github.com/charlesxu90/dgc-libgen（内容未验证）。<strong>利益冲突声明：Bestzyme 已申请相关专利。</strong></p>
+<p><strong>判断：本期 AI 酶工程湿实验最硬案例，但需按层级打折。</strong> ① fitness ≠ kcat：savinase assay 的底物、条件与 7.1× 的分母（比活性？产率？洗涤性能？）待全文确认；② savinase 是高度成熟的工业酶，起始 fitness 高，7.1× 的起点基数与 ω-TA 式低基数放大有本质不同，但也意味增益更接近可用区间；③ landscape 排名第一是代理任务成绩，不能直接外推新酶；④ 专利规避目标与专利申请并存，方法细节公开程度可能受限，代码仓库内容未验证前不假设可复现；⑤ 17 位点组合若属实，是 low-N 闭环优化覆盖广度的有意义证据。<strong>值得立即读全文，重点核 assay 定义、landscape 评测的 split、两轮各筛了多少个变体。</strong></p>
+<h3>Going beyond labels: Semi-supervised learning for enzyme kinetic parameter prediction（SSL kcat）</h3>
+<p><strong>本周新增；bioRxiv，posted 2026-10-21，v1，CC-BY，未同行评审。</strong> DOI <strong>10.64898/2026.10.15.759462</strong>。NYU，Jin Ryoun Kim 组。依据官方摘要，未读全文。<a href="https://www.biorxiv.org/content/10.64898/2026.10.15.759462v1">原始论文</a></p>
+<p>作者报告：把“缺 kcat 但有其它动力学参数”的不完整记录用作无标签数据，采用 regularization 式半监督（neural consistency、graph-Laplacian），<strong>不打伪标签</strong>；在 <strong>clustered CataPro @ 40% sequence identity</strong> 严格基准上评估。报告 WT 与突变体预测均受益；收益以足够的<strong>有标签</strong>数据为前提，<strong>几千条无标签数据即饱和</strong>，且取决于特征空间密度。代码 github.com/ali-malli/SSL（内容未验证）。</p>
+<p><strong>判断：方法层面本周最有价值。</strong> ① 40% identity 聚类基准正是 Kroll &amp; Lercher 批评（&lt;60% identity R²&lt;0）所要求的严格设定，在该设定下仍报告收益，比 random split 的“提升”可信一档；② 作者自己报告的饱和点与前提条件是诚实的边界声明，提示无标签动力学记录的信息量有限，不是免费午餐；③ 对我们直接有用的是<strong>评测协议</strong>（clustered split + 无标签规模扫描），可原样套用到自有 kcat/活性数据集的模型选型；④ 具体数值、统计重复与许可待全文/仓库复核，不引用任何具体性能数字。</p>
+<h3>非 AI 工程补遗（期刊抽查新增，摘要级）</h3>
+<p><strong>Engineering of Redox-Active Residues Enhances P450 Peroxygenase Performance</strong>，Angew. Chem. Int. Ed.，Crossref published <strong>2026-10-24</strong>，DOI <strong>10.1002/anie.3845288</strong>。P450BM3 F87A 背景，结构引导在表面引入 Tyr/Trp“hole traps”以分流 Cpd I 的非生产性氧化损伤；最优变体 <strong>M8（F87A/L215W/H408W）</strong> 在多种脂肪族/芳香族底物的过氧化物驱动羟化中 <strong>TON 提升</strong>，稳态动力学、还原剂补充实验与半衰期一致支持保护作用，M8 晶体结构显示扩展的 π–π 相互作用网络。<strong>判断：</strong> 纯理性设计、无 ML；TON 与半衰期是真实催化指标（非 fitness 代理）；“表面氧化还原残基保护”策略原则上可迁移到其它受氧化损伤限制的氧化酶；摘要未见与工程化 P450 基线（如 peroxygenase 强化变体）的定量大比较，采用前需读全文。分析基于 Crossref 摘要。</p>
+<p><strong>Photobiocatalytic Diastereo- and Enantioselective Synthesis of Noncanonical Amino Acids…</strong>，JACS，Crossref published <strong>2026-10-22</strong>，DOI <strong>10.1021/jacs.6c14337</strong>。从嗜热 tryptophan synthase β-subunit 出发定向进化 PLP 酶，实现 α,γ-立体二元组（4 个立体异构体中 3 个）与连续 α,β,γ-三元组的立体发散合成，二级烷基三氟硼酸酯的分子间自由基 C–C 偶联，及苏氨酸衍生 aminoacrylate 中间体的 β-脱羟自由基偶联。<strong>判断：</strong> 定向进化 + 光生物催化的立体控制方法论，与 ML 无直接关联；对 PLP 酶工程与远端立体中心控制有参考价值，本期列可读。</p>
+<p>本轮未确认 DLKcat/CataPro/UniKP 等已报模型有实质新版本；不把本周任何预印本当作对既有 kcat 模型的替代证据。</p>
+<h2>3. 酶催化机理 / QM/MM</h2>
+<h3>Hexosyl transfer via a covalent intermediate within a dual retaining and inverting enzyme（PmHS2）</h3>
+<p><strong>本周新增；bioRxiv，posted 2026-10-21，v1，CC-BY-NC-ND，未同行评审。</strong> DOI <strong>10.64898/2026.10.20.760405</strong>。Davis / Rovira 等组。依据官方摘要，未读全文。<a href="https://www.biorxiv.org/content/10.64898/2026.10.20.760405v1">原始论文</a></p>
+<p>作者报告：双功能糖基转移酶 PmHS2 同时执行 retaining 与 inverting 转移；其 retaining GlcNAc 转移倾向一种<strong>此前未描述的共价机制</strong>（核苷酸-磷酸旋转辅助）；证据链为 X-ray 配体复合物 + 全轨迹原子模拟 + 生化实验 + 进化分析；并报告<strong>首例糖基供体被征用作受体</strong>（self-priming 聚合）。</p>
+<p><strong>判断：</strong> ① 共价中间体是作者证据链支持的<strong>建议（likely）</strong>，非定论——retaining GT 的共价 vs SNi 之争有长期历史，需看正文模拟的收敛与中间体寿命证据；② “供体当受体”若成立，直接冲击 GT 注释与筛选逻辑：按供体特异性分类的 UGT/GT 库可能系统性漏掉底物角色互换的酶；③ 对 UGT 项目，本文价值在机理警觉而非方法工具；④ 与已报 KABLE 的 pre-attack 几何论据、ω-TA 的几何表征同属“几何证据层级”，不等同自由能面定量。</p>
+<h3>已报条目补核（不重复计数）</h3>
+<p><strong>ω-TA（10.1038/s41467-026-78636-0，10-19 已报“必读”）——SI 与 transparent peer review file 已下载提取，关键疑点澄清。</strong> 评审与作者答复确认：13M 相对 WT 的 <strong>106× 为湿实验表观 kcat（apparent activity，评审原话确认 kcat 仅来自湿实验且为 apparent activities）</strong>；6M→13M 为迭代叠加；<strong>WT specific activity 仅 0.0065±0.0012 U/mg（低基数，106× 是低基数放大）</strong>；模拟总计约 1000 ns、单一起始构象；<strong>作者承认 6M/13M 各 400 ns metadynamics 经 block analysis 均未完全收敛</strong>，结论依赖 ≤2.8 Å 几何表征而非精确自由能；13M 的 Bürgi–Dunitz 角 60°–80° 仍偏离理想 107°。<strong>处置修正：</strong> “106×”降档为“低基数表观活性倍数 + 几何层面机制解释”，不再是强催化优化证据；但“入口—有效结合—化学步骤分开诊断”的框架价值不变，10-19 报告的三层诊断建议维持。</p>
+<p><strong>CaGE（10.64898/2026.10.02.756307，10-12 已报“必读”）——PDF 全文提取完成。</strong> 非血红素铁设计（C–N 重排、过渡态配体）漏斗：1,029 变体过 unguided RF3 filter → 96 过独立 AF3 → AF3 终评 <strong>160 个设计</strong>过 fold+motif（5 个 diffusion 样本中 ≥3）→ <strong>71 个实验筛选，6 个产物信号超无酶对照</strong>；PLP 设计：CaGE-RA1.0 产率 <strong>22.8±1.6%</strong> → CaGE-RA1.1 <strong>41.4±1.7%</strong>（n=3，约 1.8×），单体 de novo scaffold，2.7 Å 晶体，活性位点替换支持。<strong>无 kcat/Km 数据；全文无代码可用性声明（CC-BY 4.0）。判断：</strong> 6/71 “产物信号超对照”是检测阈值成绩，不是 6 个表征完全的酶；产率非动力学参数；无代码限制复现；全文核实未改变 10-12 处置（仍“必读”，但证据层级为“信号级湿验证 + 结构证实”，非“活性优化闭环”）。</p>
+<p>本轮未确认其他窗口内通用 QM/MM/MLIP 原始方法或 ChemShell/ORCA 实质功能更新；eSEN、MACEPOL-EF、MAPLE 等已报条目维持原处置，不推荐更换势能方法。</p>
+<h2>4. 蛋白结构与 enzyme-substrate prediction</h2>
+<p>本周无新的 AF3/Boltz/Chai 催化构象基准。两条间接证据：</p>
+<ul>
+<li>PmHS2 的 X-ray 配体复合物 + 模拟轨迹是“结构 → 机制建议”的正例（有实验链支持），与共价中间体主张相互绑定，见 §3。</li>
+<li>CaGE 补核显示 AF3 在其漏斗中承担 fold+motif 过滤（160/1,029 量级），<strong>结构过滤通过 ≠ 催化活性</strong>（71 筛仅 6 个信号超对照），再次印证“高结构置信度 ≠ 正确催化构象”的既有立场。</li>
+</ul>
+<p>已报 Lepikhov/Nunes-Alves co-folding 评测、Boltz-2 affinity 评审争议维持原判断：不用 affinity/co-folding 分数代替活性预测。</p>
+<h2>5. UGT / glycosyltransferase</h2>
+<h3>Combinatorial biosynthesis of cyanidin 3-O-glycoside 类产物（标题含 &quot;3-O-Rutinoside&quot;，摘要为 rhamnoside，见下注）</h3>
+<p><strong>本周期刊公开；J. Agric. Food Chem. 2026-10-21；74(41):32527</strong>，DOI <strong>10.1021/acs.jafc.6c02514</strong>，PMID <strong>42905006</strong>，浙江大学 Chen Wei 组。依据 PubMed 摘要一手核实，未读全文。<a href="https://pubmed.ncbi.nlm.nih.gov/42905006/">PubMed</a></p>
+<p>作者报告：从 (+)-catechin 出发筛选植物 glucosyltransferase / rhamnosyltransferase 组合；通过质粒拷贝数平衡 UDP-glucose / UDP-rhamnose 供给，C3R 产量 <strong>+120%</strong>；过表达外排相关 <strong>MdtH / yadH</strong> 使胞外积累分别 <strong>+16% / +31%</strong>；最终 <strong>529.01 mg/L C3R</strong>、<strong>926.47 mg/L C3G</strong>，其中 C3R 为首次合成。<strong>注意：PubMed 标题写 &quot;3-O-Rutinoside&quot; 而摘要描述为 rhamnoside（单糖苷）</strong>，两者不一致（rutinoside 为双糖苷），本报告以摘要为准并标注，正文/产物身份须读全文核实。</p>
+<p><strong>判断：本期对 UGT 项目最直接的工程范式。</strong> ① 三段式（GT 组合筛选 → 供体平衡 → 外排工程）与 10-05 已报 Reticuline 前体工程、Gao/Jiang 外排主题互为印证：产量瓶颈常在供体与转运而非酶本身；② MdtH/yadH 与已报 indigo 外排（mtr/acrA、YicL）同属转运工程家族，可合并为一张“外排诊断表”；③ 滴度数字的分母（发酵规模、补料、时长）与 GT 具体身份待全文；④ 对 1000–10000 UGT → 10–50 候选的筛选问题，本文提示**组合筛选（GT 对）**可能比单酶逐个过筛更接近产物目标。</p>
+<h3>Salicortin 途径解析</h3>
+<p><strong>本周期刊公开；Plant Communications，online 2026-10-23</strong>，DOI <strong>10.1016/j.xplc.2026.102161</strong>，PMID <strong>42920296</strong>，MPI Köllner / Lackus 组。依据 PubMed 摘要一手核实，未读全文。<a href="https://pubmed.ncbi.nlm.nih.gov/42920296/">PubMed</a></p>
+<p>作者报告：杨树 salicortin 生物合成途径解析——CYP92 家族 P450 执行邻位羟化与氧化脱芳构化，PRISE 执行 1,4-还原，加上已知 <strong>PtUGT71L1</strong>、PtACT47、PtCNL5，在 N. benthamiana 中重构。<strong>判断：</strong> 植物特殊代谢途径解析范例；PtUGT71L1 在途径中的确切次序与底物待全文核实（本报告不断言糖基化步骤的位置），但其作为途径内已知 UGT 可为底物谱研究提供参照系；可读级，不直接改变筛选流程。</p>
+<h3>PmHS2 对 GT 筛选的启示</h3>
+<p>供体/受体角色可互换（§3）意味着：建 UGT 候选库时，仅按“UDP-糖供体 + 目标受体”注释检索会漏掉能征用受体自身糖基化产物作新受体的酶；筛选 assay 设计应保留对聚合/连续糖基化副产物的检测通道。</p>
+<p><strong>EzHit 状态维持：</strong> 代码仓库（承诺 MIT）截至本期仍未释放，v1 链接仍为占位符；维持 10-19“观察，待资源释放与 SI 复核”处置，不升级。MINT、Glydentify 等已报 GT 相关条目无新证据，维持原处置。</p>
+<h2>6. 蛋白表达与溶解度</h2>
+<p>本轮未确认窗口内新的溶解度/表达预测模型或 PLM_Sol、DeepSoluE、SoluProt 等实质更新。SeqSol-FECS（严格 split、分母、资源）、SurfSol、Pro4S 的待核问题本期未获新全文证据，维持 10-12/10-19 原处置；不据摘要升级任何溶解度工具。</p>
+<h2>7. 代谢工程</h2>
+<p>本周无葡萄糖下 W3110/BW25113、PEP/E4P→Trp→indole→indigo 的窗口内高价值新增，亦无新代谢建模方法。</p>
+<p><strong>cyanidin 论文的工程经验对 indigo 路线同样成立（判断）：</strong> ① 供体平衡（UDP-glucose/UDP-rhamnose 比例用质粒拷贝数调）对应 indigo 的 indole/Trp 前体收支诊断——先测收支再调通路；② MdtH/yadH 外排增益（+16%/+31%）幅度与已报 indigo 外排（+9.0%、mtr/acrA）同量级，提示外排是跨产物类别的通用二阶优化；③ 不能用 C3R/C3G 的滴度反推 indigo 的最优参数，底盘与产物毒性不同。ATHENA、Jiang L-Trp、Gln:Ser 等已报条目维持原处置。</p>
+<h2>8. 新工具与模型</h2>
+<p>| Tool / Model | 用途 | 输入 | 输出 | 是否开源 | 是否值得测试 |
+|---|---|---|---|---|---|
+| AlphaVariant | 稀疏反馈下多位点酶优化 | 序列/进化先验 + low-N 实验 fitness | 突变组合建议 | 脚注 github.com/charlesxu90/dgc-libgen，内容未验证；有专利申请 | 先读全文核 assay 与 split，再评估小试 |
+| SSL kcat（ali-malli/SSL） | 半监督 kcat 预测 | 酶/底物特征 + 不完整动力学记录 | kcat（WT+突变） | 代码链接给出，许可与内容未验证 | 借用其 clustered split 协议审查现有模型 |
+| gmx_MMPBSA 扩展 | end-state 结合自由能计算 | GROMACS/AMBER 轨迹 | 结合自由能及分解 | 预印本 10.64898/2026.10.24.761505（10-24，CC-BY）；工具本身为既有开源软件扩展 | 结合自由能 ≠ 催化势垒；仅在 binding 问题需要时关注 |
+| CaGE | de novo 酶设计（非血红素铁 / PLP） | 过渡态/活性位点约束 | 设计序列 | 全文无代码可用性声明 | 不可复现阶段；跟踪正式发表 |</p>
+<p><strong>工具观察：</strong> gmx_MMPBSA 扩展（posted 10-24）为 GROMACS+AMBER 的 end-state 结合自由能工具功能扩展，属 binding free energy 范畴，不声称处理催化势垒；列入观察，不入选精选。</p>
+<h2>9. 本周值得重点阅读</h2>
+<p><strong>必读（4 篇）：</strong></p>
+<ol>
+<li><strong>AlphaVariant 全文</strong>：核 savinase assay 定义与 7.1× 分母、landscape 评测 split、两轮各筛变体数、代码实际内容。</li>
+<li><strong>cyanidin 全文</strong>：核 GT 具体身份、标题/摘要 rhamnoside–rutinoside 不一致、滴度发酵条件与产物结构确证。</li>
+<li><strong>SSL kcat 全文</strong>：核具体数值、统计重复、代码许可；提取其 clustered 40% 基准协议。</li>
+<li><strong>PmHS2 全文</strong>：核共价中间体的模拟收敛与生化证据强度。</li>
+</ol>
+<p><strong>可读（6 篇）：</strong> salicortin 途径（UGT 次序参照）；P450 hole-trap（表面保护策略）；JACS 光生物催化 PLP（立体控制）；gmx_MMPBSA 扩展（binding 工具演进）；ω-TA peer review file（评审如何逼出收敛性承认，作为审稿范式参考）；CaGE 全文（设计漏斗分母）。链接见各栏目。</p>
+<p><strong>暂时不用读：</strong> Magenta benchmark（759664，单荧光蛋白表型、比较对象模糊）；CascadeMAP（DOI 日期 2026-06 但 archive posted 10-21，版本沿革异常，先查沿革）；DPLM（旧稿 04-29 的新 DOI 版本，未见实质更新证据）；UnibindMD、Agentic Protein Design（759896）、P450 17A1 dual-portal（760170）、PET plate assay（旧 DOI 10.1101/2025.04.02.646774 posted 10-22）；PNAS CfbC/D 构象动态、Angew molybdopterin/LLPS-thylakoid（机理/材料距离远）。arXiv 与 ChemRxiv 本周覆盖缺口，下周回补后另行评估。</p>
+<h2>10. 对当前项目可立即尝试的 3 件事</h2>
+<p>以下均为<strong>建议小试，未执行</strong>；验收阈值为本报告建议，非论文承诺。正式采用须另通过目标项目验证。</p>
+<ol>
+<li>
+<p><strong>用 SSL 论文的 clustered 40% identity 协议重审现有活性/kcat 模型选型。</strong> 输入：候选模型（DLKcat/CataPro/UniKP/TurNuP 系）与目标任务的训练/测试序列集合。对照：各模型在同一聚类留出下的表现 vs 各自论文报告值；保留 random split 结果作对照但不作结论。输出：一张按 identity 分层的模型选型表。验收：结论在 40% 与更高 identity 阈值下方向一致；若严格切分下排名翻转，以严格切分为准并记录翻转。正式采用需在目标 UGT 家族上复测。</p>
+</li>
+<li>
+<p><strong>核查 AlphaVariant 仓库与 savinase 案例，评估 low-N 闭环优化在自有 UGT 体系的可行性。</strong> 输入：github.com/charlesxu90/dgc-libgen 的实际内容（模型、配置、许可）、全文的两轮筛选规模与 assay。对照：与已有定向进化/ML 引导流程在同等实验预算（如两轮各 96 孔）下的预期覆盖位点数。输出：是否值得用自有 fitness 数据做一次两轮小试的判定。验收：代码可运行、许可允许学术使用、fitness 定义与 UGT 活性端点兼容，三者缺一即止。注意 Bestzyme 专利声明，商用前需法律评估。</p>
+</li>
+<li>
+<p><strong>建立“供体平衡 + 外排”诊断表并套用到糖苷与 indigo 两条线。</strong> 输入：现有菌株的 UDP-糖（或 Trp/indole）收支可测数据、已报外排基因清单（MdtH/yadH、mtr/acrA、YicL）。对照：仅调酶（筛选/突变）的路线 vs 加做供体/外排诊断的路线。输出：每条线的瓶颈假设与对应单扰动实验清单。验收：先解释未改造株的表型再提改造建议；任何比例参数（如供体比）须以实测收支为前提，不直接搬用 cyanidin 的 +120% 或 Gln:Ser 5:4。</p>
+</li>
+</ol>
+<h2>11. Potential Research Opportunities</h2>
+<p>| 待验证问题 | 可做研究 | 判别证据 |
+|---|---|---|
+| GT 供体/受体角色互换有多普遍？ | 对已注释 UGT/GT 库做 self-priming / 连续糖基化副产物筛查 | 聚合产物检测 vs 供体注释分类；不要只看主产物 |
+| 严格 split 下半监督 kcat 的收益边界在哪？ | 固定 clustered split，扫描无标签数据规模与特征空间密度 | 饱和点、WT/突变分组报告；几千条饱和是否为普遍现象 |
+| 表面氧化还原残基保护能否迁移到其它氧化酶？ | 在非 P450 氧化酶上小预算验证 hole-trap 设计规则 | TON/半衰期与结构证实；与已知稳定化策略比较 |
+| GT 组合筛选是否优于单酶顺序筛选？ | 同一受体上比较组合库 vs 单库命中率 | 等实验预算下的命中数与产物谱覆盖 |</p>
+<p>这些是待验证课题方向，不声称无人研究或已确立新颖性。</p>
+<h2>12. 本周科研决策建议</h2>
+<ul>
+<li><strong>建议立即跟进：</strong> AlphaVariant 全文与代码（注意专利冲突声明）；cyanidin 正文 GT 身份与 rhamnoside/rutinoside 不一致；SSL 代码许可与数值复核。</li>
+<li><strong>建议加入工具箱：</strong> clustered 40% identity 模型审查协议；“供体平衡 + 外排”诊断表（cyanidin 范式与既有 indigo 外排证据合并）。尚无新模型通过目标项目验证。</li>
+<li><strong>建议继续观察：</strong> EzHit（代码仍未释放）；CascadeMAP（版本沿革异常）；gmx_MMPBSA 扩展（binding 工具）；MINT、SeqSol-FECS、SurfSol/Pro4S、呼吸旁路的遗留待核问题；arXiv/ChemRxiv 本周缺口下周回补。</li>
+<li><strong>暂时可以忽略：</strong> Magenta benchmark；旧稿新 DOI 的日期游戏；把 fitness、产物信号超对照、binding 自由能称为催化活性提升。</li>
+</ul>
+<p><strong>可能改变既有决策：</strong> ① SSL 的 40% clustered 基准若成为社区标准，现有 kcat/活性模型的选型审查优先级应上调，且审查结论可能与 random split 排名不同；② cyanidin 表明供体平衡与外排是与筛酶同等重要的产量变量，UGT 项目的改造路线图应加入这两个诊断环节；③ ω-TA 补核后“106×”降档为低基数表观活性倍数，远端突变+增强采样路线的投入决策应更保守。<strong>还缺什么证据：</strong> ① AlphaVariant 的 assay 定义、landscape split、代码内容与 fitness→kcat 关系；② SSL 在自有数据上的迁移与代码许可；③ PmHS2 共价中间体的直接实验证据（目前为证据链建议）；④ cyanidin 的 GT 身份、产物结构确证与发酵分母；⑤ arXiv/ChemRxiv 本周未覆盖，可能遗漏 MLIP/表示学习新稿。</p>
+<p>本期覆盖 bioRxiv 官方 archive 与 API、PubMed、Crossref 期刊目录（11 刊）、作者仓库页面；arXiv 与 ChemRxiv 因通道故障未系统覆盖，未声称穷尽所有数据库。多数条目仍缺全文分母、严格 split 或目标 UGT 验证；相关线索已写回 pending_leads，历史索引同步更新。未安装软件、未执行服务器或科研计算。</p>
+</div>
+</div>
+</body>
+</html>

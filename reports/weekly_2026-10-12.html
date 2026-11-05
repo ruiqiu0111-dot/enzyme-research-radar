@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>weekly_2026-10-12 · 酶科研雷达</title>
+<style>
+
+  :root {
+    --text-1: #1a1a1a; --text-2: #4d4d4d; --text-3: #7a7a7a; --text-4: #a8a8a8;
+    --border: #e4e4e4; --surface: #fff; --surface-mute: #f5f5f5;
+    --accent: #2563eb; --positive: #16a34a; --warning: #b45309; --purple: #7c3aed;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-1: #e8e8e8; --text-2: #b5b5b5; --text-3: #8a8a8a; --text-4: #606060;
+      --border: #333; --surface: #161616; --surface-mute: #1f1f1f;
+      --accent: #6ea8fe; --positive: #4ade80; --warning: #fbbf24; --purple: #a78bfa;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--surface); color: var(--text-1);
+    font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 16px; line-height: 1.7;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 28px 20px 80px; }
+  .back { font-size: 13px; color: var(--text-3); text-decoration: none; }
+  .back:hover { color: var(--text-1); }
+  .doc h1 { font-size: 21px; font-weight: 500; line-height: 1.4; margin: 18px 0 6px; }
+  .doc h2 { font-size: 17.5px; font-weight: 500; margin: 34px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .doc h3 { font-size: 15.5px; font-weight: 500; margin: 24px 0 8px; }
+  .doc p { margin: 10px 0; }
+  .doc a { color: var(--accent); text-decoration: none; }
+  .doc a:hover { text-decoration: underline; }
+  .doc table { border-collapse: collapse; width: 100%; font-size: 13.5px; margin: 12px 0; display: block; overflow-x: auto; }
+  .doc th, .doc td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; vertical-align: top; }
+  .doc th { background: var(--surface-mute); font-weight: 500; }
+  .doc code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 12.5px; background: var(--surface-mute); padding: 1px 6px; border-radius: 4px; }
+  .doc ul, .doc ol { padding-left: 22px; }
+  .doc li { margin: 6px 0; }
+  .doc hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  .doc blockquote { margin: 12px 0; padding-left: 14px; border-left: 3px solid var(--border); color: var(--text-2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../index.html">← 返回文献档案馆</a>
+  <div class="doc"><h1>Weekly Research Intelligence</h1>
+<p>时间：2026-10-06 ～ 2026-10-12（Asia/Tokyo）<br />
+月内补检：2026-09-13 ～ 2026-10-12。检索截止：10 月 12 日上午；当天尚未公开或尚未检出的内容不在覆盖范围。</p>
+<p>本期精选 <strong>7 项：本周公开 5 项、月内补检 2 项</strong>，另有 1 项重点历史补课。本周两篇期刊论文的更早预印本沿革尚未完整确认，按已确认期刊公开日期标注，不宣称技术首次出现。不凑足数量；没有确认应单列的实质版本更新。已读取补充规则、待核线索、历史索引及上期报告，包含 10-05 下午追加核实内容；MACEPOL-EF 等不重复计数。本期未收到新的 Kimi 报告。</p>
+<p><strong>本期决策信号：催化设计正加强对复杂活性位点和多状态几何的约束，但没有新证据足以把结构成功率直接换算成 UGT 活性命中率。</strong> 新的辅因子模型和反应模型值得追踪，其任务分别是 association 与反应生成，都不能代替突变催化活性预测。下文“作者报告”是论文证据，“判断/建议”是项目推断；未执行任何安装、科研计算或服务器操作。</p>
+<h2>1. 本周最重要的 5 个进展</h2>
+<p>表中包括明确标注的月内补检，窗口外历史工作不占名额。</p>
+<p>| 工作 | 领域 | 核心突破 | 对当前研究价值 |
+|---|---|---|---|
+| CaGE，bioRxiv，10-06，本周 | 复杂催化位点设计 | 迭代弱化几何引导，设计非血红素铁及 PLP 催化位点，并报告活性/结构实验 | 值得读“约束撤掉后是否仍保持催化几何”；不是新 UGT 排序器 |
+| AlphaProtein Novo，bioRxiv，10-05，补检 | de novo enzyme design | motif 条件的序列/结构联合生成，机制相关结构指标筛选；有公开流程 | 可借鉴多状态评价与反应几何输出，先审查再小试 |
+| Are QM/MM models systematically improvable?，JCAMD，10-07，本周期刊公开 | QM/MM 敏感性评测 | 单结构金属酶结合测试中，扩大 QM 区及加入修正未稳定提高预测表现 | 比盲目增加计算成本更应先审查 pose、水与模型敏感性；不是催化势垒验证 |
+| VenusRX-Bench / VenusRX，arXiv，10-08，本周 | 酶反应数据 / 模型 | 统一正向、逆向与 EC 任务及不同留出条件 | 可参考数据切分；不输入蛋白序列，不能筛同源酶 |
+| Adaptive respiratory bypass，bioRxiv，10-01，补检 | E. coli 氧化还原代谢 | NADH dehydrogenase 缺失后，进化恢复替代呼吸入口 | 提醒 knockout 预测检查调控可达性与补偿路线，非 indigo 高产改造证据 |</p>
+<p>重要性来自工作流变化而非宣传强度：CaGE/AP Novo 改善“如何生成与筛选催化起点”；MINT/VenusRX 则明确“什么问题可以交给模型”；呼吸旁路研究影响“如何解释基因删除后的代谢适应”。来源与证据边界见对应栏目。</p>
+<h2>2. AI + 酶工程</h2>
+<h3>2.1 Complex enzyme active site scaffolding by iteratively detuned catalytic guidance（CaGE）</h3>
+<p><strong>本周新增；bioRxiv，posted 2026-10-06，未同行评审。</strong> DOI <strong>10.64898/2026.10.02.756307</strong>。依据官方摘要，全文访问受限。<a href="https://www.biorxiv.org/content/10.64898/2026.10.02.756307v1">原始论文</a></p>
+<p>作者交替进行约束结构预测和序列设计，逐轮减弱引导；包括可接受原子距离条件的 RF3，以及推理时 motif guidance。报告非血红素铁、PLP 两类复杂位点的活性设计、活性位点替换实验及 <strong>2.7 Å 晶体结构</strong>。设计总数、命中分母、kcat/Km、各步贡献和失败样本未核实；代码/权重/许可获取状态未确认。</p>
+<p><strong>模型定位：</strong> 输入为目标催化几何/条件，输出设计序列与结构；没有确认以 mutation→activity 数据监督训练，也不输出底物条件绝对动力学参数。训练集结构去重、sequence/scaffold/time split 和预训练暴露未知。“独立 AF3 预测恢复位点”是结构模型交叉检查，不等于独立酶活验证。</p>
+<p><strong>判断：必读，待读全文。</strong> 最关键的采用问题是撤去引导后的几何稳定性，以及湿实验是否超过仅能结合辅因子的设计。对 UGT 的价值是供体、受体、催化残基共同约束的思路；跨糖基转移机制尚未验证。现阶段不扩库。</p>
+<h3>2.2 Designing enzymes for new-to-nature chemistry and non-natural substrates with AlphaProtein Novo</h3>
+<p><strong>月内补检；bioRxiv，posted 2026-10-05，未同行评审。</strong> DOI <strong>10.64898/2026.10.01.756017</strong>。论文依据官方摘要，资源依据作者仓库。<a href="https://www.biorxiv.org/content/10.64898/2026.10.01.756017v1">论文</a></p>
+<p>作者报告 AP Novo 的 nitrene transferase、DEHP 降解与两类模型反应设计，并强调 AF3 机制指标和骨架的序列集合评分。具体活性、设计数、命中率和天然酶比较条件未完成全文核实，故不引用媒体中的选择性/温度数字。nitrene 部分与上期 Design-Evolution Synergy 有明显作者及任务关联，<strong>不能当成两次独立成功来累加证据</strong>。</p>
+<p>代码已公开：<a href="https://github.com/google-deepmind/alphaprotein-novo">官方仓库</a>。输入为催化 motif/ligand 的 CIF 与 manifest，联合生成序列和结构，可接 LigandMPNN、AF3、评价步骤；示例含反应多状态评价。软件标为 Apache-2.0，权重另下载且有独立条款；仓库说明其为内部流程移植，示例采样设置有所缩减。没有安装或验证运行。</p>
+<p><strong>判断：先加入方法审查清单。</strong> 机制状态比单个 pLDDT 更适合作为待验证设计假设，但评分与真实催化性能之间仍须实验校准。训练/测试分布及新底物泛化未知；不是通用 mutation→activity 模型。最小成本工作是检查示例的状态定义和可输出指标，而不是立即生成数千 UGT。</p>
+<h3>2.3 MINT: Predicting Enzyme-Cofactor Specificity by Multimodal Knowledge Transfer from Protein-Ligand Interactions</h3>
+<p><strong>本周新增；bioRxiv，posted 2026-10-09，未同行评审。</strong> DOI <strong>10.64898/2026.10.08.757560</strong>。依据官方摘要，全文未获取。<a href="https://www.biorxiv.org/content/10.64898/2026.10.08.757560v1">原始论文</a></p>
+<p>输入蛋白序列及辅因子的序列/图表示，从 protein–ligand teacher 逐步迁移。作者报告平衡 held-out <strong>AUROC 0.932</strong>、自然阳性率的独立 family-stratified 评估 pooled <strong>AUROC 0.939</strong>。样本数、负例来源、序列 identity 阈值、底物/辅因子留出与 time split 未核实；family-stratified 不能自动理解为 family-disjoint。代码、权重、mutation→activity 训练与湿实验未知。</p>
+<p><strong>判断：观察，可优先核查数据。</strong> 辅因子 association 不等于 NADH/NADPH 的催化效率，更不证明单点/多点突变能切换偏好。不能把其结果直接迁移为 UDP-sugar 供体选择性评分；需要先确认训练标签和覆盖的辅因子类别。对现有酶注释有价值，对突变设计尚缺因果证据。</p>
+<h2>3. 酶催化机理 / QM/MM</h2>
+<h3>Are QM/MM models systematically improvable? A case study on carbonic anhydrase binding affinities</h3>
+<p><strong>本周期刊公开；Journal of Computer-Aided Molecular Design，2026-10-07。</strong> DOI <strong>10.1007/s10822-026-00954-8</strong>；更早预印本未检出，沿革仍待确认。本次依据一手全文。<a href="https://link.springer.com/article/10.1007/s10822-026-00954-8">论文</a></p>
+<p>hCA-II 的 <strong>23 个配体</strong>单结构结合研究；QM/MM model I 对全体实验亲和力的相关 <strong>R²=0.68</strong>，对应 cluster 为 <strong>0.09</strong>。扩大 QM 区、增加松弛和热/溶剂修正未稳定提高相关性；柔性、水桥配体存在失效。采用 Gaussian ONIOM 与 ORCA 接口，并非现成 ChemShell 流程；SI 提供输入/设置说明，完整运行与许可未验证。训练/test split 不适用，不是 ML 预测器。</p>
+<p><strong>判断：必读方法边界，可用于设计敏感性对照。</strong> 样本小、单个金属酶、静态近似，不能把 binding R² 当作催化 ΔΔG‡ 精度，也不能据此省去 UGT 的 QM 区收敛。实际启发是先辨识水、pose 与松弛产生的差异，再决定增加成本的方向。</p>
+<p>目前仍无证据支持替换 ChemShell + ORCA 主流程，也未确认其重要功能更新。CaGE/AP Novo 的几何约束不提供反应自由能收敛、极性响应或突变 ΔΔG‡ 精度保证。</p>
+<p>上期 <strong>MACEPOL-EF（10.64898/2026.09.15.751901）已于 10-05 下午完成全文升级</strong>，本期按已报处理。本期补核：代码库许可证确认为 MIT（与上游 MACE 一致）；模型权重不在代码库内，公开获取途径待确认。继续把静电嵌入与机械嵌入差别、反应多步微动力学及产率/速率区别作为审查重点；不能将其已有 OxiAm 证据当成新的 UGT 复现。</p>
+<p>新设计方法给当前计算工作的实际要求是：定义反应物、可反应复合物、关键中间体/TS 的<strong>相容几何</strong>，再判断哪些变化需要 QM/MM 参照。只有结构重叠或 motif RMSD 改善时，不应宣布势垒下降。</p>
+<h2>4. 蛋白结构与 enzyme-substrate prediction</h2>
+<h3>Elucidating the Space of Enzymatic Reaction: A Unified Benchmark and Pretrained Model（VenusRX-Bench / VenusRX）</h3>
+<p><strong>本周新增；arXiv:2610.11694，submitted 2026-10-08，预印本。</strong> 本次读到官方 HTML 正文及附录。<a href="https://arxiv.org/html/2610.11694v1">论文全文</a></p>
+<p>真实数据 <strong>83,439</strong> 个单主产物反应，模型 25.1M 参数，另有约 400 万模板扩展预训练记录；按反应物、产物、完整 EC 划分（Appendix A）。Table 2：无 EC、无 MLCD 时正向 Top-1 在产物/EC 留出为 <strong>50.959% / 31.100%</strong>。这是反应 exact-match，不是酶活准确率。</p>
+<p>关键评测条件：MLCD 的分子库含 train/validation/test 分子；round-trip oracle 使用全部 benchmark 训练（Appendix C/F），不能视为外部验证。无蛋白序列/结构输入，无 mutation→activity 标签；无湿实验。作者承诺接受后释放代码/权重，当前未确认可下载资源。</p>
+<p><strong>判断：可读数据规范，暂不部署。</strong> 更严格的留出和诊断条件值得参考；同一 EC 内不同 UGT 的活性、供受体匹配及催化 pose 都超出任务。principal-product 清理还意味着该任务不是完整的辅因子/碳电子收支模型。催化姿态预测仍需另行验证，本周未确认 AF3/Boltz/Chai 在目标 UGT reactive geometry 上的新独立测试。</p>
+<h2>5. UGT / glycosyltransferase</h2>
+<p><strong>未找到已核实、可直接改善 1000–10000 条 UGT 筛至 10–50 条的本周新方法。</strong> 不据此断言整个领域没有新工作。CaGE/AP Novo 面向催化设计，MINT 面向辅因子关联，VenusRX 面向反应字符串；三者都不能直接替代 UGT 同源筛选。</p>
+<p><strong>历史补课：Information Leakage in Enzyme Substrate Prediction。</strong> bioRxiv <strong>10.64898/2026.02.26.708291</strong>，posted <strong>2026-03-01</strong>；期刊 DOI <strong>10.1093/bioinformatics/btag733</strong>，PubMed 记录 online <strong>10-01</strong>。已有早期论文/数据，未确认期刊新增实验，故不算月内新进展。<a href="https://www.biorxiv.org/content/10.64898/2026.02.26.708291v1">原始摘要</a>、<a href="https://pubmed.ncbi.nlm.nih.gov/42826513/">期刊记录</a>、<a href="https://zenodo.org/records/18786394">公开切分数据</a></p>
+<p>作者审查常用底物数据及三个模型，报告去除泄漏后性能接近随机。本次未完成全文逐模型、逐 split 数值复核，因此不外推为“所有 specificity 模型无效”，也不引用二手 AUC。<strong>项目意义：</strong> 候选 UGT 与底物必须分别记录训练相似性；简单单边基线、负例构造和双侧留出应先于相信整体 AUROC。该结论是筛选证据审查要求，不能代替本项目盲测。同一审计原则另有佐证：Boltz-2 affinity 的公开同行评审（Zenodo 15701301，2025-06 发布）与独立批评（bioRxiv 10.64898/2026.06.29.735309 等）同样指向 scaffold split 缺失与相似性泄漏；本项目继续不以 affinity 分数替代催化活性证据。</p>
+<h2>6. 蛋白表达与溶解度</h2>
+<p>未确认 PLM_Sol、DeepSoluE、SoluProt、DeepSol/DeepSolNet、NetSolP 的窗口内实质更新，或直接针对植物 UGT 在 E. coli 表达的新独立评测。</p>
+<p>补核 Kimi 旧线索：<strong>Pro4S: Prediction of protein solubility by fusing sequence, structure, and surface</strong>，DOI <strong>10.1002/pro.70749</strong>；期刊 VoR <strong>2026-08-12</strong>，09 月卷期不能当新上线。它融合 sequence/structure/surface，不能按“只需 sequence”工具估计成本；植物 UGT 异源分布表现仍待核。<a href="https://onlinelibrary.wiley.com/doi/10.1002/pro.70749">官网</a></p>
+<p>SurfSol 身份为 <strong>10.1021/acs.jcim.6c00124</strong>，官网及作者仓库可找到，但目标异源分布独立验证未完成审查，仍留线索。<a href="https://pubs.acs.org/doi/full/10.1021/acs.jcim.6c00124">论文</a>、<a href="https://github.com/hehe00110001/SurfSol">仓库</a>。上述仅做身份/时间排除，不新增性能推荐或重复展开历史补课。</p>
+<p><strong>当前行动保持：</strong> 可溶表达排序保留简单组成基线；设计优选同时测可溶酶量与等酶量活性。结构/表面特征增加成本，尚无目标分布证据支持以其分数硬筛掉 UGT。</p>
+<h2>7. 代谢工程</h2>
+<h3>Adaptive respiratory bypass restores oxidative metabolism in NADH dehydrogenase-deficient Escherichia coli</h3>
+<p><strong>月内补检；bioRxiv，posted 2026-10-01，未同行评审。</strong> DOI <strong>10.64898/2026.10.01.755914</strong>，未见于历史索引。本次依据官方摘要。<a href="https://www.biorxiv.org/content/10.64898/2026.10.01.755914v1">论文</a></p>
+<p>作者在两类 NADH dehydrogenase 均缺失的 E. coli 中进行 <strong>4 条独立谱系 ALE</strong>，报告 ArcA 结合位点破坏、malate:quinone oxidoreductase 去抑制，氧消耗恢复至 WT 水平；结合多组学和 GEM 分析。绝对耗氧/生长速率、具体底盘、培养碳源、进化代数和反向重构的因果验证细节未全文核实。不是 indigo 产率研究。</p>
+<p><strong>判断：优先读调控与模型的对应关系。</strong> FBA 中反应“存在”不意味着短期可表达，ALE 后恢复也不意味着未进化菌株即可调用。对 W3110/BW25113 的价值在于审查氧化还原 knockout 的替代途径、调控与适应条件。不能直接推荐删除呼吸入口来提升 indigo，也未证明该 GEM 比传统 FBA 更准确指导产量。</p>
+<p>本期未确认 ppsA/tktA/aro/trp 或 indole→indigo 的窗口内高价值改造新证据。检索中的 indigoidine 论文不作为 indigo 论文混用。COBRApy 官方 PyPI 目前列出的版本发布日期为 08-11，未把近期抓取日期当作软件更新。<a href="https://pypi.org/project/cobra/">官方记录</a></p>
+<h3>意外重要进展：RNA catalysis emerges from dynamic structural ensembles</h3>
+<p><strong>Nature，期刊公开 2026-10-07</strong>，DOI <strong>10.1038/s41586-026-11140-z</strong>；更早预印本沿革待查。研究 Gst RNase P，cryo-EM 分析 <strong>55 个 apo、21 个 holo 状态</strong>；作者报告 RnpA 使特定活性构象比例由约 <strong>13% 升至 43%</strong>，并有关键远程相互作用突变的活性实验。结构状态来自实验异质性分析；Mg²⁺ hopping 的动态机制属于作者解释，不能视为实时轨迹测量。结构资源有 EMDB/PDB 记录，代码获取未核实。<a href="https://www.nature.com/articles/s41586-026-11140-z">原始论文</a></p>
+<p><strong>判断：可读基础进展。</strong> 支持把催化活性与构象群体联系起来，不能直接外推至蛋白 UGT，也不是新的结构预测工具。对当前项目的启发是避免只选一张最漂亮的结构解释活性，正式验证仍需状态占比与实验条件对应。</p>
+<h2>8. 新工具与模型</h2>
+<p>| Tool / Model | 用途 | 输入 | 输出 | 是否开源 | 是否值得测试 |
+|---|---|---|---|---|---|
+| CaGE | 复杂催化 motif scaffolding | 目标原子几何/设计条件 | 设计序列与结构 | 代码/权重未核实 | 先读全文、分母和负对照 |
+| AP Novo | motif 条件 de novo design | CIF、ligand、manifest | 序列/结构及可选评价 | 代码 Apache-2.0；权重独立条款 | 可准备小试规范，尚未运行 |
+| MINT | 辅因子关联预测 | 蛋白序列、辅因子表示 | 关联分数 | 获取与许可未核实 | 先核查标签、负例、同源隔离 |
+| VenusRX | 正逆反应/EC 预测 | 反应物或产物 SMILES，EC 可选 | 反应候选或 EC | 论文承诺接受后释放，当前未确认 | 读切分设计；不纳入筛酶 |
+| Leakage evaluation data | 底物预测审计 | 公开的训练/验证/测试 CSV | 对照切分 | Zenodo 数据公开；许可待查 | 历史背景，可先检查评测方案 |</p>
+<p>公开资源不等于本地已部署；本期没有验证任何工具运行成功。</p>
+<h2>9. 本周值得重点阅读</h2>
+<p><strong>必读（4 篇）：</strong></p>
+<ol>
+<li>CaGE：补读设计数/命中率、辅因子依赖和位点失活对照，查清几何与活性之间的证据链。</li>
+<li>AP Novo：核查天然序列 mining 的比较预算、命中率、多状态指标；与上期 nitrene 伴随论文去重阅读。</li>
+<li>Adaptive respiratory bypass：优先核查调控位点的反向重构、培养条件与模型约束。</li>
+<li>Are QM/MM models systematically improvable?：阅读水桥/柔性配体失效与 QM 区比较，避免将结合结论错用为势垒收敛。</li>
+</ol>
+<p><strong>可读（4 篇）：</strong> MINT（重点 sequence/family split 与负例）；VenusRX（重点受限分子库与非受限结果）；RNase P 构象集合（结构态与催化）；Information Leakage（历史补课，重点原始重切分而非总论）。原始链接见各栏目。</p>
+<p><strong>暂时不用读：</strong> 近期卷期但较早公开的 Pro4S；仅综合已有模型的综述，暂不作为新的性能证据；只证明结构/结合的设计，除非有明确的催化任务。窗口内但与当前工作距离较远的基础结构发现不为数量入选。</p>
+<h2>10. 对当前项目可立即尝试的 3 件事</h2>
+<p>以下为<strong>未执行的小试方案</strong>；验收条件由本报告建议，非论文保证。没有一项已到正式纳入流程阶段。</p>
+<ol>
+<li>
+<p><strong>为 UGT 建立多状态催化几何审查表。</strong> 输入：已有活性参照 UGT、目标供体/受体、现有复合物与合理机制假设。对照：活性参照、已知失活体（如有）、只按结构置信度选出的构象。输出：donor–acceptor/催化残基距离与取向、冲突、供体完整性、状态间 motif 保持；借鉴 AP Novo 的评价方式而不直接套其 esterase 阈值。验收：指标能解释独立已知正/负例，并对重复构象选择稳定；没有负例时只作标注，不硬筛。正式纳入需预先锁定规则后盲测新 UGT，证明相同实验预算下提高命中。</p>
+</li>
+<li>
+<p><strong>先审计 UGT 模型的双侧泛化证据。</strong> 输入：现有候选排序、可获得的模型训练名单、UGT 序列簇与受体结构簇。对照：sequence-only、substrate-only 和简单相似性基线；WT/突变成组，区分新酶/新底物/两者皆新。输出：重复与近同源风险表、各分层 top-N 命中及未知覆盖，不以 pooled AUROC 替代。验收：训练身份和实验标签可追溯，模型在目标留出条件下优于简单基线；缺训练表或阴性标签时停在审计阶段。正式采用需独立实验候选集通过，MINT 等 association 分数不得标作 activity。</p>
+</li>
+<li>
+<p><strong>给 indigo GEM 增加“可行路径/调控可达路径”对照。</strong> 输入：实际菌株基因型、葡萄糖/供氧条件、既有生长/副产物数据及 iML1515 映射。对照：同一基因型下的现有约束，分别允许/限制有依据的替代呼吸反应，并把未进化/ALE 条件分开。输出：氧化还原与 ATP 可行性、替代路径依赖、缺测参数清单。验收：参照能够解释现有表型，瓶颈对合理摄取/maintenance 范围稳健；否则先补测，不按模型单独下 knockout 决策。正式采用需实际底盘扰动验证；本轮仅提出方案，不运行科研计算。</p>
+</li>
+</ol>
+<h2>11. Potential Research Opportunities</h2>
+<p>| 待验证问题 | 可做课题 | 关键对照与产出 |
+|---|---|---|
+| motif 约束成功能否提升 UGT 真活性？ | 同预算比较结构置信度与多状态反应几何筛选 | 盲测命中、等酶量速率、供受体条件；报告失败设计 |
+| 辅因子关联模型能否识别突变偏好变化？ | WT/突变成组的 NAD/NADP 双辅因子动力学 benchmark | association 与 kcat/Km 比值分开，不以 binding 标签代替 |
+| 受限分子库带来多少真实新反应泛化？ | 固定训练侧分子库与 benchmark-wide 库对比 | 反应可行性、未知产物覆盖与外部实验分别评价 |
+| GEM 的呼吸补偿是否受调控与进化历史限制？ | 将 knockout 短期表型与 ALE 后表型分开校准 | 同基因型不同表达约束；实际耗氧/副产物数据 |</p>
+<p>以上为待验证问题，不声称无人研究。最贴近当前项目的是第一项：把 near-attack geometry 从解释性描述变为可盲测、可失败的筛选规则。</p>
+<h2>12. 本周科研决策建议</h2>
+<ul>
+<li><strong>建议立即跟进：</strong> CaGE/AP Novo 的原始设计分母与催化对照；呼吸旁路的调控因果证据。</li>
+<li><strong>建议加入工具箱：</strong> 多状态几何审查表、酶/底物双侧留出审计表。AP Novo 代码可以进入资源清单，尚未验证部署。</li>
+<li><strong>建议继续观察：</strong> MINT 严格分布外验证、CaGE 代码与目标家族迁移、VenusRX 资源正式释放。</li>
+<li><strong>暂时可以忽略：</strong> 将 association、反应生成或结构成功统称为催化活性提升的结论；没有新增内容的正式出版日期。</li>
+</ul>
+<p><strong>相对上期的变化：</strong> 新增复杂位点约束设计与可获取 AP Novo 流程，值得将机制几何输出具体化；新增呼吸补偿证据，提醒代谢预测分开处理调控和进化。<strong>保持的决策：</strong> 不替换 UGT 主排序模型，不以结构置信度替代反应态，不因新生成模型而跳过 QM/MM 校准。</p>
+<p>尚缺多数预印本全文中的命中分母、严格 split、失败样本及植物 UGT 独立验证。本期覆盖一手期刊/预印本、arXiv HTML、作者 GitHub、Zenodo 和官方软件记录；未声称对 Scholar/PubMed 全库穷尽检索。待核线索与索引已同步维护。</p>
+</div>
+</div>
+</body>
+</html>

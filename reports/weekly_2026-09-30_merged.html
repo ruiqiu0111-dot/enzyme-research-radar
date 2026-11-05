@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>weekly_2026-09-30_merged · 酶科研雷达</title>
+<style>
+
+  :root {
+    --text-1: #1a1a1a; --text-2: #4d4d4d; --text-3: #7a7a7a; --text-4: #a8a8a8;
+    --border: #e4e4e4; --surface: #fff; --surface-mute: #f5f5f5;
+    --accent: #2563eb; --positive: #16a34a; --warning: #b45309; --purple: #7c3aed;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-1: #e8e8e8; --text-2: #b5b5b5; --text-3: #8a8a8a; --text-4: #606060;
+      --border: #333; --surface: #161616; --surface-mute: #1f1f1f;
+      --accent: #6ea8fe; --positive: #4ade80; --warning: #fbbf24; --purple: #a78bfa;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--surface); color: var(--text-1);
+    font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 16px; line-height: 1.7;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 28px 20px 80px; }
+  .back { font-size: 13px; color: var(--text-3); text-decoration: none; }
+  .back:hover { color: var(--text-1); }
+  .doc h1 { font-size: 21px; font-weight: 500; line-height: 1.4; margin: 18px 0 6px; }
+  .doc h2 { font-size: 17.5px; font-weight: 500; margin: 34px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .doc h3 { font-size: 15.5px; font-weight: 500; margin: 24px 0 8px; }
+  .doc p { margin: 10px 0; }
+  .doc a { color: var(--accent); text-decoration: none; }
+  .doc a:hover { text-decoration: underline; }
+  .doc table { border-collapse: collapse; width: 100%; font-size: 13.5px; margin: 12px 0; display: block; overflow-x: auto; }
+  .doc th, .doc td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; vertical-align: top; }
+  .doc th { background: var(--surface-mute); font-weight: 500; }
+  .doc code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 12.5px; background: var(--surface-mute); padding: 1px 6px; border-radius: 4px; }
+  .doc ul, .doc ol { padding-left: 22px; }
+  .doc li { margin: 6px 0; }
+  .doc hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  .doc blockquote { margin: 12px 0; padding-left: 14px; border-left: 3px solid var(--border); color: var(--text-2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../index.html">← 返回文献档案馆</a>
+  <div class="doc"><h1>Weekly Research Intelligence（合并稿）</h1>
+<p>时间：2026-09-24 ～ 2026-09-30（Asia/Tokyo）
+补检：2026-09-01 ～ 2026-09-30；历史补课：窗口外高相关 ≤3 项
+检索截止：2026-09-30。首期合并稿：Codex 侧初稿（weekly_2026-09-30.md）与 Kimi 侧报告（kimi_report_2026-09-30.md）按 DOI/arXiv 去重合并；Kimi 侧 8 条线索已全部经一手来源核实（见 pending_leads.md），核实修正处双标注。</p>
+<p>证据边界：期刊官网、PubMed、arXiv、bioRxiv、ChemRxiv、Research Square、官方技术报告与作者代码库。仅见摘要/二手处逐项标注。合并后共 26 项（本周 4 项、30 天补检 13 项、历史补课 3 项、窗口外背景 4 项、观察/忽略 2 项）。</p>
+<h2>1. 本周最重要的 5 个进展（建议名单，待用户确认后定稿）</h2>
+<p>| 工作 | 领域 | 核心突破 | 对当前研究价值 |
+|---|---|---|---|
+| OpenKinetics Predictor，bioRxiv 09-28，本周 | 数据 / AI + 代谢建模 | 统一 API 暴露 13 种动力学预测器，GECKO2 原生调用，默认输出查询-训练集相似度；附 iML1515 全模型八预测器一致性案例 | kcat 选型从论文对比变为可分层审计的工程决策；直接接入 indigo 项目 iML1515/ecGEM 流程 |
+| eSEN-omol 整酶 MLIP，arXiv v2 09-16，补检 | ML potential / 机理 | 显式溶剂整酶（3.2–5.4 万原子、累计约 1 μs）反应自由能，三案例与实验势垒趋势一致 | ChemShell + ORCA 之外的预筛层候选；先做目标反应能量/力校准 |
+| Sun/Li/Cui/Xie 机械嵌入 ML/MM 突变效应，JCTC 2026-08，补检 | QM/MM / ML | 主动学习 ML 势+机械嵌入预测 chorismate mutase 突变 ΔΔG‡；非极性突变定量准确，<strong>极性突变显著低估势垒</strong> | &quot;突变→能垒&quot;预筛路线的首次系统评测；极性失败边界对 UGT 极性口袋是明确警示 |
+| Jiang 等 L-Trp 基因组规模过表达筛选，Metab. Eng. 09-04，补检 | 代谢工程 | indigo 报告系统+过表达文库筛出 soxS→lpxC（耐受 +74.8%）与新外排蛋白 YicL；5 L 罐 74.3 g/L | 与 glucose→shikimate→Trp→indigo 路线同源；耐受/外排提升为与通量并列的筛选维度 |
+| Multistate Enzyme Design，bioRxiv 09-14，补检 | 催化设计 | 反应坐标多状态同时优化，动力学+结构验证，效率与选择性超定向进化参照 | 设计目标应覆盖反应全过程而非单一 TS |</p>
+<p>落选说明：Anthropic 加速报告（09-21）属基础设施通量变化，不改变方法学结论，列第 4、8 节；历史补课三项（UGT ProteinMPNN 重设计、溶解度独立评测、co-folding 失效评测）按规则不占 Top 5 名额，但其结论已并入相应章节决策建议。</p>
+<h2>2. AI + 酶工程</h2>
+<p><strong>本周窗口内没有新的、通过严格 split 测试的 mutation→activity 模型出现。</strong> 两侧检索结论一致。</p>
+<h3>2.1 OpenKinetics Predictor（本周，已核实）</h3>
+<ul>
+<li>bioRxiv 2026-09-28，DOI 10.64898/2026.09.25.751968；平台 predictor.openkinetics.org / data.openkinetics.org。依据全文 PDF 核查。</li>
+<li><strong>修正 Kimi 表述</strong>：平台暴露 <strong>13 种</strong>方法；&quot;8 种&quot;是 iML1515 案例的 kcat 配置数（KinForm-L/H、DLKcat、EITLEM、UniKP、CataPro、CatPred、TurNuP）。</li>
+<li>关键设计：查询蛋白 vs 各方法训练集的序列相似度默认输出；BRENDA/SABIO-RK/UniProt 实测值可选覆盖预测；GECKO2 由硬编码 DLKcat 改为 API 可选并记录预测来源；data.openkinetics.org 提供标准 split 与预计算嵌入。</li>
+<li>iML1515 案例结论：八预测器分歧大且非随机，转运/膜相关反应分歧最大——正是 indigo 外排工程相关的反应类别，替换 DLKcat 默认值前必须按相似度分层。</li>
+<li>采用判断：<strong>建议立即跟进</strong>（见第 10 节）。平台本身是集成与审计层，不改变各预测器在严格 split 下的已知局限。</li>
+</ul>
+<h3>2.2 Multistate Enzyme Design（bioRxiv 09-14，补检，Codex 侧）</h3>
+<ul>
+<li>DOI 10.64898/2026.09.11.750617。摘要级：de novo Morita–Baylis–Hillmanase 多状态构象集合优化，最佳变体双底物催化效率提升 &gt;100×，效率与对映选择性超定向进化参照。有结构与动力学实验。非通用预测器，跨家族泛化未证明。必读；全文待读。</li>
+</ul>
+<h3>2.3 MPNN-Guided PET Hydrolase Redesign（ACS Sustainable Chem. Eng. 09-14，补检，Codex 侧）</h3>
+<ul>
+<li>DOI 10.1021/acssuschemeng.6c03808。1,176 条设计选 36，31 条表达成功；重设计组平均产量 275 mg/L vs 亲本 5 mg/L，但平均 Tm 低约 16°C；60–80°C 初筛仅 2/31 有 PET 活性。<strong>表达成功 ≠ 活性保持</strong>的量化案例，直接支撑 UGT 重设计的验收标准设计。必读。</li>
+</ul>
+<h3>2.4 其他条目（择要）</h3>
+<ul>
+<li><strong>Interkcat</strong>（arXiv 09-21，arXiv:2609.24157）：序列+SMILES 预测 kcat，34,140 条 80/10/10 <strong>随机</strong>切分，R²=0.701；未见突变方向判断 72.8%。随机切分泄漏风险未排除；仅作探索性基线，重切分前不得用于 UGT 排序。</li>
+<li><strong>Robots + Physics-Informed Features</strong>（Adv. Sci. 09-11，DOI 10.1002/advs.77474）：机器人实测活性+阴性底物，少量几何/电荷特征+随机森林。摘要+图注级。其数据设计（真阴性+条件记录）值得 UGT 数据整理借鉴。</li>
+<li><strong>Fluxion</strong>（bioRxiv 09-11，DOI 10.64898/2026.09.09.750355）：功能预测重述为条件生成。摘要级，指标/代码/湿实验均未核实。观察。</li>
+<li><strong>Squidly</strong>（eLife 09-04 正式版，DOI 10.7554/eLife.108186.3）：序列预测催化残基，训练/测试 &lt;30% identity，F1=0.69 vs BLAST 0.37。工具箱：UGT 已知催化残基召回检查。</li>
+<li>Kimi 侧窗口外背景（未完成一手核实，不引数字）：EZPro-Cat、EnzGFM/Agent、KcatNet。已入 pending_leads 第二批。</li>
+</ul>
+<h2>3. 酶催化机理 / QM/MM</h2>
+<p>本月该方向信号密集，三条路线并进：<strong>整酶通用 MLIP（eSEN-omol）、体系专用 ML/MM 突变效应（Sun 等）、嵌入方案与 Δ-ML 工程化（EMLE、CHARMM Δ-ML、MAPLE）</strong>。</p>
+<h3>3.1 eSEN-omol（arXiv v2 09-16，补检，双侧一致）</h3>
+<ul>
+<li>arXiv:2609.09293；fairchem / OMol25 公开。chorismate mutase 势垒 75.21±2.72（实验 64.43 kJ/mol）；PETase 79.03±4.2（实验 75.19±0.4）；作者报告约 1000× 加速（非本项目硬件实测）。起始结构取自前人 QM/MM 研究——&quot;近攻击构象从哪来&quot;未给新答案。先做小样本能量/力/质子转移对照，通过后再增强采样。</li>
+</ul>
+<h3>3.2 Sun/Li/Cui/Xie 机械嵌入 ML/MM 突变效应（JCTC 2026-08，补检，已核实）</h3>
+<ul>
+<li>&quot;Evaluating Mechanical-Embedding ML/MM for Predicting Mutation Effects in Chorismate Mutase Catalysis&quot;；ChemRxiv 10.26434/chemrxiv.15005529。</li>
+<li>与实验动力学比较：非极性突变在 &lt;1 kcal/mol 窄区间内定量准确；<strong>极性突变显著低估活化自由能</strong>。UGT 活性位点高度极性（UDP-sugar、酸碱催化、二价金属），该失败模式直接相关：机械嵌入路线用于 UGT 前，必须先在极性突变上验证，或改走静电嵌入（EMLE）。</li>
+<li>采用判断：必读的评测设计模板；作为 UGT ΔΔG‡ 预筛方法本身需改造后再评。</li>
+</ul>
+<h3>3.3 嵌入与工程化（补检/背景）</h3>
+<ul>
+<li><strong>Arattu Thodika 等 Δ-ML in CHARMM</strong>（JCTC 2026 接受）：反应特异 Δ-ML 校正延长 QM/MM MD，迭代重训练策略。可读；与现有 CHARMM 生态衔接好。</li>
+<li><strong>Gradisteanu EMLE</strong>（Chem. Sci. 17(17):8542，DOI 10.1039/d6sc01156j）：<strong>日期修正——首次公开 2026-03-10，非 Kimi 所称 8–9 月刊期</strong>；窗口外背景。气相训练 MLP+静电嵌入，AbyU 与 chorismate mutase 上与高水平 QM/MM 一致。恰是 Sun 等极性失败的对照路线，值得读。</li>
+<li><strong>MAPLE</strong>（Chem. Sci. 17:12394，DOI 10.1039/D6SC01279E）：ML 力场原生自动反应建模+酶设计平台；当前报告 PES 近似而非严格 FES。观察。</li>
+<li><strong>HetCat26</strong>（arXiv 09-24）：通用 MLIP 材料榜单不能预测催化任务表现——任务专项验证原则同样适用于酶。可读。</li>
+<li><strong>Kemp eliminase 集合 QM/MM</strong>（bioRxiv 09-11，DOI 10.64898/2026.09.09.750330）：进化主要富集基态反应性构象而非降低 TS 势垒。必读；支撑&quot;多快照+水化&quot;的 ChemShell+ORCA 试验设计。</li>
+<li>Kimi 侧 &quot;Wang 等 Diels-Alderase ML/MM（Nat. Commun.）&quot;&quot;Yamauchi &amp; Sato PETase MLIP&quot;未核实，入 pending_leads 第二批。</li>
+</ul>
+<p>未检出问题：窗口内 ChemShell / ORCA 无经核实的实质版本更新。</p>
+<h2>4. 蛋白结构与 enzyme–substrate prediction</h2>
+<ul>
+<li><strong>Anthropic 加速报告（09-21，本周，已核实）</strong>：官方 PDF；14 个结构预测模型（15 配置，含 AF3、Boltz-2、Chai-1、OpenFold3、Protenix、ESMFold2），Fast 2.3–6.4×（Chai-1 6.4×）均值 4.1×，Exact 1.6×，Big 3.4×；H100 前向传播基准，whole-pass 收益较小；设计质量基准无损（作者报告）。<strong>纯推理加速，未测催化姿态</strong>；优化代码/内核的公开范围未核实。意义：千级 UGT co-folding 的成本下降，但下条警示不变。</li>
+<li><strong>Lepikhov &amp; Nunes-Alves（历史补课 1/3）</strong>：ChemRxiv 2026-08-07，&quot;Co-folding models localize enzyme active sites but fail to accurately predict enzyme–substrate complex structures&quot;。标题结论即决策依据：co-folding 可定位活性中心，但 E–S 复合物结构不可靠，金属离子进一步恶化。<strong>UGT 流程约定：co-folding 仅作复合物假设生成，不打分、不当 reactivity 证据。</strong></li>
+<li><strong>Assay-Aware BindingDB</strong>（arXiv 09-27，本周）：74,425 对加实验上下文，paper-level 留出，MSE 1.27→1.19；输出是亲和力非活性；预训练暴露作者已讨论。借鉴条件字段与切分规范。</li>
+<li><strong>Physics+ML Pose Generator</strong>（ChemRxiv 09-23）：观察，全文未核查。</li>
+<li>窗口内未核实 AF3/Boltz/Chai 有改善催化姿态的实质算法更新。</li>
+</ul>
+<h2>5. UGT / glycosyltransferase</h2>
+<p><strong>本期没有可直接进入 1,000–10,000 级 UGT 筛选主流程的新专用方法。</strong> 但有一项窗口外工作提供了最直接的&quot;表达救援+活性保持&quot;模板：</p>
+<ul>
+<li><strong>Zhang 等 UGT ProteinMPNN 重设计（历史补课 2/3，已核实）</strong>：Nat. Commun. 2026-06-17，DOI 10.1038/s41467-026-74506-x。固定供体/受体第一、二壳层（8 Å）+保守位点的 ProteinMPNN 重设计，TOGT 与 UGT84A56 各 10 设计+12 对照：最佳设计可溶表达 6.4×/2.2×、催化效率 11.8×/10.8×，均优于分子伴侣与溶解标签对照；BW25113 补料发酵 2.11 g/L cichoriin、4.05 g/L aesculin。<strong>对筛后候选酶在 E. coli 的表达失败，这是目前证据最完整的救援路线</strong>；注意其表达宿主为 BL21(DE3)、生产宿主为 BW25113，与项目底盘需分别映射。</li>
+<li><strong>Glydentify（窗口外背景，已核实）</strong>：bioRxiv 2026-03-17。GT 供体特异性 PR-AUC 0.86/0.91，有未训练植物 GT 的体外验证。<strong>修正 Kimi</strong>：输入为序列 PLM+供体分子嵌入，AF3 结构仅用于注意力可解释性分析，非输入特征。供体约束可作为 UGT 筛选的一层过滤器小规模试跑。</li>
+<li>当前最优组合维持：序列相似性分层 + 供体/受体口袋几何 + co-folding 仅作假设生成 + 溶解度 sanity 层（第 6 节）。</li>
+</ul>
+<h2>6. 蛋白表达与溶解度</h2>
+<ul>
+<li><strong>独立评测（历史补课 3/3，已核实）</strong>：Research Square rs-10471634（2026-07-28，预印本）。eSOL native：NetSolP 0.792 &gt; SWI 0.745 &gt; RP3Net 0.709；异源 SoluProt：各家 0.58–0.63 无显著差异；<strong>PLM_Sol 自测 0.834 → leak-free 异源 0.564，低于所有基线</strong>，且证明是分布效应而非泄漏。</li>
+<li>决策含义：<strong>不要按发表 AUROC 选溶解度模型</strong>；对&quot;植物 UGT 于 E. coli&quot;这一具体分布，用已有表达成败数据自建小基准，并保留 SWI 组成基线作 sanity floor。与第 5 节 Zhang 工作互为印证：绕开预测器、直接设计可溶变体的路线实证更强。</li>
+<li>窗口内 PLM_Sol/DeepSoluE/SoluProt 无实质更新；MiLaSol 日期在窗口外，不计新进展。</li>
+</ul>
+<h2>7. 代谢工程</h2>
+<ul>
+<li><strong>Jiang 等 L-Trp（Metab. Eng. 09-04，补检，已核实）</strong>：DOI 10.1016/j.ymben.2026.102547。模块化前体强化（+34.6%）→ indigo 报告系统+全基因组过表达文库 → soxS→lpxC→LPS/膜完整性（耐受 +74.8%、产量 +10.3%）→ YicL 外排（+9.0%）→ TRPJ-28 5 L 罐 74.3 g/L（0.26 g/g，1.24 g/L/h），1000 L 中试 70.4 g/L。<strong>方法论迁移：同一 indigo 报告系统即可用于本项目菌株的耐受/外排筛选</strong>；soxS/lpxC/YicL 三靶点在 W3110/BW25113 的效应需单因素+组合拆解验证。</li>
+<li><strong>EraGene（Preprints.org 09-16，补检）</strong>：360 研究/2,611 株/3,833 测量的改造证据库约束候选空间（180.21→43.51 候选反应）。未同行评审；成功发表偏倚与组合因果归属未解。只读核查色氨酸/indole 靶点作文献先验。</li>
+<li><strong>正交能量系统 E. coli</strong>（Nat. Commun. 09-26）：摘要级；CO₂/甲醇底盘，与葡萄糖-indigo 不直接相关。观察。</li>
+<li><strong>GENKI（已核实存在，日期/DOI 未逐项确认）</strong>：Metab. Eng.，VAE 富集动力学可行模型集合，E. coli+酵母多扰动复现。需组学输入；中期选项，不替代 pFBA/FVA。</li>
+<li>结论：本期最可执行增量仍是&quot;可追溯改造先验（EraGene/Jiang）+ OpenKinetics 分层 kcat + iML1515 FBA/pFBA/FVA&quot;的组合，而非新预测模型。</li>
+</ul>
+<h2>8. 新工具与模型</h2>
+<p>| Tool / Model | 用途 | 输入 | 输出 | 是否开源 | 是否值得测试 |
+|---|---|---|---|---|---|
+| OpenKinetics Predictor + data.openkinetics.org | 统一 kcat/KM/kcat/KM API + 标准 split 数据集 | 序列 + 底物 SMILES/反应 | 各预测器结果 + 相似度 + 可选实测覆盖 | 平台与数据门户公开；各方法许可部署前核查 | <strong>是，本周最高优先</strong> |
+| eSEN-omol / fairchem | 整酶反应自由能 | 原子结构+反应坐标 | 能量/力、FES | 公开代码与模型 | 是，先小样本校准 |
+| Squidly | 催化残基定位 | 序列 | 残基分数 | 公开代码与数据 | 是，测已知 UGT |
+| Glydentify | GT 供体特异性 | 序列（+供体分子） | 供体类别概率 | 预印本；代码状态待查 | 小规模试跑供体过滤层 |
+| EraGene | 改造证据检索 | 代谢物/基因/反应 | 文献先验 | 公共平台；代码未核实 | 是，只读核查 |
+| Interkcat | kcat 回归 | 序列+SMILES | kcat/ITS | 公开代码与模型 | 仅重切分后作基线 |
+| Anthropic 优化版结构模型 | 推理加速 1.6–6.4× | — | — | 公开范围未核实 | 基础设施关注 |
+| Arattu Thodika Δ-ML（CHARMM） | QM/MM 加速 | 反应特异 Δ-ML | FES | CHARMM 生态 | 可读后评估 |
+| MAPLE | 自动反应建模/酶设计 | 酶结构+反应 | PES/近似势垒 | 论文报告平台 | 观察 |
+| Assay-Aware BindingDB | 条件化亲和力 | 蛋白/配体/assay | 亲和力 | 专属代码未核实 | 借鉴数据规范 |
+| Fluxion / Physics+ML Pose / GENKI | 见对应章节 | — | — | 未核实 | 观察 |</p>
+<h2>9. 本周值得重点阅读</h2>
+<p><strong>必读（5）：</strong></p>
+<ol>
+<li>OpenKinetics Predictor（bioRxiv 09-28）——生态级变化，直接接入 iML1515/GECKO2。</li>
+<li>Sun et al. ME-ML/MM 突变效应（JCTC 2026-08）——评测设计模板+极性失败边界。</li>
+<li>eSEN-omol（arXiv:2609.09293 v2）——MLIP 路线能力边界。</li>
+<li>Jiang et al. L-Trp（Metab. Eng. 09-04）——soxS/lpxC/YicL 可迁移靶点与筛选方法。</li>
+<li>Zhang et al. UGT ProteinMPNN（Nat. Commun. 06-17，历史补课）——表达救援最完整模板。</li>
+</ol>
+<p><strong>可读（8）：</strong> Multistate Enzyme Design、MPNN PET 重设计、Kemp eliminase 集合 QM/MM、溶解度独立评测（Research Square）、Lepikhov co-folding 评测、Gradisteanu EMLE、EraGene、Anthropic 加速报告。</p>
+<p><strong>暂时不用读 / 不计新进展：</strong> MiLaSol（窗口外日期）；Interkcat 全文（重切分前结论不可用）；Fluxion 全文（待评测证据）；Kimi 侧未核实条目（EZPro-Cat、EnzGFM 等，待下轮核实）；商业公告类。</p>
+<h2>10. 对当前项目可立即尝试的 3 件事</h2>
+<p>以下为拟议方案，本轮未执行。</p>
+<ol>
+<li><strong>OpenKinetics 分层重跑 indigo 通路 ecGEM。</strong> 输入：iML1515 中 shikimate→Trp→indigo 相关反应的酶序列+底物 SMILES。对照：现 DLKcat 默认值。输出：8 预测器按&quot;查询-训练集相似度&quot;分层的 kcat 分布；仅高相似度段替换进 GECKO2，比较 FBA/pFBA 通量差异。停止标准：转运/膜反应分歧如论文所示最大——这些反应保留实验值或标注低置信，不用预测值。</li>
+<li><strong>UGT 筛选流程加溶解度 sanity 层 + 表达救援预案。</strong> 取已有表达成败记录的植物 UGT（成败各半，约 50–100 条），同跑 NetSolP、SWI 组成基线；以自家数据为准选型，不按发表 AUROC。对高价值但表达失败的候选，按 Zhang 策略（固定供体/受体壳层+保守位点的 ProteinMPNN 重设计）做 ≤10 条设计小试；验收同时看可溶产量与单位酶活，缺一不算成功。</li>
+<li><strong>MLIP 预筛层的极性体系校准。</strong> 选一个已有 ChemShell+ORCA 数据的模型反应，分别用 eSEN-omol 与（如可获得）机械嵌入 ML/MM 复算势垒，重点构造极性突变对照（呼应 Sun 等失败模式）。验收标准：与 DFT 参照偏差 &lt;2–3 kcal/mol 且极性突变不系统性低估；通过后 MLIP 只用于百级突变预筛，top 10 回 QM 层 NEB/string + DLPNO-CCSD(T) 单点仲裁。</li>
+</ol>
+<h2>11. Potential Research Opportunities</h2>
+<p>| 空白（待验证判断） | 可开展课题 | 关键验证 |
+|---|---|---|
+| UGT 同源+底物联合泛化基准缺失 | 家族/受体 scaffold/时间三重隔离 benchmark | 前瞻同批实验，保留阴性与检测限 |
+| 极性活性位点的 ML/MM 突变 ΔΔG‡ 失效 | 机械嵌入 vs 静电嵌入在 UGT 类极性口袋的对照 | 与实验 kcat 的 ΔΔG‡ 排序，非仅 WT 势垒 |
+| 糖基转移反应的通用 MLIP 验证空白 | UDP-sugar 离去基/二价金属/SNi-like 机理的 MLIP 误差图谱 | 能量/力、路径、自由能收敛分层对照 |
+| co-folding 无 reactivity 打分 | near-attack 构象分类器/反应几何约束 | 以 Lepikhov 失败集为测试床 |
+| &quot;植物 UGT 于 E. coli&quot;溶解度目标分布 | 该分布的校准/微调研究 | 自建基准，SWI 基线为 floor |
+| 严格 split 下 kcat 模型的任务错位 | 排序任务（top-k 富集）在真实 UGT 筛选的前瞻效用 | 多模型对比+同批湿实验 |</p>
+<h2>12. 本周科研决策建议</h2>
+<ul>
+<li><strong>建议立即跟进：</strong> OpenKinetics 接入 ecGEM 流程（第 10-1 条）；Jiang 三靶点迁移评估与 indigo 报告筛选法；溶解度 sanity 层 + Zhang 表达救援预案（第 10-2 条）。</li>
+<li><strong>建议加入工具箱：</strong> data.openkinetics.org 标准 split；SWI 基线作 sanity floor；&quot;co-folding 仅假设生成不打分&quot;的流程约定；Squidly 残基一致性检查。</li>
+<li><strong>建议继续观察：</strong> eSEN-omol 与 ML/MM 突变路线（校准通过前不入生产）；MAPLE（等严格 FES）；GENKI（等日期/DOI 与 E. coli 案例核实）；Anthropic 优化版（等代码公开范围确认）。</li>
+<li><strong>暂时可以忽略：</strong> 随机 split 榜单提升作唯一证据；把 binding/fitness/pLDDT 当催化活性；窗口外日期伪装的新进展；未核实二手数字。</li>
+</ul>
+<hr />
+<h2>哪些结论可能改变既有决策</h2>
+<ol>
+<li><strong>kcat 选型流程改变</strong>：OpenKinetics 使&quot;多预测器+相似度分层&quot;成为可执行默认，DLKcat 单值默认应退役；转运/膜反应预测分歧最大，indigo 外排工程尤其不能直接用预测值。</li>
+<li><strong>溶解度模型选型改变</strong>：发表 AUROC 不可作选型依据；PLM_Sol 类模型不应用于 UGT ranking，SWI 基线必须保留。表达失败的优先救援路线从&quot;标签/伴侣&quot;转向 ProteinMPNN 壳层固定重设计（Zhang 实证优于传统策略）。</li>
+<li><strong>co-folding 使用方式收敛</strong>：Lepikhov 失效证据 + 本期无催化姿态改进 → co-folding 降级为纯假设生成，UGT 反应几何必须独立核查（反应原子距离、进攻角、酸碱状态、水化）。</li>
+<li><strong>MLIP/ML-MM 定位明确</strong>：可作突变预筛层，但极性突变系统性低估（Sun 等）意味着 UGT 类极性体系须先过极性校准，机械嵌入与静电嵌入路线需对照评估。</li>
+<li><strong>代谢工程筛选维度增加</strong>：耐受/外排（soxS/lpxC/YicL）与通量并列；indigo 报告系统可直接复用为本项目的高通量筛选表型。</li>
+</ol>
+<h2>还缺什么证据</h2>
+<ol>
+<li>OpenKinetics 各预测器在 UGT/糖基转移酶底物分布上的分层表现（平台 iML1515 案例覆盖的是代谢酶，非 GT）。</li>
+<li>eSEN-omol / ML-MM 在糖基转移反应（UDP-sugar 离去基、二价金属）上的能量/力/自由能校准数据；极性突变 ΔΔG‡ 与实验的对照。</li>
+<li>Zhang 重设计策略在项目目标 UGT 家族与项目宿主（W3110/BW25113 而非 BL21）上的可迁移性。</li>
+<li>soxS/lpxC/YicL 在项目底盘葡萄糖-indigo 体系的单因素与组合效应；与已知 mtr/yddG/acrA 层的互作。</li>
+<li>Anthropic 优化版代码/内核的实际公开范围与许可；whole-pass 实际加速。</li>
+<li>Kimi 侧第二批未核实条目（EnzGFM、EZPro-Cat、Gao/Zheng indigo 论文、Diels-Alderase ML/MM、PETase MLIP 等）的一手核实——已入 pending_leads 第二批，下轮处理。</li>
+</ol>
+<p>Top 5 为建议名单，待用户确认后定稿；下期（2026-10-05 前后）按 reported_index.md 去重，并处理 pending_leads 第二批。</p>
+</div>
+</div>
+</body>
+</html>

@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>酶科研雷达 · 文献档案馆</title>
 <style>
+
   :root {
     --text-1: #1a1a1a; --text-2: #4d4d4d; --text-3: #7a7a7a; --text-4: #a8a8a8;
     --border: #e4e4e4; --surface: #fff; --surface-mute: #f5f5f5;
     --accent: #2563eb; --positive: #16a34a; --warning: #b45309; --purple: #7c3aed;
-    --radius-chip: 6px; --radius-input: 10px;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -18,6 +18,7 @@
       --accent: #6ea8fe; --positive: #4ade80; --warning: #fbbf24; --purple: #a78bfa;
     }
   }
+
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
@@ -27,31 +28,29 @@
   }
   .wrap { max-width: 860px; margin: 0 auto; padding: 28px 20px 80px; }
 
-  /* ---------- header ---------- */
   h1 { font-size: 22px; font-weight: 500; margin: 0; letter-spacing: 0; }
   .sub { color: var(--text-3); font-size: 13px; margin-top: 6px; }
   .stats { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 14px; }
   .stat { font-size: 13px; color: var(--text-3); font-variant-numeric: tabular-nums; }
   .stat b { font-weight: 500; color: var(--text-1); }
 
-  /* ---------- sticky filter bar ---------- */
   .toolbar {
     position: sticky; top: 0; z-index: 20;
     margin: 20px -12px 0; padding: 12px 12px 10px;
     background: var(--surface);
     border-bottom: 1px solid var(--border);
-    border-radius: 0 0 var(--radius-input) var(--radius-input);
+    border-radius: 0 0 10px 10px;
   }
   .toolbar-top { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
   button, input, select { font: inherit; }
   #q {
-    flex: 1 1 200px; min-width: 140px; padding: 8px 12px;
-    border: 1px solid var(--border); border-radius: var(--radius-input);
+    flex: 1 1 180px; min-width: 130px; padding: 8px 12px;
+    border: 1px solid var(--border); border-radius: 10px;
     background: var(--surface); color: var(--text-1); outline: none;
   }
   #q:focus { border-color: var(--text-3); }
-  #week {
-    padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius-input);
+  #week, #mark {
+    padding: 8px 12px; border: 1px solid var(--border); border-radius: 10px;
     background: var(--surface); color: var(--text-1);
   }
   #count { font-size: 12px; color: var(--text-3); font-variant-numeric: tabular-nums; margin-left: auto; }
@@ -66,10 +65,7 @@
   .filters.hide { display: none; }
   .filter-block { display: flex; align-items: flex-start; gap: 8px; margin-top: 8px; }
   .filter-block:first-child { margin-top: 0; }
-  .filter-label {
-    flex: 0 0 52px; font-size: 12px; color: var(--text-3);
-    padding-top: 5px; margin: 0;
-  }
+  .filter-label { flex: 0 0 52px; font-size: 12px; color: var(--text-3); padding-top: 5px; margin: 0; }
   .chips { display: flex; flex-wrap: wrap; gap: 6px; flex: 1; }
   .chip {
     padding: 3px 11px; font-size: 12.5px; cursor: pointer;
@@ -81,7 +77,6 @@
   .chip .cnt { font-size: 11px; color: var(--text-4); margin-left: 3px; font-variant-numeric: tabular-nums; }
   .chip[aria-pressed="true"] .cnt { color: var(--surface); opacity: .7; }
 
-  /* ---------- week quick nav ---------- */
   .weeknav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
   .weeknav a {
     font-size: 12.5px; text-decoration: none; color: var(--text-2);
@@ -91,30 +86,32 @@
   .weeknav a:hover { color: var(--text-1); border-color: var(--text-3); }
   .weeknav .n { color: var(--text-4); font-size: 11px; margin-left: 2px; }
 
-  /* ---------- entries ---------- */
   .week-head {
     display: flex; align-items: baseline; gap: 10px;
     margin-top: 30px; padding: 6px 10px;
     border-left: 3px solid var(--text-1);
     background: var(--surface-mute);
-    border-radius: 0 var(--radius-chip) var(--radius-chip) 0;
-    scroll-margin-top: 190px;
+    border-radius: 0 6px 6px 0;
+    scroll-margin-top: 200px;
   }
   .week-head .w { font-size: 15.5px; font-weight: 500; font-variant-numeric: tabular-nums; }
   .week-head .n { font-size: 12px; color: var(--text-3); font-variant-numeric: tabular-nums; }
+  .week-head .rep { margin-left: auto; font-size: 12px; color: var(--accent); text-decoration: none; }
+  .week-head .rep:hover { text-decoration: underline; }
 
   .entry {
     padding: 14px 10px 12px; border-bottom: 1px solid var(--border);
-    border-radius: var(--radius-chip);
-    transition: background .15s ease;
+    border-radius: 6px; transition: background .15s ease, opacity .15s ease;
   }
   .entry:hover { background: var(--surface-mute); }
+  .entry.is-read { opacity: .5; }
+  .entry.is-read:hover { opacity: .85; }
   .entry:last-child { border-bottom: none; }
   .line1 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
   .t { font-size: 15px; line-height: 1.5; font-weight: 500; }
   .cat {
     flex: 0 0 auto; font-size: 12px; line-height: 18px; padding: 0 8px;
-    border-radius: var(--radius-chip); white-space: nowrap; align-self: center;
+    border-radius: 6px; white-space: nowrap; align-self: center;
   }
   .cat-must  { color: var(--accent);   background: color-mix(in srgb, var(--accent) 12%, transparent); }
   .cat-read  { color: var(--positive); background: color-mix(in srgb, var(--positive) 14%, transparent); }
@@ -122,7 +119,7 @@
   .cat-hist  { color: var(--purple);   background: color-mix(in srgb, var(--purple) 13%, transparent); }
   .cat-other { color: var(--text-3);   background: color-mix(in srgb, var(--text-3) 14%, transparent); }
 
-  .idline { margin-top: 5px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .idline { margin-top: 5px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
   code {
     font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
     font-size: 12px; color: var(--text-2);
@@ -135,11 +132,35 @@
   .dt { font-size: 12px; color: var(--text-4); font-variant-numeric: tabular-nums; }
   .disp { margin-top: 5px; font-size: 13px; line-height: 1.55; color: var(--text-2); }
 
+  .marks { display: inline-flex; gap: 4px; margin-left: auto; }
+  .mark-btn {
+    font-size: 11.5px; line-height: 1.4; padding: 2px 8px; cursor: pointer;
+    border: 1px solid var(--border); border-radius: 999px;
+    background: transparent; color: var(--text-4);
+  }
+  .mark-btn:hover { color: var(--text-1); border-color: var(--text-3); }
+  .mark-btn.on-star { color: var(--warning); border-color: var(--warning); }
+  .mark-btn.on-read { color: var(--positive); border-color: var(--positive); }
+
+  .det { margin-top: 6px; }
+  .det summary {
+    display: inline-block; cursor: pointer; list-style: none;
+    font-size: 12px; color: var(--accent);
+  }
+  .det summary::-webkit-details-marker { display: none; }
+  .det summary::before { content: "▸ "; }
+  .det[open] summary::before { content: "▾ "; }
+  .det summary:hover { text-decoration: underline; }
+  .det-body {
+    margin-top: 6px; padding: 10px 12px;
+    font-size: 13px; line-height: 1.6; color: var(--text-2);
+    background: var(--surface-mute); border-radius: 6px;
+  }
+
   .tags { margin-top: 7px; display: flex; flex-wrap: wrap; gap: 4px; }
   .tag {
     font-size: 11px; line-height: 1.5; padding: 1px 8px; cursor: pointer;
-    border: 1px solid transparent; border-radius: var(--radius-chip);
-    background: transparent;
+    border: 1px solid transparent; border-radius: 6px; background: transparent;
   }
   .tag-d { color: var(--accent); background: color-mix(in srgb, var(--accent) 9%, transparent); }
   .tag-d:hover { background: color-mix(in srgb, var(--accent) 18%, transparent); }
@@ -162,8 +183,9 @@
   #top:hover { color: var(--text-1); border-color: var(--text-3); }
 
   @media (max-width: 640px) {
-    .week-head { scroll-margin-top: 230px; }
+    .week-head { scroll-margin-top: 240px; }
     .filter-label { flex-basis: 44px; }
+    .marks { margin-left: 0; }
   }
 </style>
 </head>
@@ -177,6 +199,11 @@
     <div class="toolbar-top">
       <input id="q" type="search" placeholder="搜索标题 / 编号 / 备注 / 标签…" aria-label="搜索">
       <select id="week" aria-label="按周筛选"></select>
+      <select id="mark" aria-label="按标记筛选">
+        <option value="全部">全部标记</option>
+        <option value="精读">仅精读 ★</option>
+        <option value="未读">仅未读</option>
+      </select>
       <button id="toggle" aria-expanded="true">收起筛选</button>
       <span id="count"></span>
     </div>
@@ -200,7 +227,7 @@
   <div id="list"></div>
 
   <div class="foot">
-    数据来自各期周报归档（reported_index）。点击编号跳转 DOI / arXiv 原文；点条目下方的<span style="color:var(--accent)">蓝</span>/<span style="color:var(--purple)">紫</span>标签可快速筛选同类文献，再点一次取消。
+    数据来自各期周报归档。点击编号跳转原文；点条目下方<span style="color:var(--accent)">蓝</span>/<span style="color:var(--purple)">紫</span>标签筛选同类；★ 精读与 ✓ 已读标记仅保存在本机浏览器。
   </div>
 </div>
 <button id="top" aria-label="回到顶部">↑ 顶部</button>
@@ -219,7 +246,8 @@
   ],
   "meths": [
    "AI/ML 模型"
-  ]
+  ],
+  "detail": "LFS 假设突变诱导的残基层表示变化中存在紧凑的 assay 特异方向集，SGES 在该子空间内做代理建模/不确定度/采集。Codex 侧全文读数：87 个 assay 上 site-delta Ridge mean rho 0.584 vs zero-shot 0.438（32 初始标签/500 oracle/5 seeds）。双方一致：assay 特异 fitness 搜索方法、无新 wet-lab；fitness≠催化活性，不直接用于 UGT 活性排序。"
  },
  {
   "week": "2026-11-02",
@@ -233,7 +261,8 @@
   ],
   "meths": [
    "实验表征"
-  ]
+  ],
+  "detail": "AmUGT73AC19/88E36/88E37 均糖基化 calycosin/formononetin（金属离子非依赖）；AmUGT88E37 受体谱最宽，可产 7-O/4′-O/6-O 糖苷；docking+突变定位 Glu383 与区域选择性位点 Val144/Tyr135/Leu195/Val141。受体/区域选择性参照，湿实验扎实；SI 逐酶动力学与产物确证待全文；不是大库排序器。"
  },
  {
   "week": "2026-11-02",
@@ -247,7 +276,8 @@
   ],
   "meths": [
    "实验表征"
-  ]
+  ],
+  "detail": "OxiEs1 偏伯醇/依赖 imidazole，OxiEs2 偏仲醇/不依赖；序列×条件交互提示同一酶在不同条件下选择性可切换。非 ML 的酶学新反应类型；具体库/倍数/动力学待双方可读全文后复核。"
  },
  {
   "week": "2026-11-02",
@@ -263,7 +293,8 @@
   "meths": [
    "定向进化与筛选",
    "实验表征"
-  ]
+  ],
+  "detail": "系统性排查 PLP 酶×光催化剂矩阵（覆盖宽激发态氧化还原窗口），发现双方单独均不具备的新 C–C 偶联反应性，含此前未知的迁移 β-交叉偶联与 canonical γ-偶联；随后经底物通道工程定向进化。用户确认 Top 5；全文精读重点为矩阵规模与突变分母。"
  },
  {
   "week": "2026-11-02",
@@ -279,7 +310,8 @@
   "meths": [
    "理性与半理性设计",
    "实验表征"
-  ]
+  ],
+  "detail": "ItFMO 对 indole 的 kcat/Km = 0.22±0.05 s⁻¹mM⁻¹（高于所测其它植物 FMO），可转化 16 种取代吲哚；供 2-oxindole 时联产 indirubin（约占 70%）。E. coli 中 ItFMO+TnaA 共表达 41.27±0.84 mg/L，双菌共培养 60.03±0.82 mg/L（2.7×）。MD（催化活性构象态）+丙氨酸扫描+定点突变鉴定 Q51/Y160/K212/S213/F373/N427。价值在酶学与残基图谱，不在滴度；注意 indirubin 联产对纯度的影响。"
  },
  {
   "week": "2026-11-02",
@@ -293,7 +325,8 @@
   ],
   "meths": [
    "AI/ML 模型"
-  ]
+  ],
+  "detail": "THOR 生成式框架学习非配对嗜中温/嗜热序列变换，训练不暴露目标家族嗜热同源物。排除出训练的 MDH 上 zero-shot 表观 Tm 最高约 +15（摘要单位缺失，推断 °C 待全文），有限微调后约 +36；多数设计保留活性，个别变体近 3× turnover；MD 显示背景依赖机制。待核：统计分母、与 FireProt/ThermoMPNN 同预算比较、代码/权重可用性。"
  },
  {
   "week": "2026-11-02",
@@ -308,7 +341,8 @@
   "meths": [
    "物理模拟",
    "数据库与工具"
-  ]
+  ],
+  "detail": "开源 CLI：PDB→活性位点提取→MEP→TS 精修→IRC→QRRHO 热化学，单一 MLIP 后端（GPU pysisyphus fork）。无中间体输入恢复 BezA（GPP C6-甲基转移酶）两步机理；6 酶 23 步基准中 UMA-m-1.1 重现 19 步文献机理。定位为 DFT 簇模型/全酶 QM/MM 之前的高通量初筛层；糖基转移强极性 TS 须先过 DFT 校准门（对照 Sun 等极性低估教训）。"
  },
  {
   "week": "2026-11-02",
@@ -322,7 +356,8 @@
   ],
   "meths": [
    "实验表征"
-  ]
+  ],
+  "detail": "葡萄木质部非靶向代谢组+mQTL 定位 6 个 UGT 基因簇与 piceid 积累连锁；生化+结构表征显示簇内显著功能分化，顺式与反式 piceid 由不同 UGT 分管，簇整体受强纯化选择。直接提示：筛选 assay 必须分辨顺/反异构体终点，总糖苷终点会掩盖分工。待核：体外动力学、结构解析方式、底物谱宽度。"
  },
  {
   "week": "2026-11-02",
@@ -338,7 +373,8 @@
   "meths": [
    "AI/ML 模型",
    "物理模拟"
-  ]
+  ],
+  "detail": "237,922 个 AF 口袋（12,255 蛋白）放上 apo-holo 轴：62% 偏 holo-like（等采样 56%）；holo-like 口袋的位点预测检出高 13–21pp、同源配体对接成功率高 19pp；AF 置信度报告的是口袋变异度而非状态。给出“对接前先判口袋状态”的操作层；终点是结合非催化，holo-like 对接成功不保证 near-attack 几何。"
  },
  {
   "week": "2026-11-02",
@@ -352,7 +388,8 @@
   ],
   "meths": [
    "定向进化与筛选"
-  ]
+  ],
+  "detail": "胞内生成的 ncAA 作为正交 aaRS 底物，琥珀密码子通读产生氯霉素抗性，把催化活性与宿主存活偶联；TPL/TrpB/SmLcar 三体系验证，ncAA 最高 36.8 g/L。选择压力直接绑定催化活性（非结合/荧光）是硬进展；体系要求产物为 ncAA 且能被 aaRS 利用，不能搬到糖基转移。"
  },
  {
   "week": "2026-11-02",
@@ -366,7 +403,8 @@
   ],
   "meths": [
    "实验表征"
-  ]
+  ],
+  "detail": "晶体+动力学+模拟+工程化：底物组装重构使 [2+2] 环加成对映偏好从 99.5:0.5 反转到 2:98 e.r.，光敏剂位置不变。机制驱动的立体控制工程范例；人工光酶，与天然酶工程距离中等。"
  },
  {
   "week": "2026-11-02",
@@ -380,7 +418,8 @@
   ],
   "meths": [
    "实验表征"
-  ]
+  ],
+  "detail": "人源折叠质控传感器 UGGT1 全长多域 cryo-EM：单体开/闭两种构象态+中间态模型（3D variability+MD）。GT-B 大结构域重排与底物识别的结构基础，对理解 GT 底物识别有参照价值。"
  },
  {
   "week": "2026-11-02",
@@ -395,7 +434,8 @@
   ],
   "meths": [
    "定向进化与筛选"
-  ]
+  ],
+  "detail": "F3H 为限速节点；重建 TCA 循环把定向进化与生长偶联，42,360 理论文库 4 天 DLE；SlF3Hv01 使 taxifolin 较 WT +301.28%（22 h，93.82 mg/L）、+29.73%（46 h，119.87 mg/L）。生长偶联选择用于 α-KG 双加氧酶的实例。"
  },
  {
   "week": "2026-11-02",
@@ -409,7 +449,8 @@
   ],
   "meths": [
    "AI/ML 模型"
-  ]
+  ],
+  "detail": "糖链特异 diffusion 框架做蛋白-糖链复合物结构；698 复合物基准 Top-25 高质量成功率 71.9% vs AF3 19.2%，0.34 s/pose。注意是蛋白-聚糖识别复合物而非酶-底物催化构象；Top-25 非 Top-1；对 UGT 的意义在糖基化产物/供体识别建模。"
  },
  {
   "week": "2026-11-02",
@@ -423,7 +464,8 @@
   ],
   "meths": [
    "AI/ML 模型"
-  ]
+  ],
+  "detail": "ESM-2 嵌入+随机森林两段式 EC 预测；外部基准 25,778 序列，weighted F1 0.94(L1)→0.90(L4)。EC 注释≠活性预测；可作 UGT 库初筛的粗注释层，不能分辨受体特异性。"
  },
  {
   "week": "2026-11-02",
@@ -439,7 +481,8 @@
   "meths": [
    "AI/ML 模型",
    "实验表征"
-  ]
+  ],
+  "detail": "条件匹配（批次/pH/温度）的 kcat/Km 基准评测 20 模型 4 类策略：动力学参数预测器在数据库子集上强、在 25 个独立突变数据集上失去优势；zero-shot 预测器泛化更一致；多 zero-shot 简单共识进一步提高有益突变 precision。前瞻湿实验 150 突变（PTS/酵母：随机 50 vs UniKP top50 vs ESM-1v top50，三分臂统计待 Table S2）。结论：监督 kcat 模型排新体系突变前必须做目标家族校准，zero-shot 共识进对照臂。"
  },
  {
   "week": "2026-10-26",
@@ -454,7 +497,8 @@
   ],
   "meths": [
    "实验表征"
-  ]
+  ],
+  "detail": "花青素 3-O-糖苷/鼠李糖苷组合生物合成。工程经验可迁移 indigo 路线：供体平衡（UDP-glucose/UDP-rhamnose 比例用质粒拷贝数调）对应前体收支诊断；外排 MdtH/yadH +16%/+31% 与 indigo 外排同量级，提示外排是跨产物类别的通用二阶优化。标题 rutinoside 与摘要 rhamnoside 不一致，待全文核。"
  },
  {
   "week": "2026-10-26",
@@ -469,7 +513,8 @@
   "meths": [
    "AI/ML 模型",
    "实验表征"
-  ]
+  ],
+  "detail": "RL+进化先验的多位点优化。11-02 图版目验确认：Fig 5F 为纯化酶 kcat/Km（μM⁻¹ s⁻¹）柱状图，R2-10-B11 = 7.1× WT（另有 5.9×/6.3×/6.9×）；Fig 5E 复筛活性约 4× 以上；筛选期 75.4%/83.8% 为相对活性命中率。待核：kcat/Km 测定条件与重复、Bestzyme 专利范围、代码可用性（脚注仓库 dgc-libgen 停更于 2026-08-21 且无许可）。"
  },
  {
   "week": "2026-10-26",
@@ -483,7 +528,8 @@
   ],
   "meths": [
    "实验表征"
-  ]
+  ],
+  "detail": "PmHS2 hexosyl transfer 的共价中间体证据链；共价机制为证据链建议而非定论。摘要级必读。"
  },
  {
   "week": "2026-10-26",
@@ -497,7 +543,8 @@
   ],
   "meths": [
    "AI/ML 模型"
-  ]
+  ],
+  "detail": "半监督 kcat 预测；clustered CataPro @40% 严格基准。资源核实：仓库 ali-malli/SSL 确认存在且 MIT 许可，含 data/experiments/results/scripts——可借其 clustered 40% 协议审查现有模型。"
  },
  {
   "week": "2026-10-26",
@@ -512,7 +559,8 @@
   ],
   "meths": [
    "实验表征"
-  ]
+  ],
+  "detail": "Salicortin 途径解析；PtUGT71L1 的糖基化次序参照。摘要级。"
  },
  {
   "week": "2026-10-26",
@@ -527,7 +575,8 @@
   ],
   "meths": [
    "理性与半理性设计"
-  ]
+  ],
+  "detail": "P450BM3 表面 hole-trap 理性工程（无 ML）；M8 变体 TON/半衰期提升。摘要级。"
  },
  {
   "week": "2026-10-26",
@@ -541,7 +590,8 @@
   ],
   "meths": [
    "定向进化与筛选"
-  ]
+  ],
+  "detail": "光生物催化 PLP 立体发散 ncAA 合成：定向进化+光催化，非 ML。摘要级。"
  },
  {
   "week": "2026-10-26",
@@ -556,7 +606,8 @@
   "meths": [
    "物理模拟",
    "数据库与工具"
-  ]
+  ],
+  "detail": "gmx_MMPBSA end-state 结合自由能扩展。binding 工具，非催化势垒，不计精选。"
  },
  {
   "week": "2026-10-19",
@@ -1392,7 +1443,8 @@
   "meths": [
    "AI/ML 模型",
    "实验表征"
-  ]
+  ],
+  "detail": "PLM 联合编码激酶催化域+底物肽，配 pooled phospho-PCA 实验闭环，Bayesian 层次模型解耦生化识别与激酶适应性。联合编码+pooled assay+解耦的范式对 UGT-受体筛选有借鉴；激酶体系本身非目标。"
  },
  {
   "week": "2026-11-02",
@@ -1406,7 +1458,8 @@
   ],
   "meths": [
    "定向进化与筛选"
-  ]
+  ],
+  "detail": "4 位点 >300,000 文库、平板筛选，单突变株获得聚氨酯活性并保留聚酯酶活性。摘要仅见 n=1 命中、无动力学数字，列观察。"
  },
  {
   "week": "2026-11-02",
@@ -1420,7 +1473,8 @@
   ],
   "meths": [
    "实验表征"
-  ]
+  ],
+  "detail": "冻淬多频 EPR/ENDOR 直接表征 TPP 结合 ketyl 自由基：同一化学组成的中间体在 BFD 与 BAL 中电子结构不同——蛋白骨架通过活性位点构象重塑自由基电子结构。机理深度高。"
  },
  {
   "week": "2026-11-02",
@@ -1435,7 +1489,8 @@
   "meths": [
    "实验表征",
    "物理模拟"
-  ]
+  ],
+  "detail": "原子分辨率结构+生化+计算（Kulik 组）：第二壳层 T92 引导 Fe(IV)-oxo 的 HAT 取向并管理 αKG 在线/离线构象。第二壳层遥控催化的清晰案例。"
  },
  {
   "week": "2026-11-02",
@@ -1449,7 +1504,8 @@
   ],
   "meths": [
    "实验表征"
-  ]
+  ],
+  "detail": "van der Donk 组：突变体产物快照支持硫醛中间体与大环化末步。MNIO 机理。"
  },
  {
   "week": "2026-11-02",
@@ -1464,7 +1520,8 @@
   "meths": [
    "实验表征",
    "物理模拟"
-  ]
+  ],
+  "detail": "LDH/ADH 在 BSA/PEG 拥挤下激活，特定构象 QM/MM 势垒差约 4 kcal/mol。有更早近标题预印本、diff 未核，不计新增；势垒差不可换算为总速率倍数。"
  },
  {
   "week": "2026-11-02",
@@ -1478,7 +1535,8 @@
   ],
   "meths": [
    "AI/ML 模型"
-  ]
+  ],
+  "detail": "结构字母表搜索+结构相似网络发现序列注释漏掉的病毒 GT 新谱系（jumbo phage 五串联 GT 基因座）。无湿实验；与 EzHit 同属“序列之外找 GT”的路线。"
  },
  {
   "week": "2026-11-02",
@@ -1492,7 +1550,8 @@
   ],
   "meths": [
    "AI/ML 模型"
-  ]
+  ],
+  "detail": "全计算 docking 评估功能、无湿实验——正是 docking≠function 的风险样本。暂不读。"
  },
  {
   "week": "2026-11-02",
@@ -1506,7 +1565,8 @@
   ],
   "meths": [
    "综述与批评"
-  ]
+  ],
+  "detail": "violacein/indigo/indigoidine/phycocyanobilin 四体系的途径优化、前体工程、膜工程比较框架。综述无新数据；靛蓝背景资料。"
  },
  {
   "week": "2026-11-02",
@@ -1520,17 +1580,25 @@
   ],
   "meths": [
    "物理模拟"
-  ]
+  ],
+  "detail": "全重原子粗粒化 NNP（隐溶剂）做复合物动力学；结合自由能估计系统性偏负。binding 而非 catalysis，观察。"
  }
 ]</script>
 <script>
+var REPORTS = {"2026-09-30": "reports/weekly_2026-09-30.html", "2026-10-05": "reports/weekly_2026-10-05.html", "2026-10-12": "reports/weekly_2026-10-12.html", "2026-10-19": "reports/weekly_2026-10-19.html", "2026-10-26": "reports/weekly_2026-10-26.html", "2026-11-02": "reports/weekly_2026-11-02.html"};
 (function () {
   var DATA = JSON.parse(document.getElementById('radar-data').textContent);
   var CAT_ORDER = ['必读', '可读', '观察', '历史补课', '其他', '忽略'];
   var CAT_CLASS = { '必读': 'cat-must', '可读': 'cat-read', '观察': 'cat-watch', '历史补课': 'cat-hist', '其他': 'cat-other', '忽略': 'cat-other' };
   var DIR_ORDER = ['活性与动力学','热稳定性','溶解度与表达','耐受与转运','选择性与特异性','新酶与新功能设计','通路组装与产量','结构与构象','底物结合与口袋','功能注释与预测','基准与方法学'];
   var METH_ORDER = ['AI/ML 模型','物理模拟','定向进化与筛选','理性与半理性设计','实验表征','数据库与工具','综述与批评'];
-  var state = { q: '', cat: '全部', week: '全部', dir: '全部', meth: '全部' };
+  var state = { q: '', cat: '全部', week: '全部', dir: '全部', meth: '全部', mark: '全部' };
+
+  // ---- marks (localStorage) ----
+  var MKEY = 'radar-marks-v1';
+  var marks = {};
+  try { marks = JSON.parse(localStorage.getItem(MKEY) || '{}'); } catch (e) { marks = {}; }
+  function saveMarks() { try { localStorage.setItem(MKEY, JSON.stringify(marks)); } catch (e) {} }
 
   function esc(s) {
     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -1539,6 +1607,18 @@
     var m = id.match(/arXiv:(\S+)/i);
     if (m) return 'https://arxiv.org/abs/' + m[1].replace(/[，。（）()、\s].*$/, '');
     if (/^\d{4}\.\d{4,5}$/.test(id)) return 'https://arxiv.org/abs/' + id;
+    m = id.match(/^(?:PubMed|PMID)[:\s]*(\d{6,9})/i);
+    if (m) return 'https://pubmed.ncbi.nlm.nih.gov/' + m[1] + '/';
+    m = id.match(/^(PMC\d{5,9})/i);
+    if (m) return 'https://www.ncbi.nlm.nih.gov/pmc/articles/' + m[1] + '/';
+    m = id.match(/preprints\.org\s*(\d{6}\.\d{4,5})/i);
+    if (m) return 'https://www.preprints.org/manuscript/' + m[1];
+    m = id.match(/^(rs-\d{6,9})/i);
+    if (m) return 'https://www.researchsquare.com/article/' + m[1] + '/v1';
+    m = id.match(/^Zenodo\s*(\d{5,9})/i);
+    if (m) return 'https://doi.org/10.5281/zenodo.' + m[1];
+    m = id.match(/^ScienceDirect\s*(S\d{15,17})/i);
+    if (m) return 'https://www.sciencedirect.com/science/article/pii/' + m[1];
     var first = id.split(/[\s（(]/)[0];
     if (/^10\.\d{4,}\/\S+$/.test(first)) return 'https://doi.org/' + first;
     return null;
@@ -1558,20 +1638,21 @@
     '<span class="stat">必读 <b>' + must + '</b> 条</span>' +
     '<span class="stat">覆盖 <b>' + weekList.length + '</b> 期（' + weekList[weekList.length - 1] + ' ~ ' + weekList[0] + '）</span>';
 
-  // ---- week select ----
   var sel = document.getElementById('week');
   sel.innerHTML = '<option value="全部">全部周期</option>' + weekList.map(function (w) {
     return '<option value="' + esc(w) + '">' + esc(w) + ' 期</option>';
   }).join('');
   sel.addEventListener('change', function () { state.week = sel.value; render(); });
 
-  // ---- week quick nav ----
+  document.getElementById('mark').addEventListener('change', function (ev) {
+    state.mark = ev.target.value; render();
+  });
+
   document.getElementById('weeknav').innerHTML = weekList.map(function (w) {
     var n = DATA.filter(function (e) { return e.week === w; }).length;
     return '<a href="#w-' + w + '">' + w.slice(5) + '<span class="n">' + n + '</span></a>';
   }).join('');
 
-  // ---- filter toggle ----
   var tg = document.getElementById('toggle'), fl = document.getElementById('filters');
   tg.addEventListener('click', function () {
     var hidden = fl.classList.toggle('hide');
@@ -1579,7 +1660,6 @@
     tg.setAttribute('aria-expanded', String(!hidden));
   });
 
-  // ---- chip rows ----
   function buildChips(elId, names, dim, listKey) {
     var el = document.getElementById(elId);
     var all = ['全部'].concat(names.filter(function (n) {
@@ -1621,8 +1701,10 @@
     if (state.week !== '全部' && e.week !== state.week) return false;
     if (state.dir !== '全部' && e.dirs.indexOf(state.dir) === -1) return false;
     if (state.meth !== '全部' && e.meths.indexOf(state.meth) === -1) return false;
+    if (state.mark === '精读' && !(marks[e.id] && marks[e.id].star)) return false;
+    if (state.mark === '未读' && (marks[e.id] && marks[e.id].read)) return false;
     if (state.q) {
-      var hay = (e.title + ' ' + e.id + ' ' + e.disp + ' ' + e.dirs.join(' ') + ' ' + e.meths.join(' ')).toLowerCase();
+      var hay = (e.title + ' ' + e.id + ' ' + e.disp + ' ' + (e.detail || '') + ' ' + e.dirs.join(' ') + ' ' + e.meths.join(' ')).toLowerCase();
       if (hay.indexOf(state.q) === -1) return false;
     }
     return true;
@@ -1642,8 +1724,16 @@
   var listEl = document.getElementById('list');
   listEl.addEventListener('click', function (ev) {
     var b = ev.target.closest('button.tag');
-    if (!b) return;
-    setFilter(b.getAttribute('data-dim'), b.getAttribute('data-tag'));
+    if (b) { setFilter(b.getAttribute('data-dim'), b.getAttribute('data-tag')); return; }
+    var mb = ev.target.closest('button.mark-btn');
+    if (mb) {
+      var id = mb.getAttribute('data-id'), kind = mb.getAttribute('data-kind');
+      marks[id] = marks[id] || {};
+      marks[id][kind] = !marks[id][kind];
+      if (!marks[id].star && !marks[id].read) delete marks[id];
+      saveMarks();
+      render();
+    }
   });
 
   function render() {
@@ -1656,7 +1746,7 @@
     });
     groups.sort().reverse();
 
-    var filtered = state.q || state.cat !== '全部' || state.week !== '全部' || state.dir !== '全部' || state.meth !== '全部';
+    var filtered = state.q || state.cat !== '全部' || state.week !== '全部' || state.dir !== '全部' || state.meth !== '全部' || state.mark !== '全部';
     document.getElementById('count').textContent = filtered ? '筛选出 ' + shown + ' / ' + DATA.length + ' 条' : '';
 
     if (!groups.length) {
@@ -1666,18 +1756,28 @@
     var html = '';
     groups.forEach(function (w) {
       var items = byWeek[w];
-      html += '<div class="week-head" id="w-' + w + '"><span class="w">' + esc(w) + ' 期</span><span class="n">' + items.length + ' 条</span></div>';
+      var rep = REPORTS[w] ? '<a class="rep" href="' + REPORTS[w] + '">当期周报 →</a>' : '';
+      html += '<div class="week-head" id="w-' + w + '"><span class="w">' + esc(w) + ' 期</span><span class="n">' + items.length + ' 条</span>' + rep + '</div>';
       items.forEach(function (e) {
         var url = linkFor(e.id);
         var inner = '<code>' + esc(e.id) + '</code>';
         var idHtml = url
           ? '<a class="idlink" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + inner + '</a>'
           : inner;
-        html += '<div class="entry">' +
+        var mk = marks[e.id] || {};
+        var markHtml = '<span class="marks">' +
+          '<button class="mark-btn' + (mk.star ? ' on-star' : '') + '" data-id="' + esc(e.id) + '" data-kind="star" title="精读标记">' + (mk.star ? '★' : '☆') + ' 精读</button>' +
+          '<button class="mark-btn' + (mk.read ? ' on-read' : '') + '" data-id="' + esc(e.id) + '" data-kind="read" title="已读标记">✓ 已读</button>' +
+          '</span>';
+        var detHtml = e.detail
+          ? '<details class="det"><summary>详情</summary><div class="det-body">' + esc(e.detail) + '</div></details>'
+          : '';
+        html += '<div class="entry' + (mk.read ? ' is-read' : '') + '">' +
           '<div class="line1"><span class="cat ' + (CAT_CLASS[e.cat] || 'cat-other') + '">' + esc(e.cat) + '</span>' +
           '<span class="t">' + esc(e.title) + '</span></div>' +
-          '<div class="idline">' + idHtml + '<span class="dt">收录 ' + esc(e.date) + '</span></div>' +
+          '<div class="idline">' + idHtml + '<span class="dt">收录 ' + esc(e.date) + '</span>' + markHtml + '</div>' +
           '<div class="disp">' + esc(e.disp) + '</div>' +
+          detHtml +
           tagHtml(e) +
           '</div>';
       });
@@ -1685,7 +1785,6 @@
     listEl.innerHTML = html;
   }
 
-  // ---- back to top ----
   var topBtn = document.getElementById('top');
   window.addEventListener('scroll', function () {
     topBtn.classList.toggle('show', window.scrollY > 600);
