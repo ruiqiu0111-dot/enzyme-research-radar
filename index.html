@@ -6,35 +6,46 @@
 <title>酶科研雷达 · 文献档案馆</title>
 <style>
   :root {
-    --text-1: #1a1a1a; --text-2: #555; --text-3: #888; --text-4: #aaa;
-    --border: #e4e4e4; --surface: #fff; --surface-mute: #f6f6f6;
-    --accent: #2563eb; --positive: #16a34a; --warning: #d97706; --purple: #7c3aed;
+    --text-1: #1a1a1a; --text-2: #4d4d4d; --text-3: #7a7a7a; --text-4: #a8a8a8;
+    --border: #e4e4e4; --surface: #fff; --surface-mute: #f5f5f5;
+    --accent: #2563eb; --positive: #16a34a; --warning: #b45309; --purple: #7c3aed;
     --radius-chip: 6px; --radius-input: 10px;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --text-1: #e8e8e8; --text-2: #aaa; --text-3: #888; --text-4: #666;
-      --border: #333; --surface: #161616; --surface-mute: #1e1e1e;
+      --text-1: #e8e8e8; --text-2: #b5b5b5; --text-3: #8a8a8a; --text-4: #606060;
+      --border: #333; --surface: #161616; --surface-mute: #1f1f1f;
       --accent: #6ea8fe; --positive: #4ade80; --warning: #fbbf24; --purple: #a78bfa;
     }
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0; background: var(--surface); color: var(--text-1);
     font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-    font-size: 16px; line-height: 24px;
+    font-size: 16px; line-height: 1.6;
   }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 32px 20px 64px; }
-  h1 { font-size: 22px; font-weight: 500; margin: 0; }
-  .sub { color: var(--text-3); font-size: 13px; margin-top: 4px; }
-  .stats { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 28px 20px 80px; }
+
+  /* ---------- header ---------- */
+  h1 { font-size: 22px; font-weight: 500; margin: 0; letter-spacing: 0; }
+  .sub { color: var(--text-3); font-size: 13px; margin-top: 6px; }
+  .stats { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 14px; }
   .stat { font-size: 13px; color: var(--text-3); font-variant-numeric: tabular-nums; }
   .stat b { font-weight: 500; color: var(--text-1); }
 
-  .controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  /* ---------- sticky filter bar ---------- */
+  .toolbar {
+    position: sticky; top: 0; z-index: 20;
+    margin: 20px -12px 0; padding: 12px 12px 10px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    border-radius: 0 0 var(--radius-input) var(--radius-input);
+  }
+  .toolbar-top { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
   button, input, select { font: inherit; }
   #q {
-    flex: 1 1 220px; min-width: 160px; padding: 8px 12px;
+    flex: 1 1 200px; min-width: 140px; padding: 8px 12px;
     border: 1px solid var(--border); border-radius: var(--radius-input);
     background: var(--surface); color: var(--text-1); outline: none;
   }
@@ -43,34 +54,67 @@
     padding: 8px 12px; border: 1px solid var(--border); border-radius: var(--radius-input);
     background: var(--surface); color: var(--text-1);
   }
-
-  .filter-block { margin-top: 12px; }
-  .filter-label { font-size: 12px; color: var(--text-3); margin: 0 0 6px; }
-  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-  .chip {
-    padding: 4px 12px; font-size: 13px; cursor: pointer;
+  #count { font-size: 12px; color: var(--text-3); font-variant-numeric: tabular-nums; margin-left: auto; }
+  #toggle {
+    padding: 6px 12px; font-size: 12px; cursor: pointer;
     border: 1px solid var(--border); border-radius: 999px;
-    background: transparent; color: var(--text-2);
+    background: transparent; color: var(--text-3);
+  }
+  #toggle:hover { color: var(--text-1); border-color: var(--text-3); }
+
+  .filters { margin-top: 10px; }
+  .filters.hide { display: none; }
+  .filter-block { display: flex; align-items: flex-start; gap: 8px; margin-top: 8px; }
+  .filter-block:first-child { margin-top: 0; }
+  .filter-label {
+    flex: 0 0 52px; font-size: 12px; color: var(--text-3);
+    padding-top: 5px; margin: 0;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; flex: 1; }
+  .chip {
+    padding: 3px 11px; font-size: 12.5px; cursor: pointer;
+    border: 1px solid var(--border); border-radius: 999px;
+    background: transparent; color: var(--text-2); line-height: 1.5;
   }
   .chip:hover { border-color: var(--text-3); color: var(--text-1); }
   .chip[aria-pressed="true"] { background: var(--text-1); color: var(--surface); border-color: var(--text-1); }
-  .chip .cnt { font-size: 11px; color: var(--text-4); margin-left: 4px; font-variant-numeric: tabular-nums; }
+  .chip .cnt { font-size: 11px; color: var(--text-4); margin-left: 3px; font-variant-numeric: tabular-nums; }
   .chip[aria-pressed="true"] .cnt { color: var(--surface); opacity: .7; }
 
+  /* ---------- week quick nav ---------- */
+  .weeknav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+  .weeknav a {
+    font-size: 12.5px; text-decoration: none; color: var(--text-2);
+    border: 1px solid var(--border); border-radius: 999px; padding: 3px 11px;
+    font-variant-numeric: tabular-nums;
+  }
+  .weeknav a:hover { color: var(--text-1); border-color: var(--text-3); }
+  .weeknav .n { color: var(--text-4); font-size: 11px; margin-left: 2px; }
+
+  /* ---------- entries ---------- */
   .week-head {
     display: flex; align-items: baseline; gap: 10px;
-    margin-top: 28px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+    margin-top: 30px; padding: 6px 10px;
+    border-left: 3px solid var(--text-1);
+    background: var(--surface-mute);
+    border-radius: 0 var(--radius-chip) var(--radius-chip) 0;
+    scroll-margin-top: 190px;
   }
-  .week-head .w { font-size: 16px; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .week-head .w { font-size: 15.5px; font-weight: 500; font-variant-numeric: tabular-nums; }
   .week-head .n { font-size: 12px; color: var(--text-3); font-variant-numeric: tabular-nums; }
 
-  .entry { padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .entry {
+    padding: 14px 10px 12px; border-bottom: 1px solid var(--border);
+    border-radius: var(--radius-chip);
+    transition: background .15s ease;
+  }
+  .entry:hover { background: var(--surface-mute); }
   .entry:last-child { border-bottom: none; }
-  .line1 { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-  .t { font-size: 15px; line-height: 22px; }
+  .line1 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+  .t { font-size: 15px; line-height: 1.5; font-weight: 500; }
   .cat {
     flex: 0 0 auto; font-size: 12px; line-height: 18px; padding: 0 8px;
-    border-radius: var(--radius-chip); white-space: nowrap;
+    border-radius: var(--radius-chip); white-space: nowrap; align-self: center;
   }
   .cat-must  { color: var(--accent);   background: color-mix(in srgb, var(--accent) 12%, transparent); }
   .cat-read  { color: var(--positive); background: color-mix(in srgb, var(--positive) 14%, transparent); }
@@ -78,30 +122,49 @@
   .cat-hist  { color: var(--purple);   background: color-mix(in srgb, var(--purple) 13%, transparent); }
   .cat-other { color: var(--text-3);   background: color-mix(in srgb, var(--text-3) 14%, transparent); }
 
-  .idline { margin-top: 3px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .idline { margin-top: 5px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
   code {
     font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
     font-size: 12px; color: var(--text-2);
     background: var(--surface-mute); padding: 1px 6px; border-radius: 4px;
   }
+  .entry:hover code { background: var(--border); }
   a.idlink { text-decoration: none; }
   a.idlink code { border-bottom: 1px dashed var(--text-4); }
   a.idlink:hover code { color: var(--text-1); border-bottom-color: var(--text-1); }
   .dt { font-size: 12px; color: var(--text-4); font-variant-numeric: tabular-nums; }
-  .disp { margin-top: 3px; font-size: 13px; line-height: 20px; color: var(--text-2); }
+  .disp { margin-top: 5px; font-size: 13px; line-height: 1.55; color: var(--text-2); }
 
-  .tags { margin-top: 5px; display: flex; flex-wrap: wrap; gap: 4px; }
+  .tags { margin-top: 7px; display: flex; flex-wrap: wrap; gap: 4px; }
   .tag {
-    font-size: 11px; line-height: 16px; padding: 0 7px; cursor: pointer;
-    border: 1px solid var(--border); border-radius: var(--radius-chip);
-    color: var(--text-3); background: transparent;
+    font-size: 11px; line-height: 1.5; padding: 1px 8px; cursor: pointer;
+    border: 1px solid transparent; border-radius: var(--radius-chip);
+    background: transparent;
   }
-  .tag:hover { color: var(--text-1); border-color: var(--text-3); }
-  .tag.on-d { color: var(--accent); border-color: var(--accent); }
-  .tag.on-m { color: var(--purple); border-color: var(--purple); }
+  .tag-d { color: var(--accent); background: color-mix(in srgb, var(--accent) 9%, transparent); }
+  .tag-d:hover { background: color-mix(in srgb, var(--accent) 18%, transparent); }
+  .tag-m { color: var(--purple); background: color-mix(in srgb, var(--purple) 9%, transparent); }
+  .tag-m:hover { background: color-mix(in srgb, var(--purple) 18%, transparent); }
+  .tag.on { border-color: currentColor; font-weight: 500; }
 
-  .empty { padding: 48px 0; text-align: center; color: var(--text-3); font-size: 14px; }
-  .foot { margin-top: 32px; font-size: 12px; color: var(--text-4); }
+  .empty { padding: 56px 0; text-align: center; color: var(--text-3); font-size: 14px; }
+  .foot { margin-top: 40px; font-size: 12px; color: var(--text-4); line-height: 1.6; }
+
+  #top {
+    position: fixed; right: 20px; bottom: 20px; z-index: 30;
+    padding: 8px 14px; font-size: 12px; cursor: pointer;
+    border: 1px solid var(--border); border-radius: 999px;
+    background: var(--surface); color: var(--text-2);
+    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    opacity: 0; pointer-events: none; transition: opacity .2s ease;
+  }
+  #top.show { opacity: 1; pointer-events: auto; }
+  #top:hover { color: var(--text-1); border-color: var(--text-3); }
+
+  @media (max-width: 640px) {
+    .week-head { scroll-margin-top: 230px; }
+    .filter-label { flex-basis: 44px; }
+  }
 </style>
 </head>
 <body>
@@ -109,25 +172,38 @@
   <h1>酶科研雷达 · 文献档案馆</h1>
   <div class="sub">AI 酶工程周报归档 · 处置与备注均为当期周报原文</div>
   <div class="stats" id="stats"></div>
-  <div class="controls">
-    <input id="q" type="search" placeholder="搜索标题 / 编号 / 备注 / 标签…" aria-label="搜索">
-    <select id="week" aria-label="按周筛选"></select>
+
+  <div class="toolbar">
+    <div class="toolbar-top">
+      <input id="q" type="search" placeholder="搜索标题 / 编号 / 备注 / 标签…" aria-label="搜索">
+      <select id="week" aria-label="按周筛选"></select>
+      <button id="toggle" aria-expanded="true">收起筛选</button>
+      <span id="count"></span>
+    </div>
+    <div class="filters" id="filters">
+      <div class="filter-block">
+        <p class="filter-label">处置</p>
+        <div class="chips" id="cats" aria-label="按处置筛选"></div>
+      </div>
+      <div class="filter-block">
+        <p class="filter-label">研究方向</p>
+        <div class="chips" id="dirs" aria-label="按研究方向筛选"></div>
+      </div>
+      <div class="filter-block">
+        <p class="filter-label">研究方法</p>
+        <div class="chips" id="meths" aria-label="按研究方法筛选"></div>
+      </div>
+    </div>
   </div>
-  <div class="filter-block">
-    <p class="filter-label">处置</p>
-    <div class="chips" id="cats" aria-label="按处置筛选"></div>
-  </div>
-  <div class="filter-block">
-    <p class="filter-label">研究方向</p>
-    <div class="chips" id="dirs" aria-label="按研究方向筛选"></div>
-  </div>
-  <div class="filter-block">
-    <p class="filter-label">研究方法</p>
-    <div class="chips" id="meths" aria-label="按研究方法筛选"></div>
-  </div>
+
+  <div class="weeknav" id="weeknav"></div>
   <div id="list"></div>
-  <div class="foot">数据来自各期周报归档（reported_index）。点击编号跳转 DOI / arXiv 原文；点击条目标签可快速筛选同类文献。</div>
+
+  <div class="foot">
+    数据来自各期周报归档（reported_index）。点击编号跳转 DOI / arXiv 原文；点条目下方的<span style="color:var(--accent)">蓝</span>/<span style="color:var(--purple)">紫</span>标签可快速筛选同类文献，再点一次取消。
+  </div>
 </div>
+<button id="top" aria-label="回到顶部">↑ 顶部</button>
 
 <script id="radar-data" type="application/json">[
  {
@@ -1467,9 +1543,9 @@
     if (/^10\.\d{4,}\/\S+$/.test(first)) return 'https://doi.org/' + first;
     return null;
   }
-  function count(list, key) {
+  function count(listKey, key) {
     var n = 0;
-    DATA.forEach(function (e) { if ((list === 'cat' ? [e.cat] : e[list]).indexOf(key) !== -1) n++; });
+    DATA.forEach(function (e) { if ((listKey === 'cat' ? [e.cat] : e[listKey]).indexOf(key) !== -1) n++; });
     return n;
   }
 
@@ -1489,8 +1565,21 @@
   }).join('');
   sel.addEventListener('change', function () { state.week = sel.value; render(); });
 
-  // ---- generic chip row builder ----
-  // dim: 'cat' | 'dir' | 'meth'; listKey: entry field ('cat' | 'dirs' | 'meths')
+  // ---- week quick nav ----
+  document.getElementById('weeknav').innerHTML = weekList.map(function (w) {
+    var n = DATA.filter(function (e) { return e.week === w; }).length;
+    return '<a href="#w-' + w + '">' + w.slice(5) + '<span class="n">' + n + '</span></a>';
+  }).join('');
+
+  // ---- filter toggle ----
+  var tg = document.getElementById('toggle'), fl = document.getElementById('filters');
+  tg.addEventListener('click', function () {
+    var hidden = fl.classList.toggle('hide');
+    tg.textContent = hidden ? '展开筛选' : '收起筛选';
+    tg.setAttribute('aria-expanded', String(!hidden));
+  });
+
+  // ---- chip rows ----
   function buildChips(elId, names, dim, listKey) {
     var el = document.getElementById(elId);
     var all = ['全部'].concat(names.filter(function (n) {
@@ -1507,7 +1596,7 @@
     });
   }
   function setFilter(dim, v) {
-    state[dim] = (state[dim] === v) ? '全部' : v;   // click again to clear
+    state[dim] = (state[dim] === v) ? '全部' : v;
     syncChips();
     render();
   }
@@ -1542,12 +1631,10 @@
   function tagHtml(e) {
     var h = '<div class="tags">';
     e.dirs.forEach(function (t) {
-      var on = state.dir === t ? ' on-d' : '';
-      h += '<button class="tag' + on + '" data-dim="dir" data-tag="' + esc(t) + '">' + esc(t) + '</button>';
+      h += '<button class="tag tag-d' + (state.dir === t ? ' on' : '') + '" data-dim="dir" data-tag="' + esc(t) + '">' + esc(t) + '</button>';
     });
     e.meths.forEach(function (t) {
-      var on = state.meth === t ? ' on-m' : '';
-      h += '<button class="tag' + on + '" data-dim="meth" data-tag="' + esc(t) + '">' + esc(t) + '</button>';
+      h += '<button class="tag tag-m' + (state.meth === t ? ' on' : '') + '" data-dim="meth" data-tag="' + esc(t) + '">' + esc(t) + '</button>';
     });
     return h + '</div>';
   }
@@ -1557,17 +1644,21 @@
     var b = ev.target.closest('button.tag');
     if (!b) return;
     setFilter(b.getAttribute('data-dim'), b.getAttribute('data-tag'));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   function render() {
-    var groups = [], byWeek = {};
+    var groups = [], byWeek = {}, shown = 0;
     DATA.forEach(function (e) {
       if (!match(e)) return;
+      shown++;
       if (!byWeek[e.week]) { byWeek[e.week] = []; groups.push(e.week); }
       byWeek[e.week].push(e);
     });
     groups.sort().reverse();
+
+    var filtered = state.q || state.cat !== '全部' || state.week !== '全部' || state.dir !== '全部' || state.meth !== '全部';
+    document.getElementById('count').textContent = filtered ? '筛选出 ' + shown + ' / ' + DATA.length + ' 条' : '';
+
     if (!groups.length) {
       listEl.innerHTML = '<div class="empty">没有匹配的条目，试试放宽筛选条件。</div>';
       return;
@@ -1575,7 +1666,7 @@
     var html = '';
     groups.forEach(function (w) {
       var items = byWeek[w];
-      html += '<div class="week-head"><span class="w">' + esc(w) + ' 期</span><span class="n">' + items.length + ' 条</span></div>';
+      html += '<div class="week-head" id="w-' + w + '"><span class="w">' + esc(w) + ' 期</span><span class="n">' + items.length + ' 条</span></div>';
       items.forEach(function (e) {
         var url = linkFor(e.id);
         var inner = '<code>' + esc(e.id) + '</code>';
@@ -1593,6 +1684,13 @@
     });
     listEl.innerHTML = html;
   }
+
+  // ---- back to top ----
+  var topBtn = document.getElementById('top');
+  window.addEventListener('scroll', function () {
+    topBtn.classList.toggle('show', window.scrollY > 600);
+  }, { passive: true });
+  topBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
   render();
 })();
