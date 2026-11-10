@@ -234,6 +234,68 @@
 
 <script id="radar-data" type="application/json">[
  {
+  "id": "10.1186/s13059-026-04312-7",
+  "title": "EnzyREx：反应驱动的两阶段酶筛选（11-03）",
+  "cat": "必读",
+  "disp": "本周新增；摘要与官网补充目录级证据；独立UGT验证、负例及split待核",
+  "dirs": [
+   "功能注释与预测"
+  ],
+  "meths": [
+   "AI/ML 模型"
+  ],
+  "detail": "来源：weekly_2026-11-09.md，Genome Biology，2026-11-03。作者先识别酶/非酶，再预测蛋白—反应配对，报告为1,255个微生物组孤儿反应中的897个找到候选蛋白。这是候选覆盖数，不是实验命中率，也不预测绝对kcat或单点突变效应。可作为大规模候选召回工具；相似度限制测试、负例构造、代码资源及独立UGT目标验证仍需全文与SI核查。",
+  "week": "2026-11-09",
+  "date": "2026-11-09"
+ },
+ {
+  "id": "10.1038/s41586-026-11205-z",
+  "title": "Pinal：自然语言条件功能蛋白设计（期刊10-21）",
+  "cat": "可读",
+  "disp": "旧工作正式发表；2024预印本与期刊版实质差异待核，不计本周新方法",
+  "dirs": [
+   "新酶与新功能设计"
+  ],
+  "meths": [
+   "AI/ML 模型",
+   "实验表征"
+  ],
+  "detail": "来源：weekly_2026-11-09.md。Nature期刊版为Programmable design of functional proteins from natural language；已有2024年预印本10.1101/2024.08.01.606258。作者报告多类功能蛋白的生成与实验测试，H-protein在多酶CO₂固定通路中的滴度为对应天然蛋白的1.7倍；不同任务终点不能统一解释为催化效率。代码：https://github.com/westlake-repl/Denovo-Pinal；权重：https://huggingface.co/westlake-repl/Pinal。原报告记录推理代码Apache-2.0、完整训练资源未完全公开；版本新增数据与候选分母仍待比较。",
+  "week": "2026-11-09",
+  "date": "2026-11-09"
+ },
+ {
+  "id": "10.3389/fpls.2026.1981660",
+  "title": "植物UGT功能归因的证据边界框架（11-02）",
+  "cat": "可读",
+  "disp": "观点框架；无新实验数据，不是经过准确率评测的预测算法",
+  "dirs": [
+   "功能注释与预测",
+   "基准与方法学"
+  ],
+  "meths": [
+   "综述与批评"
+  ],
+  "detail": "来源：weekly_2026-11-09.md，Frontiers in Plant Science，Hypothesis and Theory，2026-11-02。文章区分候选优先级、反应发生、产物身份、异源可行性与原生贡献等证据。适合用于UGT结果记录与功能注释，避免把糖基化信号直接当作指定产物或植物原生功能。它没有新实验数据，也没有证明该框架能提高筛选命中率。",
+  "week": "2026-11-09",
+  "date": "2026-11-09"
+ },
+ {
+  "id": "10.1038/s43018-026-01263-7",
+  "title": "E. coli肿瘤环境适应的基因组筛选（10-29）",
+  "cat": "观察",
+  "disp": "月内补检；定殖fitness与发酵产物滴度不同，仅作筛选终点的背景参照",
+  "dirs": [
+   "基准与方法学"
+  ],
+  "meths": [
+   "实验表征"
+  ],
+  "detail": "来源：weekly_2026-11-09.md，Nature Cancer，2026-10-29。研究终点是肿瘤环境适应、定殖与递送效果，并非工业发酵产物滴度。对本雷达的价值仅在提醒：选择信号必须对应研究目标，生长或定殖fitness不能替代目标产物测量；原报告不建议据此迁移具体适应改造到indigo生产。",
+  "week": "2026-11-09",
+  "date": "2026-11-09"
+ },
+ {
   "week": "2026-11-02",
   "id": "arXiv:2610.07607",
   "title": "LFS/SGES（10-06首发）",
@@ -1585,7 +1647,7 @@
  }
 ]</script>
 <script>
-var REPORTS = {"2026-09-30": "reports/weekly_2026-09-30.html", "2026-10-05": "reports/weekly_2026-10-05.html", "2026-10-12": "reports/weekly_2026-10-12.html", "2026-10-19": "reports/weekly_2026-10-19.html", "2026-10-26": "reports/weekly_2026-10-26.html", "2026-11-02": "reports/weekly_2026-11-02.html"};
+var REPORTS = {"2026-09-30": "reports/weekly_2026-09-30.html", "2026-10-05": "reports/weekly_2026-10-05.html", "2026-10-12": "reports/weekly_2026-10-12.html", "2026-10-19": "reports/weekly_2026-10-19.html", "2026-10-26": "reports/weekly_2026-10-26.html", "2026-11-02": "reports/weekly_2026-11-02.html", "2026-11-09": "reports/weekly_2026-11-09.html"};
 (function () {
   var DATA = JSON.parse(document.getElementById('radar-data').textContent);
   var CAT_ORDER = ['必读', '可读', '观察', '历史补课', '其他', '忽略'];
