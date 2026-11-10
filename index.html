@@ -1840,7 +1840,7 @@ var REPORTS = {"2026-09-30": "reports/weekly_2026-09-30.html", "2026-10-05": "re
           '<span class="t">' + esc(e.title) + '</span></div>' +
           '<div class="idline">' + idHtml + '<span class="dt">收录 ' + esc(e.date) + '</span>' + markHtml + '</div>' +
           '<div class="disp">' + esc(e.disp) + '</div>' +
-          detHtml + '<details><summary>个人笔记与进度</summary><label>阅读进度 <select class="progress" data-id="' + esc(e.id) + '">' + ['待读','阅读中','已读'].map(function(v){return '<option '+((mk.status || (mk.read?'已读':'待读'))===v?'selected':'')+'>'+v+'</option>';}).join('') + '</select></label><p><label>我的结论、关键证据、待确认问题与下一步<textarea class="note" data-id="' + esc(e.id) + '" rows="5" style="display:block;width:100%">' + esc(mk.note || '') + '</textarea></label></p></details><a href="#entry-' + encodeURIComponent(e.id) + '">文献直达链接</a>' +
+          detHtml + '<details><summary>个人笔记与进度</summary><label>阅读进度 <select class="progress" data-id="' + esc(e.id) + '">' + ['待读','阅读中','已读'].map(function(v){return '<option '+((mk.status || (mk.read?'已读':'待读'))===v?'selected':'')+'>'+v+'</option>';}).join('') + '</select></label><p><label>我的结论、关键证据、待确认问题与下一步<textarea class="note" data-id="' + esc(e.id) + '" rows="5" style="display:block;width:100%">' + esc(mk.note || '') + '</textarea></label></p></details>' + (url ? '<a class="paper-link" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">文献直达链接 ↗</a>' : '') +
           tagHtml(e) +
           '</div>';
       });
