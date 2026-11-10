@@ -201,7 +201,7 @@
       <select id="week" aria-label="按周筛选"></select>
       <select id="mark" aria-label="按标记筛选">
         <option value="全部">全部标记</option>
-        <option value="精读">仅精读 ★</option>
+        <option value="精读">我的收藏 ★</option>
         <option value="未读">仅未读</option>
       </select>
       <button id="toggle" aria-expanded="true">收起筛选</button>
@@ -223,7 +223,7 @@
     </div>
   </div>
 
-  <div class="weeknav" id="weeknav"></div>
+  <div class="weeknav" id="shortcuts"><button data-mode="all">全部</button><button data-mode="latest">最近收录</button><button data-mode="unread">必读未读</button><button data-mode="star">我的收藏</button><button data-mode="notes">有笔记</button><button id="reset">清空筛选</button><button id="export">导出记录</button><label>导入记录 <input id="import" type="file" accept="application/json"></label></div><p id="notice" role="status"></p><div class="weeknav" id="weeknav"></div>
   <div id="list"></div>
 
   <div class="foot">
@@ -1658,7 +1658,7 @@ var REPORTS = {"2026-09-30": "reports/weekly_2026-09-30.html", "2026-10-05": "re
 
   // ---- marks (localStorage) ----
   var MKEY = 'radar-marks-v1';
-  var marks = {};
+  var mode='all'; var marks = {};
   try { marks = JSON.parse(localStorage.getItem(MKEY) || '{}'); } catch (e) { marks = {}; }
   function saveMarks() { try { localStorage.setItem(MKEY, JSON.stringify(marks)); } catch (e) {} }
 
@@ -1759,6 +1759,7 @@ var REPORTS = {"2026-09-30": "reports/weekly_2026-09-30.html", "2026-10-05": "re
   });
 
   function match(e) {
+    if (mode === 'notes' && !(marks[e.id] && marks[e.id].note)) return false;
     if (state.cat !== '全部' && e.cat !== state.cat) return false;
     if (state.week !== '全部' && e.week !== state.week) return false;
     if (state.dir !== '全部' && e.dirs.indexOf(state.dir) === -1) return false;
@@ -1767,7 +1768,7 @@ var REPORTS = {"2026-09-30": "reports/weekly_2026-09-30.html", "2026-10-05": "re
     if (state.mark === '未读' && (marks[e.id] && marks[e.id].read)) return false;
     if (state.q) {
       var hay = (e.title + ' ' + e.id + ' ' + e.disp + ' ' + (e.detail || '') + ' ' + e.dirs.join(' ') + ' ' + e.meths.join(' ')).toLowerCase();
-      if (hay.indexOf(state.q) === -1) return false;
+      if (!state.q.split(/\s+/).every(function(q){var aliases={'糖基转移酶':'ugt','ugt':'糖基转移酶','溶解度':'solubility'};return hay.indexOf(q)!==-1 || (aliases[q] && hay.indexOf(aliases[q])!==-1);})) return false;
     }
     return true;
   }
@@ -1791,8 +1792,8 @@ var REPORTS = {"2026-09-30": "reports/weekly_2026-09-30.html", "2026-10-05": "re
     if (mb) {
       var id = mb.getAttribute('data-id'), kind = mb.getAttribute('data-kind');
       marks[id] = marks[id] || {};
-      marks[id][kind] = !marks[id][kind];
-      if (!marks[id].star && !marks[id].read) delete marks[id];
+      marks[id][kind] = !marks[id][kind]; if(kind==='read') marks[id].status=marks[id].read?'已读':'待读';
+      if (!marks[id].star && !marks[id].read && !marks[id].note && !marks[id].status) delete marks[id];
       saveMarks();
       render();
     }
@@ -1828,18 +1829,18 @@ var REPORTS = {"2026-09-30": "reports/weekly_2026-09-30.html", "2026-10-05": "re
           : inner;
         var mk = marks[e.id] || {};
         var markHtml = '<span class="marks">' +
-          '<button class="mark-btn' + (mk.star ? ' on-star' : '') + '" data-id="' + esc(e.id) + '" data-kind="star" title="精读标记">' + (mk.star ? '★' : '☆') + ' 精读</button>' +
+          '<button class="mark-btn' + (mk.star ? ' on-star' : '') + '" data-id="' + esc(e.id) + '" data-kind="star" title="精读标记">' + (mk.star ? '★' : '☆') + ' 收藏</button>' +
           '<button class="mark-btn' + (mk.read ? ' on-read' : '') + '" data-id="' + esc(e.id) + '" data-kind="read" title="已读标记">✓ 已读</button>' +
           '</span>';
         var detHtml = e.detail
           ? '<details class="det"><summary>详情</summary><div class="det-body">' + esc(e.detail) + '</div></details>'
           : '';
-        html += '<div class="entry' + (mk.read ? ' is-read' : '') + '">' +
+        html += '<div id="entry-' + encodeURIComponent(e.id) + '" class="entry' + (mk.read ? ' is-read' : '') + '">' +
           '<div class="line1"><span class="cat ' + (CAT_CLASS[e.cat] || 'cat-other') + '">' + esc(e.cat) + '</span>' +
           '<span class="t">' + esc(e.title) + '</span></div>' +
           '<div class="idline">' + idHtml + '<span class="dt">收录 ' + esc(e.date) + '</span>' + markHtml + '</div>' +
           '<div class="disp">' + esc(e.disp) + '</div>' +
-          detHtml +
+          detHtml + '<details><summary>个人笔记与进度</summary><label>阅读进度 <select class="progress" data-id="' + esc(e.id) + '">' + ['待读','阅读中','已读'].map(function(v){return '<option '+((mk.status || (mk.read?'已读':'待读'))===v?'selected':'')+'>'+v+'</option>';}).join('') + '</select></label><p><label>我的结论、关键证据、待确认问题与下一步<textarea class="note" data-id="' + esc(e.id) + '" rows="5" style="display:block;width:100%">' + esc(mk.note || '') + '</textarea></label></p></details><a href="#entry-' + encodeURIComponent(e.id) + '">文献直达链接</a>' +
           tagHtml(e) +
           '</div>';
       });
@@ -1853,7 +1854,14 @@ var REPORTS = {"2026-09-30": "reports/weekly_2026-09-30.html", "2026-10-05": "re
   }, { passive: true });
   topBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
-  render();
+  function notify(t){document.getElementById('notice').textContent=t;}
+  listEl.addEventListener('input',function(ev){var t=ev.target;if(!t.matches('.note,.progress'))return;var id=t.dataset.id;marks[id]=marks[id]||{};if(t.matches('.note'))marks[id].note=t.value;else{marks[id].status=t.value;marks[id].read=t.value==='已读';}marks[id].updatedAt=new Date().toISOString();try{localStorage.setItem(MKEY,JSON.stringify(marks));notify('记录已保存到当前浏览器。');}catch(e){notify('保存失败，请立即导出记录备份。');}});
+  document.getElementById('shortcuts').addEventListener('click',function(ev){var m=ev.target.dataset.mode;if(!m && ev.target.id!=='reset')return;mode=m||'all';Object.assign(state,{q:'',cat:'全部',week:'全部',dir:'全部',meth:'全部',mark:'全部'});if(m==='latest')state.week=weekList[0];if(m==='unread'){state.cat='必读';state.mark='未读';}if(m==='star')state.mark='精读';document.getElementById('q').value='';sel.value=state.week;document.getElementById('mark').value=state.mark;syncChips();render();notify('当前视图：'+ev.target.textContent);});
+  document.getElementById('export').onclick=function(){var blob=new Blob([JSON.stringify({version:1,marks:marks},null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='radar-records-'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(function(){URL.revokeObjectURL(a.href);},1000);};
+  document.getElementById('import').onchange=async function(ev){try{var f=ev.target.files[0];if(!f)return;if(f.size>5000000)throw Error('文件过大');var d=JSON.parse(await f.text());if(d.version!==1 || !d.marks || typeof d.marks!=='object' || Array.isArray(d.marks))throw Error('格式错误');var next=JSON.parse(JSON.stringify(marks));Object.keys(d.marks).forEach(function(id){var v=d.marks[id];if(!DATA.some(function(e){return e.id===id;}))return;if(!v || typeof v!=='object')throw Error('记录错误');if(v.note!==undefined && typeof v.note!=='string')throw Error('笔记格式错误');if(v.status && !['待读','阅读中','已读'].includes(v.status))throw Error('进度格式错误');if(!next[id])next[id]={star:!!v.star,read:!!v.read,note:v.note||'',status:v.status||'',updatedAt:v.updatedAt||''};});localStorage.setItem(MKEY,JSON.stringify(next));marks=next;render();notify('导入完成；已有记录保留，新增记录已合并。');}catch(e){notify('导入失败：'+e.message);}ev.target.value='';};
+  function locate(){if(location.hash.startsWith('#entry-')){Object.assign(state,{q:'',cat:'全部',week:'全部',dir:'全部',meth:'全部',mark:'全部'});mode='all';render();var el=document.getElementById(decodeURI(location.hash.slice(1)));if(!el)el=document.getElementById(location.hash.slice(1));if(el){el.scrollIntoView();el.style.outline='2px solid var(--accent)';}}}
+  window.addEventListener('hashchange',locate);
+  render();locate();
 })();
 </script>
 </body>
