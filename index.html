@@ -239,6 +239,33 @@
 <script id="radar-data" type="application/json">[
  {
   "week": "2026-11-09",
+  "id": "10.64898/2026.11.04.764416",
+  "title": "AlphaEnzyme：联合酶反应检索、动力学与突变排序（bioRxiv 11-05）",
+  "date": "2026-11-05",
+  "cat": "必读",
+  "disp": "将 enzyme–reaction specificity、kcat/Km 与 library 内突变排序纳入统一表征；摘要报告转氨酶裂解液实验",
+  "dirs": [
+   "酶挖掘",
+   "酶动力学参数预测",
+   "活性与动力学"
+  ],
+  "meths": [
+   "AI/ML 模型",
+   "实验表征"
+  ],
+  "detail": "论文题名\nHarnessing catalytic knowledge to guide enzyme discovery and evolution with AlphaEnzyme\n\n主要内容\nAlphaEnzyme联合预测 enzyme–reaction specificity、log10(kcat)/log10(Km)及候选 mutation library 内变体排序。摘要报告时间切分酶检索 Top-1 为30.1%（最强基线17.2%）；当动力学训练酶与测试酶identity≤40%时，Km预测Spearman rho=0.64；TrpB预算测试每库仅评16个候选仍可富集高fitness变体。摘要还报告前瞻性transaminase测试，最佳设计在裂解液assay的product signal提高30.4倍并保留(R)-selectivity。\n\n创新点\n把酶—反应候选检索、酶动力学参数和突变library排序接入共同的结构锚定表征，使“找起始酶”和“挑选突变体”有机会使用同一模型家族衔接。\n\n价值与局限\n贴合酶发现到工程的连续流程，值得作为项目基准候选。各任务终点和测试集需分开评估；30.4倍是裂解液产物信号，不是纯化酶kcat或kcat/Km提升。v2全文本轮未能直接读取，变体分母、表达归一化、重复、mutation split与版本新增内容待核。作者GitHub发布代码、权重和任务表，但许可证限定非商业研究并附有no-drug-development/output-use条款；Protenix/ESMC上游权重和原始特征需另准备。作者README说明 mutation predictor输出完整候选library内部排序，不是跨酶绝对活性。\n\n证据依据\nbioRxiv官方目录日期+公开摘要；作者GitHub README与LICENSE。全文分析未完成。",
+  "review": {
+   "title": "Harnessing catalytic knowledge to guide enzyme discovery and evolution with AlphaEnzyme",
+   "content": "AlphaEnzyme联合预测enzyme–reaction specificity、log10(kcat)/log10(Km)及候选mutation library内变体排序。摘要报告时间切分检索Top-1为30.1%对17.2%基线；低于40%序列identity的酶子集Km预测Spearman rho=0.64；TrpB预算测试每库只测16个候选仍富集高fitness变体。摘要另报告前瞻性transaminase裂解液assay的product signal提升30.4倍且保留(R)-selectivity。",
+   "innovation": "将酶—反应检索、动力学参数与突变library内排序放在共享表征下，形成从候选酶发现到变体优先级的一体化模型路线。",
+   "limitations": "公开摘要不足以核对变体分母、裂解液信号的表达归一化/重复、v2相对v1新增内容和完整split。30.4倍是product signal而非纯化酶kcat或kcat/Km。不同任务benchmark不能合并解读。作者仓库许可证限定非商业研究并有额外限制；上游Protenix/ESMC权重及原始特征需要另准备。",
+   "scope": "bioRxiv v2公开摘要、bioRxiv官方目录及作者GitHub README/LICENSE；未能直接读取v2全文。",
+   "source": "https://www.biorxiv.org/content/10.64898/2026.11.04.764416v2"
+  },
+  "source_url": "https://www.biorxiv.org/content/10.64898/2026.11.04.764416v2"
+ },
+ {
+  "week": "2026-11-09",
   "id": "arXiv:2611.07757",
   "date": "2026-11-05",
   "title": "RIVER：证据引导的双向酶—反应检索（arXiv 11-05）",
