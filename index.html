@@ -157,6 +157,10 @@
     background: var(--surface-mute); border-radius: 6px;
   }
 
+  .det-body p { margin: 0 0 10px; }
+  .det-body p:last-child { margin-bottom: 0; }
+  .det-body strong { color: var(--text-1); }
+
   .tags { margin-top: 7px; display: flex; flex-wrap: wrap; gap: 4px; }
   .tag {
     font-size: 11px; line-height: 1.5; padding: 1px 8px; cursor: pointer;
@@ -192,7 +196,7 @@
 <body>
 <div class="wrap">
   <h1>酶科研雷达 · 文献档案馆</h1>
-  <div class="sub">AI 酶工程周报归档 · 处置与备注均为当期周报原文</div>
+  <div class="sub">酶工程精选文献 · 展开详情查看主要内容、创新点与证据来源</div>
   <div class="stats" id="stats"></div>
 
   <div class="toolbar">
@@ -239,7 +243,7 @@
   "date": "2026-11-05",
   "title": "RIVER：证据引导的双向酶—反应检索（arXiv 11-05）",
   "cat": "可读",
-  "disp": "本周新增；训练无关的候选排序；无前瞻性实验验证，代码/冻结数据未发现",
+  "disp": "把多层生化证据和可追溯记录引入双向酶–反应检索，重点处理同一家族内相似蛋白的候选区分。",
   "dirs": [
    "酶挖掘",
    "功能注释与预测",
@@ -249,13 +253,22 @@
    "AI/ML 模型",
    "数据库与工具"
   ],
-  "detail": "来源：weekly_2026-11-09.md；arXiv:2611.07757 v1，2026-11-05。RIVER聚合LLM、数据库和生化计算工具，双向排序酶—反应候选并附证据链。作者报告：667个E. coli ASKA蛋白的4反应回顾案例MRR为0.833/0.750；Enzyme-405的Top-1 query success为82.3%（402/405可评估查询），Orphan-335为72.8%。这是对已知关系的排序基准，E. coli案例可被公开文献检索；不等于前瞻性新酶验证。反应相似度过滤不自动排除蛋白/文献泄漏；论文未发现公开代码、服务或冻结资源。非UGT专属测试。"
+  "detail": "论文题名\nRIVER: Evidence-guided multi-agent retrieval for enzyme--reaction discovery\n\n主要内容\nRIVER为给定酶寻找可能反应，也为给定反应检索候选酶。它协调语言模型、生化工具和数据库，收集反应化学、序列/结构域与机制证据，再检查冲突并重排候选。\n\n创新点\n把多层生化证据和可追溯记录引入双向酶–反应检索，重点处理同一家族内相似蛋白的候选区分。\n\n价值与局限\n可补充同源搜索的候选召回。公开基准主要评价已知关系检索，仍需前瞻性活性实验及数据库暴露审查。\n\n证据依据\narXiv官方摘要",
+  "review": {
+   "title": "RIVER: Evidence-guided multi-agent retrieval for enzyme--reaction discovery",
+   "content": "RIVER为给定酶寻找可能反应，也为给定反应检索候选酶。它协调语言模型、生化工具和数据库，收集反应化学、序列/结构域与机制证据，再检查冲突并重排候选。",
+   "innovation": "把多层生化证据和可追溯记录引入双向酶–反应检索，重点处理同一家族内相似蛋白的候选区分。",
+   "limitations": "可补充同源搜索的候选召回。公开基准主要评价已知关系检索，仍需前瞻性活性实验及数据库暴露审查。",
+   "scope": "arXiv官方摘要",
+   "source": "https://arxiv.org/abs/2611.07757"
+  },
+  "source_url": "https://arxiv.org/abs/2611.07757"
  },
  {
   "id": "10.1186/s13059-026-04312-7",
   "title": "EnzyREx：反应驱动候选酶挖掘（11-03）",
   "cat": "必读",
-  "disp": "本周新增；反应配对候选召回，不是实验命中率；UGT独立验证未见",
+  "disp": "把酶识别与反应条件下的功能配对串成两阶段框架，支持从未充分注释蛋白中寻找孤儿反应候选。",
   "dirs": [
    "酶挖掘",
    "功能注释与预测"
@@ -263,9 +276,18 @@
   "meths": [
    "AI/ML 模型"
   ],
-  "detail": "来源：weekly_2026-11-09.md，Genome Biology，online 2026-11-03。两阶段识别酶/非酶蛋白并预测酶—反应配对。作者报告：在1,255个微生物组 orphan reactions 中，为897个找到候选蛋白。候选覆盖不等于实验命中；模型不预测绝对kcat或突变效应。期刊补充资料含protein-similarity-limited预测表；代码/模型入口和独立UGT验证本轮未确认。",
+  "detail": "论文题名\nEnzyREx: deep learning enables reaction-based comprehensive enzyme screening\n\n主要内容\nEnzyREx先判断蛋白是否为酶，再预测酶–反应配对的催化可能性。作者用于1,255个微生物组相关孤儿反应，为其中897个给出蛋白候选。\n\n创新点\n把酶识别与反应条件下的功能配对串成两阶段框架，支持从未充分注释蛋白中寻找孤儿反应候选。\n\n价值与局限\n适合反应驱动的酶挖掘。897是获得候选的反应数，候选的实验活性、目标家族表现与阴性配对设置还需全文核查。\n\n证据依据\n期刊官网摘要",
   "week": "2026-11-09",
-  "date": "2026-11-09"
+  "date": "2026-11-09",
+  "review": {
+   "title": "EnzyREx: deep learning enables reaction-based comprehensive enzyme screening",
+   "content": "EnzyREx先判断蛋白是否为酶，再预测酶–反应配对的催化可能性。作者用于1,255个微生物组相关孤儿反应，为其中897个给出蛋白候选。",
+   "innovation": "把酶识别与反应条件下的功能配对串成两阶段框架，支持从未充分注释蛋白中寻找孤儿反应候选。",
+   "limitations": "适合反应驱动的酶挖掘。897是获得候选的反应数，候选的实验活性、目标家族表现与阴性配对设置还需全文核查。",
+   "scope": "期刊官网摘要",
+   "source": "https://link.springer.com/article/10.1186/s13059-026-04312-7"
+  },
+  "source_url": "https://link.springer.com/article/10.1186/s13059-026-04312-7"
  },
  {
   "week": "2026-11-09",
@@ -273,7 +295,7 @@
   "date": "2026-10-26",
   "title": "双探针超高通量进化酯酶选择性（ACS Catal. online 10-26）",
   "cat": "必读",
-  "disp": "月内补检；>10⁷变体筛选，90底物面板验证；酯酶探针体系专属",
+  "disp": "将底物多重读出接入超高通量进化，并把筛选探针之外的选择性作为验证终点。",
   "dirs": [
    "高通量筛选",
    "选择性与特异性",
@@ -283,31 +305,24 @@
    "定向进化与筛选",
    "实验表征"
   ],
-  "detail": "来源：weekly_2026-11-09.md；ACS Catalysis，online 2026-10-26。酵母表面展示+双masked acid-chloride探针，对B. subtilis BS2 esterase筛选>10⁷变体，选择单底物选择性或双底物promiscuity；随后用90种酯复测。作者报告BS2-Sel对pCP-coumarin kcat/Km升29倍、对mCP下降约50倍，选择性约1450倍；一个广谱变体在90种底物中60种活性高于亲本。纯化酶动力学有3次独立反应。CC BY 4.0，SI开放；相关专利申请已披露。方法依赖酯酶反应探针、酵母展示与FACS，不能直接迁移到无耦合读出的UGT糖基化。"
- },
- {
-  "week": "2026-11-09",
-  "id": "10.1038/s44573-026-00031-z",
-  "date": "2026-11-09",
-  "title": "Microfluidic platforms for Enzymatic assays（Scientific Reviews, 11-09）",
-  "cat": "可读",
-  "disp": "本周综述；平台设计与临床验证概览；非新筛选方法或原始实验",
-  "dirs": [
-   "高通量筛选",
-   "基准与方法学"
-  ],
-  "meths": [
-   "综述与批评"
-  ],
-  "detail": "来源：weekly_2026-11-09.md；Scientific Reviews，published 2026-11-09，DOI 10.1038/s44573-026-00031-z。综述比较压力驱动、液滴、离心和数字微流控酶学平台及检测读出。作者综述显示，液滴平台较常用于enzyme activity、library和single-cell筛选，但许多微流控酶学研究仍停在proof-of-concept，复现性、器件标准化和放大验证不足。属于背景综述，不是本轮原始研究。"
+  "detail": "论文题名\nMultiplexed Ultrahigh-Throughput Evolution for Esterase Selectivity across a Broad Substrate Scope\n\n主要内容\n以BS2酯酶为对象，将酵母表面展示和双底物掩蔽酰氯探针结合，筛选偏好pCP保护基的变体及广谱变体，再以90种额外酯检验底物范围，并演示双正交邻近标记。\n\n创新点\n将底物多重读出接入超高通量进化，并把筛选探针之外的选择性作为验证终点。\n\n价值与局限\n是选择性/广谱性联合筛选的实证。正文显示部分表面探针优胜变体在香豆素复测中未保持双底物改善，迁移时应重做真实底物复测。\n\n证据依据\n期刊摘要与Figure 3结果段落",
+  "review": {
+   "title": "Multiplexed Ultrahigh-Throughput Evolution for Esterase Selectivity across a Broad Substrate Scope",
+   "content": "以BS2酯酶为对象，将酵母表面展示和双底物掩蔽酰氯探针结合，筛选偏好pCP保护基的变体及广谱变体，再以90种额外酯检验底物范围，并演示双正交邻近标记。",
+   "innovation": "将底物多重读出接入超高通量进化，并把筛选探针之外的选择性作为验证终点。",
+   "limitations": "是选择性/广谱性联合筛选的实证。正文显示部分表面探针优胜变体在香豆素复测中未保持双底物改善，迁移时应重做真实底物复测。",
+   "scope": "期刊摘要与Figure 3结果段落",
+   "source": "https://doi.org/10.1021/acscatal.6c04944"
+  },
+  "source_url": "https://doi.org/10.1021/acscatal.6c04944"
  },
  {
   "week": "2026-11-09",
   "id": "10.1021/acscatal.6c03694 / 10.64898/2026.03.24.713925",
   "date": "2026-10-02",
   "title": "LinB远端突变的FADS筛选（历史补课；preprint 03-26）",
-  "cat": "历史补课",
-  "disp": "首发超出30天；聚焦cap-domain库，筛出远端动力学突变",
+  "cat": "必读",
+  "disp": "通过筛选底物和选择条件把优化压力指向远端构象门控。I138N对COU-3催化效率约提高4倍，P208S则改善底物抑制耐受。",
   "dirs": [
    "高通量筛选",
    "活性与动力学"
@@ -317,15 +332,24 @@
    "实验表征",
    "物理模拟"
   ],
-  "detail": "窗口外历史补课。ACS Catalysis online 2026-10-02，DOI 10.1021/acscatal.6c03694；对应bioRxiv预印本 DOI 10.64898/2026.03.24.713925（索引显示首发2026-03-26）。作者报告focused LinB cap-domain library经COU-3液滴FADS筛选获得5个远端突变；I138N对COU-3的kcat/Km提高4倍，P208S减轻底物抑制并改变对较大碘代烷的选择性。对“底物探针能把选择压力推向远端底物通道/动态位点”有启发；期刊版与预印本实质差异本轮未核，不计窗口内新进展。"
+  "detail": "论文题名\nUncovering Functional Distant Mutations by Ultra-High-Throughput Screening of Dehalogenases\n\n主要内容\n用体积较大的荧光底物COU-3对LinB聚焦文库进行液滴分选，得到5个远端单突变。结合动力学、结构、HDX-MS和模拟，分析底物进入通道与抑制变化。\n\n创新点\n通过筛选底物和选择条件把优化压力指向远端构象门控。I138N对COU-3催化效率约提高4倍，P208S则改善底物抑制耐受。\n\n价值与局限\n适合作为远端位点筛选案例。所选底物会偏向富集底物获取能力；正文中WT与两种突变体的计算势垒差异未达显著，机制趋势应结合多种证据理解。\n\n证据依据\n期刊正文结果段落与官方预印本摘要",
+  "review": {
+   "title": "Uncovering Functional Distant Mutations by Ultra-High-Throughput Screening of Dehalogenases",
+   "content": "用体积较大的荧光底物COU-3对LinB聚焦文库进行液滴分选，得到5个远端单突变。结合动力学、结构、HDX-MS和模拟，分析底物进入通道与抑制变化。",
+   "innovation": "通过筛选底物和选择条件把优化压力指向远端构象门控。I138N对COU-3催化效率约提高4倍，P208S则改善底物抑制耐受。",
+   "limitations": "适合作为远端位点筛选案例。所选底物会偏向富集底物获取能力；正文中WT与两种突变体的计算势垒差异未达显著，机制趋势应结合多种证据理解。",
+   "scope": "期刊正文结果段落与官方预印本摘要",
+   "source": "https://doi.org/10.1021/acscatal.6c03694"
+  },
+  "source_url": "https://doi.org/10.1021/acscatal.6c03694"
  },
  {
   "week": "2026-11-09",
   "id": "10.1039/d6cb00197a",
   "date": "2026-09-30",
   "title": "固体载体液滴筛选丝状真菌产酶（窗口外；RSC Chem Biol）",
-  "cat": "历史补课",
-  "disp": "首发09-30，超出30天；筛选产酶真菌菌株而非纯化酶突变体",
+  "cat": "可读",
+  "disp": "将固体微环境、延长培养窗口和静电分选结合，改善特定条件下丝状真菌液滴培养的稳定性。全文报告分选约10 Hz。",
   "dirs": [
    "高通量筛选"
   ],
@@ -333,13 +357,22 @@
    "实验表征",
    "定向进化与筛选"
   ],
-  "detail": "窗口外历史补课。RSC Chemical Biology first online 2026-09-30，DOI 10.1039/d6cb00197a。PMC全文报告在液滴内用colloidal chitin/cellulose约束A. oryzae与T. reesei，最长培养7天并以10 Hz静电分选；每次约400,000 droplets，报告分选准确率>99.2%，top hits经摇瓶复测。该平台针对丝状真菌产酶/菌株筛选，不是纯化酶突变筛选；未计入30天新增数。"
+  "detail": "论文题名\nHigh-throughput droplet screening of filamentous fungi on solid substrates\n\n主要内容\n把固体载体引入液滴，限制丝状真菌菌丝逃逸和破滴，在米曲霉、里氏木霉中筛选淀粉酶/纤维素酶生产表现，并对回收菌株做后续培养验证。\n\n创新点\n将固体微环境、延长培养窗口和静电分选结合，改善特定条件下丝状真菌液滴培养的稳定性。全文报告分选约10 Hz。\n\n价值与局限\n对产酶菌株筛选有价值。读出同时受分泌、表达和生长影响，命中后仍需分辨单位酶活性与总产酶量。 菌丝逃逸仍可发生，载体、菌种、培养基及培养时间都会影响稳定性。\n\n证据依据\nPMC正文结果段落及PubMed摘要",
+  "review": {
+   "title": "High-throughput droplet screening of filamentous fungi on solid substrates",
+   "content": "把固体载体引入液滴，限制丝状真菌菌丝逃逸和破滴，在米曲霉、里氏木霉中筛选淀粉酶/纤维素酶生产表现，并对回收菌株做后续培养验证。",
+   "innovation": "将固体微环境、延长培养窗口和静电分选结合，改善特定条件下丝状真菌液滴培养的稳定性。全文报告分选约10 Hz。",
+   "limitations": "对产酶菌株筛选有价值。读出同时受分泌、表达和生长影响，命中后仍需分辨单位酶活性与总产酶量。 菌丝逃逸仍可发生，载体、菌种、培养基及培养时间都会影响稳定性。",
+   "scope": "PMC正文结果段落及PubMed摘要",
+   "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13625276/"
+  },
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13625276/"
  },
  {
   "id": "10.1038/s41586-026-11205-z",
   "title": "Pinal：自然语言条件功能蛋白设计（期刊10-21）",
   "cat": "可读",
-  "disp": "旧工作正式发表；2024预印本与期刊版实质差异待核，不计本周新方法",
+  "disp": "把功能描述作为蛋白生成入口，连接文本、结构和序列，并以多种功能类别验证生成候选。",
   "dirs": [
    "新酶与新功能设计"
   ],
@@ -347,15 +380,24 @@
    "AI/ML 模型",
    "实验表征"
   ],
-  "detail": "来源：weekly_2026-11-09.md。Nature期刊版为Programmable design of functional proteins from natural language；已有2024年预印本10.1101/2024.08.01.606258。作者报告多类功能蛋白的生成与实验测试，H-protein在多酶CO₂固定通路中的滴度为对应天然蛋白的1.7倍；不同任务终点不能统一解释为催化效率。代码：https://github.com/westlake-repl/Denovo-Pinal；权重：https://huggingface.co/westlake-repl/Pinal。原报告记录推理代码Apache-2.0、完整训练资源未完全公开；版本新增数据与候选分母仍待比较。",
+  "detail": "论文题名\nProgrammable design of functional proteins from natural language\n\n主要内容\nPinal根据自然语言功能描述生成候选蛋白的结构和序列，在荧光蛋白、PET水解酶、醇脱氢酶和代谢H-protein四类任务中做实验验证。\n\n创新点\n把功能描述作为蛋白生成入口，连接文本、结构和序列，并以多种功能类别验证生成候选。\n\n价值与局限\n适合候选生成与设计方法储备。成功序列经过计算筛选和实验筛选，不能把展示案例当成任意文字指令的命中率。旧预印本与期刊版沿革需分开。\n\n证据依据\n期刊摘要和Extended Data 8–10段落",
   "week": "2026-11-09",
-  "date": "2026-11-09"
+  "date": "2026-11-09",
+  "review": {
+   "title": "Programmable design of functional proteins from natural language",
+   "content": "Pinal根据自然语言功能描述生成候选蛋白的结构和序列，在荧光蛋白、PET水解酶、醇脱氢酶和代谢H-protein四类任务中做实验验证。",
+   "innovation": "把功能描述作为蛋白生成入口，连接文本、结构和序列，并以多种功能类别验证生成候选。",
+   "limitations": "适合候选生成与设计方法储备。成功序列经过计算筛选和实验筛选，不能把展示案例当成任意文字指令的命中率。旧预印本与期刊版沿革需分开。",
+   "scope": "期刊摘要和Extended Data 8–10段落",
+   "source": "https://www.nature.com/articles/s41586-026-11205-z"
+  },
+  "source_url": "https://www.nature.com/articles/s41586-026-11205-z"
  },
  {
   "id": "10.3389/fpls.2026.1981660",
   "title": "植物UGT功能归因的证据边界框架（11-02）",
   "cat": "可读",
-  "disp": "观点框架；无新实验数据，不是经过准确率评测的预测算法",
+  "disp": "将化学证据与生物学归因两条轴拆开，提出证据增强应主要提高对应主张置信度等可检验预测。",
   "dirs": [
    "功能注释与预测",
    "基准与方法学"
@@ -363,32 +405,26 @@
   "meths": [
    "综述与批评"
   ],
-  "detail": "来源：weekly_2026-11-09.md，Frontiers in Plant Science，Hypothesis and Theory，2026-11-02。文章区分候选优先级、反应发生、产物身份、异源可行性与原生贡献等证据。适合用于UGT结果记录与功能注释，避免把糖基化信号直接当作指定产物或植物原生功能。它没有新实验数据，也没有证明该框架能提高筛选命中率。",
+  "detail": "论文题名\nA claim-specific evidence-boundary model for plant UDP-glycosyltransferases: from substrate candidates to native function\n\n主要内容\n文章把植物UGT研究中的反应发生、产物身份、异源重构可行性和天然生物学贡献分开讨论，提出按具体主张匹配证据的评价框架。\n\n创新点\n将化学证据与生物学归因两条轴拆开，提出证据增强应主要提高对应主张置信度等可检验预测。\n\n价值与局限\n可用作UGT记录和论文阅读框架。文献类型为Hypothesis and Theory，框架的评价一致性和校准效果仍待实证。\n\n证据依据\nCrossref官方题录与出版社摘要",
   "week": "2026-11-09",
-  "date": "2026-11-09"
- },
- {
-  "id": "10.1038/s43018-026-01263-7",
-  "title": "E. coli肿瘤环境适应的基因组筛选（10-29）",
-  "cat": "观察",
-  "disp": "月内补检；定殖fitness与发酵产物滴度不同，仅作筛选终点的背景参照",
-  "dirs": [
-   "基准与方法学"
-  ],
-  "meths": [
-   "实验表征"
-  ],
-  "detail": "来源：weekly_2026-11-09.md，Nature Cancer，2026-10-29。研究终点是肿瘤环境适应、定殖与递送效果，并非工业发酵产物滴度。对本雷达的价值仅在提醒：选择信号必须对应研究目标，生长或定殖fitness不能替代目标产物测量；原报告不建议据此迁移具体适应改造到indigo生产。",
-  "week": "2026-11-09",
-  "date": "2026-11-09"
+  "date": "2026-11-09",
+  "review": {
+   "title": "A claim-specific evidence-boundary model for plant UDP-glycosyltransferases: from substrate candidates to native function",
+   "content": "文章把植物UGT研究中的反应发生、产物身份、异源重构可行性和天然生物学贡献分开讨论，提出按具体主张匹配证据的评价框架。",
+   "innovation": "将化学证据与生物学归因两条轴拆开，提出证据增强应主要提高对应主张置信度等可检验预测。",
+   "limitations": "可用作UGT记录和论文阅读框架。文献类型为Hypothesis and Theory，框架的评价一致性和校准效果仍待实证。",
+   "scope": "Crossref官方题录与出版社摘要",
+   "source": "https://doi.org/10.3389/fpls.2026.1981660"
+  },
+  "source_url": "https://doi.org/10.3389/fpls.2026.1981660"
  },
  {
   "week": "2026-11-02",
   "id": "arXiv:2610.07607",
   "title": "LFS/SGES（10-06首发）",
   "date": "2026-11-02",
-  "disp": "必读；assay-specific突变fitness，基准oracle非新wetlab",
-  "cat": "必读",
+  "disp": "将突变引起的残基表示差分投影到有监督的任务相关子空间，而非直接在高维通用嵌入中搜索。",
+  "cat": "可读",
   "dirs": [
    "活性与动力学",
    "基准与方法学"
@@ -396,14 +432,23 @@
   "meths": [
    "AI/ML 模型"
   ],
-  "detail": "做了什么：作者认为“突变导致的蛋白内部表示变化”可以压缩成少数几个与具体检测实验相关的方向，并在这个低维子空间里做主动学习（建代理模型、估计不确定度、挑选下一批要测的突变）。关键数据：在 87 个检测实验上，该方法的预测相关系数均值 0.584，优于零样本预测的 0.438（实验设置：初始 32 个标签、共查询 500 次、5 个随机种子）。局限：全程使用计算代理的 fitness 分数，没有做新的湿实验；fitness 分数不等于催化活性，因此结果不能直接搬来给 UGT 做活性排序。"
+  "detail": "论文题名\nLinear Fitness Subspace in Protein Language Models Enables Sample-Efficient Directed Evolution\n\n主要内容\nLFS假设少量带标签突变可恢复与某个assay相关的低维适应度方向。SGES在该子空间中做代理预测、不确定度估计和候选采集，在ProteinGym静态及预算搜索任务中评测。\n\n创新点\n将突变引起的残基表示差分投影到有监督的任务相关子空间，而非直接在高维通用嵌入中搜索。\n\n价值与局限\n可用于小样本筛选策略比较。该研究以基准oracle模拟搜索，指标随assay而异，催化活性迁移与前瞻实验效果待验证。\n\n证据依据\narXiv官方摘要",
+  "review": {
+   "title": "Linear Fitness Subspace in Protein Language Models Enables Sample-Efficient Directed Evolution",
+   "content": "LFS假设少量带标签突变可恢复与某个assay相关的低维适应度方向。SGES在该子空间中做代理预测、不确定度估计和候选采集，在ProteinGym静态及预算搜索任务中评测。",
+   "innovation": "将突变引起的残基表示差分投影到有监督的任务相关子空间，而非直接在高维通用嵌入中搜索。",
+   "limitations": "可用于小样本筛选策略比较。该研究以基准oracle模拟搜索，指标随assay而异，催化活性迁移与前瞻实验效果待验证。",
+   "scope": "arXiv官方摘要",
+   "source": "https://arxiv.org/abs/2610.07607"
+  },
+  "source_url": "https://arxiv.org/abs/2610.07607"
  },
  {
   "week": "2026-11-02",
   "id": "10.1021/acs.jafc.6c10140",
   "title": "三种黄芪UGT/AmUGT88E37（10-22）",
   "date": "2026-11-02",
-  "disp": "必读；受体/区域选择性参照，摘要级",
+  "disp": "揭示三种同源UGT的功能分化，AmUGT88E37能接受多类黄酮并形成不同位置糖苷，定位了活性与选择性相关残基。",
   "cat": "必读",
   "dirs": [
    "选择性与特异性"
@@ -411,14 +456,23 @@
   "meths": [
    "实验表征"
   ],
-  "detail": "做了什么：从黄芪中鉴定出三个糖基转移酶 AmUGT73AC19、88E36、88E37，都能给异黄酮 calycosin 和 formononetin 加糖（不依赖金属离子）。其中 88E37 底物范围最宽，能产生 7-O、4′-O、6-O 三种位置的糖苷。通过分子对接加定点突变，定位了控制区域选择性的关键残基（Glu383、Val144、Tyr135、Leu195、Val141）。价值与局限：湿实验扎实，可作为研究受体选择性和区域选择性的参照；但逐酶动力学参数在补充材料里，尚未核对；它不是给大文库排序的工具。"
+  "detail": "论文题名\nFunctional Characterization of Three Flavonoid Glycosyltransferases from Astragalus membranaceus (Fisch.) Bunge var. mongholicus (Bunge) P.K. Hsiao and Mechanistic Analysis of the Substrate Promiscuity of AmUGT88E37\n\n主要内容\n从黄芪鉴定AmUGT73AC19、AmUGT88E36和AmUGT88E37，结合酵母转化、体外反应、底物谱、对接与突变，比较异黄酮糖基化及区域选择性。\n\n创新点\n揭示三种同源UGT的功能分化，AmUGT88E37能接受多类黄酮并形成不同位置糖苷，定位了活性与选择性相关残基。\n\n价值与局限\n与植物UGT筛选直接相关。广底物谱和关键残基来自该家族及所测底物，跨家族迁移和逐酶动力学仍需具体条件支持。\n\n证据依据\nCrossref官方题录与出版社摘要",
+  "review": {
+   "title": "Functional Characterization of Three Flavonoid Glycosyltransferases from Astragalus membranaceus (Fisch.) Bunge var. mongholicus (Bunge) P.K. Hsiao and Mechanistic Analysis of the Substrate Promiscuity of AmUGT88E37",
+   "content": "从黄芪鉴定AmUGT73AC19、AmUGT88E36和AmUGT88E37，结合酵母转化、体外反应、底物谱、对接与突变，比较异黄酮糖基化及区域选择性。",
+   "innovation": "揭示三种同源UGT的功能分化，AmUGT88E37能接受多类黄酮并形成不同位置糖苷，定位了活性与选择性相关残基。",
+   "limitations": "与植物UGT筛选直接相关。广底物谱和关键残基来自该家族及所测底物，跨家族迁移和逐酶动力学仍需具体条件支持。",
+   "scope": "Crossref官方题录与出版社摘要",
+   "source": "https://doi.org/10.1021/acs.jafc.6c10140"
+  },
+  "source_url": "https://doi.org/10.1021/acs.jafc.6c10140"
  },
  {
   "week": "2026-11-02",
   "id": "10.1038/s41557-026-02288-2",
   "title": "OxiEs氧化酯化（10-26）",
   "date": "2026-11-02",
-  "disp": "可读；序列×条件交互，非AI",
+  "disp": "通过蛋白改造与咪唑条件调控活性位点几何，获得对伯醇和仲醇互补的区域选择性。",
   "cat": "可读",
   "dirs": [
    "活性与动力学"
@@ -426,15 +480,24 @@
   "meths": [
    "实验表征"
   ],
-  "detail": "发现：两个新酶 OxiEs1 和 OxiEs2 都能做氧化酯化，但偏好不同——OxiEs1 偏好伯醇且依赖咪唑，OxiEs2 偏好仲醇且不依赖。更重要的是序列与反应条件存在交互作用：同一个酶换条件后选择性可能切换。性质：纯酶学新反应类型发现，不涉及机器学习；具体的筛选库规模、提升倍数和动力学数据需读全文复核。"
+  "detail": "论文题名\nEnzymatic oxidative esterification with an unconventional regioselective control\n\n主要内容\n以结构指导工程将醛脱氢酶改造成氧化酯合酶。OxiEs1偏好伯醇且依赖咪唑，OxiEs2偏好仲醇且无需咪唑，展示多底物酯化及制备应用。\n\n创新点\n通过蛋白改造与咪唑条件调控活性位点几何，获得对伯醇和仲醇互补的区域选择性。\n\n价值与局限\n适合学习序列与反应条件联合优化。适用底物、咪唑作用和制备性能依赖具体体系，采用前需核对动力学与底物范围。\n\n证据依据\nPubMed官方摘要",
+  "review": {
+   "title": "Enzymatic oxidative esterification with an unconventional regioselective control",
+   "content": "以结构指导工程将醛脱氢酶改造成氧化酯合酶。OxiEs1偏好伯醇且依赖咪唑，OxiEs2偏好仲醇且无需咪唑，展示多底物酯化及制备应用。",
+   "innovation": "通过蛋白改造与咪唑条件调控活性位点几何，获得对伯醇和仲醇互补的区域选择性。",
+   "limitations": "适合学习序列与反应条件联合优化。适用底物、咪唑作用和制备性能依赖具体体系，采用前需核对动力学与底物范围。",
+   "scope": "PubMed官方摘要",
+   "source": "https://pubmed.ncbi.nlm.nih.gov/42934322/"
+  },
+  "source_url": "https://pubmed.ncbi.nlm.nih.gov/42934322/"
  },
  {
   "week": "2026-11-02",
   "id": "10.1038/s41929-026-01629-1 / 10.64898/2026.10.15.759323",
   "title": "PLP–photocatalyst cooperation（期刊10-28，月内早期稿线索）",
   "date": "2026-11-02",
-  "disp": "必读（用户确认 Top 5）；期刊版窗口内 10-28、预印本 posted 10-16 已确认；矩阵规模/突变分母待全文",
-  "cat": "必读",
+  "disp": "把酶与外部光催化剂的组合空间作为反应发现对象，以多催化协同产生单一催化剂难以实现的反应性。",
+  "cat": "可读",
   "dirs": [
    "选择性与特异性",
    "新酶与新功能设计"
@@ -443,14 +506,23 @@
    "定向进化与筛选",
    "实验表征"
   ],
-  "detail": "发现：系统性地把 PLP 依赖酶与各种光催化剂做矩阵组合（覆盖较宽的激发态氧化还原电位窗口），找到了两者单独都做不到的新碳-碳偶联反应，包括此前未知的迁移 β-交叉偶联和经典的 γ-偶联；随后通过底物通道工程做定向进化优化。评价：本期 Top 5 之一；读全文时重点看矩阵组合的总规模和突变筛选的分母（筛选了多少变体才得到这些结果）。"
+  "detail": "论文题名\nMulticatalytic cooperativity enables divergent photobiocatalytic C-C couplings for scaffold diversification\n\n主要内容\n系统组合PLP依赖酶和不同氧化还原性质的光催化剂，发现迁移β交叉偶联和γ交叉偶联等反应，再通过底物通道定向进化控制支链/直链产物和立体结果。\n\n创新点\n把酶与外部光催化剂的组合空间作为反应发现对象，以多催化协同产生单一催化剂难以实现的反应性。\n\n价值与局限\n是新反应发现与通道工程案例。组合筛选规模、突变库分母及光化学条件需查正文和补充材料，适用范围限于已验证催化体系。\n\n证据依据\nbioRxiv官方摘要",
+  "review": {
+   "title": "Multicatalytic cooperativity enables divergent photobiocatalytic C-C couplings for scaffold diversification",
+   "content": "系统组合PLP依赖酶和不同氧化还原性质的光催化剂，发现迁移β交叉偶联和γ交叉偶联等反应，再通过底物通道定向进化控制支链/直链产物和立体结果。",
+   "innovation": "把酶与外部光催化剂的组合空间作为反应发现对象，以多催化协同产生单一催化剂难以实现的反应性。",
+   "limitations": "是新反应发现与通道工程案例。组合筛选规模、突变库分母及光化学条件需查正文和补充材料，适用范围限于已验证催化体系。",
+   "scope": "bioRxiv官方摘要",
+   "source": "https://doi.org/10.1038/s41929-026-01629-1"
+  },
+  "source_url": "https://doi.org/10.1038/s41929-026-01629-1"
  },
  {
   "week": "2026-11-02",
   "id": "10.1016/j.jare.2026.10.044（PMID 42962915）",
   "title": "ItFMO 靛蓝生物合成（J. Adv. Res. online 10-30）",
   "date": "2026-11-02",
-  "disp": "必读；摘要级含定量；kcat/Km 0.22±0.05、共培养 60.03±0.82 mg/L、残基 Q51/Y160/K212/S213/F373/N427",
+  "disp": "把植物FMO候选发现、吲哚衍生物反应谱和微生物重构联系起来，提供有实验支持的新氧化酶来源。",
   "cat": "必读",
   "dirs": [
    "活性与动力学",
@@ -460,29 +532,47 @@
    "理性与半理性设计",
    "实验表征"
   ],
-  "detail": "关键数据：ItFMO 催化吲哚的 kcat/Km 为 0.22±0.05 s⁻¹mM⁻¹（在所测植物 FMO 中最高），能转化 16 种取代吲哚；以 2-oxindole 为底物时约 70% 产出联产品 indirubin。产量：大肠杆菌中共表达 ItFMO 与 TnaA 得到 41.27±0.84 mg/L 靛蓝，双菌共培养提高到 60.03±0.82 mg/L（约 2.7 倍）。机制：分子动力学模拟加丙氨酸扫描加定点突变，鉴定出 6 个关键残基（Q51/Y160/K212/S213/F373/N427）。评价：价值在酶学机制和残基图谱，不在产量；注意联产 indirubin 会影响产品纯度。"
+  "detail": "论文题名\nFrom discovery to engineering: revealing and optimizing the indigoids biosynthesis by FMO from Indigofera tinctoria\n\n主要内容\n通过转录组挖掘、功能筛选和动力学表征鉴定木蓝ItFMO等候选。ItFMO可转化16种取代吲哚，结合MD和定点突变分析催化残基，并在E. coli中比较共表达和共培养。\n\n创新点\n把植物FMO候选发现、吲哚衍生物反应谱和微生物重构联系起来，提供有实验支持的新氧化酶来源。\n\n价值与局限\n与靛蓝项目直接相关。作者报告共培养滴度60.03±0.82 mg/L；滴度属于整体培养终点，酶本征效率应另看kcat/Km及条件。\n\n证据依据\nPubMed官方摘要",
+  "review": {
+   "title": "From discovery to engineering: revealing and optimizing the indigoids biosynthesis by FMO from Indigofera tinctoria",
+   "content": "通过转录组挖掘、功能筛选和动力学表征鉴定木蓝ItFMO等候选。ItFMO可转化16种取代吲哚，结合MD和定点突变分析催化残基，并在E. coli中比较共表达和共培养。",
+   "innovation": "把植物FMO候选发现、吲哚衍生物反应谱和微生物重构联系起来，提供有实验支持的新氧化酶来源。",
+   "limitations": "与靛蓝项目直接相关。作者报告共培养滴度60.03±0.82 mg/L；滴度属于整体培养终点，酶本征效率应另看kcat/Km及条件。",
+   "scope": "PubMed官方摘要",
+   "source": "https://pubmed.ncbi.nlm.nih.gov/42962915/"
+  },
+  "source_url": "https://pubmed.ncbi.nlm.nih.gov/42962915/"
  },
  {
   "week": "2026-11-02",
   "id": "10.64898/2026.10.26.761089",
   "title": "THOR 跨家族热稳定迁移（bioRxiv posted 10-28）",
   "date": "2026-11-02",
-  "disp": "必读；摘要级；Tm 单位缺失待核；资源未确认",
-  "cat": "必读",
+  "disp": "尝试把不同进化谱系的热适应信息迁移到缺少嗜热同源物的目标蛋白，同时保持起始蛋白身份。",
+  "cat": "观察",
   "dirs": [
    "热稳定性"
   ],
   "meths": [
    "AI/ML 模型"
   ],
-  "detail": "做了什么：生成式框架，学习“嗜中温酶→嗜热酶”的序列变换规律，训练时不让模型见到目标酶家族的嗜热同源序列（防止信息泄漏）。关键数据：对一个完全排除出训练集的酶家族（MDH）做零样本设计，表观 Tm 最高提升约 15 个单位（摘要没写单位，推断为 °C，待全文确认）；少量微调后最高约 +36。大多数设计保留活性，个别变体 turnover 接近 3 倍；分子动力学显示稳定化机制依赖序列背景。待核：统计分母、与同预算下 FireProt/ThermoMPNN 的公平比较、代码和权重是否开放。"
+  "detail": "论文题名\nCross-family learning transfers thermal adaptation between enzymes\n\n主要内容\nTHOR用非配对嗜中温与嗜热序列学习背景相关的序列变换，在跨家族迁移及被排除训练的苹果酸脱氢酶上测试热适应，并分析活性保持与构象变化。\n\n创新点\n尝试把不同进化谱系的热适应信息迁移到缺少嗜热同源物的目标蛋白，同时保持起始蛋白身份。\n\n价值与局限\n可作为跨家族稳定性设计候选。官方摘要的熔点增量单位缺失，本次不引用该数值；家族覆盖、活性保留比例及同预算基线仍待全文核查。\n\n证据依据\nbioRxiv官方摘要",
+  "review": {
+   "title": "Cross-family learning transfers thermal adaptation between enzymes",
+   "content": "THOR用非配对嗜中温与嗜热序列学习背景相关的序列变换，在跨家族迁移及被排除训练的苹果酸脱氢酶上测试热适应，并分析活性保持与构象变化。",
+   "innovation": "尝试把不同进化谱系的热适应信息迁移到缺少嗜热同源物的目标蛋白，同时保持起始蛋白身份。",
+   "limitations": "可作为跨家族稳定性设计候选。官方摘要的熔点增量单位缺失，本次不引用该数值；家族覆盖、活性保留比例及同预算基线仍待全文核查。",
+   "scope": "bioRxiv官方摘要",
+   "source": "https://doi.org/10.64898/2026.10.26.761089"
+  },
+  "source_url": "https://doi.org/10.64898/2026.10.26.761089"
  },
  {
   "week": "2026-11-02",
   "id": "10.1021/acsomega.6c08242（PMC13717662）",
-  "title": "pdb2reaction MLIP 反应路径自动化（ACS Omega eCollection 10-27）",
+  "title": "pdb2reaction：MLIP反应路径自动化（online 10-07）",
   "date": "2026-11-02",
-  "disp": "必读；开放获取；BezA 两步机理、23 步基准 19 吻合；仓库/许可待正文",
+  "disp": "把PDB到多步反应路径的计算整合为可续跑工具，并提供递归搜寻中间体及GPU Hessian/IRC计算。",
   "cat": "必读",
   "dirs": [
    "基准与方法学"
@@ -491,29 +581,47 @@
    "物理模拟",
    "数据库与工具"
   ],
-  "detail": "是什么：开源命令行工具，一条流水线从 PDB 结构出发自动完成活性位点提取、最小能量路径搜索、过渡态精修、IRC 验证和热化学修正，全程用机器学习势（MLIP）而非昂贵的量子化学计算。验证结果：不提供任何中间体信息即可还原 BezA（一种甲基转移酶）的两步机理；在 6 个酶共 23 步反应的基准上重现了 19 步的文献机理。定位：适合作为 DFT 簇模型或全酶 QM/MM 之前的高通量初筛层；但糖基转移这类强极性过渡态必须先用 DFT 校准（此前有极性体系被低估的教训）。代码：t-0hmura/pdb2reaction，GPL-3.0 许可，2026 年 10 月仍在更新。"
+  "detail": "论文题名\npdb2reaction: End-to-End Reaction-Path Elucidation from PDB Structures Using Machine-Learning Interatomic Potentials\n\n主要内容\npdb2reaction从用户整理的PDB构建活性位点簇模型，衔接MLIP路径搜索、过渡态精修、IRC和热化学。作者在6种酶的23步反应中，使用UMA-m-1.1重现19步文献机理。\n\n创新点\n把PDB到多步反应路径的计算整合为可续跑工具，并提供递归搜寻中间体及GPU Hessian/IRC计算。\n\n价值与局限\n适合作为机理探索初筛。其QRRHO自由能属于截断簇模型，长程环境和全酶构象采样需另外处理，目标体系仍需DFT或QM/MM校准。 期刊首次在线为2026-10-07，10-27是卷期日期。\n\n证据依据\n期刊摘要及Methods 2.1/2.4、Results 3.1段落",
+  "review": {
+   "title": "pdb2reaction: End-to-End Reaction-Path Elucidation from PDB Structures Using Machine-Learning Interatomic Potentials",
+   "content": "pdb2reaction从用户整理的PDB构建活性位点簇模型，衔接MLIP路径搜索、过渡态精修、IRC和热化学。作者在6种酶的23步反应中，使用UMA-m-1.1重现19步文献机理。",
+   "innovation": "把PDB到多步反应路径的计算整合为可续跑工具，并提供递归搜寻中间体及GPU Hessian/IRC计算。",
+   "limitations": "适合作为机理探索初筛。其QRRHO自由能属于截断簇模型，长程环境和全酶构象采样需另外处理，目标体系仍需DFT或QM/MM校准。 期刊首次在线为2026-10-07，10-27是卷期日期。",
+   "scope": "期刊摘要及Methods 2.1/2.4、Results 3.1段落",
+   "source": "https://doi.org/10.1021/acsomega.6c08242"
+  },
+  "source_url": "https://doi.org/10.1021/acsomega.6c08242"
  },
  {
   "week": "2026-11-02",
   "id": "10.64898/2026.10.24.761503",
   "title": "葡萄 UGT 簇与 piceid 顺/反分工（bioRxiv posted 10-27）",
   "date": "2026-11-02",
-  "disp": "必读；摘要级；6 UGT 生化+结构表征",
-  "cat": "必读",
+  "disp": "把代谢性状定位与簇内酶的底物构型区分相结合，揭示相近UGT在异构体处理上的功能分化。",
+  "cat": "可读",
   "dirs": [
    "选择性与特异性"
   ],
   "meths": [
    "实验表征"
   ],
-  "detail": "发现：葡萄木质部的非靶向代谢组学加 mQTL 定位，找到 6 个 UGT 基因簇与 piceid（白藜芦醇糖苷）积累连锁；生化与结构表征显示簇内功能明显分化——顺式和反式 piceid 由不同 UGT 分别负责，整个簇受强纯化选择。直接启示：筛选实验必须能区分顺/反异构体终点，只测总糖苷会掩盖这种分工。待核：体外动力学数据、结构解析方式、底物谱宽度。"
+  "detail": "论文题名\nGenetic analysis of grapevine wood composition identifies glycosyltransferases involved in the biosynthesis of stilbene glycosides\n\n主要内容\n通过葡萄木质部代谢组与mQTL分析定位影响piceid积累的六基因UGT簇，再以生化和结构表征研究顺/反式白藜芦醇糖基化分工。\n\n创新点\n把代谢性状定位与簇内酶的底物构型区分相结合，揭示相近UGT在异构体处理上的功能分化。\n\n价值与局限\n可支持UGT候选优选和异构体终点设计。结论基于葡萄相关酶和所测底物，需核对逐酶动力学及遗传证据的覆盖。\n\n证据依据\nbioRxiv官方摘要",
+  "review": {
+   "title": "Genetic analysis of grapevine wood composition identifies glycosyltransferases involved in the biosynthesis of stilbene glycosides",
+   "content": "通过葡萄木质部代谢组与mQTL分析定位影响piceid积累的六基因UGT簇，再以生化和结构表征研究顺/反式白藜芦醇糖基化分工。",
+   "innovation": "把代谢性状定位与簇内酶的底物构型区分相结合，揭示相近UGT在异构体处理上的功能分化。",
+   "limitations": "可支持UGT候选优选和异构体终点设计。结论基于葡萄相关酶和所测底物，需核对逐酶动力学及遗传证据的覆盖。",
+   "scope": "bioRxiv官方摘要",
+   "source": "https://doi.org/10.64898/2026.10.24.761503"
+  },
+  "source_url": "https://doi.org/10.64898/2026.10.24.761503"
  },
  {
   "week": "2026-11-02",
   "id": "10.64898/2026.10.26.762003",
   "title": "AlphaFold 口袋 apo-holo 轴（bioRxiv posted 10-30）",
   "date": "2026-11-02",
-  "disp": "必读；摘要级；对接成功率差 19pp",
+  "disp": "提出用口袋状态分布补充结构置信度评价，显示pLDDT类置信信息与apo/holo状态表征不同。",
   "cat": "必读",
   "dirs": [
    "底物结合与口袋",
@@ -523,29 +631,48 @@
    "AI/ML 模型",
    "物理模拟"
   ],
-  "detail": "数据：把 237,922 个 AlphaFold 预测口袋（覆盖 12,255 个蛋白）放到“无配体（apo）—有配体（holo）”的坐标轴上，62% 的预测口袋偏 holo 构象（均衡采样下为 56%）。意义：holo 样口袋中，结合位点预测的检出率高 13–21 个百分点，同源配体对接成功率高 19 个百分点；而 AlphaFold 自带的置信度反映的是口袋变异程度，不是口袋处于哪种状态。操作建议：对接前先判断口袋状态。局限：终点是结合而非催化——对接成功不保证反应所需的近攻击几何。"
+  "detail": "论文题名\nA tale of two states: AlphaFold binding pockets on the apo-holo continuum\n\n主要内容\n将12,255种蛋白的237,922个AlphaFold口袋放到实验apo–holo构象轴上，研究口袋状态与位点检测、配体对接成功之间的关联，并释放口袋分类和描述符。\n\n创新点\n提出用口袋状态分布补充结构置信度评价，显示pLDDT类置信信息与apo/holo状态表征不同。\n\n价值与局限\n有助于对接前选择构象。研究评价结合位点和对接，holo-like构象对目标酶催化几何及真实活性的支持仍需验证。\n\n证据依据\nbioRxiv官方摘要",
+  "review": {
+   "title": "A tale of two states: AlphaFold binding pockets on the apo-holo continuum",
+   "content": "将12,255种蛋白的237,922个AlphaFold口袋放到实验apo–holo构象轴上，研究口袋状态与位点检测、配体对接成功之间的关联，并释放口袋分类和描述符。",
+   "innovation": "提出用口袋状态分布补充结构置信度评价，显示pLDDT类置信信息与apo/holo状态表征不同。",
+   "limitations": "有助于对接前选择构象。研究评价结合位点和对接，holo-like构象对目标酶催化几何及真实活性的支持仍需验证。",
+   "scope": "bioRxiv官方摘要",
+   "source": "https://doi.org/10.64898/2026.10.26.762003"
+  },
+  "source_url": "https://doi.org/10.64898/2026.10.26.762003"
  },
  {
   "week": "2026-11-02",
   "id": "10.1021/jacs.6c15079",
   "title": "GCE 存活偶联体内选择（JACS 10-28）",
   "date": "2026-11-02",
-  "disp": "可读；摘要级；36.8 g/L ncAA",
+  "disp": "利用遗传密码扩展构成产物依赖的生存选择，还可同时优化上游产物生成酶与下游aaRS。",
   "cat": "可读",
   "dirs": [
-   "通路组装与产量"
+   "通路组装与产量",
+   "高通量筛选"
   ],
   "meths": [
    "定向进化与筛选"
   ],
-  "detail": "原理：在细胞内合成非天然氨基酸（ncAA），让它作为正交氨酰-tRNA 合成酶（aaRS）的底物——只有目标酶催化产生了 ncAA，琥珀密码子才能通读、宿主才能获得氯霉素抗性，从而把催化活性与细胞存活直接绑定。验证：在 TPL、TrpB、SmLcar 三个体系验证，ncAA 产量最高 36.8 g/L。评价：选择压力直接绑定催化活性（而非结合或荧光等间接指标），是硬进展。局限：要求产物本身是能被 aaRS 利用的 ncAA，无法搬到糖基转移酶体系。"
+  "detail": "论文题名\nCoupling Enzyme Activity to Host Survival via Genetic Code Expansion: An In Vivo Evolution System for Biocatalysts\n\n主要内容\n把细胞内生成的非天然氨基酸交给正交aaRS，利用TAG通读恢复氯霉素抗性，从而将产物生成与宿主存活偶联。平台在TPL、TrpB和SmLcar三个体系验证，进一步用于进化TPL和TrpB以接受新底物。\n\n创新点\n利用遗传密码扩展构成产物依赖的生存选择，还可同时优化上游产物生成酶与下游aaRS。\n\n价值与局限\n为缺少直接高通量检测的ncAA反应提供选择工具。可用性依赖产物被aaRS识别和宿主背景，跨反应迁移需重新建立偶联。\n\n证据依据\nCrossref官方题录与出版社摘要",
+  "review": {
+   "title": "Coupling Enzyme Activity to Host Survival via Genetic Code Expansion: An In Vivo Evolution System for Biocatalysts",
+   "content": "把细胞内生成的非天然氨基酸交给正交aaRS，利用TAG通读恢复氯霉素抗性，从而将产物生成与宿主存活偶联。平台在TPL、TrpB和SmLcar三个体系验证，进一步用于进化TPL和TrpB以接受新底物。",
+   "innovation": "利用遗传密码扩展构成产物依赖的生存选择，还可同时优化上游产物生成酶与下游aaRS。",
+   "limitations": "为缺少直接高通量检测的ncAA反应提供选择工具。可用性依赖产物被aaRS识别和宿主背景，跨反应迁移需重新建立偶联。",
+   "scope": "Crossref官方题录与出版社摘要",
+   "source": "https://doi.org/10.1021/jacs.6c15079"
+  },
+  "source_url": "https://doi.org/10.1021/jacs.6c15079"
  },
  {
   "week": "2026-11-02",
   "id": "10.1002/anie.9814409",
   "title": "人工三重态光酶立体反转（Angew 10-31）",
   "date": "2026-11-02",
-  "disp": "可读；摘要级；99.5:0.5→2:98 e.r.",
+  "disp": "以底物组织方式作为可编程控制变量，实现从99.5:0.5到2:98的对映偏好反转。",
   "cat": "可读",
   "dirs": [
    "选择性与特异性"
@@ -553,45 +680,49 @@
   "meths": [
    "实验表征"
   ],
-  "detail": "成果：通过晶体结构、动力学、模拟与工程化改造，重构了底物在人工光酶中的组装方式，把 [2+2] 环加成的对映偏好从 99.5:0.5 完全反转到 2:98（e.r.），而光敏剂位置不变。评价：机制驱动的立体控制工程范例；属于人工光酶体系，与天然酶工程距离中等。"
- },
- {
-  "week": "2026-11-02",
-  "id": "10.1073/pnas.2621329123（PMID 42961939）",
-  "title": "UGGT1 全长 cryo-EM（PNAS epub 10-30）",
-  "date": "2026-11-02",
-  "disp": "可读；摘要级",
-  "cat": "可读",
-  "dirs": [
-   "结构与构象"
-  ],
-  "meths": [
-   "实验表征"
-  ],
-  "detail": "成果：解析人源折叠质控传感器 UGGT1 的全长多域冷冻电镜结构，发现单体存在开、闭两种构象态和中间态（结合 3D 变异性分析与分子动力学）。意义：这是 GT-B 折叠酶大结构域重排与底物识别的结构基础，对理解糖基转移酶的底物识别有参照价值。"
+  "detail": "论文题名\nReprogramming Stereocontrol Through Progressive Substrate Reorganization in Artificial Triplet Photoenzymes\n\n主要内容\n整合晶体结构、动力学和模拟，逐步重排人工三重态光酶中的吲哚底物组织方式，改变[2+2]环加成的对映偏好，同时保持光敏剂的序列位置。\n\n创新点\n以底物组织方式作为可编程控制变量，实现从99.5:0.5到2:98的对映偏好反转。\n\n价值与局限\n是机制指导选择性工程案例。人工光酶的光敏基团、底物装配及激发态条件会限制向天然酶直接迁移。\n\n证据依据\nCrossref官方题录与出版社摘要",
+  "review": {
+   "title": "Reprogramming Stereocontrol Through Progressive Substrate Reorganization in Artificial Triplet Photoenzymes",
+   "content": "整合晶体结构、动力学和模拟，逐步重排人工三重态光酶中的吲哚底物组织方式，改变[2+2]环加成的对映偏好，同时保持光敏剂的序列位置。",
+   "innovation": "以底物组织方式作为可编程控制变量，实现从99.5:0.5到2:98的对映偏好反转。",
+   "limitations": "是机制指导选择性工程案例。人工光酶的光敏基团、底物装配及激发态条件会限制向天然酶直接迁移。",
+   "scope": "Crossref官方题录与出版社摘要",
+   "source": "https://doi.org/10.1002/anie.9814409"
+  },
+  "source_url": "https://doi.org/10.1002/anie.9814409"
  },
  {
   "week": "2026-11-02",
   "id": "10.1002/biot.70332（PMID 42961177）",
   "title": "Taxifolin 生长偶联 DLE（Biotechnol. J.）",
   "date": "2026-11-02",
-  "disp": "可读；摘要级；+301.28%（22 h）",
+  "disp": "把α-酮戊二酸依赖反应与生长选择连接，借助代谢耦联扩大可筛选变体空间。",
   "cat": "可读",
   "dirs": [
    "活性与动力学",
-   "通路组装与产量"
+   "通路组装与产量",
+   "高通量筛选"
   ],
   "meths": [
    "定向进化与筛选"
   ],
-  "detail": "做法：F3H 是 taxifolin 合成的限速酶；作者重建 TCA 循环把目标反应与细胞生长偶联，使定向进化可以用生长来筛选——42,360 个理论文库 4 天完成一轮定向进化。结果：最优变体 SlF3Hv01 使 taxifolin 产量较野生型提高 301.28%（22 小时，93.82 mg/L），46 小时达 119.87 mg/L（+29.73%）。意义：生长偶联选择应用于 α-KG 依赖双加氧酶的实例。"
+  "detail": "论文题名\nImproving Whole-Cell Taxifolin Production Performance Through Growth-coupled Directed Laboratory Evolution of Flavanone 3-hydroxylase in Escherichia coli\n\n主要内容\n通过替换上游羟化体系并重构TCA循环，将E. coli中F3H相关表现与细胞生长耦联，建立理论规模42,360个变体的文库并进行4天定向进化。SlF3Hv01改善了全细胞taxifolin生产。\n\n创新点\n把α-酮戊二酸依赖反应与生长选择连接，借助代谢耦联扩大可筛选变体空间。\n\n价值与局限\n可借鉴α-酮戊二酸依赖反应的生长偶联。摘要报告22小时taxifolin为93.82 mg/L，46小时为119.87 mg/L；不同时间的相对改善应分开看，全细胞产量还受表达与代谢背景影响。\n\n证据依据\nCrossref出版社摘要（ABSTRACT）",
+  "review": {
+   "title": "Improving Whole-Cell Taxifolin Production Performance Through Growth-coupled Directed Laboratory Evolution of Flavanone 3-hydroxylase in Escherichia coli",
+   "content": "通过替换上游羟化体系并重构TCA循环，将E. coli中F3H相关表现与细胞生长耦联，建立理论规模42,360个变体的文库并进行4天定向进化。SlF3Hv01改善了全细胞taxifolin生产。",
+   "innovation": "把α-酮戊二酸依赖反应与生长选择连接，借助代谢耦联扩大可筛选变体空间。",
+   "limitations": "可借鉴α-酮戊二酸依赖反应的生长偶联。摘要报告22小时taxifolin为93.82 mg/L，46小时为119.87 mg/L；不同时间的相对改善应分开看，全细胞产量还受表达与代谢背景影响。",
+   "scope": "Crossref出版社摘要（ABSTRACT）",
+   "source": "https://onlinelibrary.wiley.com/doi/10.1002/biot.70332"
+  },
+  "source_url": "https://onlinelibrary.wiley.com/doi/10.1002/biot.70332"
  },
  {
   "week": "2026-11-02",
   "id": "2610.37410",
   "title": "GlycoWeave 蛋白-糖链结构（arXiv 10-27）",
   "date": "2026-11-02",
-  "disp": "可读/观察；Top-25 71.9% vs AF3 19.2%；非催化构象",
+  "disp": "在构象采样中维护糖链连接和立体化学，并把局部原子相互作用与单糖结构上下文结合。",
   "cat": "可读",
   "dirs": [
    "结构与构象"
@@ -599,62 +730,75 @@
   "meths": [
    "AI/ML 模型"
   ],
-  "detail": "是什么：针对蛋白-糖链复合物结构的扩散生成模型。数据：在 698 个复合物的基准上，Top-25 高质量构象成功率 71.9%，对比 AlphaFold3 的 19.2%，单个构象采样 0.34 秒。注意：建的是蛋白-聚糖识别复合物，不是酶-底物催化构象；指标是 Top-25 而非 Top-1。对 UGT 的意义在于糖基化产物/供体识别的建模。"
+  "detail": "论文题名\nAccurate structural modelling of protein-glycan recognition with GlycoWeave\n\n主要内容\nGlycoWeave用糖链专用扩散框架预测蛋白–糖链识别构象，结合内部坐标约束、原子/单糖多尺度表示及多来源训练。作者以698个复合物评价预测。\n\n创新点\n在构象采样中维护糖链连接和立体化学，并把局部原子相互作用与单糖结构上下文结合。\n\n价值与局限\n可用于糖链识别结构建模。71.9%高质量成功率对应Top-25采样，与单个预测命中率不同；目标UGT催化构象需另行验证。\n\n证据依据\narXiv官方摘要",
+  "review": {
+   "title": "Accurate structural modelling of protein-glycan recognition with GlycoWeave",
+   "content": "GlycoWeave用糖链专用扩散框架预测蛋白–糖链识别构象，结合内部坐标约束、原子/单糖多尺度表示及多来源训练。作者以698个复合物评价预测。",
+   "innovation": "在构象采样中维护糖链连接和立体化学，并把局部原子相互作用与单糖结构上下文结合。",
+   "limitations": "可用于糖链识别结构建模。71.9%高质量成功率对应Top-25采样，与单个预测命中率不同；目标UGT催化构象需另行验证。",
+   "scope": "arXiv官方摘要",
+   "source": "https://arxiv.org/abs/2610.37410"
+  },
+  "source_url": "https://arxiv.org/abs/2610.37410"
  },
  {
   "week": "2026-11-02",
   "id": "10.34133/csbj.0246（PMC13716986）",
   "title": "ESM-ECForest EC 注释（CSBJ 10-29）",
   "date": "2026-11-02",
-  "disp": "可读；注释层非活性；F1 0.94→0.90",
+  "disp": "将预训练蛋白表示与轻量两阶段分类器结合，显式覆盖层级EC功能注释。",
   "cat": "可读",
   "dirs": [
-   "功能注释与预测"
+   "功能注释与预测",
+   "酶挖掘"
   ],
   "meths": [
    "AI/ML 模型"
   ],
-  "detail": "是什么：ESM-2 嵌入加随机森林的两段式 EC 号预测器。数据：外部基准 25,778 条序列，weighted F1 从一级 0.94 到四级 0.90。用法与局限：EC 号注释不等于活性预测；可作为 UGT 文库初筛的粗注释层，但不能分辨受体特异性。"
+  "detail": "论文题名\nA Two-Stage ESM-Based Machine Learning Pipeline for Robust Hierarchically Evaluated Enzyme Function Prediction\n\n主要内容\nESM-ECForest将ESM-2序列嵌入交给随机森林，先区分酶/非酶，再进行多标签EC层级预测。在25,778条外部序列上报告层级加权F1。\n\n创新点\n将预训练蛋白表示与轻量两阶段分类器结合，显式覆盖层级EC功能注释。\n\n价值与局限\n可作为酶挖掘的粗注释层。EC类标与具体底物活性属于不同分辨率，weighted F1还需结合稀有类别和分布外结果解读。\n\n证据依据\nCrossref官方题录与出版社摘要",
+  "review": {
+   "title": "A Two-Stage ESM-Based Machine Learning Pipeline for Robust Hierarchically Evaluated Enzyme Function Prediction",
+   "content": "ESM-ECForest将ESM-2序列嵌入交给随机森林，先区分酶/非酶，再进行多标签EC层级预测。在25,778条外部序列上报告层级加权F1。",
+   "innovation": "将预训练蛋白表示与轻量两阶段分类器结合，显式覆盖层级EC功能注释。",
+   "limitations": "可作为酶挖掘的粗注释层。EC类标与具体底物活性属于不同分辨率，weighted F1还需结合稀有类别和分布外结果解读。",
+   "scope": "Crossref官方题录与出版社摘要",
+   "source": "https://doi.org/10.34133/csbj.0246"
+  },
+  "source_url": "https://doi.org/10.34133/csbj.0246"
  },
  {
   "week": "2026-11-02",
   "id": "10.64898/2026.03.29.715152",
   "title": "EnzyArena ML 酶工程基准+湿实验（bioRxiv v1 03-30/v2 04-18，窗口外）",
   "date": "2026-11-02",
-  "disp": "历史补课·必读；20 模型 4 策略、25 独立集、150 突变前瞻验证",
-  "cat": "历史补课",
+  "disp": "把条件匹配的独立突变数据和前瞻实验接入模型评测，暴露数据库成绩与新突变优选效用之间的差距。",
+  "cat": "必读",
   "dirs": [
    "基准与方法学",
-   "活性与动力学"
+   "活性与动力学",
+   "酶动力学参数预测"
   ],
   "meths": [
    "AI/ML 模型",
    "实验表征"
   ],
-  "detail": "是什么：条件匹配（批次/pH/温度对齐）的 kcat/Km 预测基准，评测 20 个模型、4 类策略。核心结论：动力学参数预测器在数据库子集上表现强，但在 25 个独立突变数据集上优势消失；零样本预测器泛化更一致；多个零样本模型简单取共识可进一步提高有益突变的精确率。湿实验验证：前瞻实验 150 个突变（PTS/酵母体系：随机 50 vs UniKP 推荐 50 vs ESM-1v 推荐 50，三分臂统计结果待 Table S2 核对）。实操结论：监督型 kcat 模型在给新酶家族排突变前必须先在目标家族上校准；零样本共识值得加入对照组。"
- },
- {
-  "week": "2026-10-26",
-  "id": "10.1021/acs.jafc.6c02514（PMID 42905006）",
-  "title": "Cyanidin 3-O-glycoside/rhamnoside 组合生物合成（J. Agric. Food Chem. 10-21）",
-  "date": "2026-10-26",
-  "disp": "必读；摘要级；标题 rutinoside 与摘要 rhamnoside 不一致待全文核",
-  "cat": "必读",
-  "dirs": [
-   "通路组装与产量",
-   "选择性与特异性"
-  ],
-  "meths": [
-   "实验表征"
-  ],
-  "detail": "内容：花青素 3-O-糖苷与鼠李糖苷的组合生物合成。可迁移经验（对 indigo 路线）：供体平衡——用质粒拷贝数调 UDP-glucose/UDP-rhamnose 比例，对应前体收支诊断；外排泵 MdtH/yadH 分别带来 +16%/+31% 提升，与 indigo 的外排优化量级相当，提示外排是跨产物类别的通用二阶优化手段。疑点：标题写 rutinoside、摘要写 rhamnoside，不一致，待全文核实。"
+  "detail": "论文题名\nBenchmarking and Experimental Validation of Machine Learning Strategies for Enzyme Engineering\n\n主要内容\nEnzyArena按实验活动与条件整理动力学数据，比较20个模型、4类策略及25个独立突变数据集，并以150个突变的前瞻实验比较随机、UniKP与ESM-1v推荐。\n\n创新点\n把条件匹配的独立突变数据和前瞻实验接入模型评测，暴露数据库成绩与新突变优选效用之间的差距。\n\n价值与局限\n与动力学模型选型直接相关。作者发现监督型动力学预测器在独立数据中失去优势，零样本共识更稳健；适用性仍受数据集和单轮前瞻体系限制。\n\n证据依据\nbioRxiv官方摘要",
+  "review": {
+   "title": "Benchmarking and Experimental Validation of Machine Learning Strategies for Enzyme Engineering",
+   "content": "EnzyArena按实验活动与条件整理动力学数据，比较20个模型、4类策略及25个独立突变数据集，并以150个突变的前瞻实验比较随机、UniKP与ESM-1v推荐。",
+   "innovation": "把条件匹配的独立突变数据和前瞻实验接入模型评测，暴露数据库成绩与新突变优选效用之间的差距。",
+   "limitations": "与动力学模型选型直接相关。作者发现监督型动力学预测器在独立数据中失去优势，零样本共识更稳健；适用性仍受数据集和单轮前瞻体系限制。",
+   "scope": "bioRxiv官方摘要",
+   "source": "https://doi.org/10.64898/2026.03.29.715152"
+  },
+  "source_url": "https://doi.org/10.64898/2026.03.29.715152"
  },
  {
   "week": "2026-10-26",
   "id": "10.64898/2026.10.19.760152",
   "title": "AlphaVariant RL+进化先验多位点优化（bioRxiv posted 10-21）",
   "date": "2026-10-26",
-  "disp": "必读（全文+图版部分核实）；7.1× 经 11-02 图版目验确认为纯化酶 kcat/Km；专利范围/代码停更待核",
+  "disp": "在稀疏实验反馈下动态扩展可搜索位点并联合多目标选择，包含生化及洗涤应用验证。",
   "cat": "必读",
   "dirs": [
    "活性与动力学"
@@ -663,14 +807,23 @@
    "AI/ML 模型",
    "实验表征"
   ],
-  "detail": "是什么：强化学习加进化先验的多位点突变优化。已确认数据（图版核查）：Fig 5F 为纯化酶 kcat/Km 柱状图，最优变体 R2-10-B11 为野生型的 7.1 倍（另有 5.9/6.3/6.9 倍变体）；Fig 5E 复筛活性约 4 倍以上；筛选阶段报告的 75.4%/83.8% 是相对活性命中率。待核：kcat/Km 测定条件与重复次数、Bestzyme 专利范围、代码可用性（脚注仓库 dgc-libgen 自 2026-08-21 停更且无许可证）。"
+  "detail": "论文题名\nReinforcement learning with evolutionary priors unlocks multi-site enzyme optimization from sparse experimental feedback\n\n主要内容\nAlphaVariant将生成式进化先验、低样本fitness模型与强化学习结合，迭代优化savinase多位点组合，并扩展到活性、热稳定性和专利约束的多目标搜索。\n\n创新点\n在稀疏实验反馈下动态扩展可搜索位点并联合多目标选择，包含生化及洗涤应用验证。\n\n价值与局限\n可借鉴设计–测试闭环。活性命中率的分母为实际表征候选，需与等预算基线比较。图5f的7.1倍为R2-10-B11相对WT的kcat/Km，测定条件为40 °C、三次重复；生物学重复性质、误差线定义和该比值的统计检验仍未明确。\n\n证据依据\nbioRxiv官方摘要及本地原论文Fig 5f、动力学测定方法段落（独立复核）",
+  "review": {
+   "title": "Reinforcement learning with evolutionary priors unlocks multi-site enzyme optimization from sparse experimental feedback",
+   "content": "AlphaVariant将生成式进化先验、低样本fitness模型与强化学习结合，迭代优化savinase多位点组合，并扩展到活性、热稳定性和专利约束的多目标搜索。",
+   "innovation": "在稀疏实验反馈下动态扩展可搜索位点并联合多目标选择，包含生化及洗涤应用验证。",
+   "limitations": "可借鉴设计–测试闭环。活性命中率的分母为实际表征候选，需与等预算基线比较。图5f的7.1倍为R2-10-B11相对WT的kcat/Km，测定条件为40 °C、三次重复；生物学重复性质、误差线定义和该比值的统计检验仍未明确。",
+   "scope": "bioRxiv官方摘要及本地原论文Fig 5f、动力学测定方法段落（独立复核）",
+   "source": "https://doi.org/10.64898/2026.10.19.760152"
+  },
+  "source_url": "https://doi.org/10.64898/2026.10.19.760152"
  },
  {
   "week": "2026-10-26",
   "id": "10.64898/2026.10.20.760405",
   "title": "PmHS2 hexosyl transfer 共价中间体（bioRxiv posted 10-21）",
   "date": "2026-10-26",
-  "disp": "必读；摘要级；共价机制为证据链建议非定论",
+  "disp": "提出保留型GlcNAc转移可能经历共价中间体，并将离去核苷酸磷酸旋转与反应过程联系起来。",
   "cat": "必读",
   "dirs": [
    "选择性与特异性"
@@ -678,14 +831,23 @@
   "meths": [
    "实验表征"
   ],
-  "detail": "内容：PmHS2 己糖基转移反应的共价中间体证据链。注意：共价机制目前是证据链建议而非定论。摘要级必读。"
+  "detail": "论文题名\nHexosyl transfer via a covalent intermediate within a dual retaining and inverting enzyme\n\n主要内容\n研究双功能糖基转移酶PmHS2，结合配体复合物晶体结构、原子模拟、生化和进化信息解析保留/反转糖基转移，并讨论供体兼作受体的自引发聚合。\n\n创新点\n提出保留型GlcNAc转移可能经历共价中间体，并将离去核苷酸磷酸旋转与反应过程联系起来。\n\n价值与局限\n是糖基转移机理的重要候选证据。共价路径仍属多证据支持的机制解释，对其他保留型UGT的推广需逐体系验证。\n\n证据依据\nbioRxiv官方摘要",
+  "review": {
+   "title": "Hexosyl transfer via a covalent intermediate within a dual retaining and inverting enzyme",
+   "content": "研究双功能糖基转移酶PmHS2，结合配体复合物晶体结构、原子模拟、生化和进化信息解析保留/反转糖基转移，并讨论供体兼作受体的自引发聚合。",
+   "innovation": "提出保留型GlcNAc转移可能经历共价中间体，并将离去核苷酸磷酸旋转与反应过程联系起来。",
+   "limitations": "是糖基转移机理的重要候选证据。共价路径仍属多证据支持的机制解释，对其他保留型UGT的推广需逐体系验证。",
+   "scope": "bioRxiv官方摘要",
+   "source": "https://doi.org/10.64898/2026.10.20.760405"
+  },
+  "source_url": "https://doi.org/10.64898/2026.10.20.760405"
  },
  {
   "week": "2026-10-26",
   "id": "10.64898/2026.10.15.759462",
   "title": "SSL kcat 半监督动力学参数预测（bioRxiv posted 10-21）",
   "date": "2026-10-26",
-  "disp": "必读；摘要级；clustered CataPro @40% 严格基准；具体数值未引用",
+  "disp": "利用不完整动力学记录提供训练约束，避免为无标签样本先赋伪标签，展示正则化与额外未标记数据的贡献。",
   "cat": "必读",
   "dirs": [
    "活性与动力学",
@@ -694,14 +856,23 @@
   "meths": [
    "AI/ML 模型"
   ],
-  "detail": "是什么：半监督 kcat 预测方法，采用 clustered CataPro 在 40% 严格基准协议。资源已核实：仓库 ali-malli/SSL 存在且为 MIT 许可，含 data/experiments/results/scripts——可以借它的 clustered 40% 协议审查现有模型是否过拟合。"
+  "detail": "论文题名\nGoing beyond labels: Semi-supervised learning for enzyme kinetic parameter prediction\n\n主要内容\n以有其他动力学记录、但缺kcat标签的酶–底物对作为无标签样本，通过神经一致性和图拉普拉斯正则化辅助kcat训练，在40%序列一致性聚类的CataPro基准等任务上评测。\n\n创新点\n利用不完整动力学记录提供训练约束，避免为无标签样本先赋伪标签，展示正则化与额外未标记数据的贡献。\n\n价值与局限\n与动力学参数预测直接相关。收益依赖足够标签量和特征空间数据密度，增加无标签样本会饱和，目标家族和突变排序仍需独立验证。\n\n证据依据\nbioRxiv官方摘要",
+  "review": {
+   "title": "Going beyond labels: Semi-supervised learning for enzyme kinetic parameter prediction",
+   "content": "以有其他动力学记录、但缺kcat标签的酶–底物对作为无标签样本，通过神经一致性和图拉普拉斯正则化辅助kcat训练，在40%序列一致性聚类的CataPro基准等任务上评测。",
+   "innovation": "利用不完整动力学记录提供训练约束，避免为无标签样本先赋伪标签，展示正则化与额外未标记数据的贡献。",
+   "limitations": "与动力学参数预测直接相关。收益依赖足够标签量和特征空间数据密度，增加无标签样本会饱和，目标家族和突变排序仍需独立验证。",
+   "scope": "bioRxiv官方摘要",
+   "source": "https://doi.org/10.64898/2026.10.15.759462"
+  },
+  "source_url": "https://doi.org/10.64898/2026.10.15.759462"
  },
  {
   "week": "2026-10-26",
   "id": "10.1016/j.xplc.2026.102161（PMID 42920296）",
   "title": "Salicortin 途径解析（Plant Commun. online 10-23）",
   "date": "2026-10-26",
-  "disp": "可读；摘要级；PtUGT71L1 次序参照",
+  "disp": "补齐salicortin途径中的氧化/还原酶学环节，把候选关联推进到异源重构和连续反应解释。",
   "cat": "可读",
   "dirs": [
    "通路组装与产量",
@@ -710,14 +881,23 @@
   "meths": [
    "实验表征"
   ],
-  "detail": "内容：Salicortin 生物合成途径解析，其中 PtUGT71L1 的糖基化次序可作为参照。摘要级。"
+  "detail": "论文题名\nElucidation and reconstitution of the poplar salicortin biosynthetic pathway\n\n主要内容\n通过黑棉木根代谢组和转录组识别CYP92与PRISE候选，与已知糖基转移酶PtUGT71L1等基因共同在烟草中重构salicortin。进一步解析邻位羟化、氧化去芳构化和1,4还原步骤。\n\n创新点\n补齐salicortin途径中的氧化/还原酶学环节，把候选关联推进到异源重构和连续反应解释。\n\n价值与局限\n可作为天然产物途径解析案例。摘要所示UGT为既有酶，反应次序和底物优选若用于筛酶仍需原始生化数据。\n\n证据依据\nPubMed官方摘要",
+  "review": {
+   "title": "Elucidation and reconstitution of the poplar salicortin biosynthetic pathway",
+   "content": "通过黑棉木根代谢组和转录组识别CYP92与PRISE候选，与已知糖基转移酶PtUGT71L1等基因共同在烟草中重构salicortin。进一步解析邻位羟化、氧化去芳构化和1,4还原步骤。",
+   "innovation": "补齐salicortin途径中的氧化/还原酶学环节，把候选关联推进到异源重构和连续反应解释。",
+   "limitations": "可作为天然产物途径解析案例。摘要所示UGT为既有酶，反应次序和底物优选若用于筛酶仍需原始生化数据。",
+   "scope": "PubMed官方摘要",
+   "source": "https://pubmed.ncbi.nlm.nih.gov/42920296/"
+  },
+  "source_url": "https://pubmed.ncbi.nlm.nih.gov/42920296/"
  },
  {
   "week": "2026-10-26",
   "id": "10.1002/anie.3845288",
   "title": "P450BM3 表面 hole-trap 工程（Angew，Crossref published 10-24）",
   "date": "2026-10-26",
-  "disp": "可读；摘要级；理性设计无 ML；M8 TON/半衰期提升",
+  "disp": "通过表面氧化还原保护位点分散非生产性氧化损伤，把远端保护网络作为工程目标。",
   "cat": "可读",
   "dirs": [
    "活性与动力学",
@@ -726,14 +906,23 @@
   "meths": [
    "理性与半理性设计"
   ],
-  "detail": "内容：P450BM3 表面空穴陷阱（hole-trap）的理性工程，不涉及机器学习；M8 变体的总转化数与半衰期均有提升。摘要级。"
+  "detail": "论文题名\nEngineering of Redox‐Active Residues Enhances P450 Peroxygenase Performance\n\n主要内容\n在P450BM3 F87A表面引入氧化还原活性的Tyr/Trp，构建辅助空穴陷阱。最优M8在多种过氧化物驱动羟化反应中改善总转化数和耐久性，并在CYP199A4变体中扩展验证。\n\n创新点\n通过表面氧化还原保护位点分散非生产性氧化损伤，把远端保护网络作为工程目标。\n\n价值与局限\n适合氧化酶稳定性和鲁棒性工程。改善指标包括TON和半衰期，其与本征kcat及特定底物活性需分别解读。\n\n证据依据\nCrossref官方题录与出版社摘要",
+  "review": {
+   "title": "Engineering of Redox‐Active Residues Enhances P450 Peroxygenase Performance",
+   "content": "在P450BM3 F87A表面引入氧化还原活性的Tyr/Trp，构建辅助空穴陷阱。最优M8在多种过氧化物驱动羟化反应中改善总转化数和耐久性，并在CYP199A4变体中扩展验证。",
+   "innovation": "通过表面氧化还原保护位点分散非生产性氧化损伤，把远端保护网络作为工程目标。",
+   "limitations": "适合氧化酶稳定性和鲁棒性工程。改善指标包括TON和半衰期，其与本征kcat及特定底物活性需分别解读。",
+   "scope": "Crossref官方题录与出版社摘要",
+   "source": "https://doi.org/10.1002/anie.3845288"
+  },
+  "source_url": "https://doi.org/10.1002/anie.3845288"
  },
  {
   "week": "2026-10-26",
   "id": "10.1021/jacs.6c14337",
   "title": "光生物催化 PLP 立体发散 ncAA 合成（JACS，Crossref published 10-22）",
   "date": "2026-10-26",
-  "disp": "可读；摘要级；定向进化+光催化，非 ML",
+  "disp": "通过互补PLP酶变体控制非环状多立体中心阵列，结合MD解释活性位点重塑对自由基加成面的影响。",
   "cat": "可读",
   "dirs": [
    "选择性与特异性"
@@ -741,129 +930,144 @@
   "meths": [
    "定向进化与筛选"
   ],
-  "detail": "内容：光生物催化加 PLP 酶实现立体发散的非天然氨基酸合成；定向进化加光催化，不涉及机器学习。摘要级。"
- },
- {
-  "week": "2026-10-26",
-  "id": "10.64898/2026.10.24.761505",
-  "title": "gmx_MMPBSA end-state 结合自由能扩展（bioRxiv posted 10-24）",
-  "date": "2026-10-26",
-  "disp": "观察；binding 工具，非催化势垒，不计精选",
-  "cat": "观察",
-  "dirs": [
-   "底物结合与口袋"
-  ],
-  "meths": [
-   "物理模拟",
-   "数据库与工具"
-  ],
-  "detail": "内容：gmx_MMPBSA 的端态结合自由能扩展。属于结合（binding）工具而非催化势垒计算，按筛选原则不计入精选。"
+  "detail": "论文题名\nPhotobiocatalytic Diastereo- and Enantioselective Synthesis of Noncanonical Amino Acids Bearing Challenging Stereochemical Dyads and Triads\n\n主要内容\n以嗜热TrpB为起点进行定向进化，控制光生物催化自由基C–C偶联的远端与近端立体选择性，生成带双/三立体中心的非天然氨基酸，并与脱羧酶串联制备手性胺。\n\n创新点\n通过互补PLP酶变体控制非环状多立体中心阵列，结合MD解释活性位点重塑对自由基加成面的影响。\n\n价值与局限\n是立体发散酶工程案例。选择性表现依赖所测自由基供体、光化学和底物组合，迁移到新酶需重测。\n\n证据依据\nCrossref官方题录与出版社摘要",
+  "review": {
+   "title": "Photobiocatalytic Diastereo- and Enantioselective Synthesis of Noncanonical Amino Acids Bearing Challenging Stereochemical Dyads and Triads",
+   "content": "以嗜热TrpB为起点进行定向进化，控制光生物催化自由基C–C偶联的远端与近端立体选择性，生成带双/三立体中心的非天然氨基酸，并与脱羧酶串联制备手性胺。",
+   "innovation": "通过互补PLP酶变体控制非环状多立体中心阵列，结合MD解释活性位点重塑对自由基加成面的影响。",
+   "limitations": "是立体发散酶工程案例。选择性表现依赖所测自由基供体、光化学和底物组合，迁移到新酶需重测。",
+   "scope": "Crossref官方题录与出版社摘要",
+   "source": "https://doi.org/10.1021/jacs.6c14337"
+  },
+  "source_url": "https://doi.org/10.1021/jacs.6c14337"
  },
  {
   "week": "2026-10-19",
   "id": "10.1038/s41467-026-78636-0",
   "title": "Enhancing ω-transaminase catalysis…（期刊10-14）",
   "date": "2026-10-19",
-  "disp": "必读；摘要级，106× activity非已核kcat；更早沿革未检出",
+  "disp": "把底物结合路径瓶颈与远端调控位点分析接入实验酶工程。",
   "cat": "必读",
   "dirs": [
    "活性与动力学"
   ],
   "meths": [
    "实验表征"
-  ]
+  ],
+  "review": {
+   "title": "Enhancing ω-transaminase catalysis of bulky substrates guided by binding mechanism",
+   "content": "以 Funnel metadynamics、PathDetect-SOM 和路径变量描绘 B. megaterium ω-转氨酶结合大体积 ABP 前体的自由能面，再以网络分析寻找远端位点。迭代优化变体 13M 报告活性为 WT 的 106 倍、ee>99%。",
+   "innovation": "把底物结合路径瓶颈与远端调控位点分析接入实验酶工程。",
+   "limitations": "摘要覆盖单一酶-底物组合，不能推定对其他酶的可迁移性。",
+   "scope": "Nature Communications 摘要",
+   "source": "https://www.nature.com/articles/s41467-026-78636-0"
+  },
+  "source_url": "https://www.nature.com/articles/s41467-026-78636-0",
+  "detail": "论文题名\nEnhancing ω-transaminase catalysis of bulky substrates guided by binding mechanism\n\n主要内容\n以 Funnel metadynamics、PathDetect-SOM 和路径变量描绘 B. megaterium ω-转氨酶结合大体积 ABP 前体的自由能面，再以网络分析寻找远端位点。迭代优化变体 13M 报告活性为 WT 的 106 倍、ee>99%。\n\n创新点\n把底物结合路径瓶颈与远端调控位点分析接入实验酶工程。\n\n价值与局限\n摘要覆盖单一酶-底物组合，不能推定对其他酶的可迁移性。\n\n证据依据\nNature Communications 摘要"
  },
  {
   "week": "2026-10-19",
   "id": "10.1021/acs.biomac.6c01393",
   "title": "SeqSol-FECS（online10-03）",
   "date": "2026-10-19",
-  "disp": "必读；表达救援候选，split/资源/UGT迁移待核",
+  "disp": "将序列单突变排序与结构/进化筛位结合以减小活性损失风险。",
   "cat": "必读",
   "dirs": [
    "溶解度与表达"
   ],
   "meths": [
    "AI/ML 模型"
-  ]
+  ],
+  "review": {
+   "title": "SeqSol-FECS: An Integrated Deep Learning and Structural Modeling Framework for Protein Solubility Engineering",
+   "content": "SeqSol 用 71,425 条序列训练，独立测试准确率 75.8%、AUC 0.840；FECS 依据柔性、可及性和保守性挑选位点。30 个实验突变用于两种工业酶，溶解比例从 56.18% 和 10.53% 提升至均超过 95%，并报告比活性维持。",
+   "innovation": "将序列单突变排序与结构/进化筛位结合以减小活性损失风险。",
+   "limitations": "实验仅覆盖两种酶、30 个突变和该表达背景。",
+   "scope": "ACS Biomacromolecules 摘要",
+   "source": "https://pubs.acs.org/doi/10.1021/acs.biomac.6c01393"
+  },
+  "source_url": "https://pubs.acs.org/doi/10.1021/acs.biomac.6c01393",
+  "detail": "论文题名\nSeqSol-FECS: An Integrated Deep Learning and Structural Modeling Framework for Protein Solubility Engineering\n\n主要内容\nSeqSol 用 71,425 条序列训练，独立测试准确率 75.8%、AUC 0.840；FECS 依据柔性、可及性和保守性挑选位点。30 个实验突变用于两种工业酶，溶解比例从 56.18% 和 10.53% 提升至均超过 95%，并报告比活性维持。\n\n创新点\n将序列单突变排序与结构/进化筛位结合以减小活性损失风险。\n\n价值与局限\n实验仅覆盖两种酶、30 个突变和该表达背景。\n\n证据依据\nACS Biomacromolecules 摘要"
  },
  {
   "week": "2026-10-19",
   "id": "10.64898/2026.10.06.756934",
   "title": "Generalizing Protein Fitness…（posted10-07）",
   "date": "2026-10-19",
-  "disp": "可读；新位点/新骨架评测，非催化活性模型",
+  "disp": "按分布偏移类型分析结构与共进化特征的贡献。",
   "cat": "可读",
   "dirs": [
    "基准与方法学"
   ],
   "meths": [
    "AI/ML 模型"
-  ]
- },
- {
-  "week": "2026-10-19",
-  "id": "arXiv:2610.18481",
-  "title": "ProTok（submitted10-13）",
-  "date": "2026-10-19",
-  "disp": "观察；tokenizer而非activity模型",
-  "cat": "观察",
-  "dirs": [
-   "基准与方法学"
   ],
-  "meths": [
-   "AI/ML 模型"
-  ]
- },
- {
-  "week": "2026-10-19",
-  "id": "arXiv:2610.16980",
-  "title": "PRAISE（submitted10-12）",
-  "date": "2026-10-19",
-  "disp": "工作流观察；不计4项精选，不作性能升级",
-  "cat": "其他",
-  "dirs": [
-   "基准与方法学"
-  ],
-  "meths": [
-   "AI/ML 模型"
-  ]
+  "review": {
+   "title": "Generalizing Protein Fitness Prediction Across Distribution Shifts via Structural and Co-evolutionary Priors",
+   "content": "组合结构感知蛋白语言模型表示与 AlphaFold 风格 trunk 从序列/MSA 提取的特征，用轻量探针预测适应度。作者称 FLIP2 分布偏移任务上优于先前分数；结构先验对留出骨架收益最大，trunk 特征对留出位点有用。",
+   "innovation": "按分布偏移类型分析结构与共进化特征的贡献。",
+   "limitations": "未同行评审；适应度预测不是催化活性或动力学专用模型。",
+   "scope": "bioRxiv 摘要",
+   "source": "https://www.biorxiv.org/content/10.64898/2026.10.06.756934v1"
+  },
+  "source_url": "https://www.biorxiv.org/content/10.64898/2026.10.06.756934v1",
+  "detail": "论文题名\nGeneralizing Protein Fitness Prediction Across Distribution Shifts via Structural and Co-evolutionary Priors\n\n主要内容\n组合结构感知蛋白语言模型表示与 AlphaFold 风格 trunk 从序列/MSA 提取的特征，用轻量探针预测适应度。作者称 FLIP2 分布偏移任务上优于先前分数；结构先验对留出骨架收益最大，trunk 特征对留出位点有用。\n\n创新点\n按分布偏移类型分析结构与共进化特征的贡献。\n\n价值与局限\n未同行评审；适应度预测不是催化活性或动力学专用模型。\n\n证据依据\nbioRxiv 摘要"
  },
  {
   "week": "2026-10-19",
   "id": "10.1101/2025.11.21.689808 / 10.1038/s41586-026-11143-w",
   "title": "De novo cysteine proteases（期刊10-14，旧预印本）",
   "date": "2026-10-19",
-  "disp": "历史补课；09-21v3为小修，无确认实质更新",
-  "cat": "历史补课",
+  "disp": "将从头酶设计用于高能垒肽键水解，并以晶体结构检验设计精度。",
+  "cat": "可读",
   "dirs": [
    "新酶与新功能设计"
   ],
   "meths": [
    "AI/ML 模型",
    "实验表征"
-  ]
+  ],
+  "review": {
+   "title": "De novo design of cysteine proteases",
+   "content": "用 RFD2-MI 等方法从头设计可序列依赖水解多肽主链的半胱氨酸蛋白酶；成功率 13/69，最高 kcat/kuncat 为 3×10^7。6 个晶体结构与模型 Cα RMSD<1.2 Å，设计折叠 TM score<0.50，且报告能在哺乳动物细胞切割靶标。",
+   "innovation": "将从头酶设计用于高能垒肽键水解，并以晶体结构检验设计精度。",
+   "limitations": "作者指出相较天然蛋白酶仍有活性差距，涉及活性位点预组织和底物定位。",
+   "scope": "Nature 元数据及 ETH 作者机构库摘要",
+   "source": "https://www.nature.com/articles/s41586-026-11143-w"
+  },
+  "source_url": "https://www.nature.com/articles/s41586-026-11143-w",
+  "detail": "论文题名\nDe novo design of cysteine proteases\n\n主要内容\n用 RFD2-MI 等方法从头设计可序列依赖水解多肽主链的半胱氨酸蛋白酶；成功率 13/69，最高 kcat/kuncat 为 3×10^7。6 个晶体结构与模型 Cα RMSD<1.2 Å，设计折叠 TM score<0.50，且报告能在哺乳动物细胞切割靶标。\n\n创新点\n将从头酶设计用于高能垒肽键水解，并以晶体结构检验设计精度。\n\n价值与局限\n作者指出相较天然蛋白酶仍有活性差距，涉及活性位点预组织和底物定位。\n\n证据依据\nNature 元数据及 ETH 作者机构库摘要"
  },
  {
   "week": "2026-10-19",
   "id": "10.1016/j.biortech.2026.135025",
   "title": "Gln:Ser动态控制Trp（article date05-30，10月卷期）",
   "date": "2026-10-19",
-  "disp": "历史补课；非10月新稿，不跨底盘套5:4",
+  "disp": "动态同步调节两种前体供给，而非只用固定表达水平。",
   "cat": "历史补课",
   "dirs": [
    "通路组装与产量"
   ],
   "meths": [
    "实验表征"
-  ]
+  ],
+  "review": {
+   "title": "Efficient production of l-tryptophan by dynamic regulation of the intracellular l-Gln:l-Ser ratio in Escherichia coli",
+   "content": "胞内 Gln:Ser 比控制在 5:4 时，色氨酸滴度提高 18.6%。作者以 Gln 响应抑制子 GINLB 与 RNAi 构成 RNAi-SG，报告抑制增强 43.3%、发酵 6–42 h 维持约 5:4；菌株 52 h 达 68.2 g/L、0.260 g/g。",
+   "innovation": "动态同步调节两种前体供给，而非只用固定表达水平。",
+   "limitations": "基于特定 E. coli 色氨酸菌株与发酵条件，比例不可直接外推。",
+   "scope": "PubMed 期刊摘要",
+   "source": "https://pubmed.ncbi.nlm.nih.gov/42217805/"
+  },
+  "source_url": "https://pubmed.ncbi.nlm.nih.gov/42217805/",
+  "detail": "论文题名\nEfficient production of l-tryptophan by dynamic regulation of the intracellular l-Gln:l-Ser ratio in Escherichia coli\n\n主要内容\n胞内 Gln:Ser 比控制在 5:4 时，色氨酸滴度提高 18.6%。作者以 Gln 响应抑制子 GINLB 与 RNAi 构成 RNAi-SG，报告抑制增强 43.3%、发酵 6–42 h 维持约 5:4；菌株 52 h 达 68.2 g/L、0.260 g/g。\n\n创新点\n动态同步调节两种前体供给，而非只用固定表达水平。\n\n价值与局限\n基于特定 E. coli 色氨酸菌株与发酵条件，比例不可直接外推。\n\n证据依据\nPubMed 期刊摘要"
  },
  {
   "week": "2026-09-30",
   "id": "10.64898/2026.09.25.751968",
   "title": "OpenKinetics Predictor（bioRxiv 09-28）",
   "date": "2026-09-30",
-  "disp": "必读（合并稿 Top 5 候选）",
+  "disp": "统一方法调用、数据门户与 API，并把训练数据相似性作为上下文。",
   "cat": "必读",
   "dirs": [
    "活性与动力学",
@@ -872,42 +1076,72 @@
   "meths": [
    "AI/ML 模型",
    "数据库与工具"
-  ]
+  ],
+  "review": {
+   "title": "Accessing Enzyme Kinetic Data and Prediction Methods at Scale",
+   "content": "OpenKinetics Predictor 统一接入 13 种动力学参数预测方法，并报告查询与模型训练数据相似性；配套 CatLog 数据门户提供整理数据、预计算特征、结合位点和标准拆分。E. coli 模型案例显示预测器一致性随代谢背景和数据量变化。",
+   "innovation": "统一方法调用、数据门户与 API，并把训练数据相似性作为上下文。",
+   "limitations": "预印本；预测器之间存在分歧，平台可访问不代表目标任务上结果一致。",
+   "scope": "bioRxiv summary/摘要",
+   "source": "https://www.biorxiv.org/content/10.64898/2026.09.25.751968v1"
+  },
+  "source_url": "https://www.biorxiv.org/content/10.64898/2026.09.25.751968v1",
+  "detail": "论文题名\nAccessing Enzyme Kinetic Data and Prediction Methods at Scale\n\n主要内容\nOpenKinetics Predictor 统一接入 13 种动力学参数预测方法，并报告查询与模型训练数据相似性；配套 CatLog 数据门户提供整理数据、预计算特征、结合位点和标准拆分。E. coli 模型案例显示预测器一致性随代谢背景和数据量变化。\n\n创新点\n统一方法调用、数据门户与 API，并把训练数据相似性作为上下文。\n\n价值与局限\n预印本；预测器之间存在分歧，平台可访问不代表目标任务上结果一致。\n\n证据依据\nbioRxiv summary/摘要"
  },
  {
   "week": "2026-09-30",
   "id": "arXiv:2609.09293",
   "title": "eSEN-omol 整酶 MLIP 反应自由能（v2 09-16）",
   "date": "2026-09-30",
-  "disp": "必读（验证队列）",
+  "disp": "以预训练机器学习势处理完整酶反应体系以减少专门 QM/MM 设置。",
   "cat": "必读",
   "dirs": [
    "活性与动力学"
   ],
   "meths": [
    "物理模拟"
-  ]
+  ],
+  "review": {
+   "title": "Quantum-accurate atomistic modeling of enzyme catalysis using a machine learned potential",
+   "content": "eSEN-omol 用于显式溶剂完整酶体系，报告最高约 54,000 原子及累计 1 μs 模拟；案例包括 chorismate mutase 势垒趋势、PETase 中间态及 NDP kinase 机制，摘要称相对常规 QM/MM 最高约 1000 倍加速。",
+   "innovation": "以预训练机器学习势处理完整酶反应体系以减少专门 QM/MM 设置。",
+   "limitations": "预印本且只列三个反应案例，不证明所有酶/反应均达相同精度。",
+   "scope": "arXiv v2官方摘要（v1/v2摘要核对一致）",
+   "source": "https://arxiv.org/abs/2609.09293v2"
+  },
+  "source_url": "https://arxiv.org/abs/2609.09293v2",
+  "detail": "论文题名\nQuantum-accurate atomistic modeling of enzyme catalysis using a machine learned potential\n\n主要内容\neSEN-omol 用于显式溶剂完整酶体系，报告最高约 54,000 原子及累计 1 μs 模拟；案例包括 chorismate mutase 势垒趋势、PETase 中间态及 NDP kinase 机制，摘要称相对常规 QM/MM 最高约 1000 倍加速。\n\n创新点\n以预训练机器学习势处理完整酶反应体系以减少专门 QM/MM 设置。\n\n价值与局限\n预印本且只列三个反应案例，不证明所有酶/反应均达相同精度。\n\n证据依据\narXiv v2官方摘要（v1/v2摘要核对一致）"
  },
  {
   "week": "2026-09-30",
   "id": "10.26434/chemrxiv.15005529",
   "title": "Sun/Li/Cui/Xie 机械嵌入 ML/MM 突变效应（JCTC 2026-08）",
   "date": "2026-09-30",
-  "disp": "必读（注意极性突变低估边界）",
+  "disp": "对机械嵌入 ML/MM 进行突变效应实验对照并使用瞬时几何电荷。",
   "cat": "必读",
   "dirs": [
    "活性与动力学"
   ],
   "meths": [
    "物理模拟"
-  ]
+  ],
+  "review": {
+   "title": "Evaluating Mechanical-Embedding ML/MM for Predicting Mutation Effects in Chorismate Mutase Catalysis",
+   "content": "用主动学习 ML 势描述 QM 区域、几何依赖电荷处理静电并结合 umbrella sampling 估计 chorismate mutase 突变效应。对非极性突变在小于 1 kcal/mol 的范围内有定量表现，但显著低估极性突变活化自由能。",
+   "innovation": "对机械嵌入 ML/MM 进行突变效应实验对照并使用瞬时几何电荷。",
+   "limitations": "极性突变是明确误差边界，验证限定该酶的突变集。",
+   "scope": "ACS JCTC 正式摘要",
+   "source": "https://pubs.acs.org/doi/10.1021/acs.jctc.6c00761"
+  },
+  "source_url": "https://pubs.acs.org/doi/10.1021/acs.jctc.6c00761",
+  "detail": "论文题名\nEvaluating Mechanical-Embedding ML/MM for Predicting Mutation Effects in Chorismate Mutase Catalysis\n\n主要内容\n用主动学习 ML 势描述 QM 区域、几何依赖电荷处理静电并结合 umbrella sampling 估计 chorismate mutase 突变效应。对非极性突变在小于 1 kcal/mol 的范围内有定量表现，但显著低估极性突变活化自由能。\n\n创新点\n对机械嵌入 ML/MM 进行突变效应实验对照并使用瞬时几何电荷。\n\n价值与局限\n极性突变是明确误差边界，验证限定该酶的突变集。\n\n证据依据\nACS JCTC 正式摘要"
  },
  {
   "week": "2026-09-30",
   "id": "10.1016/j.ymben.2026.102547",
   "title": "Jiang 等 L-Trp 基因组规模过表达筛选（Metab. Eng. 09-04）",
   "date": "2026-09-30",
-  "disp": "必读",
+  "disp": "把产物耐受与外排和前体供给工程结合用于高滴度生产。",
   "cat": "必读",
   "dirs": [
    "通路组装与产量",
@@ -916,28 +1150,48 @@
   "meths": [
    "定向进化与筛选",
    "实验表征"
-  ]
+  ],
+  "review": {
+   "title": "Genome-scale overexpression screening identifies product tolerance and efflux transport as key determinants of high-level L-tryptophan production in Escherichia coli",
+   "content": "靛蓝报告系统结合全基因组过表达筛选发现 SoxS；其上调 lpxC、增强脂多糖合成和色氨酸耐受。另鉴定 YicL 促进外排。优化株在 5 L 达 74.3 g/L；1,000 L 报告 70.4 g/L、0.25 g/g、1.17 g/L/h。",
+   "innovation": "把产物耐受与外排和前体供给工程结合用于高滴度生产。",
+   "limitations": "结果限于 E. coli 色氨酸生产体系，不能直接推为其他宿主/产品规律。",
+   "scope": "Elsevier 摘要/要点及 PubMed 记录",
+   "source": "https://www.sciencedirect.com/science/article/abs/pii/S1096717626001424"
+  },
+  "source_url": "https://www.sciencedirect.com/science/article/abs/pii/S1096717626001424",
+  "detail": "论文题名\nGenome-scale overexpression screening identifies product tolerance and efflux transport as key determinants of high-level L-tryptophan production in Escherichia coli\n\n主要内容\n靛蓝报告系统结合全基因组过表达筛选发现 SoxS；其上调 lpxC、增强脂多糖合成和色氨酸耐受。另鉴定 YicL 促进外排。优化株在 5 L 达 74.3 g/L；1,000 L 报告 70.4 g/L、0.25 g/g、1.17 g/L/h。\n\n创新点\n把产物耐受与外排和前体供给工程结合用于高滴度生产。\n\n价值与局限\n结果限于 E. coli 色氨酸生产体系，不能直接推为其他宿主/产品规律。\n\n证据依据\nElsevier 摘要/要点及 PubMed 记录"
  },
  {
   "week": "2026-09-30",
   "id": "10.64898/2026.09.11.750617",
   "title": "Multistate Enzyme Design（bioRxiv 09-14）",
   "date": "2026-09-30",
-  "disp": "必读",
+  "disp": "以多个反应状态共同优化动态活性位点，而非只设计单一静态过渡态。",
   "cat": "必读",
   "dirs": [
    "新酶与新功能设计"
   ],
   "meths": [
    "AI/ML 模型"
-  ]
+  ],
+  "review": {
+   "title": "Multistate Enzyme Design Enables Efficient and Stereoselective Multistep Catalysis",
+   "content": "多状态设计用构象集合优化全反应坐标，应用于从头 Morita–Baylis–Hillmanase。摘要报告最活跃变体双底物催化效率较单状态设计高逾百倍，且效率与对映选择性超过经定向进化优化的酶。",
+   "innovation": "以多个反应状态共同优化动态活性位点，而非只设计单一静态过渡态。",
+   "limitations": "预印本；实验例仅一个多步反应酶。",
+   "scope": "PubMed bioRxiv 摘要",
+   "source": "https://pubmed.ncbi.nlm.nih.gov/42779606/"
+  },
+  "source_url": "https://pubmed.ncbi.nlm.nih.gov/42779606/",
+  "detail": "论文题名\nMultistate Enzyme Design Enables Efficient and Stereoselective Multistep Catalysis\n\n主要内容\n多状态设计用构象集合优化全反应坐标，应用于从头 Morita–Baylis–Hillmanase。摘要报告最活跃变体双底物催化效率较单状态设计高逾百倍，且效率与对映选择性超过经定向进化优化的酶。\n\n创新点\n以多个反应状态共同优化动态活性位点，而非只设计单一静态过渡态。\n\n价值与局限\n预印本；实验例仅一个多步反应酶。\n\n证据依据\nPubMed bioRxiv 摘要"
  },
  {
   "week": "2026-09-30",
   "id": "10.1021/acssuschemeng.6c03808",
   "title": "MPNN-Guided PET Hydrolase Redesign（ACS Sustain. 09-14）",
   "date": "2026-09-30",
-  "disp": "必读",
+  "disp": "联合 ProteinMPNN、LigandMPNN、结构及进化信息设计低温 PET 水解酶。",
   "cat": "必读",
   "dirs": [
    "活性与动力学"
@@ -945,14 +1199,24 @@
   "meths": [
    "AI/ML 模型",
    "实验表征"
-  ]
+  ],
+  "review": {
+   "title": "MPNN-Guided Redesign of PET Hydrolases with Enhanced Catalytic Activity below the PET Glass Transition Temperature",
+   "content": "36 个 PHL7 设计中 31 个可溶纯化产量高于亲本，但仅 D5、D11 初筛保留相近 PET 水解活性。二者在 50°C 的解聚效果可比亲本 70°C，产品更偏 MHET；二者在 70°C 缺乏活性。",
+   "innovation": "联合 ProteinMPNN、LigandMPNN、结构及进化信息设计低温 PET 水解酶。",
+   "limitations": "只有 2/36 设计保留相当活性；伴随热稳定性下降，未在工业宿主或反应器中验证。",
+   "scope": "ACS 正式摘要和讨论",
+   "source": "https://pubs.acs.org/doi/10.1021/acssuschemeng.6c03808"
+  },
+  "source_url": "https://pubs.acs.org/doi/10.1021/acssuschemeng.6c03808",
+  "detail": "论文题名\nMPNN-Guided Redesign of PET Hydrolases with Enhanced Catalytic Activity below the PET Glass Transition Temperature\n\n主要内容\n36 个 PHL7 设计中 31 个可溶纯化产量高于亲本，但仅 D5、D11 初筛保留相近 PET 水解活性。二者在 50°C 的解聚效果可比亲本 70°C，产品更偏 MHET；二者在 70°C 缺乏活性。\n\n创新点\n联合 ProteinMPNN、LigandMPNN、结构及进化信息设计低温 PET 水解酶。\n\n价值与局限\n只有 2/36 设计保留相当活性；伴随热稳定性下降，未在工业宿主或反应器中验证。\n\n证据依据\nACS 正式摘要和讨论"
  },
  {
   "week": "2026-09-30",
   "id": "10.64898/2026.09.09.750330",
   "title": "Kemp eliminase 集合 QM/MM（bioRxiv 09-11）",
   "date": "2026-09-30",
-  "disp": "必读",
+  "disp": "将进化效果联系到地面态构象集合对过渡态的预组织。",
   "cat": "必读",
   "dirs": [
    "活性与动力学",
@@ -960,28 +1224,24 @@
   ],
   "meths": [
    "物理模拟"
-  ]
- },
- {
-  "week": "2026-09-30",
-  "id": "preprints.org 202609.1302",
-  "title": "EraGene（Preprints.org 09-16）",
-  "date": "2026-09-30",
-  "disp": "必读（只读核查）",
-  "cat": "必读",
-  "dirs": [
-   "通路组装与产量"
   ],
-  "meths": [
-   "数据库与工具"
-  ]
+  "review": {
+   "title": "Evolution promotes transition-state-like conformations with enhanced basicity and electric fields in the substrate complex of a designer enzyme",
+   "content": "比较设计及进化 Kemp eliminase 的地面态、过渡态构象集合，结合 MD 与 QM/MM。模拟支持进化在地面态富集反应性类过渡态构象，减少到过渡态所需重组；该态伴随催化碱去溶剂化及有序电场。",
+   "innovation": "将进化效果联系到地面态构象集合对过渡态的预组织。",
+   "limitations": "单个 Kemp eliminase 的计算机理分析，预印本未同行评审。",
+   "scope": "bioRxiv 摘要/讨论",
+   "source": "https://www.biorxiv.org/content/10.64898/2026.09.09.750330v1.full"
+  },
+  "source_url": "https://www.biorxiv.org/content/10.64898/2026.09.09.750330v1.full",
+  "detail": "论文题名\nEvolution promotes transition-state-like conformations with enhanced basicity and electric fields in the substrate complex of a designer enzyme\n\n主要内容\n比较设计及进化 Kemp eliminase 的地面态、过渡态构象集合，结合 MD 与 QM/MM。模拟支持进化在地面态富集反应性类过渡态构象，减少到过渡态所需重组；该态伴随催化碱去溶剂化及有序电场。\n\n创新点\n将进化效果联系到地面态构象集合对过渡态的预组织。\n\n价值与局限\n单个 Kemp eliminase 的计算机理分析，预印本未同行评审。\n\n证据依据\nbioRxiv 摘要/讨论"
  },
  {
   "week": "2026-09-30",
   "id": "10.1038/s41467-026-74506-x",
   "title": "Zhang 等 UGT ProteinMPNN 重设计（Nat. Commun. 06-17）",
   "date": "2026-09-30",
-  "disp": "历史补课·必读",
+  "disp": "用结构与进化约束执行广泛序列重设计，并实验测量表达与产物。",
   "cat": "历史补课",
   "dirs": [
    "溶解度与表达"
@@ -989,73 +1249,50 @@
   "meths": [
    "AI/ML 模型",
    "实验表征"
-  ]
+  ],
+  "review": {
+   "title": "Sequence redesign of glycosyltransferases for enhanced heterologous expression and glycosylation efficiency in Escherichia coli",
+   "content": "固定糖基转移酶结合口袋 8 Å 内及保守位点后重设计 TOGT 与 UGT84A56。TOGT 的 10 个设计均提高全细胞滴度，可溶表达提高 2.3–6.4 倍、催化效率提高 1.8–11.8 倍；UGT84A56 有 2/10 设计改善。发酵达 2.11 g/L cichoriin 和 4.05 g/L aesculin。",
+   "innovation": "用结构与进化约束执行广泛序列重设计，并实验测量表达与产物。",
+   "limitations": "仅两种植物酶、E. coli 及特定糖基化反应；两酶的命中率不同。",
+   "scope": "Nature Communications 正式摘要/全文",
+   "source": "https://www.nature.com/articles/s41467-026-74506-x"
+  },
+  "source_url": "https://www.nature.com/articles/s41467-026-74506-x",
+  "detail": "论文题名\nSequence redesign of glycosyltransferases for enhanced heterologous expression and glycosylation efficiency in Escherichia coli\n\n主要内容\n固定糖基转移酶结合口袋 8 Å 内及保守位点后重设计 TOGT 与 UGT84A56。TOGT 的 10 个设计均提高全细胞滴度，可溶表达提高 2.3–6.4 倍、催化效率提高 1.8–11.8 倍；UGT84A56 有 2/10 设计改善。发酵达 2.11 g/L cichoriin 和 4.05 g/L aesculin。\n\n创新点\n用结构与进化约束执行广泛序列重设计，并实验测量表达与产物。\n\n价值与局限\n仅两种植物酶、E. coli 及特定糖基化反应；两酶的命中率不同。\n\n证据依据\nNature Communications 正式摘要/全文"
  },
  {
   "week": "2026-09-30",
   "id": "rs-10471634（Research Square）",
   "title": "溶解度预测器独立评测（07-28 预印本）",
   "date": "2026-09-30",
-  "disp": "历史补课·必读",
-  "cat": "历史补课",
+  "disp": "在不同表达分布上比较预测器，并逐模型核查与训练数据近重复。",
+  "cat": "观察",
   "dirs": [
    "溶解度与表达",
    "基准与方法学"
   ],
   "meths": [
    "综述与批评"
-  ]
- },
- {
-  "week": "2026-09-30",
-  "id": "ChemRxiv 2026-08-07（DOI 未逐项确认）",
-  "title": "Lepikhov & Nunes-Alves co-folding 酶-底物评测",
-  "date": "2026-09-30",
-  "disp": "历史补课·必读",
-  "cat": "历史补课",
-  "dirs": [
-   "底物结合与口袋",
-   "基准与方法学"
   ],
-  "meths": [
-   "AI/ML 模型"
-  ]
- },
- {
-  "week": "2026-09-30",
-  "id": "anthropic.com 技术报告（09-21）",
-  "title": "Claude 加速开源生物分子模型（14 结构模型）",
-  "date": "2026-09-30",
-  "disp": "可读（基础设施）",
-  "cat": "可读",
-  "dirs": [
-   "基准与方法学"
-  ],
-  "meths": [
-   "AI/ML 模型"
-  ]
- },
- {
-  "week": "2026-09-30",
-  "id": "arXiv:2609.34001",
-  "title": "Assay-Aware BindingDB（09-27）",
-  "date": "2026-09-30",
-  "disp": "可读",
-  "cat": "可读",
-  "dirs": [
-   "底物结合与口袋",
-   "基准与方法学"
-  ],
-  "meths": [
-   "数据库与工具"
-  ]
+  "review": {
+   "title": "Published benchmark AUROC does not predict generalisation: an independent evaluation of protein solubility predictors on native and heterologous E. coli proteins",
+   "content": "作者仓库报告在两个 E. coli 数据集比较深度模型和简单基线并过滤训练集近重复。eSOL 上 NetSolP AUROC 0.792、SWI 0.745、朴素基线 0.725、RP3Net 0.709；异源 SoluProt 上 NetSolP 0.633、RP3Net 0.619、SWI 0.598、朴素基线 0.581。PLM_Sol 用不同样本量，作者说明不宜直接比较。",
+   "innovation": "在不同表达分布上比较预测器，并逐模型核查与训练数据近重复。",
+   "limitations": "仅两种 E. coli 数据集；作者报告异源集区分度整体低。仅读作者 README，尚未逐表复核论文原文。",
+   "scope": "作者公开仓库 README；Research Square 原文未读取",
+   "source": "https://github.com/Jakobus-svg/tiger-solubility-benchmark"
+  },
+  "source_url": "https://github.com/Jakobus-svg/tiger-solubility-benchmark",
+  "detail": "论文题名\nPublished benchmark AUROC does not predict generalisation: an independent evaluation of protein solubility predictors on native and heterologous E. coli proteins\n\n主要内容\n作者仓库报告在两个 E. coli 数据集比较深度模型和简单基线并过滤训练集近重复。eSOL 上 NetSolP AUROC 0.792、SWI 0.745、朴素基线 0.725、RP3Net 0.709；异源 SoluProt 上 NetSolP 0.633、RP3Net 0.619、SWI 0.598、朴素基线 0.581。PLM_Sol 用不同样本量，作者说明不宜直接比较。\n\n创新点\n在不同表达分布上比较预测器，并逐模型核查与训练数据近重复。\n\n价值与局限\n仅两种 E. coli 数据集；作者报告异源集区分度整体低。仅读作者 README，尚未逐表复核论文原文。\n\n证据依据\n作者公开仓库 README；Research Square 原文未读取",
+  "link_label": "作者资料 ↗"
  },
  {
   "week": "2026-09-30",
   "id": "arXiv:2609.24157",
   "title": "Interkcat（09-21）",
   "date": "2026-09-30",
-  "disp": "可读（探索基线，须重切分）",
+  "disp": "以蛋白-底物相互作用拓扑兼顾 kcat 预测与可解释突变区域分析。",
   "cat": "可读",
   "dirs": [
    "活性与动力学",
@@ -1063,185 +1300,271 @@
   ],
   "meths": [
    "AI/ML 模型"
-  ]
+  ],
+  "review": {
+   "title": "Decoding enzyme-substrate interaction topology reveals principles underlying catalytic efficiency and mutational outcomes",
+   "content": "Interkcat 用双向交叉注意力表示蛋白残基与底物原子，统一基准报告 R²=0.701。ITS 从学习表示识别统计上富集突变敏感位点的区域；作者报告拓扑特征可区分破坏网络的失活突变与维持稀疏耦合的活性变体。",
+   "innovation": "以蛋白-底物相互作用拓扑兼顾 kcat 预测与可解释突变区域分析。",
+   "limitations": "预印本；统计关联不构成因果机理证明，依赖数据和基准拆分。",
+   "scope": "arXiv v1 摘要",
+   "source": "https://arxiv.org/abs/2609.24157"
+  },
+  "source_url": "https://arxiv.org/abs/2609.24157",
+  "detail": "论文题名\nDecoding enzyme-substrate interaction topology reveals principles underlying catalytic efficiency and mutational outcomes\n\n主要内容\nInterkcat 用双向交叉注意力表示蛋白残基与底物原子，统一基准报告 R²=0.701。ITS 从学习表示识别统计上富集突变敏感位点的区域；作者报告拓扑特征可区分破坏网络的失活突变与维持稀疏耦合的活性变体。\n\n创新点\n以蛋白-底物相互作用拓扑兼顾 kcat 预测与可解释突变区域分析。\n\n价值与局限\n预印本；统计关联不构成因果机理证明，依赖数据和基准拆分。\n\n证据依据\narXiv v1 摘要"
  },
  {
   "week": "2026-09-30",
   "id": "10.1002/advs.77474",
   "title": "Robots + Physics-Informed Features（Adv. Sci. 09-11）",
   "date": "2026-09-30",
-  "disp": "可读（数据设计）",
+  "disp": "把机器人负例数据与少量可解释物理特征结合。",
   "cat": "可读",
   "dirs": [
-   "基准与方法学"
+   "基准与方法学",
+   "高通量筛选"
   ],
   "meths": [
    "AI/ML 模型",
    "实验表征"
-  ]
- },
- {
-  "week": "2026-09-30",
-  "id": "arXiv:2609.30621",
-  "title": "HetCat26 MLIP 异相催化迁移性（09-24）",
-  "date": "2026-09-30",
-  "disp": "可读",
-  "cat": "可读",
-  "dirs": [
-   "基准与方法学"
   ],
-  "meths": [
-   "物理模拟"
-  ]
+  "review": {
+   "title": "Robots and Minimal, Physics-Informed Features: A Hybrid Framework for Enzyme Catalysis",
+   "content": "化学机器人收集活性及非活性底物数据，再用少量物理启发特征预测底物范围。作者称模型以少量样本学习位阻和电子效应平衡，在外部酶家族仍有预测力，并优于描述符密集型算法的分布外表现。",
+   "innovation": "把机器人负例数据与少量可解释物理特征结合。",
+   "limitations": "摘要未给出外部家族数量和统一量化指标；范围预测不等于一般酶活预测。",
+   "scope": "Advanced Science 期刊摘要/全文",
+   "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13564181/"
+  },
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13564181/",
+  "detail": "论文题名\nRobots and Minimal, Physics-Informed Features: A Hybrid Framework for Enzyme Catalysis\n\n主要内容\n化学机器人收集活性及非活性底物数据，再用少量物理启发特征预测底物范围。作者称模型以少量样本学习位阻和电子效应平衡，在外部酶家族仍有预测力，并优于描述符密集型算法的分布外表现。\n\n创新点\n把机器人负例数据与少量可解释物理特征结合。\n\n价值与局限\n摘要未给出外部家族数量和统一量化指标；范围预测不等于一般酶活预测。\n\n证据依据\nAdvanced Science 期刊摘要/全文"
  },
  {
   "week": "2026-09-30",
   "id": "10.7554/eLife.108186.3",
   "title": "Squidly 催化残基预测（eLife 09-04 正式版）",
   "date": "2026-09-30",
-  "disp": "可读（工具箱：残基检查）",
+  "disp": "把 EC 功能层级纳入逐残基对比学习配对。",
   "cat": "可读",
   "dirs": [
-   "功能注释与预测"
+   "功能注释与预测",
+   "酶挖掘"
   ],
   "meths": [
    "AI/ML 模型"
-  ]
+  ],
+  "review": {
+   "title": "Squidly harnesses enzyme functional hierarchy and contrastive learning to efficiently predict catalytic residues from sequence",
+   "content": "Squidly 用逐残基蛋白语言模型嵌入和功能层级引导的对比配对，只用序列预测催化残基，并与 BLAST 组合。作者报告在 CataloDB 等基准超过现有序列方法，能补足低相似度场景。",
+   "innovation": "把 EC 功能层级纳入逐残基对比学习配对。",
+   "limitations": "公开注释偏向研究充分的 EC 类，作者提示稀少谱系和新机制泛化仍不确定。",
+   "scope": "eLife 正式摘要、全文及评审评估",
+   "source": "https://elifesciences.org/articles/108186"
+  },
+  "source_url": "https://elifesciences.org/articles/108186",
+  "detail": "论文题名\nSquidly harnesses enzyme functional hierarchy and contrastive learning to efficiently predict catalytic residues from sequence\n\n主要内容\nSquidly 用逐残基蛋白语言模型嵌入和功能层级引导的对比配对，只用序列预测催化残基，并与 BLAST 组合。作者报告在 CataloDB 等基准超过现有序列方法，能补足低相似度场景。\n\n创新点\n把 EC 功能层级纳入逐残基对比学习配对。\n\n价值与局限\n公开注释偏向研究充分的 EC 类，作者提示稀少谱系和新机制泛化仍不确定。\n\n证据依据\neLife 正式摘要、全文及评审评估"
  },
  {
   "week": "2026-09-30",
   "id": "JCTC 2026 接受（DOI 未确认）",
   "title": "Arattu Thodika Δ-ML in CHARMM",
   "date": "2026-09-30",
-  "disp": "可读",
+  "disp": "形成可迭代的反应特异 QM/MM 机器学习势工作流。",
   "cat": "可读",
   "dirs": [
    "基准与方法学"
   ],
   "meths": [
    "物理模拟"
-  ]
+  ],
+  "review": {
+   "title": "Accurate and Time-Efficient Condensed-Phase Free Energy Simulations with Reaction Specific Δ-Machine Learning Potentials in CHARMM",
+   "content": "将反应特异 ΔMLP/QM/MM 训练、迭代再训练及 CHARMM CPU/GPU 推理整合。以 DHFR 氢转移为例，报告相对 ai/DFT-QM/MM 超过 500 倍加速，反应自由能与势垒保持亚 kcal/mol 精度。",
+   "innovation": "形成可迭代的反应特异 QM/MM 机器学习势工作流。",
+   "limitations": "测试聚焦 DHFR 氢转移与变体，不证明所有反应都达到相同表现。",
+   "scope": "ACS JCTC 正式摘要",
+   "source": "https://pubs.acs.org/doi/10.1021/acs.jctc.6c00798"
+  },
+  "source_url": "https://pubs.acs.org/doi/10.1021/acs.jctc.6c00798",
+  "detail": "论文题名\nAccurate and Time-Efficient Condensed-Phase Free Energy Simulations with Reaction Specific Δ-Machine Learning Potentials in CHARMM\n\n主要内容\n将反应特异 ΔMLP/QM/MM 训练、迭代再训练及 CHARMM CPU/GPU 推理整合。以 DHFR 氢转移为例，报告相对 ai/DFT-QM/MM 超过 500 倍加速，反应自由能与势垒保持亚 kcal/mol 精度。\n\n创新点\n形成可迭代的反应特异 QM/MM 机器学习势工作流。\n\n价值与局限\n测试聚焦 DHFR 氢转移与变体，不证明所有反应都达到相同表现。\n\n证据依据\nACS JCTC 正式摘要",
+  "display_id": "10.1021/acs.jctc.6c00798"
  },
  {
   "week": "2026-09-30",
   "id": "10.1039/D6SC01279E",
   "title": "MAPLE（Chem. Sci. 17:12394）",
   "date": "2026-09-30",
-  "disp": "观察",
-  "cat": "观察",
+  "disp": "集成 ML 势与反应路径工具以模拟大尺度生物反应。",
+  "cat": "可读",
   "dirs": [
    "基准与方法学"
   ],
   "meths": [
    "物理模拟"
-  ]
+  ],
+  "review": {
+   "title": "MAPLE: a machine-learning force-field-native platform for automated reaction modeling and enzyme design",
+   "content": "MAPLE 将 ML 势推理、并行算法、反应路径生成和分析集成于分子模拟工具包。近万原子 DNA photolyase 案例重现已知反应路径及羟基转移限速步，但中间体和势垒仍有明显偏差。",
+   "innovation": "集成 ML 势与反应路径工具以模拟大尺度生物反应。",
+   "limitations": "正文案例表明自由基/电荷重排及长程相互作用仍有限；平台不能替代底层模型验证。",
+   "scope": "Chemical Science 正式摘要/全文",
+   "source": "https://pubs.rsc.org/en/content/articlehtml/2026/sc/d6sc01279e"
+  },
+  "source_url": "https://pubs.rsc.org/en/content/articlehtml/2026/sc/d6sc01279e",
+  "detail": "论文题名\nMAPLE: a machine-learning force-field-native platform for automated reaction modeling and enzyme design\n\n主要内容\nMAPLE 将 ML 势推理、并行算法、反应路径生成和分析集成于分子模拟工具包。近万原子 DNA photolyase 案例重现已知反应路径及羟基转移限速步，但中间体和势垒仍有明显偏差。\n\n创新点\n集成 ML 势与反应路径工具以模拟大尺度生物反应。\n\n价值与局限\n正文案例表明自由基/电荷重排及长程相互作用仍有限；平台不能替代底层模型验证。\n\n证据依据\nChemical Science 正式摘要/全文"
  },
  {
   "week": "2026-09-30",
   "id": "10.64898/2026.09.09.750355",
   "title": "Fluxion 酶功能条件生成（bioRxiv 09-11）",
   "date": "2026-09-30",
-  "disp": "观察",
+  "disp": "用多步电子流机制表示替代封闭类别检索式功能预测。",
   "cat": "观察",
   "dirs": [
    "新酶与新功能设计"
   ],
   "meths": [
    "AI/ML 模型"
-  ]
- },
- {
-  "week": "2026-09-30",
-  "id": "10.26434/chemrxiv.15009330/v1",
-  "title": "Physics+ML Pose Generator（ChemRxiv 09-23）",
-  "date": "2026-09-30",
-  "disp": "观察",
-  "cat": "观察",
-  "dirs": [
-   "底物结合与口袋"
   ],
-  "meths": [
-   "物理模拟",
-   "AI/ML 模型"
-  ]
+  "review": {
+   "title": "Reframing enzyme function prediction as conditional generation",
+   "content": "Fluxion 条件生成催化残基间电子流轨迹，条件包含序列、催化残基、底物和辅因子。作者报告可建模 P450 序列依赖区域选择性、支持两个数据集的特异性预测，并重现定向进化筛选中观察到的非天然产物路径。",
+   "innovation": "用多步电子流机制表示替代封闭类别检索式功能预测。",
+   "limitations": "预印本；已有筛选产物重现不等于已前瞻发现新高活性酶。",
+   "scope": "bioRxiv 摘要",
+   "source": "https://www.biorxiv.org/content/10.64898/2026.09.09.750355v1"
+  },
+  "source_url": "https://www.biorxiv.org/content/10.64898/2026.09.09.750355v1",
+  "detail": "论文题名\nReframing enzyme function prediction as conditional generation\n\n主要内容\nFluxion 条件生成催化残基间电子流轨迹，条件包含序列、催化残基、底物和辅因子。作者报告可建模 P450 序列依赖区域选择性、支持两个数据集的特异性预测，并重现定向进化筛选中观察到的非天然产物路径。\n\n创新点\n用多步电子流机制表示替代封闭类别检索式功能预测。\n\n价值与局限\n预印本；已有筛选产物重现不等于已前瞻发现新高活性酶。\n\n证据依据\nbioRxiv 摘要"
  },
  {
   "week": "2026-09-30",
   "id": "10.1038/s41467-026-77978-z",
   "title": "正交能量系统 E. coli（Nat. Commun. 09-26）",
   "date": "2026-09-30",
-  "disp": "观察",
+  "disp": "使用非天然正交还原力载体支撑一碳同化及产物生产。",
   "cat": "观察",
   "dirs": [
    "通路组装与产量"
   ],
   "meths": [
    "实验表征"
-  ]
+  ],
+  "review": {
+   "title": "Reprogramming energy system for growth and bioproduction from CO₂ and methanol in Escherichia coli",
+   "content": "E. coli 中构建正交 NUD/NUDH 能量系统，胞内 NUDH>7mM、NUDH/NUD⁺>55；配合 CAM* 路径和电子传递链重接，使细胞在 CO₂/甲醇上生长，倍增时间 8.6±0.3h，并报告多种产物。",
+   "innovation": "使用非天然正交还原力载体支撑一碳同化及产物生产。",
+   "limitations": "验证为工程化 E. coli 和特定 OES/CAM* 路径，不可直接外推其他底盘。",
+   "scope": "Nature Communications官方索引摘要及作者机构摘要，全文未独立复读",
+   "source": "https://www.nature.com/articles/s41467-026-77978-z"
+  },
+  "source_url": "https://www.nature.com/articles/s41467-026-77978-z",
+  "detail": "论文题名\nReprogramming energy system for growth and bioproduction from CO₂ and methanol in Escherichia coli\n\n主要内容\nE. coli 中构建正交 NUD/NUDH 能量系统，胞内 NUDH>7mM、NUDH/NUD⁺>55；配合 CAM* 路径和电子传递链重接，使细胞在 CO₂/甲醇上生长，倍增时间 8.6±0.3h，并报告多种产物。\n\n创新点\n使用非天然正交还原力载体支撑一碳同化及产物生产。\n\n价值与局限\n验证为工程化 E. coli 和特定 OES/CAM* 路径，不可直接外推其他底盘。\n\n证据依据\nNature Communications官方索引摘要及作者机构摘要，全文未独立复读"
  },
  {
   "week": "2026-09-30",
   "id": "10.1039/d6sc01156j",
   "title": "Gradisteanu EMLE（Chem. Sci. 17(17):8542，首次公开 2026-03-10）",
   "date": "2026-09-30",
-  "disp": "可读（窗口外背景，非 8-9 月新工作）",
+  "disp": "以能量分解使气相训练势可与不同 MM 环境耦合。",
   "cat": "可读",
   "dirs": [
    "基准与方法学"
   ],
   "meths": [
    "物理模拟"
-  ]
+  ],
+  "review": {
+   "title": "Simulating enzyme catalysis with electrostatically embedded machine learning potentials",
+   "content": "EMLE 将气相训练反应性 ML 势与酶环境静电嵌入耦合；在 AbyU 比较不同酶-底物构象的催化效果，并为 chorismate→prephenate 训练反应特异模型。作者报告与高等级 QM/MM 结果一致，优于所比机械嵌入方法。",
+   "innovation": "以能量分解使气相训练势可与不同 MM 环境耦合。",
+   "limitations": "其中一个案例用反应特异模型；案例数有限，不是通用酶活预测器验证。",
+   "scope": "Chemical Science 正式摘要/全文",
+   "source": "https://pubs.rsc.org/en/content/articlehtml/2026/sc/d6sc01156j"
+  },
+  "source_url": "https://pubs.rsc.org/en/content/articlehtml/2026/sc/d6sc01156j",
+  "detail": "论文题名\nSimulating enzyme catalysis with electrostatically embedded machine learning potentials\n\n主要内容\nEMLE 将气相训练反应性 ML 势与酶环境静电嵌入耦合；在 AbyU 比较不同酶-底物构象的催化效果，并为 chorismate→prephenate 训练反应特异模型。作者报告与高等级 QM/MM 结果一致，优于所比机械嵌入方法。\n\n创新点\n以能量分解使气相训练势可与不同 MM 环境耦合。\n\n价值与局限\n其中一个案例用反应特异模型；案例数有限，不是通用酶活预测器验证。\n\n证据依据\nChemical Science 正式摘要/全文"
  },
  {
   "week": "2026-09-30",
   "id": "10.64898/2026.03.13.711695",
   "title": "Glydentify GT 供体特异性（bioRxiv 03-17）",
   "date": "2026-09-30",
-  "disp": "可读（窗口外背景）",
+  "disp": "将酶序列与供体分子特征结合并用残基注意力解释供体偏好。",
   "cat": "可读",
   "dirs": [
    "选择性与特异性",
-   "功能注释与预测"
+   "功能注释与预测",
+   "酶挖掘"
   ],
   "meths": [
    "AI/ML 模型"
-  ]
+  ],
+  "review": {
+   "title": "Glydentify: An explainable deep learning platform for glycosyltransferase donor substrate prediction",
+   "content": "结合 PLM 序列嵌入和分子化学特征预测糖基转移酶供体底物；作者报告 GT-A/GT-B PR-AUC 为 0.86/0.91，并实验测试未表征植物 GT 预测。",
+   "innovation": "将酶序列与供体分子特征结合并用残基注意力解释供体偏好。",
+   "limitations": "预印本。稀有供体的训练数据不足时性能会下降，总体GT-A/GT-B PR-AUC不能代表稀有供体类别的表现，供体候选排序需按类别覆盖和目标分布单独验证。",
+   "scope": "bioRxiv 摘要",
+   "source": "https://www.biorxiv.org/content/10.64898/2026.03.13.711695v1.full"
+  },
+  "source_url": "https://www.biorxiv.org/content/10.64898/2026.03.13.711695v1.full",
+  "detail": "论文题名\nGlydentify: An explainable deep learning platform for glycosyltransferase donor substrate prediction\n\n主要内容\n结合 PLM 序列嵌入和分子化学特征预测糖基转移酶供体底物；作者报告 GT-A/GT-B PR-AUC 为 0.86/0.91，并实验测试未表征植物 GT 预测。\n\n创新点\n将酶序列与供体分子特征结合并用残基注意力解释供体偏好。\n\n价值与局限\n预印本。稀有供体的训练数据不足时性能会下降，总体GT-A/GT-B PR-AUC不能代表稀有供体类别的表现，供体候选排序需按类别覆盖和目标分布单独验证。\n\n证据依据\nbioRxiv 摘要"
  },
  {
   "week": "2026-09-30",
   "id": "Metab. Eng.（DOI 未确认）",
   "title": "GENKI 动力学模型集合富集",
   "date": "2026-09-30",
-  "disp": "观察",
-  "cat": "观察",
+  "disp": "以表型 KPI 条件化动力学参数集合生成与筛选。",
+  "cat": "可读",
   "dirs": [
    "通路组装与产量"
   ],
   "meths": [
    "AI/ML 模型"
-  ]
+  ],
+  "review": {
+   "title": "GENKI: A generative framework for scalable and robust metabolic kinetic modeling",
+   "content": "VAE 在可行动力学模型集合上训练，以多组学/过程 KPI 标记并富集能再现扰动表型的参数集；应用于 E. coli 和 S. cerevisiae 酶扰动及氧切换，报告更好复现多个表型。",
+   "innovation": "以表型 KPI 条件化动力学参数集合生成与筛选。",
+   "limitations": "验证依赖两个物种的现有模型与给定扰动，受输入数据限制。",
+   "scope": "Metabolic Engineering 摘要/PubMed 元数据",
+   "source": "https://www.sciencedirect.com/science/article/pii/S1096717626001254"
+  },
+  "source_url": "https://www.sciencedirect.com/science/article/pii/S1096717626001254",
+  "detail": "论文题名\nGENKI: A generative framework for scalable and robust metabolic kinetic modeling\n\n主要内容\nVAE 在可行动力学模型集合上训练，以多组学/过程 KPI 标记并富集能再现扰动表型的参数集；应用于 E. coli 和 S. cerevisiae 酶扰动及氧切换，报告更好复现多个表型。\n\n创新点\n以表型 KPI 条件化动力学参数集合生成与筛选。\n\n价值与局限\n验证依赖两个物种的现有模型与给定扰动，受输入数据限制。\n\n证据依据\nMetabolic Engineering 摘要/PubMed 元数据",
+  "display_id": "10.1016/j.ymben.2026.102530"
  },
  {
   "week": "2026-09-30",
   "id": "PubMed 42751666",
   "title": "MiLaSol（article date 2026-08-13）",
   "date": "2026-09-30",
-  "disp": "忽略（日期窗口外，不计新进展）",
-  "cat": "忽略",
+  "disp": "融合多 PLM 表示并尝试用退火做预测引导的序列优化。",
+  "cat": "观察",
   "dirs": [
    "溶解度与表达"
   ],
   "meths": [
    "AI/ML 模型"
-  ]
+  ],
+  "review": {
+   "title": "MiLaSol: modeling protein solubility by mixing up multiple protein language models",
+   "content": "MiLaSol 融合多种 PLM 表示，摘要报告准确率 81%、MCC 0.63；并结合 simulated annealing 与 Raygun 做序列溶解度优化，结果由多个独立预测器支持。",
+   "innovation": "融合多 PLM 表示并尝试用退火做预测引导的序列优化。",
+   "limitations": "摘要未说明湿实验验证；准确率依赖其数据和宿主分布。",
+   "scope": "PubMed 期刊摘要/PMC 元数据",
+   "source": "https://pubmed.ncbi.nlm.nih.gov/42751666/"
+  },
+  "source_url": "https://pubmed.ncbi.nlm.nih.gov/42751666/",
+  "detail": "论文题名\nMiLaSol: modeling protein solubility by mixing up multiple protein language models\n\n主要内容\nMiLaSol 融合多种 PLM 表示，摘要报告准确率 81%、MCC 0.63；并结合 simulated annealing 与 Raygun 做序列溶解度优化，结果由多个独立预测器支持。\n\n创新点\n融合多 PLM 表示并尝试用退火做预测引导的序列优化。\n\n价值与局限\n摘要未说明湿实验验证；准确率依赖其数据和宿主分布。\n\n证据依据\nPubMed 期刊摘要/PMC 元数据"
  },
  {
   "week": "2026-10-05",
   "id": "10.64898/2026.10.01.754751",
   "title": "Design-Evolution Synergy（bioRxiv posted 10-02）",
   "date": "2026-10-05",
-  "disp": "必读；摘要级，催化数字/设计命中率待核",
+  "disp": "在从头设计骨架中引入新化学反应，再用进化优化反应性能与选择性。",
   "cat": "必读",
   "dirs": [
    "新酶与新功能设计",
@@ -1250,28 +1573,48 @@
   "meths": [
    "AI/ML 模型",
    "定向进化与筛选"
-  ]
+  ],
+  "review": {
+   "title": "Design-Evolution Synergy Enables New-to-Nature Enzyme Chemistry",
+   "content": "研究将基序支架、计算再设计与定向进化结合，利用从头设计血红素蛋白实现非天然C–H胺化，制备手性哌啶。摘要报告可编程区域及对映选择性、高催化效率、稳定性和多样支架，但未列数值。",
+   "innovation": "在从头设计骨架中引入新化学反应，再用进化优化反应性能与选择性。",
+   "limitations": "预印本尚未经同行评审；摘要未给出命中分母、具体活性或选择性数值，需正文核查量化证据。",
+   "scope": "bioRxiv官方API元数据与摘要；v1预印本",
+   "source": "https://www.biorxiv.org/content/10.64898/2026.10.01.754751v1"
+  },
+  "source_url": "https://www.biorxiv.org/content/10.64898/2026.10.01.754751v1",
+  "detail": "论文题名\nDesign-Evolution Synergy Enables New-to-Nature Enzyme Chemistry\n\n主要内容\n研究将基序支架、计算再设计与定向进化结合，利用从头设计血红素蛋白实现非天然C–H胺化，制备手性哌啶。摘要报告可编程区域及对映选择性、高催化效率、稳定性和多样支架，但未列数值。\n\n创新点\n在从头设计骨架中引入新化学反应，再用进化优化反应性能与选择性。\n\n价值与局限\n预印本尚未经同行评审；摘要未给出命中分母、具体活性或选择性数值，需正文核查量化证据。\n\n证据依据\nbioRxiv官方API元数据与摘要；v1预印本"
  },
  {
   "week": "2026-10-05",
   "id": "10.1093/nar/gkag879",
   "title": "epiSCANEER（online 09-08）",
   "date": "2026-10-05",
-  "disp": "必读；可做双突变候选小试，非底物条件活性模型",
+  "disp": "以共进化依赖关系显式处理位点间上位性，直接排序双突变候选，减少先建单突变库的步骤。",
   "cat": "必读",
   "dirs": [
    "活性与动力学"
   ],
   "meths": [
    "AI/ML 模型"
-  ]
+  ],
+  "review": {
+   "title": "Enhancing prediction accuracy for enzyme activity engineering through sequence co-evolution and epistatic relationship modeling",
+   "content": "epiSCANEER从同源序列共进化关系挑选双位点突变组合，在两种氧化还原酶相关实验中报告76%成功率，成功阈值为相对WT滴度至少1.03倍；所比单点模型及其组合为30%与38%。TetA案例中仅2/20个双突变体优于WT。",
+   "innovation": "以共进化依赖关系显式处理位点间上位性，直接排序双突变候选，减少先建单突变库的步骤。",
+   "limitations": "主要成功率来自有限的可溶性氧化还原酶案例；方法聚焦双突变。TetA结果较弱，作者指出其MSA较小且模型未纳入膜环境。",
+   "scope": "Nucleic Acids Research出版社文章与摘要；正文讨论部分",
+   "source": "https://doi.org/10.1093/nar/gkag879"
+  },
+  "source_url": "https://doi.org/10.1093/nar/gkag879",
+  "detail": "论文题名\nEnhancing prediction accuracy for enzyme activity engineering through sequence co-evolution and epistatic relationship modeling\n\n主要内容\nepiSCANEER从同源序列共进化关系挑选双位点突变组合，在两种氧化还原酶相关实验中报告76%成功率，成功阈值为相对WT滴度至少1.03倍；所比单点模型及其组合为30%与38%。TetA案例中仅2/20个双突变体优于WT。\n\n创新点\n以共进化依赖关系显式处理位点间上位性，直接排序双突变候选，减少先建单突变库的步骤。\n\n价值与局限\n主要成功率来自有限的可溶性氧化还原酶案例；方法聚焦双突变。TetA结果较弱，作者指出其MSA较小且模型未纳入膜环境。\n\n证据依据\nNucleic Acids Research出版社文章与摘要；正文讨论部分"
  },
  {
   "week": "2026-10-05",
   "id": "10.1021/acssynbio.6c00417",
   "title": "Reticuline 前体与植物酶表达工程（online 09-23）",
   "date": "2026-10-05",
-  "disp": "必读；联合终点不能归因于 ProteinMPNN 单独酶活改善",
+  "disp": "把前体通量协调、植物酶可溶性工程与甲基供体再生组合到同一生产方案中。",
   "cat": "必读",
   "dirs": [
    "溶解度与表达",
@@ -1280,56 +1623,96 @@
   "meths": [
    "AI/ML 模型",
    "实验表征"
-  ]
+  ],
+  "review": {
+   "title": "Balancing Precursor Supply and Enhancing Enzyme Solubility for Efficient Production of (S)-Reticuline in Escherichia coli",
+   "content": "在大肠杆菌中生产(S)-reticuline，先用ω-转氨酶协调3,4-DHPAA与多巴胺供给；以SUMO融合、ProteinMPNN引导设计和N端截短改善植物酶可溶表达，并强化SAM再生。摘要报告摇瓶滴度347 mg/L。",
+   "innovation": "把前体通量协调、植物酶可溶性工程与甲基供体再生组合到同一生产方案中。",
+   "limitations": "多项代谢与表达改造同时进行，终点滴度不能单独归因于ProteinMPNN或任一酶活改善；摘要未提供各因素的独立贡献。",
+   "scope": "ACS出版社摘要，并经Crossref官方出版社摘要复核",
+   "source": "https://pubs.acs.org/asbcd6/article/15/10/4229/5436753/Balancing-Precursor-Supply-and-Enhancing-Enzyme"
+  },
+  "source_url": "https://pubs.acs.org/asbcd6/article/15/10/4229/5436753/Balancing-Precursor-Supply-and-Enhancing-Enzyme",
+  "detail": "论文题名\nBalancing Precursor Supply and Enhancing Enzyme Solubility for Efficient Production of (S)-Reticuline in Escherichia coli\n\n主要内容\n在大肠杆菌中生产(S)-reticuline，先用ω-转氨酶协调3,4-DHPAA与多巴胺供给；以SUMO融合、ProteinMPNN引导设计和N端截短改善植物酶可溶表达，并强化SAM再生。摘要报告摇瓶滴度347 mg/L。\n\n创新点\n把前体通量协调、植物酶可溶性工程与甲基供体再生组合到同一生产方案中。\n\n价值与局限\n多项代谢与表达改造同时进行，终点滴度不能单独归因于ProteinMPNN或任一酶活改善；摘要未提供各因素的独立贡献。\n\n证据依据\nACS出版社摘要，并经Crossref官方出版社摘要复核"
  },
  {
   "week": "2026-10-05",
   "id": "10.1038/s41467-026-78191-8",
   "title": "ATHENA（09-25 接受稿公开）",
   "date": "2026-10-05",
-  "disp": "必读；动态碳/能量诊断，indigo 迁移待证",
+  "disp": "用氧化还原状态驱动动态碳流与能量供给分配，而不是对单一路径作固定调参。",
   "cat": "必读",
   "dirs": [
    "通路组装与产量"
   ],
   "meths": [
    "实验表征"
-  ]
+  ],
+  "review": {
+   "title": "ATHENA: a dynamic metabolic hub balancing carbon economy and energy supply in microbial synthesis",
+   "content": "ATHENA在大肠杆菌中模块化构建乙酰辅酶A与NADH生成，并用BsRex传感器和反义RNA组成NADH响应的正、负调控回路，按细胞氧化还原状态调节碳保存和能量生成。作者以五种产品的滴度或产率评价该动态调控框架。",
+   "innovation": "用氧化还原状态驱动动态碳流与能量供给分配，而不是对单一路径作固定调参。",
+   "limitations": "论文针对工程大肠杆菌及其测试产品；摘要未证明对吲哚/靛蓝通路的可迁移性，需针对目标底盘和产物验证。",
+   "scope": "Nature Communications出版社文章与摘要",
+   "source": "https://www.nature.com/articles/s41467-026-78191-8"
+  },
+  "source_url": "https://www.nature.com/articles/s41467-026-78191-8",
+  "detail": "论文题名\nATHENA: a dynamic metabolic hub balancing carbon economy and energy supply in microbial synthesis\n\n主要内容\nATHENA在大肠杆菌中模块化构建乙酰辅酶A与NADH生成，并用BsRex传感器和反义RNA组成NADH响应的正、负调控回路，按细胞氧化还原状态调节碳保存和能量生成。作者以五种产品的滴度或产率评价该动态调控框架。\n\n创新点\n用氧化还原状态驱动动态碳流与能量供给分配，而不是对单一路径作固定调参。\n\n价值与局限\n论文针对工程大肠杆菌及其测试产品；摘要未证明对吲哚/靛蓝通路的可迁移性，需针对目标底盘和产物验证。\n\n证据依据\nNature Communications出版社文章与摘要"
  },
  {
   "week": "2026-10-05",
   "id": "10.1038/s41467-026-78205-5",
   "title": "SURE Cas12a2 editing（09-30 论文公开）",
   "date": "2026-10-05",
-  "disp": "可读；同主题专利首次公开待核，资源/目标底盘待证",
+  "disp": "把Cas12a2的RNA触发旁切活性转作低毒反筛选，面向微生物重组编辑。",
   "cat": "可读",
   "dirs": [
    "基准与方法学"
   ],
   "meths": [
    "实验表征"
-  ]
+  ],
+  "review": {
+   "title": "Repurposing Cas12a2-mediated abortive infection for efficient and low-toxicity microbial genome editing",
+   "content": "SURE利用RNA触发的Cas12a2旁切活性诱导可恢复的类流产感染状态作反筛选，不直接以基因组双链断裂杀伤细胞。摘要报告大肠杆菌MG1655中转化效率最高提升至Cas9/Cas12系统的1000倍，敲除、插入和替换编辑效率超过90%，并在枯草芽孢杆菌和Shewanella oneidensis测试；也用于乙二醇同化工程。",
+   "innovation": "把Cas12a2的RNA触发旁切活性转作低毒反筛选，面向微生物重组编辑。",
+   "limitations": "跨物种验证限于摘要列出的菌种；具体效率取决于目标位点和构建条件，不能直接当作其他底盘的预期值。",
+   "scope": "Nature Communications出版社文章与摘要",
+   "source": "https://www.nature.com/articles/s41467-026-78205-5"
+  },
+  "source_url": "https://www.nature.com/articles/s41467-026-78205-5",
+  "detail": "论文题名\nRepurposing Cas12a2-mediated abortive infection for efficient and low-toxicity microbial genome editing\n\n主要内容\nSURE利用RNA触发的Cas12a2旁切活性诱导可恢复的类流产感染状态作反筛选，不直接以基因组双链断裂杀伤细胞。摘要报告大肠杆菌MG1655中转化效率最高提升至Cas9/Cas12系统的1000倍，敲除、插入和替换编辑效率超过90%，并在枯草芽孢杆菌和Shewanella oneidensis测试；也用于乙二醇同化工程。\n\n创新点\n把Cas12a2的RNA触发旁切活性转作低毒反筛选，面向微生物重组编辑。\n\n价值与局限\n跨物种验证限于摘要列出的菌种；具体效率取决于目标位点和构建条件，不能直接当作其他底盘的预期值。\n\n证据依据\nNature Communications出版社文章与摘要"
  },
  {
   "week": "2026-10-05",
   "id": "10.1038/s41467-026-72904-9",
   "title": "Wang Diels-Alderase ML/MM（期刊 05-13，VoR 07-17）",
   "date": "2026-10-05",
-  "disp": "历史补课；ME 与 ANI 元素支持限制，非 UGT 已验证方法",
+  "disp": "以反应性机器学习势描述局部成键，同时保留蛋白分子力学环境和纳秒级增强采样。",
   "cat": "历史补课",
   "dirs": [
    "活性与动力学"
   ],
   "meths": [
    "物理模拟"
-  ]
+  ],
+  "review": {
+   "title": "Multiscale machine learning molecular mechanics for mechanism and stereoselectivity of Diels-Alderase catalysis",
+   "content": "在AMBER中实现反应性ML/MM并与元动力学耦合，用链接原子处理ML/MM边界，在MaDA Diels–Alderase上采样成键过程、过渡态及变体的endo/exo立体选择性。正文指出ANI-1xnr绝对势垒相对DFT约偏高5 kcal/mol，相对实验约偏高7–9 kcal/mol，AIMNet2-NSE误差有所降低。",
+   "innovation": "以反应性机器学习势描述局部成键，同时保留蛋白分子力学环境和纳秒级增强采样。",
+   "limitations": "量化结果来自Diels–Alderase案例；绝对势垒有系统偏差，作者指出MLIP泛化、长程作用及机械嵌入处理仍有限，不能据此称为已验证的UGT通用方法。",
+   "scope": "Nature Communications出版社全文与摘要",
+   "source": "https://www.nature.com/articles/s41467-026-72904-9"
+  },
+  "source_url": "https://www.nature.com/articles/s41467-026-72904-9",
+  "detail": "论文题名\nMultiscale machine learning molecular mechanics for mechanism and stereoselectivity of Diels-Alderase catalysis\n\n主要内容\n在AMBER中实现反应性ML/MM并与元动力学耦合，用链接原子处理ML/MM边界，在MaDA Diels–Alderase上采样成键过程、过渡态及变体的endo/exo立体选择性。正文指出ANI-1xnr绝对势垒相对DFT约偏高5 kcal/mol，相对实验约偏高7–9 kcal/mol，AIMNet2-NSE误差有所降低。\n\n创新点\n以反应性机器学习势描述局部成键，同时保留蛋白分子力学环境和纳秒级增强采样。\n\n价值与局限\n量化结果来自Diels–Alderase案例；绝对势垒有系统偏差，作者指出MLIP泛化、长程作用及机械嵌入处理仍有限，不能据此称为已验证的UGT通用方法。\n\n证据依据\nNature Communications出版社全文与摘要"
  },
  {
   "week": "2026-10-05",
   "id": "10.64898/2026.09.15.751901",
   "title": "High-throughput physics-based enzyme engineering（MACEPOL-EF，bioRxiv 09-17）",
   "date": "2026-10-05",
-  "disp": "必读（10-05 下午全文核实升级）；EE-ML/MM+微动力学+湿实验闭环，注意 kcat-产率 r=0.48 边界",
+  "disp": "将反应自由能、过渡态系综及微观动力学连成高通量的物理建模与变体设计流程。",
   "cat": "必读",
   "dirs": [
    "活性与动力学"
@@ -1337,14 +1720,24 @@
   "meths": [
    "物理模拟",
    "实验表征"
-  ]
+  ],
+  "review": {
+   "title": "High-throughput physics-based enzyme engineering",
+   "content": "提出把场感知机器学习与分子力学结合，计算酶内反应自由能面，再用微观动力学把多步反应途径映射为速率和选择性。摘要展示在新工程化氧化酰胺酶OxiAm中的应用，可预测速率常数、区分水解与胺解选择性，并扩展到底物、突变和同源酶。",
+   "innovation": "将反应自由能、过渡态系综及微观动力学连成高通量的物理建模与变体设计流程。",
+   "limitations": "bioRxiv预印本；摘要未提供定量误差、训练/验证划分和独立预测分母，需正文核实其准确度和适用边界。",
+   "scope": "bioRxiv官方API元数据与摘要；v1预印本",
+   "source": "https://www.biorxiv.org/content/10.64898/2026.09.15.751901v1"
+  },
+  "source_url": "https://www.biorxiv.org/content/10.64898/2026.09.15.751901v1",
+  "detail": "论文题名\nHigh-throughput physics-based enzyme engineering\n\n主要内容\n提出把场感知机器学习与分子力学结合，计算酶内反应自由能面，再用微观动力学把多步反应途径映射为速率和选择性。摘要展示在新工程化氧化酰胺酶OxiAm中的应用，可预测速率常数、区分水解与胺解选择性，并扩展到底物、突变和同源酶。\n\n创新点\n将反应自由能、过渡态系综及微观动力学连成高通量的物理建模与变体设计流程。\n\n价值与局限\nbioRxiv预印本；摘要未提供定量误差、训练/验证划分和独立预测分母，需正文核实其准确度和适用边界。\n\n证据依据\nbioRxiv官方API元数据与摘要；v1预印本"
  },
  {
   "week": "2026-10-05",
   "id": "10.64898/2026.05.29.728685",
   "title": "Interplay of stability and dynamics（KABLE；v3 09-10 实质版本）",
   "date": "2026-10-05",
-  "disp": "可读；Michaelis 复合物 pre-attack 几何设计论据",
+  "disp": "把Michaelis复合物、过渡态稳定与整体/局部构象动态共同纳入高效酶优化解释。",
   "cat": "可读",
   "dirs": [
    "热稳定性",
@@ -1352,56 +1745,73 @@
   ],
   "meths": [
    "物理模拟"
-  ]
- },
- {
-  "week": "2026-10-05",
-  "id": "10.26434/chemrxiv.15004671",
-  "title": "Yamauchi & Sato PETase 全酶 MLIP（疑似 2026-06，窗口外）",
-  "date": "2026-10-05",
-  "disp": "观察；身份确认，数字未核",
-  "cat": "观察",
-  "dirs": [
-   "活性与动力学"
   ],
-  "meths": [
-   "物理模拟"
-  ]
+  "review": {
+   "title": "Interplay of stability and dynamics in the optimization of a highly proficient de novo enzyme",
+   "content": "从计算设计到两轮定向进化，研究结合计算、光谱和生化数据分析高效从头设计酶。作者指出过渡态类似物结合伴随全蛋白骨架稳定性提升，但活性位点入口附近引入Gly/Pro增加局部动态并提升催化活性；初始设计只考虑过渡态而非底物结合，导致Michaelis复合物动态性较高。",
+   "innovation": "把Michaelis复合物、过渡态稳定与整体/局部构象动态共同纳入高效酶优化解释。",
+   "limitations": "单一从头设计酶案例；摘要无具体动力学数字，且原始设计未考虑底物结合，不能直接外推为普适的稳定性设计规则。",
+   "scope": "bioRxiv官方API各版本元数据与v3摘要",
+   "source": "https://www.biorxiv.org/content/10.64898/2026.05.29.728685v3"
+  },
+  "source_url": "https://www.biorxiv.org/content/10.64898/2026.05.29.728685v3",
+  "detail": "论文题名\nInterplay of stability and dynamics in the optimization of a highly proficient de novo enzyme\n\n主要内容\n从计算设计到两轮定向进化，研究结合计算、光谱和生化数据分析高效从头设计酶。作者指出过渡态类似物结合伴随全蛋白骨架稳定性提升，但活性位点入口附近引入Gly/Pro增加局部动态并提升催化活性；初始设计只考虑过渡态而非底物结合，导致Michaelis复合物动态性较高。\n\n创新点\n把Michaelis复合物、过渡态稳定与整体/局部构象动态共同纳入高效酶优化解释。\n\n价值与局限\n单一从头设计酶案例；摘要无具体动力学数字，且原始设计未考虑底物结合，不能直接外推为普适的稳定性设计规则。\n\n证据依据\nbioRxiv官方API各版本元数据与v3摘要"
  },
  {
   "week": "2026-10-05",
   "id": "10.1038/s41467-026-75283-3",
   "title": "EnzGFM 酶特异 PLM（Nat. Commun. 2026-07，窗口外）",
   "date": "2026-10-05",
-  "disp": "观察；表示层增量，backbone 替换候选",
-  "cat": "观察",
+  "disp": "将酶专属预训练表示与候选优选Agent连接，并在小规模SEAP实验中比较两个模型推荐的突变。",
+  "cat": "可读",
   "dirs": [
-   "功能注释与预测"
+   "功能注释与预测",
+   "酶动力学参数预测"
   ],
   "meths": [
    "AI/ML 模型"
-  ]
+  ],
+  "review": {
+   "title": "An enzyme-specific protein language model for catalytic property prediction",
+   "content": "EnzGFM采用Mamba–Transformer架构和通用蛋白到酶序列的分层预训练，在动力学、反应检索及突变效应等任务评测。配套EnzGFM-Agent用于SEAP单点突变优选，与ESM2共同选出15个独特变体。正文报告EnzGFM独有的5个候选均比WT活性高，ESM2独有5个候选中有2个改善。",
+   "innovation": "将酶专属预训练表示与候选优选Agent连接，并在小规模SEAP实验中比较两个模型推荐的突变。",
+   "limitations": "实验限于SEAP和有限优选候选，较严格改善阈值下的命中数优势并不明显。不同任务和切分的收益不同，应分别核对泛化与筛选分母，不能把15个合并候选都视为EnzGFM命中。",
+   "scope": "Nature Communications出版社全文及摘要",
+   "source": "https://www.nature.com/articles/s41467-026-75283-3"
+  },
+  "source_url": "https://www.nature.com/articles/s41467-026-75283-3",
+  "detail": "论文题名\nAn enzyme-specific protein language model for catalytic property prediction\n\n主要内容\nEnzGFM采用Mamba–Transformer架构和通用蛋白到酶序列的分层预训练，在动力学、反应检索及突变效应等任务评测。配套EnzGFM-Agent用于SEAP单点突变优选，与ESM2共同选出15个独特变体。正文报告EnzGFM独有的5个候选均比WT活性高，ESM2独有5个候选中有2个改善。\n\n创新点\n将酶专属预训练表示与候选优选Agent连接，并在小规模SEAP实验中比较两个模型推荐的突变。\n\n价值与局限\n实验限于SEAP和有限优选候选，较严格改善阈值下的命中数优势并不明显。不同任务和切分的收益不同，应分别核对泛化与筛选分母，不能把15个合并候选都视为EnzGFM命中。\n\n证据依据\nNature Communications出版社全文及摘要"
  },
  {
   "week": "2026-10-05",
   "id": "10.1021/acssynbio.5c00755",
   "title": "EZPro-Cat pairwise 突变排序（ACS Synth. Biol. 2025-12-21 Epub，窗口外）",
   "date": "2026-10-05",
-  "disp": "可读；不输出绝对 kcat，无独立外部测试",
+  "disp": "把蛋白—配体表示与突变效应的成对比较结合，用于候选相对排序。",
   "cat": "可读",
   "dirs": [
    "活性与动力学"
   ],
   "meths": [
    "AI/ML 模型"
-  ]
+  ],
+  "review": {
+   "title": "EvoZymePro-Cat: A Protein-Ligand-Aware Deep Learning Framework for Predicting Mutation Effects in Enzyme Function",
+   "content": "EZPro-Cat是用于酶突变体筛选的深度学习方法，以蛋白和配体多模态表示进行变体两两比较，直接预测相对活性优劣，避免依赖绝对活性值回归。",
+   "innovation": "把蛋白—配体表示与突变效应的成对比较结合，用于候选相对排序。",
+   "limitations": "摘要未提供独立外部测试与样本划分的细节，也未支持将相对排序视为绝对kcat预测；使用时仍需目标酶的实验验证。",
+   "scope": "ACS出版社摘要及PubMed摘要",
+   "source": "https://pubs.acs.org/doi/10.1021/acssynbio.5c00755"
+  },
+  "source_url": "https://pubs.acs.org/doi/10.1021/acssynbio.5c00755",
+  "detail": "论文题名\nEvoZymePro-Cat: A Protein-Ligand-Aware Deep Learning Framework for Predicting Mutation Effects in Enzyme Function\n\n主要内容\nEZPro-Cat是用于酶突变体筛选的深度学习方法，以蛋白和配体多模态表示进行变体两两比较，直接预测相对活性优劣，避免依赖绝对活性值回归。\n\n创新点\n把蛋白—配体表示与突变效应的成对比较结合，用于候选相对排序。\n\n价值与局限\n摘要未提供独立外部测试与样本划分的细节，也未支持将相对排序视为绝对kcat预测；使用时仍需目标酶的实验验证。\n\n证据依据\nACS出版社摘要及PubMed摘要"
  },
  {
   "week": "2026-10-05",
   "id": "PMC13115177（Foods 2026 上半年）",
   "title": "Gao 等 indigo mtr/acrA 转运工程（窗口外）",
   "date": "2026-10-05",
-  "disp": "可读；Jiang 耐受/外排主题独立佐证，BL21 背景",
+  "disp": "在常见的通路和辅因子改造之外，直接操纵底物摄取与产物外排，并以蛋白质组数据分析相关变化。",
   "cat": "可读",
   "dirs": [
    "耐受与转运",
@@ -1409,29 +1819,49 @@
   ],
   "meths": [
    "实验表征"
-  ]
+  ],
+  "review": {
+   "title": "Insights into the Regulation of Indigo Production in an Engineered Escherichia coli Strain via Overexpression of Specific Transporter Genes and Proteomic Analyses",
+   "content": "在工程化E. coli BL21背景调查色氨酸转运与靛蓝外排，筛查及转录分析指向mtr和acrA，随后敲除、互补或过表达并用蛋白质组辅助分析。作者报告mtr和acrA过表达株产量提升；其中E24在37°C、24小时达约300 mg/L。",
+   "innovation": "在常见的通路和辅因子改造之外，直接操纵底物摄取与产物外排，并以蛋白质组数据分析相关变化。",
+   "limitations": "结果来自特定工程BL21背景与发酵条件；摘要/全文中的高产株不代表可直接迁移到其他宿主或通路。",
+   "scope": "PMC收录的全文",
+   "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13115177/"
+  },
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13115177/",
+  "detail": "论文题名\nInsights into the Regulation of Indigo Production in an Engineered Escherichia coli Strain via Overexpression of Specific Transporter Genes and Proteomic Analyses\n\n主要内容\n在工程化E. coli BL21背景调查色氨酸转运与靛蓝外排，筛查及转录分析指向mtr和acrA，随后敲除、互补或过表达并用蛋白质组辅助分析。作者报告mtr和acrA过表达株产量提升；其中E24在37°C、24小时达约300 mg/L。\n\n创新点\n在常见的通路和辅因子改造之外，直接操纵底物摄取与产物外排，并以蛋白质组数据分析相关变化。\n\n价值与局限\n结果来自特定工程BL21背景与发酵条件；摘要/全文中的高产株不代表可直接迁移到其他宿主或通路。\n\n证据依据\nPMC收录的全文"
  },
  {
   "week": "2026-10-05",
   "id": "Biol. Methods Protoc. 2024, 9, bpae061",
   "title": "Kroll & Lercher DLKcat 批评（背景文献）",
   "date": "2026-10-05",
-  "disp": "背景；<60% identity R²<0，训练外突变 R²=0.03",
-  "cat": "其他",
+  "disp": "从数据切分与序列相似性角度检验kcat模型的泛化主张，并提出按酶或序列簇划分以减少泄漏。",
+  "cat": "可读",
   "dirs": [
    "基准与方法学",
    "酶动力学参数预测"
   ],
   "meths": [
    "综述与批评"
-  ]
+  ],
+  "review": {
+   "title": "DLKcat cannot predict meaningful kcat values for mutants and unfamiliar enzymes",
+   "content": "Kroll和Lercher重新评估DLKcat，指出在训练序列相似性低于60%的酶上，预测不如给所有反应赋一个平均kcat；对训练中未见的突变，模型未能捕捉实验观察到的突变间变化。",
+   "innovation": "从数据切分与序列相似性角度检验kcat模型的泛化主张，并提出按酶或序列簇划分以减少泄漏。",
+   "limitations": "这是一篇针对特定DLKcat数据和模型的批评分析；结论不能不加区分地推广到所有动力学模型。",
+   "scope": "PMC收录的全文与摘要",
+   "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11427335/"
+  },
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11427335/",
+  "detail": "论文题名\nDLKcat cannot predict meaningful kcat values for mutants and unfamiliar enzymes\n\n主要内容\nKroll和Lercher重新评估DLKcat，指出在训练序列相似性低于60%的酶上，预测不如给所有反应赋一个平均kcat；对训练中未见的突变，模型未能捕捉实验观察到的突变间变化。\n\n创新点\n从数据切分与序列相似性角度检验kcat模型的泛化主张，并提出按酶或序列簇划分以减少泄漏。\n\n价值与局限\n这是一篇针对特定DLKcat数据和模型的批评分析；结论不能不加区分地推广到所有动力学模型。\n\n证据依据\nPMC收录的全文与摘要"
  },
  {
   "week": "2026-10-12",
   "id": "10.64898/2026.10.02.756307",
   "title": "CaGE（posted 10-06）",
   "date": "2026-10-12",
-  "disp": "必读；摘要级，复杂催化位点/湿实验分母待核",
+  "disp": "针对多催化残基、辅因子和底物耦合的活性位点，组合逐步退火的约束引导与推理期基序引导。",
   "cat": "必读",
   "dirs": [
    "新酶与新功能设计"
@@ -1439,187 +1869,221 @@
   "meths": [
    "AI/ML 模型",
    "实验表征"
-  ]
+  ],
+  "review": {
+   "title": "Complex enzyme active site scaffolding by iteratively detuned catalytic guidance",
+   "content": "CaGE交替进行带功能约束的结构预测与序列设计，并逐轮减弱约束引导；训练RF3接受原子间距离和其他条件，同时提出推理时直接调整选定原子的免训练基序引导。摘要报告非血红素铁和PLP两类复杂活性位点设计，其中晶体结构分辨率2.7 Å。",
+   "innovation": "针对多催化残基、辅因子和底物耦合的活性位点，组合逐步退火的约束引导与推理期基序引导。",
+   "limitations": "预印本未经同行评审；摘要未给设计命中分母或动力学数值，晶体结构支持结构与机制但不等同于跨酶系性能验证。",
+   "scope": "bioRxiv官方API v1/v2摘要；v2预印本",
+   "source": "https://www.biorxiv.org/content/10.64898/2026.10.02.756307v2"
+  },
+  "source_url": "https://www.biorxiv.org/content/10.64898/2026.10.02.756307v2",
+  "detail": "论文题名\nComplex enzyme active site scaffolding by iteratively detuned catalytic guidance\n\n主要内容\nCaGE交替进行带功能约束的结构预测与序列设计，并逐轮减弱约束引导；训练RF3接受原子间距离和其他条件，同时提出推理时直接调整选定原子的免训练基序引导。摘要报告非血红素铁和PLP两类复杂活性位点设计，其中晶体结构分辨率2.7 Å。\n\n创新点\n针对多催化残基、辅因子和底物耦合的活性位点，组合逐步退火的约束引导与推理期基序引导。\n\n价值与局限\n预印本未经同行评审；摘要未给设计命中分母或动力学数值，晶体结构支持结构与机制但不等同于跨酶系性能验证。\n\n证据依据\nbioRxiv官方API v1/v2摘要；v2预印本"
  },
  {
   "week": "2026-10-12",
   "id": "10.64898/2026.10.01.756017",
   "title": "AlphaProtein Novo（posted 10-05，月内补检）",
   "date": "2026-10-12",
-  "disp": "必读；代码公开、权重独立条款；nitrene部分与754751关联，勿算独立重复",
+  "disp": "把机制启发的结构指标和骨架序列系综评分整合进从头酶设计流程，并与自然序列挖掘比较。",
   "cat": "必读",
   "dirs": [
    "新酶与新功能设计"
   ],
   "meths": [
    "AI/ML 模型"
-  ]
+  ],
+  "review": {
+   "title": "Designing enzymes for new-to-nature chemistry and non-natural substrates with AlphaProtein Novo",
+   "content": "AlphaProtein Novo是用于酶设计的机器学习流程。预印本摘要称其用于设计新型nitrene转移酶、可降解环境污染物DEHP的酶及两种模型反应的高效催化剂；设计评估关键包括基于AlphaFold 3的机制指标和设计骨架序列系综评分。",
+   "innovation": "把机制启发的结构指标和骨架序列系综评分整合进从头酶设计流程，并与自然序列挖掘比较。",
+   "limitations": "预印本尚未经同行评审；摘要没有完整列出各任务的命中数与基线细节。权重条款与代码许可不同，使用条件需按官方仓库条款核对。 其中nitrene转移相关案例与Design-Evolution Synergy有关联，相关实验应按同源证据去重。",
+   "scope": "bioRxiv官方API摘要；Google DeepMind官方代码库元数据",
+   "source": "https://www.biorxiv.org/content/10.64898/2026.10.01.756017v1"
+  },
+  "source_url": "https://www.biorxiv.org/content/10.64898/2026.10.01.756017v1",
+  "detail": "论文题名\nDesigning enzymes for new-to-nature chemistry and non-natural substrates with AlphaProtein Novo\n\n主要内容\nAlphaProtein Novo是用于酶设计的机器学习流程。预印本摘要称其用于设计新型nitrene转移酶、可降解环境污染物DEHP的酶及两种模型反应的高效催化剂；设计评估关键包括基于AlphaFold 3的机制指标和设计骨架序列系综评分。\n\n创新点\n把机制启发的结构指标和骨架序列系综评分整合进从头酶设计流程，并与自然序列挖掘比较。\n\n价值与局限\n预印本尚未经同行评审；摘要没有完整列出各任务的命中数与基线细节。权重条款与代码许可不同，使用条件需按官方仓库条款核对。 其中nitrene转移相关案例与Design-Evolution Synergy有关联，相关实验应按同源证据去重。\n\n证据依据\nbioRxiv官方API摘要；Google DeepMind官方代码库元数据"
  },
  {
   "week": "2026-10-12",
   "id": "10.64898/2026.10.08.757560",
   "title": "MINT（posted 10-09）",
   "date": "2026-10-12",
-  "disp": "观察；辅因子关联非突变活性；family-stratified非自动family-disjoint",
+  "disp": "以渐进式知识迁移利用蛋白—配体预训练信息处理实验标注有限的辅因子特异性任务。",
   "cat": "观察",
   "dirs": [
    "功能注释与预测"
   ],
   "meths": [
    "AI/ML 模型"
-  ]
+  ],
+  "review": {
+   "title": "MINT: Predicting Enzyme-Cofactor Specificity by Multimodal Knowledge Transfer from Protein-Ligand Interactions",
+   "content": "MINT联合蛋白序列、辅因子序列和图表示，并从预训练蛋白—配体模型逐步迁移到辅因子特异性预测。在平衡测试集AUC为0.932，家族分层且按自然阳性率评估的汇总AUC为0.939；NAD/NADP案例中检出95.0–98.6%的真实结合者。",
+   "innovation": "以渐进式知识迁移利用蛋白—配体预训练信息处理实验标注有限的辅因子特异性任务。",
+   "limitations": "目标是辅因子关联/特异性，不是突变活性或催化速率；摘要未说明家族分层是否完全家族隔离，外推范围需看切分细节。",
+   "scope": "bioRxiv官方API摘要；v1预印本",
+   "source": "https://www.biorxiv.org/content/10.64898/2026.10.08.757560v1"
+  },
+  "source_url": "https://www.biorxiv.org/content/10.64898/2026.10.08.757560v1",
+  "detail": "论文题名\nMINT: Predicting Enzyme-Cofactor Specificity by Multimodal Knowledge Transfer from Protein-Ligand Interactions\n\n主要内容\nMINT联合蛋白序列、辅因子序列和图表示，并从预训练蛋白—配体模型逐步迁移到辅因子特异性预测。在平衡测试集AUC为0.932，家族分层且按自然阳性率评估的汇总AUC为0.939；NAD/NADP案例中检出95.0–98.6%的真实结合者。\n\n创新点\n以渐进式知识迁移利用蛋白—配体预训练信息处理实验标注有限的辅因子特异性任务。\n\n价值与局限\n目标是辅因子关联/特异性，不是突变活性或催化速率；摘要未说明家族分层是否完全家族隔离，外推范围需看切分细节。\n\n证据依据\nbioRxiv官方API摘要；v1预印本"
  },
  {
   "week": "2026-10-12",
   "id": "arXiv:2610.11694",
   "title": "VenusRX（submitted 10-08）",
   "date": "2026-10-12",
-  "disp": "可读；反应/EC任务，无蛋白输入；MLCD库与round-trip条件须分开",
+  "disp": "把反应结构与酶催化功能共同建模，并在多个酶反应任务共享训练框架。",
   "cat": "可读",
   "dirs": [
    "功能注释与预测"
   ],
   "meths": [
    "AI/ML 模型"
-  ]
+  ],
+  "review": {
+   "title": "Elucidating the Space of Enzymatic Reaction: A Unified Benchmark and Pretrained Model",
+   "content": "VenusRX-Bench统一评估正向反应预测、单步逆合成和EC号预测，并采用控制泄漏的切分。VenusRX是T5式序列到序列模型，先在模板扩展反应上训练，再在真实生化反应上训练；可选EC条件和分子库约束解码。",
+   "innovation": "把反应结构与酶催化功能共同建模，并在多个酶反应任务共享训练框架。",
+   "limitations": "模型输入及任务围绕反应数据而非蛋白序列；摘要描述的是计算基准，不包含湿实验酶活验证。复杂分子生成受其分子库约束和评估切分定义影响。",
+   "scope": "arXiv官方摘要与题录",
+   "source": "https://arxiv.org/abs/2610.11694"
+  },
+  "source_url": "https://arxiv.org/abs/2610.11694",
+  "detail": "论文题名\nElucidating the Space of Enzymatic Reaction: A Unified Benchmark and Pretrained Model\n\n主要内容\nVenusRX-Bench统一评估正向反应预测、单步逆合成和EC号预测，并采用控制泄漏的切分。VenusRX是T5式序列到序列模型，先在模板扩展反应上训练，再在真实生化反应上训练；可选EC条件和分子库约束解码。\n\n创新点\n把反应结构与酶催化功能共同建模，并在多个酶反应任务共享训练框架。\n\n价值与局限\n模型输入及任务围绕反应数据而非蛋白序列；摘要描述的是计算基准，不包含湿实验酶活验证。复杂分子生成受其分子库约束和评估切分定义影响。\n\n证据依据\narXiv官方摘要与题录"
  },
  {
   "week": "2026-10-12",
   "id": "10.64898/2026.10.01.755914",
   "title": "E. coli adaptive respiratory bypass（posted10-01）",
   "date": "2026-10-12",
-  "disp": "必读；4谱系ALE，调控/实际底盘迁移待核",
+  "disp": "通过多谱系ALE找到绕开主要呼吸入口的共同调控突变，并结合多组学与代谢模型解释替代通路。",
   "cat": "必读",
   "dirs": [
    "通路组装与产量"
   ],
   "meths": [
    "定向进化与筛选"
-  ]
- },
- {
-  "week": "2026-10-12",
-  "id": "10.1007/s10822-026-00954-8",
-  "title": "QM/MM CA binding敏感性（期刊10-07）",
-  "date": "2026-10-12",
-  "disp": "必读；23配体静态亲和力，非催化ΔΔG‡；更早沿革待查",
-  "cat": "必读",
-  "dirs": [
-   "底物结合与口袋"
   ],
-  "meths": [
-   "物理模拟"
-  ]
- },
- {
-  "week": "2026-10-12",
-  "id": "10.1038/s41586-026-11140-z",
-  "title": "RNase P ensembles（期刊10-07）",
-  "date": "2026-10-12",
-  "disp": "可读；76构象及活性实验；更早沿革待查",
-  "cat": "可读",
-  "dirs": [
-   "结构与构象"
-  ],
-  "meths": [
-   "物理模拟",
-   "实验表征"
-  ]
+  "review": {
+   "title": "Adaptive respiratory bypass restores oxidative metabolism in NADH dehydrogenase-deficient Escherichia coli",
+   "content": "在缺失两种NADH脱氢酶的大肠杆菌中，四条独立适应性实验进化谱系均通过破坏ArcA结合位点解除苹果酸：醌氧化还原酶表达抑制，使电子改由该酶进入醌池。摘要报告呼吸耗氧恢复至野生型水平，且TCA循环和中心碳代谢重整。",
+   "innovation": "通过多谱系ALE找到绕开主要呼吸入口的共同调控突变，并结合多组学与代谢模型解释替代通路。",
+   "limitations": "机制针对缺失NADH脱氢酶的工程菌株；适应性突变和其效应是否适用于其他底盘或生产目标，摘要未验证。",
+   "scope": "bioRxiv官方API摘要；v1预印本",
+   "source": "https://www.biorxiv.org/content/10.64898/2026.10.01.755914v1"
+  },
+  "source_url": "https://www.biorxiv.org/content/10.64898/2026.10.01.755914v1",
+  "detail": "论文题名\nAdaptive respiratory bypass restores oxidative metabolism in NADH dehydrogenase-deficient Escherichia coli\n\n主要内容\n在缺失两种NADH脱氢酶的大肠杆菌中，四条独立适应性实验进化谱系均通过破坏ArcA结合位点解除苹果酸：醌氧化还原酶表达抑制，使电子改由该酶进入醌池。摘要报告呼吸耗氧恢复至野生型水平，且TCA循环和中心碳代谢重整。\n\n创新点\n通过多谱系ALE找到绕开主要呼吸入口的共同调控突变，并结合多组学与代谢模型解释替代通路。\n\n价值与局限\n机制针对缺失NADH脱氢酶的工程菌株；适应性突变和其效应是否适用于其他底盘或生产目标，摘要未验证。\n\n证据依据\nbioRxiv官方API摘要；v1预印本"
  },
  {
   "week": "2026-10-12",
   "id": "10.64898/2026.02.26.708291 / 10.1093/bioinformatics/btag733",
   "title": "Information Leakage（预印本03-01，期刊10-01）",
   "date": "2026-10-12",
-  "disp": "历史补课；期刊新增内容未确认，不计新进展",
-  "cat": "历史补课",
+  "disp": "以DataSAIL等切分同时考察蛋白和配体相似性，指出分子轴泄漏会夸大酶底物预测的OOD表现。",
+  "cat": "可读",
   "dirs": [
    "基准与方法学"
   ],
   "meths": [
    "综述与批评"
-  ]
+  ],
+  "review": {
+   "title": "Information leakage in enzyme-substrate prediction",
+   "content": "作者重新训练并评估四种酶—小分子相互作用模型，检查蛋白序列和配体结构相似性导致的切分泄漏。降低蛋白相似度的影响相对有限；移除共有底物或把结构相似配体分开后，模型性能大幅下降，在严格配体相似度切分下接近随机或统计基线。",
+   "innovation": "以DataSAIL等切分同时考察蛋白和配体相似性，指出分子轴泄漏会夸大酶底物预测的OOD表现。",
+   "limitations": "结论针对所检查的数据集和四种模型、以及本文定义的OOD场景；不自动否定所有酶—底物预测方法。",
+   "scope": "Bioinformatics出版社文章、摘要及正文结果",
+   "source": "https://academic.oup.com/bioinformatics/article/42/10/btag733/8860137"
+  },
+  "source_url": "https://academic.oup.com/bioinformatics/article/42/10/btag733/8860137",
+  "detail": "论文题名\nInformation leakage in enzyme-substrate prediction\n\n主要内容\n作者重新训练并评估四种酶—小分子相互作用模型，检查蛋白序列和配体结构相似性导致的切分泄漏。降低蛋白相似度的影响相对有限；移除共有底物或把结构相似配体分开后，模型性能大幅下降，在严格配体相似度切分下接近随机或统计基线。\n\n创新点\n以DataSAIL等切分同时考察蛋白和配体相似性，指出分子轴泄漏会夸大酶底物预测的OOD表现。\n\n价值与局限\n结论针对所检查的数据集和四种模型、以及本文定义的OOD场景；不自动否定所有酶—底物预测方法。\n\n证据依据\nBioinformatics出版社文章、摘要及正文结果"
  },
  {
   "week": "2026-10-12",
   "id": "ScienceDirect S2212429226011193（DOI 未逐项确认）",
   "title": "Zheng 等 MG1655 NDO+TnaA indigo（Food Bioscience 2026，窗口外）",
   "date": "2026-10-12",
-  "disp": "可读；背景佐证，摘要级",
+  "disp": "把NDO来源和表达、宿主氧化应激、NADH供给及多组分酶可溶性一起优化。",
   "cat": "可读",
   "dirs": [
    "通路组装与产量"
   ],
   "meths": [
    "实验表征"
-  ]
+  ],
+  "review": {
+   "title": "Metabolic engineering of Escherichia coli MG1655 for indigo production using naphthalene dioxygenase from Comamonas sp. MQ",
+   "content": "以大肠杆菌MG1655生产靛蓝，优化TnaA/NDO来源与NDO核糖体结合位点，整合氧化应激相关基因、过表达gldA补NADH，并共表达分子伴侣改善NDO可溶性。摘要报告摇瓶滴度2.38 g/L、5 L补料分批滴度6.90 g/L。",
+   "innovation": "把NDO来源和表达、宿主氧化应激、NADH供给及多组分酶可溶性一起优化。",
+   "limitations": "多项代谢、表达和底盘改造同时叠加，终点滴度无法归因于单个NDO变体或单项工程；特定MG1655背景和工艺参数需一并复现。",
+   "scope": "ScienceDirect出版社全文与摘要",
+   "source": "https://www.sciencedirect.com/science/article/pii/S2212429226011193"
+  },
+  "source_url": "https://www.sciencedirect.com/science/article/pii/S2212429226011193",
+  "detail": "论文题名\nMetabolic engineering of Escherichia coli MG1655 for indigo production using naphthalene dioxygenase from Comamonas sp. MQ\n\n主要内容\n以大肠杆菌MG1655生产靛蓝，优化TnaA/NDO来源与NDO核糖体结合位点，整合氧化应激相关基因、过表达gldA补NADH，并共表达分子伴侣改善NDO可溶性。摘要报告摇瓶滴度2.38 g/L、5 L补料分批滴度6.90 g/L。\n\n创新点\n把NDO来源和表达、宿主氧化应激、NADH供给及多组分酶可溶性一起优化。\n\n价值与局限\n多项代谢、表达和底盘改造同时叠加，终点滴度无法归因于单个NDO变体或单项工程；特定MG1655背景和工艺参数需一并复现。\n\n证据依据\nScienceDirect出版社全文与摘要",
+  "display_id": "10.1016/j.fbio.2026.109347"
  },
  {
   "week": "2026-10-12",
   "id": "Zenodo 15701301 / PREreview 15707440",
   "title": "Boltz-2 affinity 公开同行评审（2025-06-20，背景）",
   "date": "2026-10-12",
-  "disp": "背景；split/泄漏批评，支撑自建切分与禁用 affinity 代替活性",
-  "cat": "其他",
+  "disp": "这是对模型评估设计和透明度的同行评阅记录，不是新的模型或实验研究。",
+  "cat": "可读",
   "dirs": [
    "底物结合与口袋",
    "基准与方法学"
   ],
   "meths": [
    "综述与批评"
-  ]
- },
- {
-  "week": "2026-10-12",
-  "id": "10.1016/j.bbapap.2026.141186（PMID 42810701）",
-  "title": "Xia & Auclair moist-solid PET fractal kinetics（BBA Proteins Proteom.，09-29 online）",
-  "date": "2026-10-12",
-  "disp": "已核实未入选；窗口内低水体系表观动力学，下期评估候选",
-  "cat": "其他",
-  "dirs": [
-   "活性与动力学"
   ],
-  "meths": [
-   "实验表征"
-  ]
+  "review": {
+   "title": "PREreview of 'Boltz-2: Towards Accurate and Efficient Binding Affinity Prediction'",
+   "content": "评阅概述Boltz-2加入由Kd和IC50数据监督的结合亲和力分类与回归模块，并肯定其模型和应用价值；主要质疑包括训练/测试切分缺乏明确原则、潜在数据泄漏、训练数据与流程细节不足，以及FEP基准可能与训练结构重叠。",
+   "innovation": "这是对模型评估设计和透明度的同行评阅记录，不是新的模型或实验研究。",
+   "limitations": "文档记录的是审稿人对2025年预印本的意见；其中批评属于评阅判断，不能当作已独立复现的实验结论。",
+   "scope": "Zenodo保存的PREreview全文；针对2025年Boltz-2预印本的同行评阅",
+   "source": "https://zenodo.org/records/15707440"
+  },
+  "source_url": "https://zenodo.org/records/15707440",
+  "detail": "论文题名\nPREreview of 'Boltz-2: Towards Accurate and Efficient Binding Affinity Prediction'\n\n主要内容\n评阅概述Boltz-2加入由Kd和IC50数据监督的结合亲和力分类与回归模块，并肯定其模型和应用价值；主要质疑包括训练/测试切分缺乏明确原则、潜在数据泄漏、训练数据与流程细节不足，以及FEP基准可能与训练结构重叠。\n\n创新点\n这是对模型评估设计和透明度的同行评阅记录，不是新的模型或实验研究。\n\n价值与局限\n文档记录的是审稿人对2025年预印本的意见；其中批评属于评阅判断，不能当作已独立复现的实验结论。\n\n证据依据\nZenodo保存的PREreview全文；针对2025年Boltz-2预印本的同行评阅",
+  "link_label": "公开评阅 ↗"
  },
  {
   "week": "2026-11-02",
   "id": "10.64898/2026.10.26.762004",
   "title": "KINBERT + phospho-PCA 激酶-底物联合编码（bioRxiv posted 10-28）",
   "date": "2026-11-02",
-  "disp": "可读；摘要级；联合编码+pooled assay+Bayes 解耦，范式借鉴；激酶非目标",
+  "disp": "把联合序列表示、池化实验与层次统计解耦整合为实验在环的底物映射流程。",
   "cat": "可读",
   "dirs": [
-   "选择性与特异性"
+   "选择性与特异性",
+   "高通量筛选"
   ],
   "meths": [
    "AI/ML 模型",
    "实验表征"
   ],
-  "detail": "做法：蛋白语言模型联合编码激酶催化域与底物肽，配合 pooled phospho-PCA 实验闭环，用贝叶斯层次模型把“生化识别”与“激酶适应性”解耦。借鉴意义：联合编码 + pooled assay + 解耦的范式可迁移到 UGT-受体筛选设计；激酶体系本身不是目标。"
- },
- {
-  "week": "2026-11-02",
-  "id": "10.64898/2026.10.25.761710",
-  "title": "塑料降解酶定向进化（bioRxiv posted 10-28）",
-  "date": "2026-11-02",
-  "disp": "观察；4 位点 30 万文库平板筛选，单命中、无动力学数字",
-  "cat": "观察",
-  "dirs": [
-   "新酶与新功能设计"
-  ],
-  "meths": [
-   "定向进化与筛选"
-  ],
-  "detail": "内容：4 个位点、超 30 万文库的平板筛选，获得单个突变株兼具聚氨酯活性并保留原有聚酯酶活性。局限：摘要仅见 n=1 个命中、无动力学数字，列为观察。"
+  "detail": "论文题名\nHigh-throughput mapping of kinase-substrate interactions with protein language models and phospho-PCA\n\n主要内容\nKINBERT联合编码激酶催化结构域与底物肽；phospho-PCA可池化筛查多个激酶与数千底物，配合贝叶斯层次模型区分生化识别与激酶适应性。摘要报告识别23个激酶构建体、21种激酶的高置信底物，并用于活细胞传感器和信号通路分析。\n\n创新点\n把联合序列表示、池化实验与层次统计解耦整合为实验在环的底物映射流程。\n\n价值与局限\n预印本且以激酶—底物识别为目标；可借鉴筛选范式，但本身不验证UGT—受体识别或糖基转移活性。\n\n证据依据\nbioRxiv官方API摘要；v1预印本",
+  "review": {
+   "title": "High-throughput mapping of kinase-substrate interactions with protein language models and phospho-PCA",
+   "content": "KINBERT联合编码激酶催化结构域与底物肽；phospho-PCA可池化筛查多个激酶与数千底物，配合贝叶斯层次模型区分生化识别与激酶适应性。摘要报告识别23个激酶构建体、21种激酶的高置信底物，并用于活细胞传感器和信号通路分析。",
+   "innovation": "把联合序列表示、池化实验与层次统计解耦整合为实验在环的底物映射流程。",
+   "limitations": "预印本且以激酶—底物识别为目标；可借鉴筛选范式，但本身不验证UGT—受体识别或糖基转移活性。",
+   "scope": "bioRxiv官方API摘要；v1预印本",
+   "source": "https://www.biorxiv.org/content/10.64898/2026.10.26.762004v1"
+  },
+  "source_url": "https://www.biorxiv.org/content/10.64898/2026.10.26.762004v1"
  },
  {
   "week": "2026-11-02",
   "id": "10.1021/jacs.6c16863",
   "title": "JACS ThDP ketyl 自由基 EPR/ENDOR（10-30）",
   "date": "2026-11-02",
-  "disp": "可读；摘要级；蛋白骨架重塑自由基电子结构",
+  "disp": "把自由基谱学观察与活性位点电子结构、酶促选择性联系起来，直接探查酶支架对共同中间体的电子调控。",
   "cat": "可读",
   "dirs": [
    "结构与构象"
@@ -1627,14 +2091,23 @@
   "meths": [
    "实验表征"
   ],
-  "detail": "成果：冻淬多频 EPR/ENDOR 直接表征 ThDP 结合的 ketyl 自由基中间体——同一化学组成的中间体在 BFD 与 BAL 两种酶中电子结构不同，说明蛋白骨架通过活性位点构象重塑自由基的电子结构。机理深度高。"
+  "detail": "论文题名\nProtein Scaffolds Modulate the Electronic Structure of a Common Ketyl Radical Intermediate in Thiamine Pyrophosphate-Dependent Radical Biocatalysis: Insights from EPR and ENDOR Spectroscopy\n\n主要内容\n研究用光生物催化、冻淬多频EPR/ENDOR及DFT分析TPP结合的ketyl自由基。该中间体在BFD和BAL中虽化学组成相同，却呈现不同电子结构；BFD中底物中心自旋离域较强，为其较强的自由基C–C偶联活性提供机理解释。\n\n创新点\n把自由基谱学观察与活性位点电子结构、酶促选择性联系起来，直接探查酶支架对共同中间体的电子调控。\n\n价值与局限\n结论来自特定TPP依赖酶和自由基偶联体系；摘要未建立将电子结构差异推广到其他辅因子或反应类型的验证。\n\n证据依据\nJACS出版社摘要和补充信息索引",
+  "review": {
+   "title": "Protein Scaffolds Modulate the Electronic Structure of a Common Ketyl Radical Intermediate in Thiamine Pyrophosphate-Dependent Radical Biocatalysis: Insights from EPR and ENDOR Spectroscopy",
+   "content": "研究用光生物催化、冻淬多频EPR/ENDOR及DFT分析TPP结合的ketyl自由基。该中间体在BFD和BAL中虽化学组成相同，却呈现不同电子结构；BFD中底物中心自旋离域较强，为其较强的自由基C–C偶联活性提供机理解释。",
+   "innovation": "把自由基谱学观察与活性位点电子结构、酶促选择性联系起来，直接探查酶支架对共同中间体的电子调控。",
+   "limitations": "结论来自特定TPP依赖酶和自由基偶联体系；摘要未建立将电子结构差异推广到其他辅因子或反应类型的验证。",
+   "scope": "JACS出版社摘要和补充信息索引",
+   "source": "https://pubs.acs.org/jacsat/article/doi/10.1021/jacs.6c16863/5461479/Protein-Scaffolds-Modulate-the-Electronic"
+  },
+  "source_url": "https://pubs.acs.org/jacsat/article/doi/10.1021/jacs.6c16863/5461479/Protein-Scaffolds-Modulate-the-Electronic"
  },
  {
   "week": "2026-11-02",
   "id": "10.64898/2026.10.26.761392",
   "title": "Isonitrile synthase Rv0097 第二壳层 Thr（bioRxiv posted 10-30）",
   "date": "2026-11-02",
-  "disp": "可读；第二壳层遥控 Fe(IV)-oxo HAT 取向",
+  "disp": "提出一个第二壳层残基多步协调氧活化、底物HAT与共底物交换的机制。",
   "cat": "可读",
   "dirs": [
    "活性与动力学"
@@ -1643,14 +2116,23 @@
    "实验表征",
    "物理模拟"
   ],
-  "detail": "成果（Kulik 组）：原子分辨率结构加生化加计算，发现第二壳层残基 T92 引导 Fe(IV)-oxo 的氢原子转移取向，并管理 αKG 的在线/离线构象。评价：第二壳层遥控催化的清晰案例。"
+  "detail": "论文题名\nA second-sphere threonine residue directs iron-oxygen species in a Fe(II)/α-ketoglutarate-dependent isonitrile synthase\n\n主要内容\n原子分辨率结构、生化和计算分析指出Rv0097第二配位层T92可与氧气和Fe(IV)-oxo形成氢键、稳定α-酮戊二酸的离线构象以避免阻挡氧气，并在第一半反应后稳定帮助产物离去和第二分子αKG结合的loop构象。\n\n创新点\n提出一个第二壳层残基多步协调氧活化、底物HAT与共底物交换的机制。\n\n价值与局限\n机制是对特定isonitrile synthase的解释；摘要提出其他酶中可能的对应残基，但未证明可普遍迁移。\n\n证据依据\nbioRxiv官方API摘要；v1预印本",
+  "review": {
+   "title": "A second-sphere threonine residue directs iron-oxygen species in a Fe(II)/α-ketoglutarate-dependent isonitrile synthase",
+   "content": "原子分辨率结构、生化和计算分析指出Rv0097第二配位层T92可与氧气和Fe(IV)-oxo形成氢键、稳定α-酮戊二酸的离线构象以避免阻挡氧气，并在第一半反应后稳定帮助产物离去和第二分子αKG结合的loop构象。",
+   "innovation": "提出一个第二壳层残基多步协调氧活化、底物HAT与共底物交换的机制。",
+   "limitations": "机制是对特定isonitrile synthase的解释；摘要提出其他酶中可能的对应残基，但未证明可普遍迁移。",
+   "scope": "bioRxiv官方API摘要；v1预印本",
+   "source": "https://www.biorxiv.org/content/10.64898/2026.10.26.761392v1"
+  },
+  "source_url": "https://www.biorxiv.org/content/10.64898/2026.10.26.761392v1"
  },
  {
   "week": "2026-11-02",
   "id": "10.64898/2026.10.27.762324",
   "title": "ChrH/DybH MNIO 机理（bioRxiv posted 10-28）",
   "date": "2026-11-02",
-  "disp": "可读；硫醛中间体与大环化末步证据",
+  "disp": "通过酶或底物突变产生可分离的旁路产物，捕捉MNIO肽修饰过程中的反应中间阶段。",
   "cat": "可读",
   "dirs": [
    "活性与动力学"
@@ -1658,15 +2140,24 @@
   "meths": [
    "实验表征"
   ],
-  "detail": "内容（van der Donk 组）：突变体产物快照支持硫醛中间体与大环化末步的机理。MNIO 机理研究。"
+  "detail": "论文题名\nMechanism of remarkable peptide modifications by the multinuclear non-heme iron-dependent oxidative enzymes ChrH/DybH\n\n主要内容\nDybH活性位点突变产生半胱氨酸转为甲酰甘氨酸的产物，支持硫醇先氧化为硫醛；保守底物基序中的Cys突变产生含杂环但无大环的旁路产物，支持大环化是反应最后一步。\n\n创新点\n通过酶或底物突变产生可分离的旁路产物，捕捉MNIO肽修饰过程中的反应中间阶段。\n\n价值与局限\n摘要突出DybH的突变产物证据；属于尚未同行评审的机制预印本，不能由产物快照单独推定所有ChrH/DybH步骤细节。\n\n证据依据\nbioRxiv官方API摘要；v1预印本",
+  "review": {
+   "title": "Mechanism of remarkable peptide modifications by the multinuclear non-heme iron-dependent oxidative enzymes ChrH/DybH",
+   "content": "DybH活性位点突变产生半胱氨酸转为甲酰甘氨酸的产物，支持硫醇先氧化为硫醛；保守底物基序中的Cys突变产生含杂环但无大环的旁路产物，支持大环化是反应最后一步。",
+   "innovation": "通过酶或底物突变产生可分离的旁路产物，捕捉MNIO肽修饰过程中的反应中间阶段。",
+   "limitations": "摘要突出DybH的突变产物证据；属于尚未同行评审的机制预印本，不能由产物快照单独推定所有ChrH/DybH步骤细节。",
+   "scope": "bioRxiv官方API摘要；v1预印本",
+   "source": "https://www.biorxiv.org/content/10.64898/2026.10.27.762324v1"
+  },
+  "source_url": "https://www.biorxiv.org/content/10.64898/2026.10.27.762324v1"
  },
  {
   "week": "2026-11-02",
   "id": "10.1038/s41467-026-77666-y",
   "title": "凝聚酶拥挤激活（Nat. Commun. 10-30）",
   "date": "2026-11-02",
-  "disp": "观察；有更早近标题预印本、diff 未核，不计新增；势垒差≠速率倍数",
-  "cat": "观察",
+  "disp": "将拥挤对酶构象与催化的影响和催化对凝聚体内部扩散/流动的反作用联系起来。",
+  "cat": "可读",
   "dirs": [
    "活性与动力学"
   ],
@@ -1674,14 +2165,23 @@
    "实验表征",
    "物理模拟"
   ],
-  "detail": "内容：LDH/ADH 在 BSA/PEG 拥挤环境下被激活，QM/MM 显示特定构象的势垒差约 4 kcal/mol。处理：存在更早的近似标题预印本且差异未核对，不计新增；注意构象势垒差不能直接换算为总反应速率倍数。"
+  "detail": "论文题名\nEnzymes can activate and mobilize dense biomolecular condensates across scales\n\n主要内容\n在BSA富集的液滴中研究LDH和ADH，观察到催化活性提高酶周围分子流动性；QM/MM显示拥挤稳定的LDH闭合构象势垒约降低4 kcal/mol。拥挤程度与活性呈非单调关系，LDH在BSA 32% w/v液滴中的kcat/KM约为稀溶液的4倍。\n\n创新点\n将拥挤对酶构象与催化的影响和催化对凝聚体内部扩散/流动的反作用联系起来。\n\n价值与局限\n机制主要在简化的BSA/LDH/ADH液滴系统中测试；作者指出不同酶及拥挤剂的普遍性仍需研究，势垒差不应直接等同总体速率倍数。\n\n证据依据\nNature Communications出版社全文和摘要",
+  "review": {
+   "title": "Enzymes can activate and mobilize dense biomolecular condensates across scales",
+   "content": "在BSA富集的液滴中研究LDH和ADH，观察到催化活性提高酶周围分子流动性；QM/MM显示拥挤稳定的LDH闭合构象势垒约降低4 kcal/mol。拥挤程度与活性呈非单调关系，LDH在BSA 32% w/v液滴中的kcat/KM约为稀溶液的4倍。",
+   "innovation": "将拥挤对酶构象与催化的影响和催化对凝聚体内部扩散/流动的反作用联系起来。",
+   "limitations": "机制主要在简化的BSA/LDH/ADH液滴系统中测试；作者指出不同酶及拥挤剂的普遍性仍需研究，势垒差不应直接等同总体速率倍数。",
+   "scope": "Nature Communications出版社全文和摘要",
+   "source": "https://www.nature.com/articles/s41467-026-77666-y"
+  },
+  "source_url": "https://www.nature.com/articles/s41467-026-77666-y"
  },
  {
   "week": "2026-11-02",
   "id": "2610.39662",
   "title": "病毒 GT 结构信息学（arXiv 10-29）",
   "date": "2026-11-02",
-  "disp": "观察；无湿实验；结构字母表发现病毒 GT 新谱系",
+  "disp": "用结构信息学和基因簇上下文寻找序列相似性难以发现的病毒糖基化系统。",
   "cat": "观察",
   "dirs": [
    "功能注释与预测"
@@ -1689,29 +2189,23 @@
   "meths": [
    "AI/ML 模型"
   ],
-  "detail": "做法：用结构字母表搜索加结构相似性网络，发现序列注释漏掉的病毒糖基转移酶新谱系（jumbo 噬菌体的五串联 GT 基因座）。局限：无湿实验；与 EzHit 同属“序列之外找 GT”的路线。"
- },
- {
-  "week": "2026-11-02",
-  "id": "10.64898/2026.10.29.762748",
-  "title": "OGT“protein co-scientist”（bioRxiv posted 10-30）",
-  "date": "2026-11-02",
-  "disp": "忽略；纯 docking 评估功能，无湿实验——docking≠function 风险样本",
-  "cat": "忽略",
-  "dirs": [
-   "底物结合与口袋"
-  ],
-  "meths": [
-   "AI/ML 模型"
-  ],
-  "detail": "内容：全计算 docking 评估酶功能、无湿实验——正是“docking 不等于功能”风险的典型样本。暂不读。"
+  "detail": "论文题名\nAI-driven structural informatics reveals diverse glycosylation machinery across double-stranded DNA viruses\n\n主要内容\n作者结合结构字母表搜索、结构相似性网络、基因组邻域及生物合成基因簇分析，识别序列注释可能漏掉的病毒GT-A谱系；报告一个含五个串联GT基因、羟甲基嘧啶生物合成和硫酸化相关酶的巨型噬菌体基因座，并提出可能涉及硫酸化五糖的病毒DNA修饰。\n\n创新点\n用结构信息学和基因簇上下文寻找序列相似性难以发现的病毒糖基化系统。\n\n价值与局限\n摘要报告的是结构/基因组学发现与功能假设，没有酶活或病毒糖链的生化验证；硫酸化五糖功能仍是推测。\n\n证据依据\narXiv官方摘要与题录",
+  "review": {
+   "title": "AI-driven structural informatics reveals diverse glycosylation machinery across double-stranded DNA viruses",
+   "content": "作者结合结构字母表搜索、结构相似性网络、基因组邻域及生物合成基因簇分析，识别序列注释可能漏掉的病毒GT-A谱系；报告一个含五个串联GT基因、羟甲基嘧啶生物合成和硫酸化相关酶的巨型噬菌体基因座，并提出可能涉及硫酸化五糖的病毒DNA修饰。",
+   "innovation": "用结构信息学和基因簇上下文寻找序列相似性难以发现的病毒糖基化系统。",
+   "limitations": "摘要报告的是结构/基因组学发现与功能假设，没有酶活或病毒糖链的生化验证；硫酸化五糖功能仍是推测。",
+   "scope": "arXiv官方摘要与题录",
+   "source": "https://arxiv.org/abs/2610.39662"
+  },
+  "source_url": "https://arxiv.org/abs/2610.39662"
  },
  {
   "week": "2026-11-02",
   "id": "10.1016/j.biotechadv.2026.109088",
   "title": "蓝色素生物合成综述（Biotechnol. Adv. 10-31）",
   "date": "2026-11-02",
-  "disp": "可读；violacein/indigo/indigoidine/PCB 四体系比较框架，靛蓝背景",
+  "disp": "以色素类型对照共性瓶颈和特异性工程策略，形成策略选择框架。",
   "cat": "可读",
   "dirs": [
    "通路组装与产量"
@@ -1719,22 +2213,16 @@
   "meths": [
    "综述与批评"
   ],
-  "detail": "内容：violacein、indigo、indigoidine、phycocyanobilin 四个蓝色素体系的途径优化、前体工程、膜工程比较框架。综述无新数据；可作靛蓝项目的背景资料。"
- },
- {
-  "week": "2026-11-02",
-  "id": "2610.37606",
-  "title": "AMARO v2.0 粗粒化 NNP（arXiv 10-27）",
-  "date": "2026-11-02",
-  "disp": "观察；binding 自由能系统性偏负；非催化工具",
-  "cat": "观察",
-  "dirs": [
-   "底物结合与口袋"
-  ],
-  "meths": [
-   "物理模拟"
-  ],
-  "detail": "是什么：全重原子粗粒化神经网势头（隐式溶剂），用于复合物动力学。注意：其结合自由能估计系统性偏负；属于结合方向而非催化，列为观察。"
+  "detail": "论文题名\nBiosynthesis of valuable blue pigments: Recent advances, applications and perspectives\n\n主要内容\n综述比较violacein、indigo、indigoidine和phycocyanobilin四类微生物蓝色色素，围绕通路优化、前体工程和膜工程整理生产瓶颈与策略，并概述染色、治疗开发和生物电子等用途。\n\n创新点\n以色素类型对照共性瓶颈和特异性工程策略，形成策略选择框架。\n\n价值与局限\n综述无新增实验数据；提出的策略仍需按目标色素、宿主和工艺逐项验证。\n\n证据依据\nPubMed官方摘要与题录；综述",
+  "review": {
+   "title": "Biosynthesis of valuable blue pigments: Recent advances, applications and perspectives",
+   "content": "综述比较violacein、indigo、indigoidine和phycocyanobilin四类微生物蓝色色素，围绕通路优化、前体工程和膜工程整理生产瓶颈与策略，并概述染色、治疗开发和生物电子等用途。",
+   "innovation": "以色素类型对照共性瓶颈和特异性工程策略，形成策略选择框架。",
+   "limitations": "综述无新增实验数据；提出的策略仍需按目标色素、宿主和工艺逐项验证。",
+   "scope": "PubMed官方摘要与题录；综述",
+   "source": "https://pubmed.ncbi.nlm.nih.gov/42966607/"
+  },
+  "source_url": "https://pubmed.ncbi.nlm.nih.gov/42966607/"
  }
 ]</script>
 <script>
@@ -1890,6 +2378,29 @@ var REPORTS = {"2026-09-30": "reports/weekly_2026-09-30.html", "2026-10-05": "re
     }
   });
 
+  function renderDetail(e) {
+    if (!e.review) {
+      return e.detail
+        ? '<details class="det"><summary>详情</summary><div class="det-body">' + esc(e.detail) + '</div></details>'
+        : '';
+    }
+    var review = e.review;
+    var fields = [
+      ['论文题名', review.title],
+      ['主要内容', review.content],
+      ['创新点', review.innovation],
+      ['价值与局限', review.limitations],
+      ['证据依据', review.scope]
+    ];
+    var body = fields.map(function (field) {
+      return '<p><strong>' + field[0] + '</strong><br>' + esc(field[1]) + '</p>';
+    }).join('');
+    if (/^https?:\/\//i.test(review.source)) {
+      body += '<p><a href="' + esc(review.source) + '" target="_blank" rel="noopener noreferrer">原始文献 / 核查来源 ↗</a></p>';
+    }
+    return '<details class="det"><summary>详情 · 内容与创新</summary><div class="det-body">' + body + '</div></details>';
+  }
+
   function render() {
     var groups = [], byWeek = {}, shown = 0;
     DATA.forEach(function (e) {
@@ -1913,8 +2424,8 @@ var REPORTS = {"2026-09-30": "reports/weekly_2026-09-30.html", "2026-10-05": "re
       var rep = REPORTS[w] ? '<a class="rep" href="' + REPORTS[w] + '">当期周报 →</a>' : '';
       html += '<div class="week-head" id="w-' + w + '"><span class="w">' + esc(w) + ' 期</span><span class="n">' + items.length + ' 条</span>' + rep + '</div>';
       items.forEach(function (e) {
-        var url = linkFor(e.id);
-        var inner = '<code>' + esc(e.id) + '</code>';
+        var url = e.source_url || linkFor(e.id);
+        var inner = '<code>' + esc(e.display_id || e.id) + '</code>';
         var idHtml = url
           ? '<a class="idlink" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + inner + '</a>'
           : inner;
@@ -1923,15 +2434,13 @@ var REPORTS = {"2026-09-30": "reports/weekly_2026-09-30.html", "2026-10-05": "re
           '<button class="mark-btn' + (mk.star ? ' on-star' : '') + '" data-id="' + esc(e.id) + '" data-kind="star" title="精读标记">' + (mk.star ? '★' : '☆') + ' 收藏</button>' +
           '<button class="mark-btn' + (mk.read ? ' on-read' : '') + '" data-id="' + esc(e.id) + '" data-kind="read" title="已读标记">✓ 已读</button>' +
           '</span>';
-        var detHtml = e.detail
-          ? '<details class="det"><summary>详情</summary><div class="det-body">' + esc(e.detail) + '</div></details>'
-          : '';
+        var detHtml = renderDetail(e);
         html += '<div id="entry-' + encodeURIComponent(e.id) + '" class="entry' + (mk.read ? ' is-read' : '') + '">' +
           '<div class="line1"><span class="cat ' + (CAT_CLASS[e.cat] || 'cat-other') + '">' + esc(e.cat) + '</span>' +
           '<span class="t">' + esc(e.title) + '</span></div>' +
           '<div class="idline">' + idHtml + '<span class="dt">收录 ' + esc(e.date) + '</span>' + markHtml + '</div>' +
           '<div class="disp">' + esc(e.disp) + '</div>' +
-          detHtml + '<details><summary>个人笔记与进度</summary><label>阅读进度 <select class="progress" data-id="' + esc(e.id) + '">' + ['待读','阅读中','已读'].map(function(v){return '<option '+((mk.status || (mk.read?'已读':'待读'))===v?'selected':'')+'>'+v+'</option>';}).join('') + '</select></label><p><label>我的结论、关键证据、待确认问题与下一步<textarea class="note" data-id="' + esc(e.id) + '" rows="5" style="display:block;width:100%">' + esc(mk.note || '') + '</textarea></label></p></details>' + (url ? '<a class="paper-link" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">文献直达链接 ↗</a>' : '') +
+          detHtml + '<details><summary>个人笔记与进度</summary><label>阅读进度 <select class="progress" data-id="' + esc(e.id) + '">' + ['待读','阅读中','已读'].map(function(v){return '<option '+((mk.status || (mk.read?'已读':'待读'))===v?'selected':'')+'>'+v+'</option>';}).join('') + '</select></label><p><label>我的结论、关键证据、待确认问题与下一步<textarea class="note" data-id="' + esc(e.id) + '" rows="5" style="display:block;width:100%">' + esc(mk.note || '') + '</textarea></label></p></details>' + (url ? '<a class="paper-link" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + esc(e.link_label || '文献直达链接 ↗') + '</a>' : '') +
           tagHtml(e) +
           '</div>';
       });
