@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>weekly_2026-11-12 · 酶科研雷达</title><style>
+
+  :root {
+    --text-1: #1a1a1a; --text-2: #4d4d4d; --text-3: #7a7a7a; --text-4: #a8a8a8;
+    --border: #e4e4e4; --surface: #fff; --surface-mute: #f5f5f5;
+    --accent: #2563eb; --positive: #16a34a; --warning: #b45309; --purple: #7c3aed;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-1: #e8e8e8; --text-2: #b5b5b5; --text-3: #8a8a8a; --text-4: #606060;
+      --border: #333; --surface: #161616; --surface-mute: #1f1f1f;
+      --accent: #6ea8fe; --positive: #4ade80; --warning: #fbbf24; --purple: #a78bfa;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--surface); color: var(--text-1);
+    font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 16px; line-height: 1.7;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 28px 20px 80px; }
+  .back { font-size: 13px; color: var(--text-3); text-decoration: none; }
+  .back:hover { color: var(--text-1); }
+  .doc h1 { font-size: 21px; font-weight: 500; line-height: 1.4; margin: 18px 0 6px; }
+  .doc h2 { font-size: 17.5px; font-weight: 500; margin: 34px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .doc h3 { font-size: 15.5px; font-weight: 500; margin: 24px 0 8px; }
+  .doc p { margin: 10px 0; }
+  .doc a { color: var(--accent); text-decoration: none; }
+  .doc a:hover { text-decoration: underline; }
+  .doc table { border-collapse: collapse; width: 100%; font-size: 13.5px; margin: 12px 0; display: block; overflow-x: auto; }
+  .doc th, .doc td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; vertical-align: top; }
+  .doc th { background: var(--surface-mute); font-weight: 500; }
+  .doc code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 12.5px; background: var(--surface-mute); padding: 1px 6px; border-radius: 4px; }
+  .doc ul, .doc ol { padding-left: 22px; }
+  .doc li { margin: 6px 0; }
+  .doc hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  .doc blockquote { margin: 12px 0; padding-left: 14px; border-left: 3px solid var(--border); color: var(--text-2); }
+</style></head><body><div class="wrap"><a class="back" href="../index.html">← 返回文献档案馆</a><div class="doc"><h1>Weekly Research Intelligence</h1>
+<p>时间：2026-11-06 ～ 2026-11-12（Asia/Tokyo）；检索截止：2026-11-12 09:53 JST。 月内补检：2026-10-14 ～ 2026-11-12。按 DOI / arXiv 编号与既有报告去重。本期 Top 5 只计 7 天窗口内首次公开的工作；月内补检、版本更新和窗口外历史补课分开记录。</p>
+<p>本轮筛出 <strong>5 项本周进展</strong>。另补检 DeltaCata、REXzyme、EnzymeRSI 等上期遗漏或高相关工作，并记录 KineCouple 的指标差异。来源方面读取了期刊原文/官方摘要、Crossref 注册摘要和 arXiv 官方条目。bioRxiv API 在本窗口只返回 30 条首屏记录，分页请求未完成；ChemRxiv API 返回 0 条但未能独立验证全目录。因此，本报告<strong>不把目录未覆盖部分概括为“没有新工作”</strong>；逐篇收录项的日期和结论仍以其一手页面为准。</p>
+<h2>1. 本周最重要的 5 个进展</h2>
+<table><thead><tr><th>工作</th><th>领域</th><th>核心突破</th><th>对当前研究价值</th></tr></thead><tbody><tr><td><a href="https://arxiv.org/abs/2611.13348" target="_blank" rel="noopener noreferrer">ProTEUS（arXiv 2611.13348）</a>，11-09提交 / 11-11列入 q-bio.BM 新投稿</td><td>突变效应、闭环进化</td><td>把突变表示为状态转移，并以实验反馈更新排序；摘要报告在 ALDH 与 levansucrase 两项工程中获得 &gt;10× activity variants</td><td>对有限预算、多轮突变筛选最贴近；尚需核对 assay 终点、独立切分、候选分母与代码/模型能否复用</td></tr><tr><td><a href="https://doi.org/10.1021/jacs.6c08768" target="_blank" rel="noopener noreferrer">De Novo Design of Catalytically Active Salen-Binding Proteins</a>，JACS 11-07</td><td>生成式酶设计、非天然催化</td><td>100 个骨架经筛选后，6 个实验设计中 5 个能结合 Co-salen 并催化 MHAT 脱烯丙基；最大底物规模达到 1.5 mmol、分离收率 &gt;95%</td><td>证明设计蛋白可为非天然金属辅因子构建有效催化环境；属于新反应/人工金属酶，不等同于天然酶突变优化</td></tr><tr><td><a href="https://doi.org/10.1038/s42003-026-11293-7" target="_blank" rel="noopener noreferrer">Allosteric network rewiring governs enzyme functional duality via a distal switch</a>，Communications Biology 11-07</td><td>远端突变、底物选择性</td><td>StDAPDH 的远端 M176 饱和突变可拆分 amination 与 deamination；选出的 M176A、M176N 对两种反应呈相反偏好</td><td>支持把远端位点与双底物/副反应读出纳入候选库；网络机制证据属于特定酶系，不能直接外推为通用位点预测器</td></tr><tr><td><a href="https://doi.org/10.1021/acscatal.6c07072" target="_blank" rel="noopener noreferrer">Accelerating CO₂ Biocatalysis through Multimodal AI-Guided Enzyme Prioritization and Spatial Confinement</a>，ACS Catalysis 11-09</td><td>AI 酶筛选、突变与代谢工程</td><td>CASKP 先筛 β-carbonic anhydrase，再以结构/MD 设计 R71A/V112A；作者报告特异活性 26.1 U/mg、胞内 ¹³C-3-PGA 比例提高 4.9×</td><td>展示“酶候选—突变—区室化—通路”的组合路线；最终 22.7 g/L L-malate 是多层工程结果，不能归因于 AI 或该双突变单独</td></tr><tr><td><a href="https://doi.org/10.1021/acssynbio.6c00727" target="_blank" rel="noopener noreferrer">Stepwise Optimization and Transcription Factor Engineering for Efficient Ectoine Production in *E. coli*</a>，ACS Synthetic Biology 11-09</td><td>E. coli 代谢工程</td><td>EctB E407D、通路/启动子、前体补给、TCA 调节及 Lrp 调控逐步组合；7 L 发酵作者报告 81.39 g/L ectoine</td><td>给“酶突变与全细胞代谢通量共同优化”提供当前实例；不是 AI 工作，也不证明这些改造可转移到芳香族/indigo 通路</td></tr></tbody></table>
+<h3>Top 5 的判断</h3>
+<ul><li><strong>最值得追的是 ProTEUS 与 Salen-binding proteins</strong>：前者直接瞄准多轮突变决策，后者以实验催化验证证明从头设计可拓展反应化学。两者解决的问题不同，不能用同一个“AI 酶活提升”指标概括。</li><li><strong>远端开关与 CASKP</strong> 提供两种互补思路：前者有双功能定量突变证据，后者把候选酶选择、位点设计和通路条件拼成系统。CASKP 的模型独立测试和代码尚需补查。</li><li>Ectoine 论文主要是代谢工程案例；81.39 g/L 是整株、多改造和工艺共同结果，不能用作 EctB E407D 单点效果。</li></ul>
+<h2>2. AI + 酶工程</h2>
+<h3>2A. 酶动力学预测与突变响应</h3>
+<p><strong>DeltaCata：本月补检，同行评审论文，在线 2026-11-05。</strong> <a href="https://www.nature.com/articles/s41467-026-79287-x" target="_blank" rel="noopener noreferrer">论文</a>，DOI <code>10.1038/s41467-026-79287-x</code>；<a href="https://github.com/biomed-AI/DeltaCata" target="_blank" rel="noopener noreferrer">作者代码/数据</a>。论文以同条件测得的 WT–mutant 配对动力学建立 Δkcat/ΔKm 数据：Δkcat 12,390 对、ΔKm 16,010 对；约 86% 为单点突变。模型用 Siamese geometric GNN 预测配对变化，并报告 mutation-level 与 enzyme-level split。作者还用 sGmOMT2 做迭代实验优化，最终变体对 icaritin 合成的 kcat/Km 为 WT 的 7.0 倍（体外、每个值 n=3）。</p>
+<p><strong>可靠性边界：</strong> 论文中的 DMS 检查为 in silico 验证；真正的新湿实验集中在一个 methyltransferase/icaritin 系统。数据集较直接地对应“突变效应”，比从绝对 kcat 取差更合题，但仍须核对目标酶/底物是否落在其训练分布。模型代码与数据早于本次期刊发表已有 Zenodo 版本；11-05 是同行评审论文在线发表日，不应称模型当日首发。作者仓库许可为 CC BY-NC-ND 4.0，商业使用和衍生再分发需另行确认。</p>
+<p><strong>KineCouple：本周 arXiv v1 11-06、v2 11-09。</strong> <a href="https://arxiv.org/html/2611.09377v2" target="_blank" rel="noopener noreferrer">v2 全文</a>。它输入 enzyme sequence + substrate SMILES，以冻结的 ProtT5/MolT5 特征和 substrate-conditioned residue attention 分别预测 log kcat、log Km。它预测的是<strong>绝对动力学参数</strong>，不是 mutation→activity。</p>
+<ul><li>v2 摘要写 pooled OOF 中 kcat RMSE 1.333→1.330、PCC 0.492→0.496；表 1 则写基线 1.327、0.481，KineCouple 1.319、0.496，两个位置的基准数值不一致。</li><li>作者说明没有提供 fold assignments、样本数、checkpoint 规则、原始 OOF 预测或重复训练统计；也未核实不同模型行的切分一致性。v2 自述的改进很小，统计显著性未知，且未验证同一酶内的跨底物排序或突变响应。</li></ul>
+<p><strong>判断：</strong> 作为“底物条件化残基读出”的研究线索值得观察；目前不值得进入突变排序流程，也不宜把相关系数的小幅变化解释成工程收益。版本变化尚未证明包含新数据或新实验，按普通 v2 修订记录，不算实质技术更新。</p>
+<h3>2B. 多位点/生成式设计与闭环验证</h3>
+<p><strong>ProTEUS（本周新公开，预印本，摘要级）。</strong> arXiv 页面显示 v1 于 11-09 UTC 提交，并出现在 11-11 的 q-bio.BM 新投稿列表。模型以 DMS 训练，组合 sequence/evolution/structure 表示；作者另称其物理约束 all-atom predictor 比 AlphaFold3 快 &gt;10×。摘要报告 ALDH 与 levansucrase 两条闭环多目标工程路线均得到较 WT 活性 &gt;10× 的变体。<strong>这是作者摘要主张，不是本轮独立复现。</strong> 64 页 PDF 未能在当前浏览器读取，变体数、活性读出定义、训练集与实验库隔离、同预算基线及代码/权重许可均未核实。因此列为本期首要全文阅读对象，而非可直接部署模型。</p>
+<p><strong>EnzymeRSI（本月补检，11-04 arXiv；已读公开全文）。</strong> 双循环分别更新工作流/harness 与算法，不把“换工具/提示”与“训练新模型”混为一类。三项前瞻酶实验包括 RLuc、A3A 与 KOD-E：32 个非预设 RLuc 候选中 10 个复测信号达到同板 WT 的 2×；但设计排名与复测排序仅弱相关（Spearman ρ=0.175），参考孔批内 CV 可达 87.6%，显示候选召回和组内排序是两件事。A3A 目标是 5mC/C 选择性；KOD-E 变体对 Cy3-dATP 的测量在固定 2 μM Cy3-dATP 下拟合的是 DNA-Cy5 表观动力学，31.1× 为作者定义的相对 kcat/Km，不是绝对 kcat，也不能视为一般底物上的 31.1×。对实际项目最有价值的是其预设验收/回滚规则、匹配预算对照和实验 QC 记录，不是“自主实验室已闭环”的宣传式概括。<a href="https://arxiv.org/abs/2611.06321" target="_blank" rel="noopener noreferrer">全文</a></p>
+<p><strong>REXzyme（本月补检，bioRxiv posted 11-05）。</strong> <a href="https://www.biorxiv.org/content/10.64898/2026.11.04.764151v1" target="_blank" rel="noopener noreferrer">预印本</a>把反应表示翻译成蛋白序列，再用于 formate dehydrogenase 的 CO₂ 还原。作者报告生成的 20 个序列均可溶表达、纯化并有活性；最佳比活为参考酶 2.5×，所选变化位点均远离活性中心。该结果是有湿实验的反应条件生成案例，但目前只覆盖一个酶—反应方向，不能推出任意化学反应都能生成活性酶。REXzyme 模型/资源已有较早版本，故本期收作新的实验验证，而非模型首发。</p>
+<p><strong>De novo Salen-binding proteins（本周新发表）。</strong> 正文与补充材料可读：作者从既有 MPP1 模板扩展 30–100 aa 子结构，用 RFdiffusion 生成骨架、LigandMPNN 设计序列、RaptorX-single 过滤折叠；100 个骨架中约 60 个通过其设计性筛选，6 个进入实验。5 个设计在 <em>E. coli</em> 中表达良好，结合 Co-salen 并催化 MHAT 脱烯丙基。SBP1 在底物范围测试中达到 &gt;9,500 TTN；1.5 mmol 规模底物分离收率 &gt;95%，催化剂负载 0.01 mol%。作者还报告晶体结构接近设计模型以及宽 pH/温度稳定性。这里的“成功”是一个非天然金属辅因子+人工蛋白架构的催化案例，不是天然酶的 kcat 优化或单点突变排序。<a href="https://pubs.acs.org/doi/pdf/10.1021/jacs.6c08768" target="_blank" rel="noopener noreferrer">ACS 正文 PDF</a></p>
+<h3>2C. 酶挖掘</h3>
+<p>本周没有核实到新的大规模天然酶挖掘方法达到前瞻实验门槛。REXzyme 属于反应条件生成蛋白，不是天然蛋白库中筛选同源候选；其结果已在 2B 计一次。RIVER、EnzyREx、AlphaEnzyme 等上一期条目按标识去重，不重复算新进展。</p>
+<h3>2D. 高通量筛选</h3>
+<p><strong>Hyperspectral Imaging clustering（30 天补检，ACS Synthetic Biology 10-24）。</strong> <a href="https://pubs.acs.org/asbcd6/article/doi/10.1021/acssynbio.6c00292/5457719/Development-of-a-Clustering-Based-Screening-Using" target="_blank" rel="noopener noreferrer">原文</a>，DOI <code>10.1021/acssynbio.6c00292</code>。作者用菌落高光谱数据做无监督聚类，不先建立已知高/低产训练株；在 <em>E. coli</em> AQ256 polyketide 组合质粒库中找到高产簇，筛出的 AQ-6′ 初始培养 49.0 mg/L，优化培养后 89.2 mg/L。它是<strong>菌株/表达组合筛选</strong>，不是单酶突变筛选；本轮未核实总库大小、单位筛选成本和跨产品泛化。若目标产物有稳定可见光谱，可作读出技术候选；对无色 indican 或目标糖苷仍需 LC-MS 作为产品验证。</p>
+<p>本周没有发现新的、能直接覆盖 UGT 产品生成并已验证 genotype–phenotype 耦合的 HTS 平台。</p>
+<h2>3. 酶催化机理 / QM/MM</h2>
+<p><strong>Sequence Model-Based Prediction and QM/MM Assessment of CYP2C19 Variant Effects on Mephenytoin Oxidation</strong>，JCTC 在线 2026-11-09，DOI <code>10.1021/acs.jctc.6c01085</code>。<a href="https://pubs.acs.org/journal/jctc" target="_blank" rel="noopener noreferrer">ACS 当前目录/DOI</a>。本轮取得 ACS 在线目录与 Crossref 注册摘要，全文未能直接打开。摘要描述 MaxEnt 序列分数、已发表 CYP2C19 动力学、MD 与 QM/MM-ASMD 的整合：MaxEnt 对 Vmax/CLint 的秩趋势不显著；反应几何占比未复现实验活性趋势；ASMD 能提出变体间的定性路径差异，但起始构象、pulling rate 敏感，NIH-shift 路径的自由能估计未收敛到可作定量势垒的程度。</p>
+<p><strong>判断：</strong> 这是适合学习的“模型评分→构象采样→反应路径”分析框架，同时也是重要的阴性边界：单一序列分数或一条 reactive geometry 不能替代催化读出；未收敛的 ASMD 势垒不能用于排序突变。它没有展示一个已验证的新通用 QM/MM 软件流程。</p>
+<p><strong>Reaction Mechanism and Chemoselectivity of an Enzymatic PAS Domain</strong>，JPCB 11-05 online，DOI <code>10.1021/acs.jpcb.6c03782</code>，列为月内补检。摘要报告 MD+QM/MM 对 PAS-domain 氧化 N-demethylation 的路径假说；核心结论依赖计算、未见工程突变或新湿实验验证。本轮只作机制背景，不计 Top 5，也不把特定 14.4 kcal/mol 势垒当成可迁移的酶催化基准。<a href="https://pubmed.ncbi.nlm.nih.gov/?term=10.1021%2Facs.jpcb.6c03782" target="_blank" rel="noopener noreferrer">PubMed 题录</a></p>
+<p><strong>结论：</strong> 本窗口未发现足以改变 ChemShell + ORCA 主流程的通用新方法；优先关注变体间自由能差能否在多起始构象、重复轨迹和速度控制下保持稳定，并与同条件实验动力学同向。</p>
+<h2>4. 蛋白结构与 enzyme-substrate prediction</h2>
+<p>arXiv 11-10 新投稿 <strong>ANTIOCH-VS</strong> 把序列预测的构象集合、ensemble docking 与 metadynamics triage 接成可复用的小分子筛选流程；其摘要 benchmark 是 JAK2 / ADRB2 的 DUD-E binder/decoy hit rate，不是酶底物转化、near-attack geometry 或催化活性。可作为“apo/单一结构不一定适合对接”的方法学观察，不作为酶底物催化姿势验证。<a href="https://arxiv.org/abs/2611.14287" target="_blank" rel="noopener noreferrer">arXiv 页面</a></p>
+<p>同一 q-bio.BM 目录中还出现 Bonbon 等蛋白–配体模型；其端点是靶标结合/抑制剂筛选。由于 <strong>binding ≠ catalysis</strong>，没有 enzyme–substrate 反应几何和 kcat/Km 验证，不纳入本期酶工程推荐。当前仍无新证据表明 AF3/Chai/Boltz 的高置信复合物能自动给出正确 UGT 反应构象。</p>
+<h2>5. UGT / glycosyltransferase</h2>
+<p>本期没有核实到新的 UGT 突变排序器、UDP-sugar specificity 模型或大规模 UGT 筛选方法在独立酶集上通过湿实验。</p>
+<ul><li><strong>In Silico Enzyme Engineering of Thermostable UGTs and SuSy for Industrial Glycosylation</strong>，ACS Chem &amp; Bio Engineering 11-05 online，DOI <code>10.1021/cbe.6c00187</code>，是综述，不含新实验。它梳理 UGT–sucrose synthase cascade 的稳定性工程，指出不同研究报告的 UGT 热稳定性可很高，但 SuSy 的类似工程/组合证据少得多。<a href="https://pubs.acs.org/cbehb5/article/doi/10.1021/cbe.6c00187/5465193/In-Silico-Enzyme-Engineering-of-Thermostable-UDP" target="_blank" rel="noopener noreferrer">ACS 原文</a></li><li><strong>A claim-specific evidence-boundary model for plant UGTs</strong>，Frontiers in Plant Science 11-02，DOI <code>10.3389/fpls.2026.1981660</code>，为无新实验的 Hypothesis and Theory。它把候选排序、产物是否形成、产物结构、异源宿主可行性和原生功能分成不同证据节点；对设计 UGT benchmark 有帮助，但不是一个新排序工具。<a href="https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2026.1981660/full" target="_blank" rel="noopener noreferrer">全文</a></li></ul>
+<p>与大规模 UGT screening 的直接关系：后续评测应按 acceptor scaffold 与 UDP-sugar donor 双重留出，正例以 LC-MS product 为准，近邻阴性需明确“同底物错误位点/错误供体/无反应”是哪一种；对预测出的反应信号，不能仅凭质量偏移宣称完成具体位点结构鉴定。</p>
+<h2>6. 蛋白表达与溶解度</h2>
+<p>在本次可访问的窗口搜索中，未找到 PLM_Sol、DeepSoluE、SoluProt、DeepSol、DeepSolNet、NetSolP 的重要新版本，或针对植物 UGT 在 <em>E. coli</em> 中的外部表达排序验证。ProTEUS、Salen-binding proteins 的“表达成功”是特定构建设计结果，不是通用 soluble-expression predictor。已报 SeqSol-FECS 等按 DOI 去重，不重新列为新进展。</p>
+<h2>7. 代谢工程</h2>
+<p><strong>本周新：</strong> ACS CASKP 论文把 β-carbonic anhydrase 候选排序与 R71A/V112A、hybrid carboxysome、ATP-generating carboxykinase 和 promoter optimization 组合起来。作者报告 ¹³C tracing 中 95.2% malate isotopologues 带 ¹³C，最终 L-malate 为 22.7 g/L。该滴度是多模块工程终点；摘要没有证明其中任一酶单独贡献了全量提升，也不是 indigo 可直接照搬的通路方案。</p>
+<p><strong>本周新：</strong> Ectoine 研究报告 7 L <em>E. coli</em> 发酵 81.39 g/L。路线同时改造 EctBE407D、前体供给、TCA 下调和 Lrp 调控；摘要报告 Lrp 操作关联滴度和生物量同时上升。可以借鉴“酶层 + 调控层 + 碳氮前体”的分阶段对照设计，但其 353%/81.39 g/L 是多个步骤的累计结果，不是 EctB E407D 单突变的效应。</p>
+<p><strong>窗口外历史补课（不计本周新增；论文实际 online 为 2026-09-12）：</strong> <em>Antibiotic- and inducer-free biosynthesis of indican from crude glycerol using engineered probiotic E. coli Nissle 1917</em>，DOI <code>10.1186/s40643-026-01131-3</code>。<a href="https://link.springer.com/article/10.1186/s40643-026-01131-3" target="_blank" rel="noopener noreferrer">Springer 原文</a>。这是与 indigo/UGT 最贴近的本轮补课：EcN 表达 FMO^K223R + PtUGT1，报告 2 L 发酵 32 h indican 1,923.2 mg/L。PtUGT1 S112A 的纯化酶动力学采用 DCP + UDP-glucose，不是 indoxyl；报告 kcat 0.912→1.070 s⁻¹、特异活性 +17.4%。发酵培养基含酵母提取物、胰蛋白胨和 L-Trp，并使用粗甘油，因此不能简单写成“粗甘油是唯一碳源”。此外，近期二手网页把这篇文章重新标成 11-11；期刊原文及 Crossref 都记录 <strong>9 月 12 日</strong>，它不在 7 天或 30 天窗口内。</p>
+<p><strong>项目相关判断：</strong> 本轮未确认新的 indole→indigo 原始研究或 W3110/BW25113/iML1515 专用代谢模型更新。Indican路线可为“避开细胞内 indigo 沉淀”的替代产品形式提供案例，但其 PtUGT1 surrogate kinetics、宿主、培养基和目标产物都与其他菌株/反应不同，需单独复测。</p>
+<h2>8. 新工具与模型</h2>
+<table><thead><tr><th>Tool / Model</th><th>用途</th><th>输入</th><th>输出</th><th>是否开源</th><th>是否值得测试</th></tr></thead><tbody><tr><td>ProTEUS</td><td>突变效应与闭环序列演化</td><td>序列、突变、DMS/实验反馈（摘要）</td><td>突变后效应/候选排序（摘要）</td><td>arXiv 页面未核实代码或权重；许可页可见，项目资源待核</td><td>先读全文和资源；现阶段不部署</td></tr><tr><td>DeltaCata</td><td>配对突变 Δkcat / ΔKm</td><td>WT/突变结构与替换</td><td>动力学参数变化</td><td>GitHub/数据可取；CC BY-NC-ND 4.0 限制商业应用</td><td>可做同条件配对数据小型盲测</td></tr><tr><td>KineCouple</td><td>绝对 kcat、Km 回归</td><td>enzyme sequence + substrate SMILES</td><td>log kcat 或 log Km</td><td>公开 v2 预印本；未发现可复用仓库/原始 OOF 数据</td><td>暂不测试优先级；先要求数据与指标澄清</td></tr><tr><td>CASKP</td><td>β-carbonic anhydrase 候选优先排序</td><td>序列表示 + docking-derived scalar</td><td>候选排序</td><td>ACS SI 可下载；代码/权重未核实</td><td>作为跨项目案例；不直接移植到 UGT</td></tr><tr><td>REXzyme</td><td>反应条件蛋白生成</td><td>chemical reaction</td><td>条件生成酶序列</td><td>HF 资源已公开页面；模型许可/完整复现条件本轮未核实</td><td>可读；需第二个反应方向和独立 wet-lab 再评估</td></tr><tr><td>ANTIOCH-VS</td><td>序列到构象集合的 ligand virtual screening</td><td>序列、配体库</td><td>binder shortlist</td><td>arXiv 声称开源；许可证需看仓库</td><td>仅作为 docking 工具观察；不预测催化</td></tr><tr><td>EnzymeRSI</td><td>工作流/算法双循环比较</td><td>目标、约束、历史数据、预算</td><td>逐步候选/决策及回滚规则</td><td>arXiv 正文可读；可复用软件/云实验接口状态待核</td><td>借鉴 QC、matched-budget 对照；不当作即装即用平台</td></tr></tbody></table>
+<h2>9. 本周值得重点阅读</h2>
+<p><strong>必读（5 篇）</strong></p>
+<ol><li><strong>ProTEUS</strong>：全文核对 DMS 预训练暴露、变体数、assay 类型和 closed-loop 对照；确认 &gt;10× 是何种活性读出。</li><li><strong>De Novo Design of Catalytically Active Salen-Binding Proteins</strong>：看 100→60→6 的设计/实验筛选链、结构验证和 1.5 mmol 制备规模边界。</li><li><strong>DeltaCata</strong>：这是本期最直接的配对突变动力学模型；读清 split、反应/酶聚类与 7× icaritin 结果的实验终点。</li><li><strong>EnzymeRSI</strong>：注意其 RLuc“找到候选”但组内排序弱，及 KOD-E apparent kcat/Km 的底物条件。</li><li><strong>CASKP CO₂ biocatalysis</strong>：拆解模型筛选、具体突变、carboxysome、下游酶和 promoter 的分层贡献，检查 SI 的模型 validation。</li></ol>
+<p><strong>可读（最多 10 篇）</strong></p>
+<ul><li>Allosteric M176 变体：双底物同测的远端突变设计案例。</li><li>REXzyme：反应→序列生成的 FDH 湿实验闭环。</li><li>CYP2C19 MaxEnt + QM/MM-ASMD：重点读失败/采样限制，而非套用势垒数字。</li><li>Ectoine E. coli：学习酶变体与调控/前体工程分层组合。</li><li>KineCouple v2：关注指标自相矛盾与缺失原始预测，不作为正面性能证据。</li><li>HSI clustering：评估非破坏性表型读出是否有目标产品光谱和可扩展吞吐。</li><li>UGT-SuSy thermostability review：只作酶稳定性背景。</li><li>Plant UGT evidence-boundary article：适合完善底物/产物证据标注。</li><li>PAS-domain QM/MM：作为酶机理计算案例，不是新突变预测方法。</li></ul>
+<p><strong>暂时不用读：</strong> Bonbon 的抑制剂/结合预测结果和 ANTIOCH-VS 的 binder enrichment 不能回答催化效率；除非全文提供催化反应指标，否则不占本期“酶活 AI”优先阅读预算。</p>
+<h2>10. 对当前项目可立即尝试的 3 件事</h2>
+<p>以下均为<strong>方案建议，未执行计算或实验</strong>。</p>
+<ol><li><strong>做一轮突变排序盲测（小试）。</strong> 输入：一条已测 WT 与至少 20 个同条件变体的酶/底物数据（包含产物速率、表达/可溶性和 assay 条件）；先确认 ProTEUS/DeltaCata 的可用资源和许可。对照：随机排序、保守性/PLM zero-shot、现用人工规则；按完整 WT 或后续实验轮次留出，不能让同一背景的近邻变体泄漏到训练和测试两边。输出：Spearman、Top-5/Top-10 有益突变富集、产品产率与表达归一化后的效应。验收：锁定的留出集上 Top-k 命中优于最强简单基线，独立重复方向一致；若只有裂解液总信号、没有表达控制或产物确认，暂不升级。通过一个独立酶/底物复验后才考虑进入正式流程。</li></ol>
+<ol><li><strong>把“候选模型分数”和 QM/MM 机理证据分开检验。</strong> 输入：WT + 2–3 个已有活性测量的变体及对应底物复合物；对每个构象做多起点/重复路径计算，并预先规定 reaction coordinate、pulling-rate controls 和分析方法。对照：WT 多起点、多速度与实验动力学排序；另保留只用序列模型分数的基线。输出：反应路径、障碍分布/不确定度、模型分数与实验的排序关系。验收：变体间差异在独立初态和速度检查下方向稳定，且与同条件纯酶动力学一致；否则只作为可证伪机理假说，不用于突变优选。</li></ol>
+<ol><li><strong>给 UGT 做产物级小面板，不先扩到 1,000–10,000 条序列。</strong> 输入：30–50 个序列多样性覆盖的 UGT、明确 acceptor + UDP-sugar、2–3 个已知阳性和近邻阴性。对照：同一 donor/acceptor 条件下的同源基线、空白/失活酶和已知阳性。输出：LC-MS(/MS) 酶依赖产物、粗排序、donor/位点错误类型及可溶表达。验收：对盲测阳性有高于同源树/随机排序的 Top-k 富集，且产品身份达到与目标结论相符的结构证据；通过后再扩至大库，并用直接产物测定复核 10–50 个候选。</li></ol>
+<h2>11. Potential Research Opportunities</h2>
+<table><thead><tr><th>尚未解决的问题</th><th>可操作的研究</th><th>关键验收证据</th></tr></thead><tbody><tr><td>突变模型的“activity”是否可迁移到真实 kcat/Km</td><td>用同条件 WT–mutant paired dataset 比较 ProTEUS、DeltaCata、PLM 和简单统计基线</td><td>enzyme/family split、后续实验时间切分、公开 raw predictions；以纯酶参数为主终点</td></tr><tr><td>闭环系统能否同时做到候选召回和变体组内排序</td><td>按固定预算分开测 recall、Top-k enrichment 与 within-library correlation</td><td>盲法实验、重复/板间对照、预设停止/回滚标准；不要把 RLuc hit rate 当排序准确度</td></tr><tr><td>UGT 预测能否处理供体和位点条件</td><td>建立 acceptor × UDP-sugar × product-site 的交叉盲测集</td><td>对新受体 scaffold 和新供体分别留出；LC-MS/MS/标准品或 NMR 区分产物身份</td></tr><tr><td>QM/MM 突变势垒能否稳定排序</td><td>将反应路径的不确定性分解到初态、速度、质子化与 QM 区域</td><td>多起点、收敛检验、势垒排序置信区间及实验 kinetic validation</td></tr><tr><td>高光谱能否成为 indigo/indican 的快速筛选读出</td><td>在已知产物量梯度菌株中先做 HSI–LC-MS 校准</td><td>跨培养批次/菌落形态稳健、假阳性率可接受；颜色/菌体生长本身不能替代产品定量</td></tr><tr><td>新 E. coli 调控方案能否迁移到 indigo pathway</td><td>分别测 precursor flux、表达/溶解、产物抑制和生长的因果贡献</td><td>目标底盘同条件对照与通路中间体分析；不能把 ectoine/L-malate 的最优改造直接移植</td></tr></tbody></table>
+<h2>12. 本周科研决策建议</h2>
+<ul><li><strong>建议立即跟进：</strong> 读 ProTEUS 全文；并读 Salen-binding protein 设计链与 DeltaCata 的 split/动力学定义。三篇分别代表突变闭环、人工反应设计和配对动力学预测。</li><li><strong>建议加入工具箱：</strong> 把 DeltaCata 作为 paired mutation baseline 候选；把 EnzymeRSI 的固定预算、QC 与回滚设计纳入实验记录规范；二者都先做本地盲测，不直接替代实验。</li><li><strong>建议继续观察：</strong> ProTEUS 代码/模型/训练集披露；KineCouple 对摘要/表格不一致的修订与 raw OOF release；CASKP 的独立模型评估；HSI 在真正有色/无色目标产物中的跨批次表现。</li><li><strong>暂时可以忽略：</strong> 把 protein–ligand docking hit rate 当催化活性；把 CASKP 最终滴度归因于 AI 模型或一个双突变；把 Ectoine 的 81 g/L 或 indiquan 的 1.9 g/L 当作 indigo 项目的可转移预期。</li></ul>
+<p><strong>可能改变既有判断的结果：</strong> ProTEUS 若全文能证明严格隔离的多轮 mutation ranking 与目标酶类类似，将提高“突变库内排序可由闭环 AI 值得小试”的优先级；DeltaCata 已提供更直接的成对动力学建模基线。Salen-binding proteins 则扩大“AI 只能设计折叠/结合”的边界，但其非天然 Co-salen 化学不能直接证明天然酶突变可预测。UGT 的直接结论仍不变：本期未发现可直接投入大规模 UGT ranking 的新工具；首先需要真实供体/受体与产品位点的盲测。</p>
+<p><strong>仍缺的证据：</strong> ProTEUS 全文的训练/验证隔离和模型资源；KineCouple 的 raw OOF/一致指标；CASKP 模型测试划分和代码；部分 ACS/JCTC 论文的完整 SI 审核；bioRxiv API 本窗口完整分页。报告按已核一手资料更新，未安装软件、未运行科研计算或服务器任务。</p></div></div></body></html>
