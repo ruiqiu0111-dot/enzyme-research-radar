@@ -141,6 +141,8 @@
   .mark-btn:hover { color: var(--text-1); border-color: var(--text-3); }
   .mark-btn.on-star { color: var(--warning); border-color: var(--warning); }
   .mark-btn.on-read { color: var(--positive); border-color: var(--positive); }
+  .mark-btn.remove-btn { color: var(--warning); }
+  .mark-btn.restore-btn { color: var(--positive); }
 
   .det { margin-top: 6px; }
   .det summary {
@@ -227,11 +229,11 @@
     </div>
   </div>
 
-  <div class="weeknav" id="shortcuts"><button data-mode="all">全部</button><button data-mode="latest">最近收录</button><button data-mode="unread">必读未读</button><button data-mode="star">我的收藏</button><button data-mode="notes">有笔记</button><button id="reset">清空筛选</button><button id="export">导出记录</button><label>导入记录 <input id="import" type="file" accept="application/json"></label></div><p id="notice" role="status"></p><div class="weeknav" id="weeknav"></div>
+  <div class="weeknav" id="shortcuts"><button data-mode="all">全部</button><button data-mode="latest">最近收录</button><button data-mode="unread">必读未读</button><button data-mode="star">我的收藏</button><button data-mode="notes">有笔记</button><button data-mode="removed">已删除 (0)</button><button id="reset">清空筛选</button><button id="export">导出记录</button><label>导入记录 <input id="import" type="file" accept="application/json"></label></div><p id="notice" role="status"></p><div class="weeknav" id="weeknav"></div>
   <div id="list"></div>
 
   <div class="foot">
-    数据来自各期周报归档。点击编号跳转原文；点条目下方<span style="color:var(--accent)">蓝</span>/<span style="color:var(--purple)">紫</span>标签筛选同类；★ 精读与 ✓ 已读标记仅保存在本机浏览器。
+    数据来自各期周报归档。点击编号跳转原文；点条目下方<span style="color:var(--accent)">蓝</span>/<span style="color:var(--purple)">紫</span>标签筛选同类；★ 精读、✓ 已读和删除状态仅保存在本机浏览器；删除的条目可在“已删除”中恢复。
   </div>
 </div>
 <button id="top" aria-label="回到顶部">↑ 顶部</button>
@@ -2706,7 +2708,8 @@ var REPORTS = {"2026-09-30":"reports/weekly_2026-09-30.html","2026-10-05":"repor
   var MKEY = 'radar-marks-v1';
   var mode='all'; var marks = {};
   try { marks = JSON.parse(localStorage.getItem(MKEY) || '{}'); } catch (e) { marks = {}; }
-  function saveMarks() { try { localStorage.setItem(MKEY, JSON.stringify(marks)); } catch (e) {} }
+  function saveMarks() { try { localStorage.setItem(MKEY, JSON.stringify(marks)); return true; } catch (e) { return false; } }
+  function removedCount() { return DATA.filter(function(e){ return marks[e.id] && marks[e.id].removed; }).length; }
 
   function esc(s) {
     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -2741,10 +2744,14 @@ var REPORTS = {"2026-09-30":"reports/weekly_2026-09-30.html","2026-10-05":"repor
   var weeks = {}, must = 0;
   DATA.forEach(function (e) { weeks[e.week] = true; if (e.cat === '必读') must++; });
   var weekList = Object.keys(weeks).sort().reverse();
-  document.getElementById('stats').innerHTML =
-    '<span class="stat">共 <b>' + DATA.length + '</b> 条</span>' +
-    '<span class="stat">必读 <b>' + must + '</b> 条</span>' +
-    '<span class="stat">覆盖 <b>' + weekList.length + '</b> 期（' + weekList[weekList.length - 1] + ' ~ ' + weekList[0] + '）</span>';
+  function updateStats() {
+    document.getElementById('stats').innerHTML =
+      '<span class="stat">共 <b>' + DATA.length + '</b> 条</span>' +
+      '<span class="stat">本机已删除 <b>' + removedCount() + '</b> 条</span>' +
+      '<span class="stat">必读 <b>' + must + '</b> 条</span>' +
+      '<span class="stat">覆盖 <b>' + weekList.length + '</b> 期（' + weekList[weekList.length - 1] + ' ~ ' + weekList[0] + '）</span>';
+  }
+  updateStats();
 
   var sel = document.getElementById('week');
   sel.innerHTML = '<option value="全部">全部周期</option>' + weekList.map(function (w) {
@@ -2805,6 +2812,8 @@ var REPORTS = {"2026-09-30":"reports/weekly_2026-09-30.html","2026-10-05":"repor
   });
 
   function match(e) {
+    var removed = !!(marks[e.id] && marks[e.id].removed);
+    if (mode === 'removed' ? !removed : removed) return false;
     if (mode === 'notes' && !(marks[e.id] && marks[e.id].note)) return false;
     if (state.cat !== '全部' && e.cat !== state.cat) return false;
     if (state.week !== '全部' && e.week !== state.week) return false;
@@ -2838,10 +2847,21 @@ var REPORTS = {"2026-09-30":"reports/weekly_2026-09-30.html","2026-10-05":"repor
     if (mb) {
       var id = mb.getAttribute('data-id'), kind = mb.getAttribute('data-kind');
       marks[id] = marks[id] || {};
-      marks[id][kind] = !marks[id][kind]; if(kind==='read') marks[id].status=marks[id].read?'已读':'待读';
-      if (!marks[id].star && !marks[id].read && !marks[id].note && !marks[id].status) delete marks[id];
-      saveMarks();
+      if (kind === 'remove') {
+        var item = DATA.find(function(e){ return e.id === id; });
+        if (!window.confirm('将“' + (item ? item.title : id) + '”从当前浏览器的雷达列表删除？\n\n可在“已删除”中恢复；共享文献源数据和个人笔记不会被删除。')) return;
+        marks[id].removed = true;
+        marks[id].removedAt = new Date().toISOString();
+      } else if (kind === 'restore') {
+        delete marks[id].removed;
+        delete marks[id].removedAt;
+      } else {
+        marks[id][kind] = !marks[id][kind]; if(kind==='read') marks[id].status=marks[id].read?'已读':'待读';
+      }
+      if (!marks[id].star && !marks[id].read && !marks[id].note && !marks[id].status && !marks[id].removed) delete marks[id];
+      var saved = saveMarks();
       render();
+      notify(!saved ? '本机存储失败，请导出记录备份。' : kind === 'remove' ? '已从主列表删除；可在“已删除”中恢复。' : kind === 'restore' ? '已恢复到雷达列表。' : '标记已更新。');
     }
   });
 
@@ -2869,6 +2889,9 @@ var REPORTS = {"2026-09-30":"reports/weekly_2026-09-30.html","2026-10-05":"repor
   }
 
   function render() {
+    updateStats();
+    var removedButton = document.querySelector('#shortcuts button[data-mode="removed"]');
+    if (removedButton) removedButton.textContent = '已删除 (' + removedCount() + ')';
     var groups = [], byWeek = {}, shown = 0;
     DATA.forEach(function (e) {
       if (!match(e)) return;
@@ -2878,11 +2901,11 @@ var REPORTS = {"2026-09-30":"reports/weekly_2026-09-30.html","2026-10-05":"repor
     });
     groups.sort().reverse();
 
-    var filtered = state.q || state.cat !== '全部' || state.week !== '全部' || state.dir !== '全部' || state.meth !== '全部' || state.mark !== '全部';
+    var filtered = mode !== 'all' || state.q || state.cat !== '全部' || state.week !== '全部' || state.dir !== '全部' || state.meth !== '全部' || state.mark !== '全部';
     document.getElementById('count').textContent = filtered ? '筛选出 ' + shown + ' / ' + DATA.length + ' 条' : '';
 
     if (!groups.length) {
-      listEl.innerHTML = '<div class="empty">没有匹配的条目，试试放宽筛选条件。</div>';
+      listEl.innerHTML = mode === 'removed' ? '<div class="empty">目前没有已删除的文献。</div>' : '<div class="empty">没有匹配的条目，试试放宽筛选条件。</div>';
       return;
     }
     var html = '';
@@ -2900,6 +2923,7 @@ var REPORTS = {"2026-09-30":"reports/weekly_2026-09-30.html","2026-10-05":"repor
         var markHtml = '<span class="marks">' +
           '<button class="mark-btn' + (mk.star ? ' on-star' : '') + '" data-id="' + esc(e.id) + '" data-kind="star" title="精读标记">' + (mk.star ? '★' : '☆') + ' 收藏</button>' +
           '<button class="mark-btn' + (mk.read ? ' on-read' : '') + '" data-id="' + esc(e.id) + '" data-kind="read" title="已读标记">✓ 已读</button>' +
+          (mode === 'removed' ? '<button class="mark-btn restore-btn" data-id="' + esc(e.id) + '" data-kind="restore" title="恢复到雷达列表">恢复</button>' : '<button class="mark-btn remove-btn" data-id="' + esc(e.id) + '" data-kind="remove" title="从当前浏览器的雷达列表删除">删除</button>') +
           '</span>';
         var detHtml = renderDetail(e);
         html += '<div id="entry-' + encodeURIComponent(e.id) + '" class="entry' + (mk.read ? ' is-read' : '') + '">' +
@@ -2925,7 +2949,7 @@ var REPORTS = {"2026-09-30":"reports/weekly_2026-09-30.html","2026-10-05":"repor
   listEl.addEventListener('input',function(ev){var t=ev.target;if(!t.matches('.note,.progress'))return;var id=t.dataset.id;marks[id]=marks[id]||{};if(t.matches('.note'))marks[id].note=t.value;else{marks[id].status=t.value;marks[id].read=t.value==='已读';}marks[id].updatedAt=new Date().toISOString();try{localStorage.setItem(MKEY,JSON.stringify(marks));notify('记录已保存到当前浏览器。');}catch(e){notify('保存失败，请立即导出记录备份。');}});
   document.getElementById('shortcuts').addEventListener('click',function(ev){var m=ev.target.dataset.mode;if(!m && ev.target.id!=='reset')return;mode=m||'all';Object.assign(state,{q:'',cat:'全部',week:'全部',dir:'全部',meth:'全部',mark:'全部'});if(m==='latest')state.week=weekList[0];if(m==='unread'){state.cat='必读';state.mark='未读';}if(m==='star')state.mark='精读';document.getElementById('q').value='';sel.value=state.week;document.getElementById('mark').value=state.mark;syncChips();render();notify('当前视图：'+ev.target.textContent);});
   document.getElementById('export').onclick=function(){var blob=new Blob([JSON.stringify({version:1,marks:marks},null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='radar-records-'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(function(){URL.revokeObjectURL(a.href);},1000);};
-  document.getElementById('import').onchange=async function(ev){try{var f=ev.target.files[0];if(!f)return;if(f.size>5000000)throw Error('文件过大');var d=JSON.parse(await f.text());if(d.version!==1 || !d.marks || typeof d.marks!=='object' || Array.isArray(d.marks))throw Error('格式错误');var next=JSON.parse(JSON.stringify(marks));Object.keys(d.marks).forEach(function(id){var v=d.marks[id];if(!DATA.some(function(e){return e.id===id;}))return;if(!v || typeof v!=='object')throw Error('记录错误');if(v.note!==undefined && typeof v.note!=='string')throw Error('笔记格式错误');if(v.status && !['待读','阅读中','已读'].includes(v.status))throw Error('进度格式错误');if(!next[id])next[id]={star:!!v.star,read:!!v.read,note:v.note||'',status:v.status||'',updatedAt:v.updatedAt||''};});localStorage.setItem(MKEY,JSON.stringify(next));marks=next;render();notify('导入完成；已有记录保留，新增记录已合并。');}catch(e){notify('导入失败：'+e.message);}ev.target.value='';};
+  document.getElementById('import').onchange=async function(ev){try{var f=ev.target.files[0];if(!f)return;if(f.size>5000000)throw Error('文件过大');var d=JSON.parse(await f.text());if(d.version!==1 || !d.marks || typeof d.marks!=='object' || Array.isArray(d.marks))throw Error('格式错误');var next=JSON.parse(JSON.stringify(marks));Object.keys(d.marks).forEach(function(id){var v=d.marks[id];if(!DATA.some(function(e){return e.id===id;}))return;if(!v || typeof v!=='object')throw Error('记录错误');if(v.note!==undefined && typeof v.note!=='string')throw Error('笔记格式错误');if(v.status && !['待读','阅读中','已读'].includes(v.status))throw Error('进度格式错误');if(v.removed!==undefined && typeof v.removed!=='boolean')throw Error('移除状态格式错误');if(!next[id])next[id]={star:!!v.star,read:!!v.read,note:v.note||'',status:v.status||'',updatedAt:v.updatedAt||''};if(v.removed===true)next[id].removed=true;});localStorage.setItem(MKEY,JSON.stringify(next));marks=next;render();notify('导入完成；已有记录保留，新增记录已合并。');}catch(e){notify('导入失败：'+e.message);}ev.target.value='';};
   function locate(){if(location.hash.startsWith('#entry-')){Object.assign(state,{q:'',cat:'全部',week:'全部',dir:'全部',meth:'全部',mark:'全部'});mode='all';render();var el=document.getElementById(decodeURI(location.hash.slice(1)));if(!el)el=document.getElementById(location.hash.slice(1));if(el){el.scrollIntoView();el.style.outline='2px solid var(--accent)';}}}
   window.addEventListener('hashchange',locate);
   render();locate();
