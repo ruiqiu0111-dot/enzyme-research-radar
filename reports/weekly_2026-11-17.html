@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>weekly_2026-11-17 · 酶科研雷达</title>
+<style>
+
+  :root {
+    --text-1: #1a1a1a; --text-2: #4d4d4d; --text-3: #7a7a7a; --text-4: #a8a8a8;
+    --border: #e4e4e4; --surface: #fff; --surface-mute: #f5f5f5;
+    --accent: #2563eb; --positive: #16a34a; --warning: #b45309; --purple: #7c3aed;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-1: #e8e8e8; --text-2: #b5b5b5; --text-3: #8a8a8a; --text-4: #606060;
+      --border: #333; --surface: #161616; --surface-mute: #1f1f1f;
+      --accent: #6ea8fe; --positive: #4ade80; --warning: #fbbf24; --purple: #a78bfa;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--surface); color: var(--text-1);
+    font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 16px; line-height: 1.7;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 28px 20px 80px; }
+  .back { font-size: 13px; color: var(--text-3); text-decoration: none; }
+  .back:hover { color: var(--text-1); }
+  .doc h1 { font-size: 21px; font-weight: 500; line-height: 1.4; margin: 18px 0 6px; }
+  .doc h2 { font-size: 17.5px; font-weight: 500; margin: 34px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .doc h3 { font-size: 15.5px; font-weight: 500; margin: 24px 0 8px; }
+  .doc p { margin: 10px 0; }
+  .doc a { color: var(--accent); text-decoration: none; }
+  .doc a:hover { text-decoration: underline; }
+  .doc table { border-collapse: collapse; width: 100%; font-size: 13.5px; margin: 12px 0; display: block; overflow-x: auto; }
+  .doc th, .doc td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; vertical-align: top; }
+  .doc th { background: var(--surface-mute); font-weight: 500; }
+  .doc code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 12.5px; background: var(--surface-mute); padding: 1px 6px; border-radius: 4px; }
+  .doc ul, .doc ol { padding-left: 22px; }
+  .doc li { margin: 6px 0; }
+  .doc hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  .doc blockquote { margin: 12px 0; padding-left: 14px; border-left: 3px solid var(--border); color: var(--text-2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../index.html">← 返回文献档案馆</a>
+  <div class="doc"><h1>Weekly Research Intelligence</h1>
+<p>时间：2026-11-11 ～ 2026-11-17（Asia/Tokyo）。月内补检：2026-10-19 ～ 2026-11-17。本期按东京 11 月 17 日触发时间截取，日期以官方首次上架或在线日期为准，arXiv 同时保留提交与列表日期。
+本期入文献库 16 条（12 篇本周首次公开、3 篇月内补检、1 项数据更新），另补 2 个既有条目的版本关联。</p>
+<p>最值得改变的两个决策是：多轮进化保留几条独立谱系，并以真实产物复测各轮命中。用 CatLog 建立动力学盲测时，按论文、酶家族、底物与 WT–mutant 组隔离，再比较模型表现。</p>
+<h2>1. 本周最重要的 5 个进展</h2>
+<table>
+<thead>
+<tr>
+<th>工作</th>
+<th>领域</th>
+<th>核心突破</th>
+<th>对当前研究价值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dETM，bioRxiv v1，11-16</td>
+<td>实验进化与高通量筛选</td>
+<td>用亚胺还原酶的多轮进化实验追踪获胜谱系，发现有利上位性使部分早期变体成为跳板</td>
+<td>首轮排名之外保留谱系信息和序列多样性。<a href="https://www.biorxiv.org/content/10.64898/2026.11.11.766033v1">官方记录</a></td>
+</tr>
+<tr>
+<td>RFdiffusion3 定位泛素连接酶，bioRxiv v1，11-11</td>
+<td>生成式催化设计</td>
+<td>48 个模型肽设计中 35 个产生泛素化，PCNA 筛选 4/48 有活性，其中 1 个选择 K164</td>
+<td>把催化三联体、供体和受体位点同时写入设计约束，再独立验证产物和位点。<a href="https://www.biorxiv.org/content/10.64898/2026.11.08.765184v1">预印本</a></td>
+</tr>
+<tr>
+<td>FruK 恢复糖酵解，bioRxiv v1，11-14</td>
+<td>E. coli 代谢工程与酶动力学</td>
+<td>演化、回构、纯化酶测定和晶体结构共同定位旁活性；作者报告最优变体对 F6P 的催化效率约为 WT 的 170 倍</td>
+<td>把突变效果、表达量与生长恢复拆开测，提醒重建模型时关注遗漏的旁反应。<a href="https://www.biorxiv.org/content/10.64898/2026.11.13.766522v1">预印本</a></td>
+</tr>
+<tr>
+<td>血红素 C–H 羟化酶设计，bioRxiv v1，11-16</td>
+<td>从头催化设计、区域选择性</td>
+<td>按预设的血红素反应几何，分别得到氧化雌二醇 C6 或 C16 的设计</td>
+<td>可用两种目标位点考察设计是否控制产品分布，再测各路线转化率与周转。<a href="https://www.biorxiv.org/content/10.64898/2026.11.12.766315v1">预印本</a></td>
+</tr>
+<tr>
+<td>茶树 CsUGT84A22，The Plant Cell，11-11</td>
+<td>UGT 功能鉴定</td>
+<td>将芥子酸糖基化产物与植物体内基因抑制表型联系起来</td>
+<td>增加一个可追溯的 UGT–受体–产品对，适合候选方法验证集。<a href="https://doi.org/10.1093/plcell/koag348">期刊接受稿</a></td>
+</tr>
+</tbody></table>
+<p>五项首次公开均在七天窗口内。dETM、FruK 和血红素羟化酶设计的实验细节以 bioRxiv 官方注册摘要为阅读边界。CatLog 与 CARVE 分别作为版本化数据资源及结构评测另列。</p>
+<h2>2. AI + 酶工程</h2>
+<h3>2A. 酶动力学参数预测</h3>
+<p><strong>CatLog 2026-11-11 快照（实质数据更新，ID 1bae771c84）。</strong> 官方数据页记录 195,102 行，其中 121,833 行为 accepted。官方 Browse 页进一步标记 4,908 行经人工核查。以 WT 或变体、底物、条件与来源论文组织记录，可下载 JSONL/CSV 和检索未检出或界限值。accepted 包含 AI 核查；可回溯原始印刷行，数据库继承条目和化学标识仍受来源许可约束。11-07 旧首页缓存的 187,371 行与本快照数字分开。CatLog 的本期变化是数据版本，CatRange 旧训练集规模单独处理。<a href="https://catlog.structf.studio/dataset">数据下载</a> · <a href="https://catlog.structf.studio/browse">审核状态说明</a></p>
+<p><strong>PAMP: Continuous-to-Discrete Mutation Projection for Enzyme Engineering（本周，bioRxiv v1，11-11）。</strong> 将 CataPro 来源数据训练的底物条件 turnover 代理梯度投影为离散单点替换。官方摘要报告 2,754 个酶–底物对，首轮均值 +0.1795 log₂ 单位，五轮累计 +0.5631 log₂ 单位，均为预测增益。另一个预测器重评分保留方法顺序，绝对增益变小。代理训练与评价的酶/底物/WT–mutant 隔离、新酶与新底物的独立实测、测定条件及代码尚待核查。适合列为候选生成方法观察。所谓阳性来自预测分数，因此实验命中分母仍待验证。<a href="https://www.biorxiv.org/content/10.64898/2026.11.10.765778v1">预印本</a></p>
+<p><strong>EnzyArena（已报工作的期刊沿革）。</strong> ACS JCIM DOI 10.1021/acs.jcim.6c01200 在线 10-28，卷期 11-09。与历史索引同题预印本 10.64898/2026.03.29.715152 共用核心证据，摘要仍是 20 模型、25 个文献突变数据集、同一前瞻比较中的 150 个变体。UniKP 在该实验中低于随机组。沿用既有的同条件基准结论，更新 DOI 关联。是否存在正文级实质增量待逐版核对，暂不计新增。<a href="https://pubs.acs.org/jcisd8/article/doi/10.1021/acs.jcim.6c01200/5460312/Benchmarking-and-Experimental-Validation-of">ACS 正式论文</a></p>
+<h3>2B. 生成式酶设计与突变</h3>
+<p><strong>De Novo Design of C-H Hydroxylation Enzymes with Programmed Selectivities（本周，bioRxiv v1，11-16）。</strong> 设计输入包含 Cys 配位血红素、用于 H₂O₂ 活化与异裂的侧链，以及相对于高价铁氧 Compound I 的底物位置。作者从荧光模型底物扩展到雌二醇，报告 C6 苄位氧化为 93% d.e.，另一路 C16 非活化位点氧化为 99% d.e.，并有设计匹配的晶体结构。d.e. 保留摘要术语，选择性分母、具体产率、kcat、筛选分母与代码待正文核查。机制约束可作为设计起点，化学步骤细节仍需独立验证。<a href="https://www.biorxiv.org/content/10.64898/2026.11.12.766315v1">预印本</a></p>
+<p><strong>De novo design of ligases for programmable site-specific protein ubiquitylation（本周，bioRxiv v1，11-11）。</strong> RFdiffusion3 按选定受体 Lys 和活化泛素供体设计具有 Cys 催化三联体的连接酶。模型肽实验 35/48 设计有泛素化，PCNA 三聚体上另筛 48 个设计，4 个有泛素化活性，其中一个选择 K164，摘要描述 45 个潜在脱靶 Lys。Fig. 3H 中 PL4 N148A 使用预活化 Ub-MESNa，3 h 达 90% 转化。Fig. 4B 用 E1、ATP 与 MESNa 现场活化供体，100 μM PCNA、200 μM 泛素和 10 μM ligase 条件下 24 h 达约 90% 转化。两者是不同的体外体系，评价单位时间催化效率需另用初速证据。设计流水线、权重血缘和目标训练暴露待核。<a href="https://www.biorxiv.org/content/10.64898/2026.11.08.765184v1.full">正文与 Fig. 3–4</a></p>
+<p><strong>A High-Efficiency Geranylation Platform Enabled by Rational Tuning of a Single-Residue-Coded Chemo- and Regioselective Switch in Aromatic Prenyltransferases（本周，bioRxiv v1，11-11）。</strong> 官方摘要记录 AtaPT 开关位点对三个单香叶基化产物的选择性，同源迁移覆盖三个酶；作者在 36 种芳香底物中得到 41 个产物，并在结合供体再生的制备体系报告最高 324 mg/L。验证的是转移酶家族内的同源迁移。位点身份、失败化学空间、重复和异构体确证细节需查图表，滴度保留供体再生条件。<a href="https://www.biorxiv.org/content/10.64898/2026.11.09.764520v1">预印本</a></p>
+<p><strong>MutAtlas（本周，arXiv v1，11-12 UTC 提交）。</strong> §3 将 FoldX、ESM2、ESM-IF 对 86,479 个结构链的信号对齐，约 3 亿次计算单点替换。附表 2 的 ProteinGym 宏平均 Spearman，soft consensus 为 0.475，所示 disagreement-aware λ=0.2 为 0.498，activity 子组 0.448→0.467。训练使用推算信号；需要审计 PDB/预训练暴露、同家族隔离与不同 assay 的端点。用途是辅助定位评分分歧和可疑突变，动力学参数、底物特异性和多点上位性仍需直接证据。全文称提供数据和评估流程，本轮未核许可证及下载。<a href="https://arxiv.org/html/2611.16361v1">全文 §3 与附表 2</a></p>
+<p><strong>HelixWings（月内补检，iScience 10-26 在线，卷期 11-20）。</strong> 结合构象动态和辅因子局部环境优先排序，再做位点饱和实验。摘要报告 P450BM3 的 NMNH 支持下、针对 cytochrome c 读出的催化效率提高 404%，另一 CYP116B46 系统的 NMNH 利用效率提高 217%。正文资源声明另有底物氧化，支持特定变体能进行生产性催化。不同电子传递、氧化读出和辅因子条件须分别比较。方法侧重两个 P450 系统，缺跨家族、全新反应与独立测定条件的泛化证据。代码可访问性的依据为作者声明，许可待核。<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13734789/">论文</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/42990603/">在线日期</a> · <a href="https://github.com/maxwellcheung/HelixWings">作者仓库</a></p>
+<h3>2C. 酶挖掘</h3>
+<p><strong>Chromosome-level genomics and cross-species enzyme screening enable high-titer bakuchiol production in Yarrowia lipolytica（本周，bioRxiv v1，11-13）。</strong> 基于豆科基因组与同源候选，在酵母中验证 4 个可支持 bakuchiol 形成的截短 prenyltransferases。PcPT6 与既报 PcPT07 对应，去掉 N 端 40 aa 后酵母产量提高 53%。作者在前体供给、基因剂量和培养优化后报告 7.5 L 罐 6.03 g/L。摘要未交代完整候选分母、同预算序列基线或各蛋白的独立动力学，四个阳性只能作为功能序列起点。对 UGT 可借鉴跨物种候选和构建体并行验证，并保留表达量、产品与构建体的独立标注。<a href="https://www.biorxiv.org/content/10.64898/2026.11.11.765817v1">预印本</a></p>
+<p><strong>I-MG11（月内补检，Nucleic Acids Research 11-10 在线）。</strong> 作者从 MGnify 检索远缘核酸酶，经无细胞表达与 NGS 底物探查定位 17 bp 识别序列。Fig. 7 和 Table 1 使用超螺旋质粒、pH 10、60 °C，报告 kcat 0.76±0.05 min⁻¹ 和 Km 72.7±10.8 nM。Table 1 的 apo、目标 DNA 和非目标 DNA 条件下 Tm 分别为 74.2、76.7、68.5 °C。方法可借鉴发现远缘酶后用实测底物谱复筛的设计，DNA 底物与单一核酸酶范围限制迁移。<a href="https://academic.oup.com/nar/article/54/21/gkag992/9026655">期刊全文</a></p>
+<p><strong>EnzyREx 沿革补核。</strong> Genome Biology 2026-11-03 的 EnzyREx 有题名近同的 DeepRES 预印本，bioRxiv 首发 2025-07-31。897/1,255 个孤儿反应已有候选的数字在旧版摘要已公开，表示计算配对。保留文献库原条目与阅读记录，增加首发关联。<a href="https://link.springer.com/article/10.1186/s13059-026-04312-7">期刊全文</a> · <a href="https://www.biorxiv.org/content/10.1101/2025.07.28.667344v1">DeepRES v1</a></p>
+<h3>2D. 高通量筛选</h3>
+<p><strong>Deep sequence-function mapping reveals computationally unpredictable epistatic trajectories that drive laboratory evolution（本周，bioRxiv v1，11-16）。</strong> dETM 沿亚胺还原酶多轮筛选的获胜变体测定催化速率，作者将有利上位性与能够进入更高性能区域的早期变体联系起来。参与对照的模型在该研究中未预测到获胜路径。摘要未提供各轮实际覆盖、模型列表与测试隔离、每小时通量、成本、基因型–表型连结和复测分母。当前能借鉴的是在固定样本预算下保留多条谱系、回测各轮选择，并把真实产物复测放在最终读出。尚无来自本研究的 UGT 筛选迁移证据。<a href="https://www.biorxiv.org/content/10.64898/2026.11.11.766033v1">预印本</a></p>
+<h2>3. 酶催化机理 / QM/MM</h2>
+<p><strong>High-Performance All-Atom Continuous Constant-pH Molecular Dynamics and Native Asynchronous Replica Exchange in Amber（本周，bioRxiv v1，11-13）。</strong> 在 45–1,338 残基体系上，相对旧融合 CUDA kernel，作者报告 PME-CpHMD 吞吐提高 1.5–2 倍，较常规 MD 开销 12–18%。pmemd.cuda.MPI 内实现异步 pH 交换，针对三套力场推导六种可滴定残基参数。其模型肽和溶菌酶 pKa 验证同时观察到力场依赖和 E35/D52 成对质子化解释敏感。可用于生成或判断蛋白质子化微态的假设，开展 ChemShell + ORCA 反应路径计算仍需为底物/辅因子单独建立质子化与反应坐标。未核实正式 Amber 发行版本、源码和可用补丁，当前保留观察。<a href="https://www.biorxiv.org/content/10.64898/2026.11.11.766022v1">预印本</a></p>
+<p>本轮可查资料中，未核实到足以替换现有 ChemShell + ORCA 反应自由能主线的通用更新。Amber 结果面向 pKa 与采样效率。比较酶突变化学步骤仍需不同初始构象、质子化方案、QM 区域和坐标的敏感性与收敛证据。</p>
+<h2>4. 蛋白结构与 enzyme-substrate prediction</h2>
+<p><strong>CARVE: A glycan-specific framework for assessing protein-glycan binding-pose quality（本周，arXiv 11-13 UTC 提交，11-16 列表）。</strong> 官方摘要记录 1,974 个实验复合物、9 种预测方法，并按取向、界面糖环位置、原生接触和化学几何有效性评估。25,068 个另外生成的姿势用于评分体系评测，macro-F1 0.892 对应复现 CARVE 的分级。Top-25 候选下 HADDOCK3 的 acceptable 率最高为 47.0%，各方法达到高质量且化学结构有效的比例均未超过五分之一。该口径可帮助排查糖链结构预测，但不能替代同时放入糖供体、受体与催化残基后的反应构象检查。与训练库共享结构、单个 UGT 家族的统计、代码与许可待核。<a href="https://arxiv.org/abs/2611.18259">arXiv 摘要</a></p>
+<p><strong>Confident and Wrong（本周，arXiv 11-12 UTC 提交，11-16 列表）。</strong> 作者测试 297 个 lanmodulin 变体，在成功表达的蛋白中，结构信心优选组有 15/90（16.7%）结合 Tb，pKd 导向组有 80/96（83.3%）。结果仅评价同一研究中的金属结合，支持用匹配目标的实测标签校准筛选门槛。它不提供酶底物催化或新家族独立活性验证。本期作为结构信心的边界案例，不计为酶活模型。<a href="https://arxiv.org/html/2611.17391v1">全文</a></p>
+<h2>5. UGT / glycosyltransferase</h2>
+<p><strong>A pathogen-induced UGT genomic locus contributes to sinapic acid glycosylation and gray blight resistance in tea plant（本周，The Plant Cell 接受稿，11-11）。</strong> 摘要报告 CsUGT84A22 将 sinapic acid 转为 sinapoyl-β-D-glucose。抑制该基因降低产物积累及植物抗病性。CsMYB73/JAZ14 的调控证据来自植物体系。可作为芥子酸反应的已知阳性和 UGT84 家族功能线索。摘要未核完整供体/受体底物矩阵、产品结构鉴定细节和 E. coli 表达性能。CARVE 只补足结构诊断，AtaPT 只提供家族迁移的实验设计参考。本期证据尚不足以直接修改 1,000–10,000 条 UGT 的候选评分和实验名额。<a href="https://doi.org/10.1093/plcell/koag348">期刊原文</a></p>
+<h2>6. 蛋白表达与溶解度</h2>
+<p><strong>SoluProtMut 版本核查。</strong> bioRxiv API 返回 v1 2025-09-27 与 v2 2026-11-09，两个官方摘要均含 44 个蛋白的独立集、277 个 dehalogenase 变体、myoglobin DMS 和多点 ternary informedness 26.5%。目前无法证明上述实验或数据为 v2 新增，故仅记版本沿革。比较该模型时，区分同一蛋白突变引起的可溶性变化、不同宿主的绝对表达和催化活性。未核实 PLM_Sol、DeepSoluE 或 SoluProt 的相关正式新版本，也未获得植物 UGT 独立表达排序结果。<a href="https://www.biorxiv.org/content/10.1101/2025.09.26.676459v2">SoluProtMut v2</a> · <a href="https://api.biorxiv.org/details/biorxiv/10.1101/2025.09.26.676459">官方版本接口</a></p>
+<h2>7. 代谢工程</h2>
+<p><strong>Gain-of-function mutations in 1-phosphofructokinase (FruK) re-establish glycolysis in bacteria（本周，bioRxiv v1，11-14）。</strong> 在葡萄糖条件下演化己糖降解缺陷 E. coli，经单变体回构、基因删除及转录定量，将生长恢复指向改造且强表达的 fruK。纯化酶对替代底物 fructose-6-phosphate 的催化效率最高约为 WT 的 170 倍，晶体结构最高 1.4 Å，作者将活性位点 Lys 与底物排斥联系起来。对芳香族工程最可迁移的是基因–表达–反应–通量的分层证据。研究的生长救援和酶参数不能定量预测 W3110/BW25113 的芳香族生产。bakuchiol 条目则是酵母中的芳香前体、供体与酶剂量联合优化案例，见 §2C。按现有覆盖未确认 iML1515、COBRApy、OptKnock/OptForce 或 indigo 项目可直接采用的本周更新。<a href="https://www.biorxiv.org/content/10.64898/2026.11.13.766522v1">FruK 原文</a></p>
+<p><strong>E. coli 木糖→乙二醇（月内补检，Biotechnology Journal 10-28 在线）。</strong> 以磷耗竭触发 Dahms 途径。降低竞争反应在初始株提高比生产率约 3 倍，调节 NADPH 供给在途径增强后才显示收益，优化组比生产率高于 0.5 g·gCDW⁻¹·h⁻¹，约为对照的 14 倍。补料发酵报告 70 h 达 140 g/L、0.38 g/g 木糖。它提示前体、竞争支路与辅因子优先级取决于当前路径能力，迁移到葡萄糖芳香族通路时需重建同背景对照。<a href="https://onlinelibrary.wiley.com/doi/10.1002/biot.70329">期刊摘要</a></p>
+<h2>8. 新工具与模型</h2>
+<table>
+<thead>
+<tr>
+<th>Tool / Model</th>
+<th>用途</th>
+<th>输入</th>
+<th>输出</th>
+<th>是否开源</th>
+<th>是否值得测试</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CatLog 11-11</td>
+<td>可追溯动力学数据</td>
+<td>酶、底物、来源与条件字段</td>
+<td>参数记录、审核状态、原文回链</td>
+<td>下载开放，各来源许可见数据页</td>
+<td>可作为数据来源，纳入前核查去重和条件</td>
+</tr>
+<tr>
+<td>PAMP</td>
+<td>从 turnover 代理生成替换</td>
+<td>酶、底物与可微代理</td>
+<td>单点替换优先级</td>
+<td>代码未核实</td>
+<td>暂观察，优先等待实验验证</td>
+</tr>
+<tr>
+<td>MutAtlas</td>
+<td>多来源突变计算评分</td>
+<td>PDB 链、序列、单点变体</td>
+<td>FoldX、ESM2、ESM-IF 偏好及蒸馏评分</td>
+<td>作者称提供数据和评估流程，许可待核</td>
+<td>可作为评分基线候选</td>
+</tr>
+<tr>
+<td>CARVE</td>
+<td>糖链姿势质量衡量</td>
+<td>参考与预测蛋白–糖链结构</td>
+<td>几何指标、分级、有效性</td>
+<td>资源及许可待核</td>
+<td>可参考其指标设置本地评测</td>
+</tr>
+<tr>
+<td>Amber PME-CpHMD 新实现</td>
+<td>质子化状态和采样</td>
+<td>适配的拓扑、滴定参数与 pH</td>
+<td>pH 依赖构象、质子化与 pKa</td>
+<td>软件发行/补丁待核</td>
+<td>查版本和参数覆盖后再评估</td>
+</tr>
+<tr>
+<td>HelixWings</td>
+<td>生物仿生辅因子改造</td>
+<td>酶结构与辅因子环境</td>
+<td>位点和变体优先级</td>
+<td>作者列公开仓库，许可待核</td>
+<td>在有明确电子传递与产物两类读出时评估</td>
+</tr>
+</tbody></table>
+<h2>9. 本周值得重点阅读</h2>
+<ul>
+<li><strong>必读：</strong> dETM（复测分母与谱系）；RFdiffusion3 ligases（K164 与脱靶位点）；FruK（酶动力学、表达与生长的因果拆分）；血红素羟化酶设计（位点选择性与转化率分开核查）；CatLog（accepted 分层、单位和许可）。</li>
+<li><strong>可读：</strong> CsUGT84A22、AtaPT、bakuchiol、CARVE、Amber PME-CpHMD、HelixWings、MutAtlas、PAMP、I-MG11、乙二醇动态控制。另将 Confident and Wrong 作为结合端点的结构置信度边界案例。摘要级条目的全文与补充材料优先集中补查。</li>
+<li><strong>暂时不用读：</strong> 11-12 的 <em>Designing de novo metalloproteases</em> 属期刊评论，涉及已较早正式发表的原始研究。EnzyArena 只补关联 DOI，暂不重复阅读同一摘要的数字。<a href="https://pubmed.ncbi.nlm.nih.gov/43020941/">评论题录</a> · <a href="https://doi.org/10.1038/s41586-026-11167-2">原始论文</a></li>
+</ul>
+<h2>10. 对当前项目可立即尝试的 3 件事</h2>
+<p>以下是验证设计建议。执行范围覆盖项目已确定的相应候选全集。验证启动前按既有项目约定锁定数量、预算与判据。</p>
+<table>
+<thead>
+<tr>
+<th>任务</th>
+<th>输入与对照</th>
+<th>输出与验收</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整理动力学预测的盲测数据</td>
+<td>目标候选全集、同条件 WT–mutant 参数、CatLog 冻结快照；固定条件、测试组、候选与名额，对照现用排名、同源/PLM 和随机基线</td>
+<td>分别报告 log kcat、log Km、直接或推导的 kcat/Km 及差值。来源/家族/底物隔离可追溯，核对原文单位与酶构建体，覆盖全集且结果优于预定基线才考虑改排序</td>
+</tr>
+<tr>
+<td>建立 UGT 产物与反应构象对照</td>
+<td>已确定的全部候选及供体、受体、负例、已知反应与结构；对照现有序列排序和结构信心排序</td>
+<td>输出产品位点、供体特异性、可溶表达及候选覆盖。LC-MS/MS 配合标准品或其他结构证据判定目标产物；构象评分只在与真实标签的盲测中提供额外富集时进入正式流程</td>
+</tr>
+<tr>
+<td>区分葡萄糖路径中的基因型、表达和酶活贡献</td>
+<td>目标底盘的已定改造集合、反应和基因注释、葡萄糖条件与测量；同底盘对照，分别记录 WT 与变体表达和转化</td>
+<td>输出生长、目标产物、关键代谢物和通量可行性。纳入工程决策前需将生产表型与酶学证据对应，并对所有预定对象记录完成/失败/排除依据</td>
+</tr>
+</tbody></table>
+<h2>11. Potential Research Opportunities</h2>
+<ul>
+<li>用连续筛选记录区分早期活性排序与后续组合可达性。评价固定预算下保留谱系是否增加最终有效变体。</li>
+<li>发布同时隔离酶家族、供体、受体和论文来源的 UGT 动力学与产物位点基准。将低于检出限、表达失败和确证负例留在不同字段。</li>
+<li>比较蛋白–糖链结构姿势、供受体反应几何和实际区域选择性的联系。保留结构合理但产物错误的负例。</li>
+<li>量化可滴定残基及辅因子质子化不确定性如何传播到 ΔΔG‡ 与突变排序。预先标出替代解释和能区分它们的观测。</li>
+</ul>
+<h2>12. 本周科研决策建议</h2>
+<ul>
+<li><strong>建议立即跟进：</strong> 读取 dETM 的各代分母和验证流程，读取 FruK 的单突变与表达对照，合并 CatLog 的条件/来源字段到动力学数据审查。</li>
+<li><strong>建议加入工具箱：</strong> 把 CatLog 的版本与原始记录链作为查证入口。对糖配体构象列表同时记录局部取向、接触和化学有效性。</li>
+<li><strong>建议继续观察：</strong> PAMP 的真正独立酶/底物实验，CARVE 的 UGT/UDP-sugar 子集，Amber 新实现发行状态与参数，以及 SoluProtMut 的逐版本正文差异。</li>
+<li><strong>暂时可以忽略：</strong> 用模拟评分增益充当实验命中率，用单一结构置信度主张催化构象正确，或把 FruK 生长救援直接代入 indigo 产率预测。</li>
+</ul>
+<p><strong>仍缺的证据。</strong> 预印本摘要级结论需原文核对实验条件、分母及资源。新酶、新底物和新 WT 背景分别独立验证是本期动力学采用门槛。bioRxiv 官方 API 的 45 个游标均返回结果，合计 1,329 行，包括 1,327 个 DOI–版本组合。接口在分页期间的总数略有变化，标题初筛结合交叉主题搜索和相关摘要复核。ChemRxiv 官方 API 返回 403，arXiv 目录及期刊和注册资料采用定向检索。覆盖记录与排除见本期运行索引。</p>
+</div>
+</div>
+</body>
+</html>
