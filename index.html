@@ -26,43 +26,40 @@
     font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
     font-size: 16px; line-height: 1.6;
   }
-  .wrap { max-width: 860px; margin: 0 auto; padding: 28px 20px 80px; }
-
-  h1 { font-size: 22px; font-weight: 500; margin: 0; letter-spacing: 0; }
-  .sub { color: var(--text-3); font-size: 13px; margin-top: 6px; }
-  .stats { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 14px; }
-  .stat { font-size: 13px; color: var(--text-3); font-variant-numeric: tabular-nums; }
+  .wrap { max-width: 940px; margin: 0 auto; padding: 32px 24px 80px; }
+  .masthead { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 22px; }
+  h1 { font-size: clamp(24px, 4vw, 32px); font-weight: 650; margin: 0; line-height: 1.25; }
+  .stats { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 8px; }
+  .stat { font-size: 13px; color: var(--text-2); font-variant-numeric: tabular-nums; }
   .stat b { font-weight: 500; color: var(--text-1); }
 
   .toolbar {
     position: sticky; top: 0; z-index: 20;
-    margin: 20px -12px 0; padding: 12px 12px 10px;
+    margin: 20px -8px 0; padding: 10px 8px;
     background: var(--surface);
     border-bottom: 1px solid var(--border);
     border-radius: 0 0 10px 10px;
   }
   .toolbar-top { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-  button, input, select { font: inherit; }
+  button, input, select, textarea { font: inherit; }
+  button:not(:disabled) { cursor: pointer; }
+  [hidden] { display: none !important; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  @media (prefers-color-scheme: light) { :root { --positive: #14743b; } }
   #q {
-    flex: 1 1 180px; min-width: 130px; padding: 8px 12px;
+    flex: 1; min-width: 0; padding: 8px 12px;
     border: 1px solid var(--border); border-radius: 10px;
-    background: var(--surface); color: var(--text-1); outline: none;
+    background: var(--surface); color: var(--text-1);
   }
   #q:focus { border-color: var(--text-3); }
   #week, #mark {
     padding: 8px 12px; border: 1px solid var(--border); border-radius: 10px;
     background: var(--surface); color: var(--text-1);
   }
-  #count { font-size: 12px; color: var(--text-3); font-variant-numeric: tabular-nums; margin-left: auto; }
-  #toggle {
-    padding: 6px 12px; font-size: 12px; cursor: pointer;
-    border: 1px solid var(--border); border-radius: 999px;
-    background: transparent; color: var(--text-3);
-  }
-  #toggle:hover { color: var(--text-1); border-color: var(--text-3); }
-
-  .filters { margin-top: 10px; }
-  .filters.hide { display: none; }
+  .result-bar { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-top: 14px; font-size: 13px; color: var(--text-2); }
+  #count { font-variant-numeric: tabular-nums; }
+  #reset { padding: 0; border: 0; background: none; color: var(--accent); }
+  .filters { margin-top: 10px; max-height: 34dvh; overflow: auto; padding: 2px 4px 5px; }
   .filter-block { display: flex; align-items: flex-start; gap: 8px; margin-top: 8px; }
   .filter-block:first-child { margin-top: 0; }
   .filter-label { flex: 0 0 52px; font-size: 12px; color: var(--text-3); padding-top: 5px; margin: 0; }
@@ -77,38 +74,50 @@
   .chip .cnt { font-size: 11px; color: var(--text-4); margin-left: 3px; font-variant-numeric: tabular-nums; }
   .chip[aria-pressed="true"] .cnt { color: var(--surface); opacity: .7; }
 
-  .weeknav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
-  .weeknav a {
-    font-size: 12.5px; text-decoration: none; color: var(--text-2);
-    border: 1px solid var(--border); border-radius: 999px; padding: 3px 11px;
-    font-variant-numeric: tabular-nums;
+  .shortcuts, .record-links { display: flex; flex-wrap: wrap; gap: 6px; }
+  .shortcuts { margin-top: 14px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+    min-height: 34px; padding: 5px 11px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--surface); color: var(--text-2); text-decoration: none; font-size: 13px; line-height: 1.4;
   }
-  .weeknav a:hover { color: var(--text-1); border-color: var(--text-3); }
-  .weeknav .n { color: var(--text-4); font-size: 11px; margin-left: 2px; }
+  .btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .btn[aria-pressed="true"], .primary { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 42%, var(--border)); background: color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+  .btn:disabled { opacity: .5; }
+  .utility { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px; font-size: 13px; }
+  .utility summary { cursor: pointer; color: var(--text-2); }
+  .record-links { margin: 8px 0 2px; }
+  .record-links label { cursor: pointer; }
+  .record-links a { color: var(--accent); }
+  .file-picker { position: relative; }
+  .file-picker:focus-within { outline: 2px solid var(--accent); outline-offset: 3px; }
+  #import { position: absolute; inset: 0; width: 100%; opacity: 0; cursor: pointer; }
+  .notice { font-size: 13px; color: var(--text-2); margin: 8px 0 0; }
+  .notice:empty { margin: 0; }
 
   .week-head {
     display: flex; align-items: baseline; gap: 10px;
-    margin-top: 30px; padding: 6px 10px;
+    margin: 20px 0 4px; padding: 6px 12px;
     border-left: 3px solid var(--text-1);
     background: var(--surface-mute);
     border-radius: 0 6px 6px 0;
-    scroll-margin-top: 200px;
+    scroll-margin-top: 75px;
   }
   .week-head .w { font-size: 15.5px; font-weight: 500; font-variant-numeric: tabular-nums; }
   .week-head .n { font-size: 12px; color: var(--text-3); font-variant-numeric: tabular-nums; }
   .week-head .rep { margin-left: auto; font-size: 12px; color: var(--accent); text-decoration: none; }
   .week-head .rep:hover { text-decoration: underline; }
 
-  .entry {
-    padding: 14px 10px 12px; border-bottom: 1px solid var(--border);
-    border-radius: 6px; transition: background .15s ease, opacity .15s ease;
-  }
-  .entry:hover { background: var(--surface-mute); }
-  .entry.is-read { opacity: .5; }
-  .entry.is-read:hover { opacity: .85; }
-  .entry:last-child { border-bottom: none; }
-  .line1 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
-  .t { font-size: 15px; line-height: 1.5; font-weight: 500; }
+  .entry { padding: 15px 12px; border-bottom: 1px solid var(--border); scroll-margin-top: 80px; }
+  .entry:focus-within, .entry:target, .entry.linked { background: color-mix(in srgb, var(--accent) 4%, var(--surface)); }
+  .entry.linked { box-shadow: inset 3px 0 var(--accent); }
+  .entry-title { font-size: 17px; line-height: 1.45; font-weight: 650; margin: 5px 0 0; }
+  .title-button { padding: 0; border: 0; background: none; text-align: left; color: var(--text-1); font: inherit; overflow-wrap: anywhere; }
+  .title-button:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .entry-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 9px; font-size: 12px; color: var(--text-2); }
+  .status-read { color: var(--positive); }
+  .key-result { margin: 7px 0 9px; font-size: 14px; color: var(--text-2); overflow-wrap: anywhere; }
+  .key-result strong { margin-right: .6em; color: var(--text-1); }
   .cat {
     flex: 0 0 auto; font-size: 12px; line-height: 18px; padding: 0 8px;
     border-radius: 6px; white-space: nowrap; align-self: center;
@@ -119,53 +128,23 @@
   .cat-hist  { color: var(--purple);   background: color-mix(in srgb, var(--purple) 13%, transparent); }
   .cat-other { color: var(--text-3);   background: color-mix(in srgb, var(--text-3) 14%, transparent); }
 
-  .idline { margin-top: 5px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
   code {
     font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
     font-size: 12px; color: var(--text-2);
     background: var(--surface-mute); padding: 1px 6px; border-radius: 4px;
   }
-  .entry:hover code { background: var(--border); }
-  a.idlink { text-decoration: none; }
-  a.idlink code { border-bottom: 1px dashed var(--text-4); }
-  a.idlink:hover code { color: var(--text-1); border-bottom-color: var(--text-1); }
-  .dt { font-size: 12px; color: var(--text-4); font-variant-numeric: tabular-nums; }
-  .disp { margin-top: 5px; font-size: 13px; line-height: 1.55; color: var(--text-2); }
-
-  .marks { display: inline-flex; gap: 4px; margin-left: auto; }
-  .mark-btn {
-    font-size: 11.5px; line-height: 1.4; padding: 2px 8px; cursor: pointer;
-    border: 1px solid var(--border); border-radius: 999px;
-    background: transparent; color: var(--text-4);
-  }
-  .mark-btn:hover { color: var(--text-1); border-color: var(--text-3); }
+  .entry-actions, .marks { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; }
+  .entry-actions { margin-top: 9px; }
+  .entry-actions .marks { margin-left: auto; }
+  .paper-link { color: var(--accent); }
   .mark-btn.on-star { color: var(--warning); border-color: var(--warning); }
   .mark-btn.on-read { color: var(--positive); border-color: var(--positive); }
   .mark-btn.remove-btn { color: var(--warning); }
   .mark-btn.restore-btn { color: var(--positive); }
 
-  .det { margin-top: 6px; }
-  .det summary {
-    display: inline-block; cursor: pointer; list-style: none;
-    font-size: 12px; color: var(--accent);
-  }
-  .det summary::-webkit-details-marker { display: none; }
-  .det summary::before { content: "▸ "; }
-  .det[open] summary::before { content: "▾ "; }
-  .det summary:hover { text-decoration: underline; }
-  .det-body {
-    margin-top: 6px; padding: 10px 12px;
-    font-size: 13px; line-height: 1.6; color: var(--text-2);
-    background: var(--surface-mute); border-radius: 6px;
-  }
-
-  .det-body p { margin: 0 0 10px; }
-  .det-body p:last-child { margin-bottom: 0; }
-  .det-body strong { color: var(--text-1); }
-
-  .tags { margin-top: 7px; display: flex; flex-wrap: wrap; gap: 4px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; }
   .tag {
-    font-size: 11px; line-height: 1.5; padding: 1px 8px; cursor: pointer;
+    font-size: 12px; line-height: 1.5; min-height: 24px; padding: 2px 8px;
     border: 1px solid transparent; border-radius: 6px; background: transparent;
   }
   .tag-d { color: var(--accent); background: color-mix(in srgb, var(--accent) 9%, transparent); }
@@ -174,8 +153,36 @@
   .tag-m:hover { background: color-mix(in srgb, var(--purple) 18%, transparent); }
   .tag.on { border-color: currentColor; font-weight: 500; }
 
+  body:has(#reader[open]) { overflow: hidden; }
+  #reader {
+    width: min(760px, calc(100% - 32px)); max-width: none; max-height: min(90dvh, 960px);
+    padding: 0; border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+    background: var(--surface); color: var(--text-1); box-shadow: 0 18px 80px #07182938;
+  }
+  #reader[open] { display: flex; flex-direction: column; }
+  #reader::backdrop { background: #10182088; }
+  .reader-bar, .reader-nav { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 20px; }
+  .reader-bar { border-bottom: 1px solid var(--border); }
+  .reader-nav { border-top: 1px solid var(--border); }
+  #reader-count { color: var(--text-2); font-size: 13px; font-variant-numeric: tabular-nums; }
+  #reader-body { overflow: auto; overscroll-behavior: contain; padding: 16px 24px 22px; overflow-wrap: anywhere; }
+  #reader-title { font-size: clamp(20px, 4vw, 25px); line-height: 1.4; margin: 6px 0 9px; }
+  .reader-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+  .reader-key { padding: 12px 15px; background: var(--surface-mute); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; }
+  .reader-fields { margin: 0; }
+  .reader-fields dt { font-weight: 650; margin-top: 12px; }
+  .reader-fields dt:first-child { margin-top: 0; }
+  .reader-fields dd { margin: 3px 0 0; color: var(--text-2); font-size: 15px; line-height: 1.65; white-space: pre-line; }
+  .reader-section { padding-top: 13px; margin-top: 13px; border-top: 1px solid var(--border); }
+  .reader-section h3 { margin: 0 0 8px; font-size: 16px; }
+  .reader-section a { color: var(--accent); }
+  .reader-section p { margin: 8px 0 0; }
+  .reader-section label { display: block; font-size: 14px; }
+  .reader-section select, .reader-section textarea { border: 1px solid var(--border); border-radius: 8px; padding: 6px 9px; background: var(--surface); color: var(--text-1); }
+  .reader-section textarea { display: block; width: 100%; margin-top: 4px; resize: vertical; }
+
   .empty { padding: 56px 0; text-align: center; color: var(--text-3); font-size: 14px; }
-  .foot { margin-top: 40px; font-size: 12px; color: var(--text-4); line-height: 1.6; }
+  .foot { margin-top: 40px; font-size: 12px; color: var(--text-2); }
 
   #top {
     position: fixed; right: 20px; bottom: 20px; z-index: 30;
@@ -189,31 +196,43 @@
   #top:hover { color: var(--text-1); border-color: var(--text-3); }
 
   @media (max-width: 640px) {
-    .week-head { scroll-margin-top: 240px; }
+    .wrap { padding: 22px 14px 76px; }
+    .entry { padding-inline: 5px; }
+    .entry-actions .marks { margin-left: 0; }
     .filter-label { flex-basis: 44px; }
-    .marks { margin-left: 0; }
+    .btn { min-height: 38px; }
+    .tag { min-height: 27px; }
+    #reader { width: 100%; height: 100dvh; max-height: none; margin: 0; border: 0; border-radius: 0; }
+    #reader-body { flex: 1; padding: 13px 14px 18px; }
+    .reader-bar, .reader-nav { padding: 8px 14px; }
   }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>酶科研雷达 · 文献档案馆</h1>
-  <div class="sub">酶工程精选文献 · 展开详情查看主要内容、创新点与证据来源</div>
-  <div class="stats" id="stats"></div>
+<main class="wrap">
+  <header class="masthead">
+    <div><h1>酶科研雷达</h1><div class="stats" id="stats"></div></div>
+    <a class="btn primary" id="current-report" hidden>最新周报 →</a>
+  </header>
 
   <div class="toolbar">
     <div class="toolbar-top">
-      <input id="q" type="search" placeholder="搜索标题 / 编号 / 备注 / 标签…" aria-label="搜索">
-      <select id="week" aria-label="按周筛选"></select>
-      <select id="mark" aria-label="按标记筛选">
-        <option value="全部">全部标记</option>
-        <option value="精读">我的收藏 ★</option>
-        <option value="未读">仅未读</option>
-      </select>
-      <button id="toggle" aria-expanded="true">收起筛选</button>
-      <span id="count"></span>
+      <input id="q" type="search" placeholder="搜索标题、DOI、结果、标签或笔记" aria-label="搜索文献">
+      <button class="btn" id="toggle" aria-controls="filters" aria-expanded="false">筛选</button>
     </div>
-    <div class="filters" id="filters">
+    <div class="filters" id="filters" hidden>
+      <div class="filter-block">
+        <p class="filter-label">范围</p>
+        <div class="chips">
+          <select id="week" aria-label="按周筛选"></select>
+          <select id="mark" aria-label="按标记筛选">
+            <option value="全部">全部标记</option>
+            <option value="精读">我的收藏 ★</option>
+            <option value="未读">仅未读</option>
+          </select>
+        </div>
+      </div>
       <div class="filter-block">
         <p class="filter-label">处置</p>
         <div class="chips" id="cats" aria-label="按处置筛选"></div>
@@ -229,14 +248,35 @@
     </div>
   </div>
 
-  <div class="weeknav" id="shortcuts"><button data-mode="all">全部</button><button data-mode="latest">最近收录</button><button data-mode="unread">必读未读</button><button data-mode="star">我的收藏</button><button data-mode="notes">有笔记</button><button data-mode="removed">已删除 (0)</button><button id="reset">清空筛选</button><button id="export">导出记录</button><label>导入记录 <input id="import" type="file" accept="application/json"></label></div><p id="notice" role="status"></p><div class="weeknav" id="weeknav"></div>
-  <div id="list"></div>
-
-  <div class="foot">
-    数据来自各期周报归档。点击编号跳转原文；点条目下方<span style="color:var(--accent)">蓝</span>/<span style="color:var(--purple)">紫</span>标签筛选同类；★ 精读、✓ 已读和删除状态仅保存在本机浏览器；删除的条目可在“已删除”中恢复。
+  <div class="shortcuts" id="shortcuts" role="group" aria-label="快速筛选">
+    <button class="btn" data-mode="all">全部</button>
+    <button class="btn" data-mode="latest-must">本期必读</button>
+    <button class="btn" data-mode="latest">最近收录</button>
+    <button class="btn" data-mode="unread">必读未读</button>
+    <button class="btn" data-mode="star">我的收藏</button>
+    <button class="btn" data-mode="notes">有笔记</button>
+    <button class="btn" data-mode="removed">已删除 (0)</button>
   </div>
-</div>
+  <div class="utility">
+    <details><summary>往期周报</summary><nav id="weeknav" class="record-links" aria-label="往期周报"></nav></details>
+    <details><summary>备份阅读记录</summary><div class="record-links"><button class="btn" id="export">导出记录</button><label class="btn file-picker">导入记录 <input id="import" type="file" accept="application/json"></label></div></details>
+  </div>
+  <p class="notice" id="notice" role="status"></p>
+  <div class="result-bar"><span id="count" role="status"></span><button id="reset" hidden>清空筛选</button></div>
+  <section id="list" aria-label="文献列表"></section>
+
+  <footer class="foot">收藏、阅读进度、笔记和删除状态保存在当前浏览器。可在“已删除”恢复文献。</footer>
+</main>
 <button id="top" aria-label="回到顶部">↑ 顶部</button>
+
+<dialog id="reader" aria-labelledby="reader-title">
+  <header class="reader-bar"><span id="reader-count"></span><button class="btn" id="reader-close" aria-label="关闭阅读，返回列表">返回列表 ×</button></header>
+  <div id="reader-body"></div>
+  <nav class="reader-nav" aria-label="连续阅读">
+    <button class="btn" id="reader-prev">← 上一篇</button>
+    <button class="btn primary" id="reader-next">下一篇 →</button>
+  </nav>
+</dialog>
 
 <script id="radar-data" type="application/json">[
   {
@@ -3474,7 +3514,8 @@ var REPORTS = {"2026-09-30":"reports/weekly_2026-09-30.html","2026-10-05":"repor
   var CAT_CLASS = { '必读': 'cat-must', '可读': 'cat-read', '观察': 'cat-watch', '历史补课': 'cat-hist', '其他': 'cat-other', '忽略': 'cat-other' };
   var DIR_ORDER = ['活性与动力学','酶动力学参数预测','热稳定性','溶解度与表达','耐受与转运','选择性与特异性','新酶与新功能设计','酶挖掘','高通量筛选','通路组装与产量','结构与构象','底物结合与口袋','功能注释与预测','基准与方法学'];
   var METH_ORDER = ['AI/ML 模型','物理模拟','定向进化与筛选','理性与半理性设计','实验表征','数据库与工具','综述与批评'];
-  var state = { q: '', cat: '全部', week: '全部', dir: '全部', meth: '全部', mark: '全部' };
+  var defaults = { q: '', cat: '全部', week: '全部', dir: '全部', meth: '全部', mark: '全部' };
+  var state = Object.assign({}, defaults);
 
   // ---- marks (localStorage) ----
   var MKEY = 'radar-marks-v1';
@@ -3516,17 +3557,29 @@ var REPORTS = {"2026-09-30":"reports/weekly_2026-09-30.html","2026-10-05":"repor
   var weeks = {}, must = 0;
   DATA.forEach(function (e) { weeks[e.week] = true; if (e.cat === '必读') must++; });
   var weekList = Object.keys(weeks).sort().reverse();
+  var reportDates = Object.keys(REPORTS).sort().reverse();
+  var latestReport = reportDates[0] || weekList[0];
+  var presets = {
+    all: {}, 'latest-must': { week: latestReport, cat: '必读' }, latest: { week: weekList[0] },
+    unread: { cat: '必读', mark: '未读' }, star: { mark: '精读' }, notes: {}, removed: {}
+  };
+  var weekChoices = Array.from(new Set(weekList.concat(reportDates))).sort().reverse();
+  var currentReport = document.getElementById('current-report');
+  if (REPORTS[latestReport]) {
+    currentReport.href = REPORTS[latestReport];
+    currentReport.textContent = '最新周报 · ' + latestReport.slice(5) + ' →';
+    currentReport.hidden = false;
+  }
   function updateStats() {
     document.getElementById('stats').innerHTML =
-      '<span class="stat">共 <b>' + DATA.length + '</b> 条</span>' +
-      '<span class="stat">本机已删除 <b>' + removedCount() + '</b> 条</span>' +
-      '<span class="stat">必读 <b>' + must + '</b> 条</span>' +
-      '<span class="stat">覆盖 <b>' + weekList.length + '</b> 期（' + weekList[weekList.length - 1] + ' ~ ' + weekList[0] + '）</span>';
+      '<span class="stat"><b>' + DATA.length + '</b> 篇文献</span>' +
+      '<span class="stat"><b>' + must + '</b> 篇必读</span>' +
+      '<span class="stat"><b>' + reportDates.length + '</b> 期周报</span>';
   }
   updateStats();
 
   var sel = document.getElementById('week');
-  sel.innerHTML = '<option value="全部">全部周期</option>' + weekList.map(function (w) {
+  sel.innerHTML = '<option value="全部">全部周期</option>' + weekChoices.map(function (w) {
     return '<option value="' + esc(w) + '">' + esc(w) + ' 期</option>';
   }).join('');
   sel.addEventListener('change', function () { state.week = sel.value; render(); });
@@ -3535,16 +3588,15 @@ var REPORTS = {"2026-09-30":"reports/weekly_2026-09-30.html","2026-10-05":"repor
     state.mark = ev.target.value; render();
   });
 
-  document.getElementById('weeknav').innerHTML = weekList.map(function (w) {
-    var n = DATA.filter(function (e) { return e.week === w; }).length;
-    return '<a href="#w-' + w + '">' + w.slice(5) + '<span class="n">' + n + '</span></a>';
+  document.getElementById('weeknav').innerHTML = reportDates.map(function (w) {
+    return '<a class="btn" href="' + esc(REPORTS[w]) + '">' + esc(w) + '</a>';
   }).join('');
 
   var tg = document.getElementById('toggle'), fl = document.getElementById('filters');
   tg.addEventListener('click', function () {
-    var hidden = fl.classList.toggle('hide');
-    tg.textContent = hidden ? '展开筛选' : '收起筛选';
-    tg.setAttribute('aria-expanded', String(!hidden));
+    fl.hidden = !fl.hidden;
+    tg.textContent = fl.hidden ? '筛选' : '收起筛选';
+    tg.setAttribute('aria-expanded', String(!fl.hidden));
   });
 
   function buildChips(elId, names, dim, listKey) {
@@ -3579,9 +3631,22 @@ var REPORTS = {"2026-09-30":"reports/weekly_2026-09-30.html","2026-10-05":"repor
   buildChips('meths', METH_ORDER, 'meth', 'meths');
 
   document.getElementById('q').addEventListener('input', function (ev) {
-    state.q = ev.target.value.trim().toLowerCase();
+    state.q = searchText(ev.target.value.trim());
     render();
   });
+
+  function searchText(value) {
+    return value.normalize('NFKC').toLowerCase();
+  }
+  var searchAliases = { '糖基转移酶': 'ugt', 'ugt': '糖基转移酶', '溶解度': 'solubility', 'solubility': '溶解度' };
+  var searchIndex = new Map(DATA.map(function (e) {
+    var review = e.review || {};
+    return [e.id, searchText([
+      e.title, e.id, e.display_id, e.disp, e.detail, review.title, review.content,
+      review.method, review.results, review.innovation, review.application, review.limitations,
+      e.dirs.join(' '), e.meths.join(' ')
+    ].join(' '))];
+  }));
 
   function match(e) {
     var removed = !!(marks[e.id] && marks[e.id].removed);
@@ -3594,8 +3659,10 @@ var REPORTS = {"2026-09-30":"reports/weekly_2026-09-30.html","2026-10-05":"repor
     if (state.mark === '精读' && !(marks[e.id] && marks[e.id].star)) return false;
     if (state.mark === '未读' && (marks[e.id] && marks[e.id].read)) return false;
     if (state.q) {
-      var hay = (e.title + ' ' + e.id + ' ' + e.disp + ' ' + (e.detail || '') + ' ' + e.dirs.join(' ') + ' ' + e.meths.join(' ')).toLowerCase();
-      if (!state.q.split(/\s+/).every(function(q){var aliases={'糖基转移酶':'ugt','ugt':'糖基转移酶','溶解度':'solubility'};return hay.indexOf(q)!==-1 || (aliases[q] && hay.indexOf(aliases[q])!==-1);})) return false;
+      var hay = searchIndex.get(e.id) + ' ' + searchText(marks[e.id]?.note || '');
+      return state.q.split(/\s+/).every(function (term) {
+        return hay.includes(term) || (searchAliases[term] && hay.includes(searchAliases[term]));
+      });
     }
     return true;
   }
@@ -3612,109 +3679,257 @@ var REPORTS = {"2026-09-30":"reports/weekly_2026-09-30.html","2026-10-05":"repor
   }
 
   var listEl = document.getElementById('list');
+  var reader = document.getElementById('reader');
+  var readerBody = document.getElementById('reader-body');
+  var prev = document.getElementById('reader-prev');
+  var next = document.getElementById('reader-next');
+  var visibleEntries = [], readerQueue = [], readerIndex = 0, readerOrigin;
+
+  function openButton(e, label, css) {
+    return '<button type="button" class="' + css + '" data-open="' + esc(e.id) + '">' + esc(label) + '</button>';
+  }
+
+  function paperUrl(e) {
+    return e.source_url || linkFor(e.id) || e.review?.source;
+  }
+
+  function externalLink(url, label, css) {
+    if (!/^https?:\/\//i.test(url)) return '';
+    return '<a class="' + (css || '') + '" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + esc(label) + ' ↗</a>';
+  }
+
+  function markButtons(e, includeRead) {
+    var mk = marks[e.id] || {};
+    var attr = ' data-id="' + esc(e.id) + '" data-kind="';
+    return '<span class="marks">' +
+      '<button class="btn mark-btn' + (mk.star ? ' on-star' : '') + '"' + attr + 'star" aria-label="收藏" aria-pressed="' + !!mk.star + '">' + (mk.star ? '★ 已收藏' : '☆ 收藏') + '</button>' +
+      (includeRead ? '<button class="btn mark-btn' + (mk.read ? ' on-read' : '') + '"' + attr + 'read" aria-label="标为已读" aria-pressed="' + !!mk.read + '">' + (mk.read ? '✓ 已读' : '标为已读') + '</button>' : '') +
+      (mk.removed ? '<button class="btn mark-btn restore-btn"' + attr + 'restore">恢复</button>' : '<button class="btn mark-btn remove-btn"' + attr + 'remove">删除</button>') +
+      '</span>';
+  }
+
+  function entryNode(id) {
+    return document.getElementById('entry-' + encodeURIComponent(id));
+  }
+
+  function changeMark(button, inReader) {
+    var id = button.dataset.id, kind = button.dataset.kind;
+    var mk = marks[id] || {};
+    if (kind === 'remove') {
+      var item = DATA.find(function (e) { return e.id === id; });
+      if (!window.confirm('将“' + item.title + '”从当前浏览器的文献列表删除？\n\n可在“已删除”中恢复，个人笔记会保留。')) return;
+      mk.removed = true;
+      mk.removedAt = new Date().toISOString();
+    } else if (kind === 'restore') {
+      delete mk.removed;
+      delete mk.removedAt;
+    } else {
+      mk[kind] = !mk[kind];
+      if (kind === 'read') mk.status = mk.read ? '已读' : '待读';
+    }
+    if (mk.star || mk.read || mk.note || mk.status || mk.removed) marks[id] = mk;
+    else delete marks[id];
+    var saved = saveMarks();
+    var message = !saved ? '本机存储失败，请导出记录备份。' :
+      kind === 'remove' ? '已从主列表删除。可在“已删除”中恢复。' :
+      kind === 'restore' ? '已恢复到文献列表。' : '阅读记录已更新。';
+    render();
+    if (inReader) {
+      var actions = reader.querySelector('.reader-marks');
+      actions.innerHTML = markButtons(readerQueue[readerIndex], true);
+      reader.querySelector('.progress').value = readingStatus(mk);
+      var replacement = actions.querySelector('[data-kind="' + kind + '"]') || reader.querySelector('#reader-title');
+      replacement.focus({ preventScroll: true });
+      readerNotify(message);
+    } else {
+      var card = entryNode(id);
+      var replacement = card && (card.querySelector('[data-kind="' + kind + '"]') || card.querySelector('.title-button'));
+      (replacement || document.querySelector('#shortcuts [aria-pressed="true"]') || document.getElementById('q')).focus({ preventScroll: true });
+    }
+    notify(message);
+  }
+
   listEl.addEventListener('click', function (ev) {
     var b = ev.target.closest('button.tag');
-    if (b) { setFilter(b.getAttribute('data-dim'), b.getAttribute('data-tag')); return; }
+    if (b) {
+      var cardId = b.closest('.entry').id;
+      setFilter(b.dataset.dim, b.dataset.tag);
+      var card = document.getElementById(cardId);
+      var sameTag = card && Array.from(card.querySelectorAll('button.tag')).find(function (tag) {
+        return tag.dataset.dim === b.dataset.dim && tag.dataset.tag === b.dataset.tag;
+      });
+      (sameTag || document.getElementById('q')).focus({ preventScroll: true });
+      return;
+    }
     var mb = ev.target.closest('button.mark-btn');
-    if (mb) {
-      var id = mb.getAttribute('data-id'), kind = mb.getAttribute('data-kind');
-      marks[id] = marks[id] || {};
-      if (kind === 'remove') {
-        var item = DATA.find(function(e){ return e.id === id; });
-        if (!window.confirm('将“' + (item ? item.title : id) + '”从当前浏览器的雷达列表删除？\n\n可在“已删除”中恢复；共享文献源数据和个人笔记不会被删除。')) return;
-        marks[id].removed = true;
-        marks[id].removedAt = new Date().toISOString();
-      } else if (kind === 'restore') {
-        delete marks[id].removed;
-        delete marks[id].removedAt;
-      } else {
-        marks[id][kind] = !marks[id][kind]; if(kind==='read') marks[id].status=marks[id].read?'已读':'待读';
-      }
-      if (!marks[id].star && !marks[id].read && !marks[id].note && !marks[id].status && !marks[id].removed) delete marks[id];
-      var saved = saveMarks();
-      render();
-      notify(!saved ? '本机存储失败，请导出记录备份。' : kind === 'remove' ? '已从主列表删除；可在“已删除”中恢复。' : kind === 'restore' ? '已恢复到雷达列表。' : '标记已更新。');
+    if (mb) { changeMark(mb, false); return; }
+    var open = ev.target.closest('button[data-open]');
+    if (open) {
+      readerQueue = visibleEntries.slice();
+      readerIndex = readerQueue.findIndex(function (e) { return e.id === open.dataset.open; });
+      if (readerIndex < 0) return;
+      readerOrigin = { id: open.dataset.open, title: open.classList.contains('title-button') };
+      renderReader();
+      reader.showModal();
+      reader.querySelector('#reader-title').focus({ preventScroll: true });
     }
   });
 
-  function renderDetail(e) {
-    if (!e.review) {
-      return e.detail
-        ? '<details class="det"><summary>详情</summary><div class="det-body">' + esc(e.detail) + '</div></details>'
-        : '';
+  function fieldList(fields) {
+    var items = fields.filter(function (field) { return field[1]; }).map(function (field) {
+      return '<dt>' + field[0] + '</dt><dd>' + esc(field[1]) + '</dd>';
+    });
+    return items.length ? '<dl class="reader-fields">' + items.join('') + '</dl>' : '';
+  }
+
+  function readingStatus(mk) {
+    return mk.read ? '已读' : (mk.status || '待读');
+  }
+
+  function renderReader() {
+    var e = readerQueue[readerIndex], review = e.review || {}, mk = marks[e.id] || {};
+    var url = paperUrl(e);
+    var key = fieldList([
+      ['关键结果与测量口径', review.results], ['研究用途与核查重点', review.application],
+      ['价值与局限', review.limitations], ['证据依据', review.scope]
+    ]);
+    var method = fieldList([
+      ['主要内容', review.content || e.detail || e.disp],
+      ['研究设计与方法', review.method], ['创新点', review.innovation]
+    ]);
+    var evidence = '';
+    if (review.source !== url) evidence += externalLink(review.source, '核查来源');
+    if (review.additional_source !== url && review.additional_source !== review.source) {
+      evidence += (evidence ? ' · ' : '') + externalLink(review.additional_source, '补充核查来源');
     }
-    var review = e.review;
-    var fields = [
-      ['论文题名', review.title],
-      ['主要内容', review.content],
-      ['研究设计与方法', review.method],
-      ['关键结果与测量口径', review.results],
-      ['创新点', review.innovation],
-      ['研究用途与核查重点', review.application],
-      ['价值与局限', review.limitations],
-      ['证据依据', review.scope]
-    ];
-    var body = fields.filter(function (field) { return field[1]; }).map(function (field) {
-      return '<p><strong>' + field[0] + '</strong><br>' + esc(field[1]) + '</p>';
+    var options = ['待读', '阅读中', '已读'].map(function (value) {
+      return '<option' + (readingStatus(mk) === value ? ' selected' : '') + '>' + value + '</option>';
     }).join('');
-    if (/^https?:\/\//i.test(review.source)) {
-      body += '<p><a href="' + esc(review.source) + '" target="_blank" rel="noopener noreferrer">原始文献 / 核查来源 ↗</a></p>';
+    readerBody.innerHTML =
+      '<div class="entry-meta"><span class="cat ' + (CAT_CLASS[e.cat] || 'cat-other') + '">' + esc(e.cat) + '</span><span>' + esc(e.week) + ' 期</span></div>' +
+      '<h2 id="reader-title" tabindex="-1">' + esc(e.title) + '</h2>' +
+      (review.title && review.title !== e.title ? '<div>' + esc(review.title) + '</div>' : '') +
+      '<div class="entry-meta"><code>' + esc(e.display_id || e.id) + '</code><span>收录 ' + esc(e.date) + '</span></div>' +
+      '<div class="reader-actions">' + externalLink(url, e.link_label || '打开原文', 'btn primary paper-link') +
+        '<span class="reader-marks">' + markButtons(e, true) + '</span><button class="btn" data-note>笔记 ↓</button></div>' +
+      (key ? '<section class="reader-key" aria-label="重点速览">' + key + '</section>' : '') +
+      (method ? '<section class="reader-section" aria-label="文献详情">' + method + '</section>' : '') +
+      (evidence ? '<div class="reader-section">' + evidence + '</div>' : '') +
+      '<section class="reader-section" aria-labelledby="reader-record"><h3 id="reader-record">我的阅读记录</h3>' +
+      '<label>阅读进度 <select class="progress">' + options + '</select></label>' +
+      '<p><label>笔记<textarea class="note" rows="4" placeholder="要点、疑问或下一步">' + esc(mk.note || '') + '</textarea></label></p>' +
+      '<p class="notice" id="reader-notice" role="status"></p></section>';
+    document.getElementById('reader-count').textContent = '筛选结果 · ' + (readerIndex + 1) + ' / ' + readerQueue.length;
+    prev.disabled = readerIndex === 0;
+    next.disabled = readerIndex === readerQueue.length - 1;
+    readerBody.scrollTop = 0;
+  }
+
+  function moveReader(step) {
+    var index = readerIndex + step;
+    if (index < 0 || index >= readerQueue.length) return;
+    readerIndex = index;
+    renderReader();
+    reader.querySelector('#reader-title').focus({ preventScroll: true });
+  }
+
+  function readerNotify(message) {
+    var status = document.getElementById('reader-notice');
+    if (status.textContent !== message) status.textContent = message;
+  }
+
+  document.getElementById('reader-close').onclick = function () { reader.close(); };
+  prev.onclick = function () { moveReader(-1); };
+  next.onclick = function () { moveReader(1); };
+  reader.addEventListener('close', function () {
+    var card = entryNode(readerOrigin.id);
+    var opener = card && card.querySelector(readerOrigin.title ? '.title-button' : '.details-button');
+    (opener || document.getElementById('q')).focus({ preventScroll: true });
+  });
+  reader.addEventListener('keydown', function (ev) {
+    if ((ev.key !== 'ArrowLeft' && ev.key !== 'ArrowRight') || ev.altKey || ev.ctrlKey || ev.metaKey || ev.shiftKey ||
+        ev.target.closest('input, textarea, select, [contenteditable]') || window.getSelection()?.toString()) return;
+    ev.preventDefault();
+    moveReader(ev.key === 'ArrowLeft' ? -1 : 1);
+  });
+  readerBody.addEventListener('click', function (ev) {
+    var button = ev.target.closest('button.mark-btn');
+    if (button) changeMark(button, true);
+    if (ev.target.closest('button[data-note]')) readerBody.querySelector('.note').focus();
+  });
+  readerBody.addEventListener('input', function (ev) {
+    var input = ev.target;
+    if (!input.matches('.note,.progress')) return;
+    var id = readerQueue[readerIndex].id;
+    var mk = marks[id] || (marks[id] = {});
+    if (input.matches('.note')) mk.note = input.value;
+    else {
+      mk.status = input.value;
+      mk.read = input.value === '已读';
+      reader.querySelector('.reader-marks').innerHTML = markButtons(readerQueue[readerIndex], true);
     }
-    if (/^https?:\/\//i.test(review.additional_source) && review.additional_source !== review.source) {
-      body += '<p><a href="' + esc(review.additional_source) + '" target="_blank" rel="noopener noreferrer">补充核查来源 ↗</a></p>';
-    }
-    return '<details class="det"><summary>文献详情</summary><div class="det-body">' + body + '</div></details>';
+    mk.updatedAt = new Date().toISOString();
+    readerNotify(saveMarks() ? '已保存到当前浏览器。' : '保存失败，请导出记录备份。');
+    render();
+  });
+
+  function renderCard(e) {
+    var mk = marks[e.id] || {};
+    var status = readingStatus(mk);
+    var result = e.review?.results;
+    var preview = result || e.review?.content || e.disp || e.detail || '';
+    return '<article class="entry" id="entry-' + encodeURIComponent(e.id) + '">' +
+      '<div class="entry-meta"><span class="cat ' + (CAT_CLASS[e.cat] || 'cat-other') + '">' + esc(e.cat) + '</span>' +
+      (status !== '待读' ? '<span class="' + (mk.read ? 'status-read' : '') + '">' + esc(status) + '</span>' : '') +
+      (mk.note ? '<span>有笔记</span>' : '') + '</div>' +
+      '<h3 class="entry-title">' + openButton(e, e.title, 'title-button') + '</h3>' +
+      (preview ? '<p class="key-result"><strong>' + (result ? '关键结果' : '主要内容') + '</strong>' + esc(preview) + '</p>' : '') +
+      tagHtml(e) +
+      '<div class="entry-actions">' + openButton(e, '阅读详情', 'btn primary details-button') +
+      externalLink(paperUrl(e), '原文', 'btn paper-link') + markButtons(e, false) + '</div></article>';
   }
 
   function render() {
-    updateStats();
     var removedButton = document.querySelector('#shortcuts button[data-mode="removed"]');
-    if (removedButton) removedButton.textContent = '已删除 (' + removedCount() + ')';
-    var groups = [], byWeek = {}, shown = 0;
+    removedButton.textContent = '已删除 (' + removedCount() + ')';
+    document.querySelectorAll('#shortcuts button[data-mode]').forEach(function (button) {
+      var chosen = button.dataset.mode === mode && Object.keys(defaults).every(function (key) {
+        return state[key] === (presets[mode][key] ?? defaults[key]);
+      });
+      button.setAttribute('aria-pressed', String(chosen));
+    });
+
+    var byWeek = {};
     DATA.forEach(function (e) {
       if (!match(e)) return;
-      shown++;
-      if (!byWeek[e.week]) { byWeek[e.week] = []; groups.push(e.week); }
+      if (!byWeek[e.week]) byWeek[e.week] = [];
       byWeek[e.week].push(e);
     });
-    groups.sort().reverse();
-
-    var filtered = mode !== 'all' || state.q || state.cat !== '全部' || state.week !== '全部' || state.dir !== '全部' || state.meth !== '全部' || state.mark !== '全部';
-    document.getElementById('count').textContent = filtered ? '筛选出 ' + shown + ' / ' + DATA.length + ' 条' : '';
+    var groups = Object.keys(byWeek).sort().reverse();
+    visibleEntries = groups.flatMap(function (w) { return byWeek[w]; });
+    var filterLabels = ['week', 'cat', 'dir', 'meth', 'mark'].map(function (key) {
+      return state[key];
+    }).filter(function (value) { return value !== '全部'; });
+    var countEl = document.getElementById('count');
+    var countText = '显示 ' + visibleEntries.length + ' / ' + DATA.length + ' 篇' +
+      (filterLabels.length ? ' · ' + filterLabels.join(' / ') : '');
+    if (countEl.textContent !== countText) countEl.textContent = countText;
+    document.getElementById('reset').hidden = mode === 'all' && !state.q && !filterLabels.length;
 
     if (!groups.length) {
-      listEl.innerHTML = mode === 'removed' ? '<div class="empty">目前没有已删除的文献。</div>' : '<div class="empty">没有匹配的条目，试试放宽筛选条件。</div>';
+      var message = mode === 'removed' && !removedCount() ? '目前没有已删除的文献。' :
+        mode === 'latest-must' && !state.q && filterLabels.length === 2 ? '本期暂无可显示的必读文献，可查看最新周报。' :
+        '没有匹配的文献。试试清空筛选或换一个关键词。';
+      listEl.innerHTML = '<div class="empty">' + message + '</div>';
       return;
     }
-    var html = '';
-    groups.forEach(function (w) {
+
+    listEl.innerHTML = groups.map(function (w) {
       var items = byWeek[w];
-      var rep = REPORTS[w] ? '<a class="rep" href="' + REPORTS[w] + '">当期周报 →</a>' : '';
-      html += '<div class="week-head" id="w-' + w + '"><span class="w">' + esc(w) + ' 期</span><span class="n">' + items.length + ' 条</span>' + rep + '</div>';
-      items.forEach(function (e) {
-        var url = e.source_url || linkFor(e.id);
-        var inner = '<code>' + esc(e.display_id || e.id) + '</code>';
-        var idHtml = url
-          ? '<a class="idlink" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + inner + '</a>'
-          : inner;
-        var mk = marks[e.id] || {};
-        var markHtml = '<span class="marks">' +
-          '<button class="mark-btn' + (mk.star ? ' on-star' : '') + '" data-id="' + esc(e.id) + '" data-kind="star" title="精读标记">' + (mk.star ? '★' : '☆') + ' 收藏</button>' +
-          '<button class="mark-btn' + (mk.read ? ' on-read' : '') + '" data-id="' + esc(e.id) + '" data-kind="read" title="已读标记">✓ 已读</button>' +
-          (mode === 'removed' ? '<button class="mark-btn restore-btn" data-id="' + esc(e.id) + '" data-kind="restore" title="恢复到雷达列表">恢复</button>' : '<button class="mark-btn remove-btn" data-id="' + esc(e.id) + '" data-kind="remove" title="从当前浏览器的雷达列表删除">删除</button>') +
-          '</span>';
-        var detHtml = renderDetail(e);
-        html += '<div id="entry-' + encodeURIComponent(e.id) + '" class="entry' + (mk.read ? ' is-read' : '') + '">' +
-          '<div class="line1"><span class="cat ' + (CAT_CLASS[e.cat] || 'cat-other') + '">' + esc(e.cat) + '</span>' +
-          '<span class="t">' + esc(e.title) + '</span></div>' +
-          '<div class="idline">' + idHtml + '<span class="dt">收录 ' + esc(e.date) + '</span>' + markHtml + '</div>' +
-          '<div class="disp">' + esc(e.disp) + '</div>' +
-          detHtml + '<details><summary>个人笔记与进度</summary><label>阅读进度 <select class="progress" data-id="' + esc(e.id) + '">' + ['待读','阅读中','已读'].map(function(v){return '<option '+((mk.status || (mk.read?'已读':'待读'))===v?'selected':'')+'>'+v+'</option>';}).join('') + '</select></label><p><label>我的结论、关键证据、待确认问题与下一步<textarea class="note" data-id="' + esc(e.id) + '" rows="5" style="display:block;width:100%">' + esc(mk.note || '') + '</textarea></label></p></details>' + (url ? '<a class="paper-link" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + esc(e.link_label || '文献直达链接 ↗') + '</a>' : '') +
-          tagHtml(e) +
-          '</div>';
-      });
-    });
-    listEl.innerHTML = html;
+      var rep = REPORTS[w] ? '<a class="rep" href="' + esc(REPORTS[w]) + '">当期周报 →</a>' : '';
+      return '<h2 class="week-head" id="w-' + esc(w) + '"><span class="w">' + esc(w) + ' 期</span><span class="n">' + items.length + ' 篇</span>' + rep + '</h2>' +
+        items.map(renderCard).join('');
+    }).join('');
   }
 
   var topBtn = document.getElementById('top');
@@ -3723,12 +3938,40 @@ var REPORTS = {"2026-09-30":"reports/weekly_2026-09-30.html","2026-10-05":"repor
   }, { passive: true });
   topBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
-  function notify(t){document.getElementById('notice').textContent=t;}
-  listEl.addEventListener('input',function(ev){var t=ev.target;if(!t.matches('.note,.progress'))return;var id=t.dataset.id;marks[id]=marks[id]||{};if(t.matches('.note'))marks[id].note=t.value;else{marks[id].status=t.value;marks[id].read=t.value==='已读';}marks[id].updatedAt=new Date().toISOString();try{localStorage.setItem(MKEY,JSON.stringify(marks));notify('记录已保存到当前浏览器。');}catch(e){notify('保存失败，请立即导出记录备份。');}});
-  document.getElementById('shortcuts').addEventListener('click',function(ev){var m=ev.target.dataset.mode;if(!m && ev.target.id!=='reset')return;mode=m||'all';Object.assign(state,{q:'',cat:'全部',week:'全部',dir:'全部',meth:'全部',mark:'全部'});if(m==='latest')state.week=weekList[0];if(m==='unread'){state.cat='必读';state.mark='未读';}if(m==='star')state.mark='精读';document.getElementById('q').value='';sel.value=state.week;document.getElementById('mark').value=state.mark;syncChips();render();notify('当前视图：'+ev.target.textContent);});
+  function notify(t) { document.getElementById('notice').textContent = t; }
+
+  function setMode(value) {
+    mode = value;
+    Object.assign(state, defaults, presets[value]);
+    document.getElementById('q').value = '';
+    sel.value = state.week;
+    document.getElementById('mark').value = state.mark;
+    syncChips();
+    notify('');
+    render();
+  }
+
+  document.getElementById('shortcuts').addEventListener('click', function (ev) {
+    var shortcut = ev.target.closest('[data-mode]');
+    if (shortcut) setMode(shortcut.dataset.mode);
+  });
+  document.getElementById('reset').onclick = function () {
+    setMode('all');
+    document.getElementById('q').focus();
+  };
   document.getElementById('export').onclick=function(){var blob=new Blob([JSON.stringify({version:1,marks:marks},null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='radar-records-'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(function(){URL.revokeObjectURL(a.href);},1000);};
   document.getElementById('import').onchange=async function(ev){try{var f=ev.target.files[0];if(!f)return;if(f.size>5000000)throw Error('文件过大');var d=JSON.parse(await f.text());if(d.version!==1 || !d.marks || typeof d.marks!=='object' || Array.isArray(d.marks))throw Error('格式错误');var next=JSON.parse(JSON.stringify(marks));Object.keys(d.marks).forEach(function(id){var v=d.marks[id];if(!DATA.some(function(e){return e.id===id;}))return;if(!v || typeof v!=='object')throw Error('记录错误');if(v.note!==undefined && typeof v.note!=='string')throw Error('笔记格式错误');if(v.status && !['待读','阅读中','已读'].includes(v.status))throw Error('进度格式错误');if(v.removed!==undefined && typeof v.removed!=='boolean')throw Error('移除状态格式错误');if(!next[id])next[id]={star:!!v.star,read:!!v.read,note:v.note||'',status:v.status||'',updatedAt:v.updatedAt||''};if(v.removed===true)next[id].removed=true;});localStorage.setItem(MKEY,JSON.stringify(next));marks=next;render();notify('导入完成；已有记录保留，新增记录已合并。');}catch(e){notify('导入失败：'+e.message);}ev.target.value='';};
-  function locate(){if(location.hash.startsWith('#entry-')){Object.assign(state,{q:'',cat:'全部',week:'全部',dir:'全部',meth:'全部',mark:'全部'});mode='all';render();var el=document.getElementById(decodeURI(location.hash.slice(1)));if(!el)el=document.getElementById(location.hash.slice(1));if(el){el.scrollIntoView();el.style.outline='2px solid var(--accent)';}}}
+  function locate() {
+    listEl.querySelector('.linked')?.classList.remove('linked');
+    if (!location.hash.startsWith('#entry-')) return;
+    var anchor = location.hash.slice(1);
+    if (!document.getElementById(anchor)) setMode('all');
+    var entry = document.getElementById(anchor);
+    if (entry) {
+      entry.classList.add('linked');
+      entry.scrollIntoView();
+    }
+  }
   window.addEventListener('hashchange',locate);
   render();locate();
 })();
