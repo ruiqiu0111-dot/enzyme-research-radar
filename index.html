@@ -3690,7 +3690,7 @@
     "cat": "可读",
     "disp": "综述汇总UGT和sucrose synthase级联稳定性工程；无新实验数据。",
     "dirs": [
-      "UGT 与 glycosyltransferase",
+      "热稳定性",
       "蛋白表达与稳定性"
     ],
     "meths": [
@@ -3765,7 +3765,6 @@
     "cat": "历史补课",
     "disp": "期刊原文实际在线9月12日；2 L发酵靛苷 1.923 g/L；纯酶动力学使用DCP而非indoxyl。",
     "dirs": [
-      "UGT 与 glycosyltransferase",
       "通路组装与产量",
       "突变设计"
     ],
@@ -3806,7 +3805,7 @@
     "cat": "观察",
     "disp": "从序列构建构象集合并做对接/MD排序；测试是JAK2/ADRB2 binder-decoy，不是催化。",
     "dirs": [
-      "蛋白结构与enzyme-substrate prediction",
+      "蛋白结构与酶–底物复合物预测",
       "工具与软件"
     ],
     "meths": [
@@ -4483,7 +4482,7 @@ var REPORTS = {"2026-09-30":"reports/weekly_2026-09-30.html","2026-10-05":"repor
   var DATA = JSON.parse(document.getElementById('radar-data').textContent);
   var CAT_ORDER = ['必读', '可读', '观察', '历史补课', '其他', '忽略'];
   var CAT_CLASS = { '必读': 'cat-must', '可读': 'cat-read', '观察': 'cat-watch', '历史补课': 'cat-hist', '其他': 'cat-other', '忽略': 'cat-other' };
-  var DIR_ORDER = ['突变设计','活性与动力学','酶动力学参数预测','UGT 与 glycosyltransferase','热稳定性','溶解度与表达','耐受与转运','选择性与特异性','新酶与新功能设计','酶挖掘','高通量筛选','通路组装与产量','结构与构象','底物结合与口袋','催化机理与QM/MM','功能注释与预测','基准与方法学'];
+  var DIR_ORDER = ['突变设计','活性与动力学','酶动力学参数预测','热稳定性','溶解度与表达','耐受与转运','选择性与特异性','新酶与新功能设计','酶挖掘','高通量筛选','通路组装与产量','结构与构象','蛋白结构与酶–底物复合物预测','底物结合与口袋','催化机理与QM/MM','功能注释与预测','基准与方法学'];
   var METH_ORDER = ['AI/ML 模型','物理模拟','定向进化与筛选','理性与半理性设计','实验表征','数据库与工具','综述与批评'];
   var EXPERIMENTS = ['纯酶实测', '裂解液实测', '全细胞实测', '实验实测'];
   var EVIDENCE_TYPES = EXPERIMENTS.concat(['计算评测', '机理计算', '数据库/工具', '综述/框架', '公开评阅']);
@@ -4990,6 +4989,17 @@ var REPORTS = {"2026-09-30":"reports/weekly_2026-09-30.html","2026-10-05":"repor
       return Array.isArray(stored) ? stored.filter(function (view) {
         return typeof view?.name === 'string' && Object.hasOwn(presets, view.mode) && view.criteria &&
           Object.keys(defaults).every(function (key) { return typeof view.criteria[key] === 'string'; });
+      }).map(function (view) {
+        var criteria = view.criteria;
+        if (criteria.dir === '蛋白结构与enzyme-substrate prediction') {
+          return { ...view, criteria: { ...criteria, dir: '蛋白结构与酶–底物复合物预测' } };
+        }
+        if (criteria.dir === 'UGT 与 glycosyltransferase') {
+          var query = criteria.q.trim();
+          if (!searchText(query).split(/\s+/).includes('ugt')) query = [query, 'UGT'].filter(Boolean).join(' ');
+          return { ...view, criteria: { ...criteria, dir: '全部', q: query } };
+        }
+        return view;
       }) : [];
     } catch (error) { return []; }
   }
