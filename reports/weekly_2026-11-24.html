@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>weekly_2026-11-24 · 酶科研雷达</title>
+<style>
+
+  :root {
+    --text-1: #1a1a1a; --text-2: #4d4d4d; --text-3: #7a7a7a; --text-4: #a8a8a8;
+    --border: #e4e4e4; --surface: #fff; --surface-mute: #f5f5f5;
+    --accent: #2563eb; --positive: #16a34a; --warning: #b45309; --purple: #7c3aed;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-1: #e8e8e8; --text-2: #b5b5b5; --text-3: #8a8a8a; --text-4: #606060;
+      --border: #333; --surface: #161616; --surface-mute: #1f1f1f;
+      --accent: #6ea8fe; --positive: #4ade80; --warning: #fbbf24; --purple: #a78bfa;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--surface); color: var(--text-1);
+    font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 16px; line-height: 1.7;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 28px 20px 80px; }
+  .back { font-size: 13px; color: var(--text-3); text-decoration: none; }
+  .back:hover { color: var(--text-1); }
+  .doc h1 { font-size: 21px; font-weight: 500; line-height: 1.4; margin: 18px 0 6px; }
+  .doc h2 { font-size: 17.5px; font-weight: 500; margin: 34px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .doc h3 { font-size: 15.5px; font-weight: 500; margin: 24px 0 8px; }
+  .doc p { margin: 10px 0; }
+  .doc a { color: var(--accent); text-decoration: none; }
+  .doc a:hover { text-decoration: underline; }
+  .doc table { border-collapse: collapse; width: 100%; font-size: 13.5px; margin: 12px 0; display: block; overflow-x: auto; }
+  .doc th, .doc td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; vertical-align: top; }
+  .doc th { background: var(--surface-mute); font-weight: 500; }
+  .doc code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 12.5px; background: var(--surface-mute); padding: 1px 6px; border-radius: 4px; }
+  .doc ul, .doc ol { padding-left: 22px; }
+  .doc li { margin: 6px 0; }
+  .doc hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  .doc blockquote { margin: 12px 0; padding-left: 14px; border-left: 3px solid var(--border); color: var(--text-2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../index.html">← 返回文献档案馆</a>
+  <div class="doc"><h1>Weekly Research Intelligence · 酶科研雷达</h1>
+<p>时间：2026-11-18 ～ 2026-11-24（日本时间）。30 天补检：2026-10-26 ～ 2026-11-24。检索截至 11 月 24 日中午日本时间，发布源更新可能滞后。</p>
+<p>本期收录 13 项：7 项本周首发或首次核实的期刊上线，6 项月内补检。另列 1 条窗口外版本沿革，不进入本周重点或新增计数。未确认需要重复计数的实质版本更新。</p>
+<h2>1. 本周最重要的 5 个进展</h2>
+<table>
+<thead>
+<tr>
+<th>工作</th>
+<th>领域</th>
+<th>核心突破</th>
+<th>对当前研究价值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>玉米 C-糖基转移酶 ZmUGT708A6</td>
+<td>糖基化与 QM/MM</td>
+<td>125 种受体有 24 种出现显著糖基化。根皮素 C-糖基化呈双峰 pH 响应，计算与突变支持分步成键及水参与</td>
+<td>把受体电子性质、产物类型和构象门控纳入 C-糖基化评估。<a href="https://www.nature.com/articles/s41467-026-79637-9">原文</a></td>
+</tr>
+<tr>
+<td>TrpD 反馈抑制</td>
+<td>突变与芳香族通路</td>
+<td>谷氨酸棒杆菌的优选变体催化效率提高 29%，在 5 mM 色氨酸下保留 89% 活性</td>
+<td>提供检查反馈抑制的实验对照，优先判断目标底盘是否受同一环节限制。<a href="https://doi.org/10.1042/BSR20260526">原文</a></td>
+</tr>
+<tr>
+<td>PAMparametrizer</td>
+<td>酶约束代谢建模</td>
+<td>10 次独立优化用交换表型校准大肠杆菌蛋白分配模型。胞内通量仍随参数解变化</td>
+<td>可以比较不同参数解下设计排序是否稳健，并识别需要加测的通量。<a href="https://www.nature.com/articles/s41540-026-00844-7.pdf">原文</a></td>
+</tr>
+<tr>
+<td>CORE Score</td>
+<td>共折叠质量控制</td>
+<td>7 个模型的首位姿势正确性平均 ROC AUC 为 0.866，ipTM 为 0.757</td>
+<td>可用预测间一致性筛查构象可靠性，并与催化几何独立检查对照。<a href="https://arxiv.org/html/2611.27058v1">原文</a></td>
+</tr>
+<tr>
+<td>交叉混池筛酶</td>
+<td>酶挖掘和实验筛选</td>
+<td>组合筛选和拆池表征得到两种 P450，可使同一植物生物碱发生不同位置的羟化</td>
+<td>值得借鉴多酶、多受体筛查及拆池复测的证据链。<a href="https://www.biorxiv.org/content/10.64898/2026.11.16.766977v1">预印本</a></td>
+</tr>
+</tbody></table>
+<h2>2. AI + 酶工程</h2>
+<h3>酶动力学参数预测</h3>
+<ul>
+<li><strong>MCDBench｜月内补检，bioRxiv，11-17，摘要级。</strong> <em>Precision in Predicting Catalytic Performance of Medium Chain Dehydrogenase: A Benchmark Data Set and Comparative Metrics</em>。统一条件的 792 个酶–底物–辅因子组合覆盖 36 种醇，包含实验阴性。DLKcat、UniKP、TurNuP、CataPro 与实测活动的相关性有限，区分阳性与阴性仍困难。摘要未列逐模型系数、分组切分和阴性阈值。首要价值是补齐真实阴性和按条件回测，可读，先核下载途径与训练暴露。<a href="https://www.biorxiv.org/content/10.64898/2026.11.13.766581v1">预印本</a></li>
+<li><strong>EnzRef｜月内补检，bioRxiv，v1 11-17，v2 11-18，摘要级。</strong> <em>Decompose and Recompose: Reference-Centered Multimodal Adaptation of Protein Language Models for Enzyme Turnover Prediction</em>。序列和完整反应为输入，反应物和产物各自与残基背景计算相对表示，输出绝对 kcat。作者报告 CatPred-DB 到 TurNuP-DB 未见酶的零样本测试中，10 次运行平均 R² 相比 MCKcat 高 19.8%，属于相对增幅。摘要未给绝对 R²、训练数据库重叠、底物骨架隔离和独立湿实验。两版摘要未见可确认的实质增量，暂列观察。<a href="https://www.biorxiv.org/content/10.64898/2026.11.15.766718v2">预印本</a></li>
+<li><strong>SKiP｜月内补检，Journal of Cheminformatics，11-17，摘要与作者资料。</strong> <em>SKiP: a Structure-oriented Kinetics Prediction suite for enzyme-substrate complexes</em>。输入复合物结构及 pH 等条件，纳入已知辅因子和质子化，以结构描述符预测 kcat、Km 和不确定度。β-葡萄糖苷酶与乳酸脱氢酶案例复现已有实验趋势。当前证据不足以确认时间、同源簇、底物或突变背景隔离下的优势。无已核实的前瞻突变实测。作者库有训练和推理入口，列有学术使用限制，采用前核对条款。<a href="https://link.springer.com/article/10.1186/s13321-026-01333-z">论文</a> <a href="https://github.com/Sowmya-R-Krishnan/SKiP">作者代码</a></li>
+</ul>
+<h3>酶挖掘</h3>
+<ul>
+<li><strong>SMSTPred｜月内补检，bioRxiv，11-17，摘要级。</strong> 对 I 类 SAM 甲基转移酶作底物大类的多标签注释。同源簇隔离交叉验证的 MCC 为 0.94，对照 MMseqs2、Foldseek 和轮廓隐马尔可夫模型分别为 0.85、0.89、0.52。约 11.6 万条、1,249 个参照蛋白组是应用规模。独立检索交叉支持仍属计算。适合作为粗类召回参考，具体受体和催化验证待核。<a href="https://www.biorxiv.org/content/10.64898/2026.11.13.766537v1">预印本</a></li>
+</ul>
+<h3>高通量筛选</h3>
+<ul>
+<li><strong>植物生物碱修饰酶的交叉混池｜本周首发，bioRxiv，11-18，摘要级。</strong> <em>Daphniphyllum macropodum genome assembly and multiplexed screening unveils alkaloid modifying enzymes</em>。基因组挖掘后以多个酶候选对多个底物混池，拆池鉴定两个催化不同位置的羟化酶。摘要未列全库规模、每批吞吐、漏检或未命中数。可先查正文的拆池和产物确证，评估是否适配现有分析平台。<a href="https://www.biorxiv.org/content/10.64898/2026.11.16.766977v1">预印本</a></li>
+</ul>
+<h3>突变设计和生成式设计</h3>
+<ul>
+<li><strong>SCOPE｜本周首发，bioRxiv，11-23，摘要级。</strong> 残基图整合结构、进化和理化特征，通过五个数据集、CATH 家族隔离重训和 CataloDB 外测评价催化残基注释。在四种酶开展前瞻突变及活性测定。摘要未给逐酶分母、完整阴性验证或盲测结果。可作为催化位点审查线索，位点功能和有益突变排序分别评价。<a href="https://www.biorxiv.org/content/10.64898/2026.11.20.768221v1">预印本</a></li>
+<li><strong>窗口外沿革。</strong> Science 于 11-19 上线 <em>Zero-shot de novo design of a metalloenzyme</em>。dEVA 的双锌水解酶及最高 3×10¹³ 的相对无催化速率增强，在 04-24 首发的预印本已报告该量级。指标为 (kcat/Km)/kw，按相对无催化反应解释。未确认本次期刊稿新增关键实验证据，作为历史参照。<a href="https://www.biorxiv.org/content/10.64898/2026.04.23.720277v1">预印本 v1</a> <a href="https://pubmed.ncbi.nlm.nih.gov/43056425/">Science 题录与摘要</a></li>
+</ul>
+<h2>3. 酶催化机理 / QM/MM</h2>
+<ul>
+<li><strong>玉米 C-糖基化｜本周，Nature Communications 接受稿，11-20，核正文及图。</strong> 晶体结构支持两个柔性门的构象差异，经典分子动力学连接门距与反应构象。正文的受体筛选获得 24/125 个显著糖基化结果，涵盖 O、S 和 C 产物。根皮素 C-糖基化在 pH 6–7 和约 pH 10 较高、pH 8 附近较低，六个催化二联体保守变体在中性 pH 几乎失去 C 活性。图 4 的 QM/MM 支持中性受体经过 σ 复合物及水参与质子转移。高 pH 可能走不同路径。溶液 DFT 的事实范围是不同受体的相对中间体稳定性。当前可用来组织备选机理与比较标准。<a href="https://www.nature.com/articles/s41467-026-79637-9_reference.pdf">接受稿全文</a></li>
+<li><strong>Py-ChemShell 26.0｜月内补检，11-04，官方项目资料。</strong> 新增 xTB 与 OpenMM 接口、Molpro 投影式 QM/QM 嵌入，并改善若干接口。官方公告中的高性能计算提升未绑定用户现有 ORCA 配置。先对照输入和接口文档，具体能量、梯度与性能差异需同体系核验。<a href="https://www.chemshell.org/news/py-chemshell-2026-released/">发行公告</a></li>
+<li><strong>GROMACS 的 OPC 虚拟位点 GPU 更新｜本周首发，bioRxiv，11-20，摘要级。</strong> 作者比较修改版和正式参考构建。在 166,826 原子膜蛋白体系上报告 1.57–1.66 倍提速，力的相对差异低于 10⁻⁶。每组 5 条、每条 5 μs 的 Trp-cage 测试中，折叠数分别为参考 3/5 和修改版 5/5，P=0.44。它是性能与数值一致性验证，适用范围取决于构建、硬件、力场和目标体系。先跟踪正式发行。<a href="https://www.biorxiv.org/content/10.64898/2026.11.19.767864v1">预印本</a></li>
+</ul>
+<h2>4. 蛋白结构与酶–底物复合物预测</h2>
+<p><strong>CORE Score｜本周，arXiv v1，11-20，正文和代码。</strong> 通过 25 个重复预测的聚簇紧密度与支持度衡量一致性，不需实验姿势即可给出每组分数。7 个模型上，判断首位姿势正确与判断集合内至少有一正确姿势的平均 ROC AUC 分别是 0.866 和 0.838，ipTM 为 0.757 和 0.759。前瞻式分析排除了没有任何 PoseBusters 合格姿势的 6.2% 预测集合。代码为 BSD-3-Clause。适合用来决定是否扩展采样或转人工复核，仍需量化反应几何和供体/辅因子条件。<a href="https://arxiv.org/html/2611.27058v1">预印本正文</a> <a href="https://github.com/oxpig/core-score">作者代码</a></p>
+<h2>5. UGT / 糖基转移酶</h2>
+<p>优先读第 3 栏玉米 C-糖基化。受体数、显著阳性数、键型和 pH 要分列。同一酶能接受多类反应，足以提醒大库筛查将 C、O、S 产物证据分开。根皮素机制可以用来设计芳香 C-糖基化的对照，新受体需要实验证据。第 2 栏的混池流程提供了独立的工程方法，可用于估计混池复测与测量开销。当前没有核到覆盖一般 UGT 大库、可据此直接替换现有排序器的新方法。<a href="https://www.nature.com/articles/s41467-026-79637-9_reference.pdf">全文</a></p>
+<h2>6. 蛋白表达与溶解度</h2>
+<p>可访问来源内，暂未确认能改变植物酶在大肠杆菌的可溶表达排序的新模型。继续追踪 SoluProtMut v2，既有 v1/v2 摘要登记同一独立规模（277 变体、44 蛋白），正文增量尚未确认。本期保留单独的表达、纯化量和单位酶活审查口径。<a href="https://www.biorxiv.org/content/10.1101/2025.09.26.676459v2">预印本沿革</a></p>
+<h2>7. 代谢工程</h2>
+<ul>
+<li><strong>TrpD｜本周，Bioscience Reports 接受稿，11-23，出版社注册摘要。</strong> 作者由六种不受反馈抑制的植物同类酶提出位点，再比较谷氨酸棒杆菌 TrpD 的单点、多点变体。优选变体催化效率提高 29%，在 5 mM 色氨酸时保留 89% 活性。摘要提供的是两个独立酶学读数，尚无目标大肠杆菌底盘中的滴度证据。适合用于修订芳香通路的抑制诊断优先级。<a href="https://doi.org/10.1042/BSR20260526">论文</a></li>
+<li><strong>PAMparametrizer｜本周，npj Systems Biology and Applications，11-19，正文与图注。</strong> 通过敏感性分析找参数，再用遗传算法拟合生理交换通量。大肠杆菌以 10 次独立优化与传统代谢模型、原蛋白分配模型和实测表型比较。谷氨酸棒杆菌也报告改善，第三个底盘 <em>Pseudomonas putida</em> 在数据有限时主要恢复交换表型。多个解对应不同胞内通量，使用时保留解集合。当前可做现有生理数据的回测规划。<a href="https://www.nature.com/articles/s41540-026-00844-7.pdf">全文</a> <a href="https://github.com/iAMB-RWTH-Aachen/PAMparametrizer">作者代码</a></li>
+<li><strong>SABIO-RK｜月内资源补检，Nucleic Acids Research，11-05，正文。</strong> 版本化 JSON 与公开 REST API 便于追溯构建体、单位、实验条件和动力学方程。正文登记 308,374 个参数，包含浓度等项目。2017–2026 年新人工摘录 2,540 篇文献。可作为实测参数核对入口，先处理同论文重复来源以及训练数据暴露。<a href="https://doi.org/10.1093/nar/gkag1118">论文</a> <a href="https://sabiork.h-its.org/export-api/">官方 API</a></li>
+</ul>
+<h2>8. 新工具与模型</h2>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>用途</th>
+<th>输入</th>
+<th>输出</th>
+<th>开放状态</th>
+<th>研究决策</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CORE Score</td>
+<td>共折叠一致性</td>
+<td>多个预测结构、配体标识</td>
+<td>一致性分数、结构有效性检查</td>
+<td>BSD-3-Clause</td>
+<td>用已有对照回测。<a href="https://github.com/oxpig/core-score">代码</a></td>
+</tr>
+<tr>
+<td>PAMparametrizer</td>
+<td>蛋白分配模型校准</td>
+<td>模型与多条件交换通量</td>
+<td>多套有效参数及预测表型</td>
+<td>作者库列 GPL 或 LGPL 第 2 版及以后版本</td>
+<td>比较跨条件与跨参数解的稳定性。<a href="https://github.com/iAMB-RWTH-Aachen/PAMparametrizer">代码</a></td>
+</tr>
+<tr>
+<td>SKiP</td>
+<td>结构条件动力学估计</td>
+<td>酶–底物结构、pH、已知辅因子</td>
+<td>绝对 kcat、Km 估计与不确定度</td>
+<td>公开可读，作者规定学术使用等限制</td>
+<td>先核数据分割和目标条件。<a href="https://github.com/Sowmya-R-Krishnan/SKiP">代码</a></td>
+</tr>
+<tr>
+<td>EnzRef</td>
+<td>反应条件 kcat 预测</td>
+<td>蛋白序列、完整反应</td>
+<td>kcat 估计</td>
+<td>代码和权重未核实</td>
+<td>等可核的外测分母、绝对指标与许可。<a href="https://www.biorxiv.org/content/10.64898/2026.11.15.766718v2">预印本</a></td>
+</tr>
+<tr>
+<td>SABIO-RK</td>
+<td>带条件的实测动力学检索</td>
+<td>反应、酶、物种、测定条件</td>
+<td>可版本化的动力学记录</td>
+<td>API 可公开查询，按条目核条件</td>
+<td>可纳入数据取证工具箱。<a href="https://sabiork.h-its.org/export-api/">官方 API</a></td>
+</tr>
+<tr>
+<td>Py-ChemShell 26.0</td>
+<td>多尺度模拟和接口</td>
+<td>结构、区域及方法配置</td>
+<td>能量、梯度和模拟工作流</td>
+<td>官方标明开放源码</td>
+<td>先核接口及现有输入的兼容性。<a href="https://www.chemshell.org/news/py-chemshell-2026-released/">发行公告</a></td>
+</tr>
+</tbody></table>
+<h2>9. 本周值得重点阅读</h2>
+<ul>
+<li><strong>必读 5 项。</strong> 第 1 栏的玉米 C-糖基化、TrpD、PAMparametrizer、CORE Score、植物生物碱混池筛选。</li>
+<li><strong>可读。</strong> MCDBench、SKiP、SMSTPred、SCOPE、GROMACS OPC、SABIO-RK 和 Py-ChemShell 26.0。关注 EnzRef 全文与外测信息。</li>
+<li><strong>暂缓。</strong> 11-19 的 <em>Designer proteins for asymmetric photocatalysis</em> 属研究亮点，原研究于 10-21 发表。以原研究判断增量。<a href="https://www.nature.com/articles/s41929-026-01645-1">亮点页</a></li>
+</ul>
+<h2>10. 对当前项目可立即尝试的 3 件事</h2>
+<p>以下是本地资料与已存档结果的审查任务，本期未执行实验或科研计算。</p>
+<table>
+<thead>
+<tr>
+<th>动作</th>
+<th>输入和对照</th>
+<th>输出与验收标准</th>
+<th>采用条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>整理 C-糖基化受体证据</td>
+<td>已有阳性、未检出与产物未定条目，按供体、受体、pH 和分析条件匹配。保留 O-糖基化对照</td>
+<td>一张带原图表位置的证据矩阵，每行区分产物类型、受体化学和证据缺口</td>
+<td>有足够的同条件正负记录，再决定是否调整结构或受体评分</td>
+</tr>
+<tr>
+<td>回看复合物置信度</td>
+<td>已存档的同一目标多构象和已知参考结构，对照原 ipTM、配体构象一致性与已定义催化几何</td>
+<td>每个目标能够区分「候选集中缺合理构象」和「有构象、但排序不佳」，记录所有缺失数据</td>
+<td>仅在同预算对照显示更可靠的识别时，作为筛查辅助</td>
+</tr>
+<tr>
+<td>整理芳香通路的反馈和通量证据</td>
+<td>已有菌株表型、葡萄糖摄取/副产物数据、模型版本及 TrpD 抑制证据，按宿主和培养条件分开</td>
+<td>给每个限制环节标记可证据支持的表型、可验证的替代解释及最缺的读数</td>
+<td>目标底盘有同条件证据支持后，再决定模型校准与菌株工作包</td>
+</tr>
+</tbody></table>
+<h2>11. Potential Research Opportunities</h2>
+<ul>
+<li>建立有明确检测限、测定条件和表达状态的阴性数据集，比较野生型到突变体变化、酶–底物匹配和绝对参数三个任务。</li>
+<li>把共折叠的构象可重复性、辅因子化学与反应构象分别记录，评估哪个环节真正减少错误入围。</li>
+<li>对酶约束模型报告参数解集合及靶点预测的一致性，比较额外的胞内通量或蛋白组读数能排除多少等效解。</li>
+</ul>
+<h2>12. 本周科研决策建议</h2>
+<ul>
+<li><strong>建议立即跟进。</strong> 核对玉米 C-糖基化的受体、pH、突变和图 4 条件。阅读 TrpD 的抑制比较和 PAMparametrizer 的大肠杆菌表型。</li>
+<li><strong>建议加入工具箱。</strong> 保存 SABIO-RK 可追溯数据入口、CORE Score 作者仓库和 MCDBench 的阴性基准线索。</li>
+<li><strong>建议继续观察。</strong> EnzRef v2 的实质差异，SKiP 的切分与独立验证，SCOPE 的逐酶实验分母，以及 OPC 的正式版本状态。</li>
+<li><strong>暂时可以忽略。</strong> 仅有报道日期变化或只有结合分数的泛化结论。dEVA 按窗口外参照保留。</li>
+</ul>
+<p><strong>覆盖记录。</strong> bioRxiv 按日分页回扫 30 天，共抓取 6,769 条版本记录，主题筛查 369 条。本周子集 1,193 条版本记录，主题筛查 49 条。PubMed 定向检索的 555 条题录全部拉取，按 online 日期和相关性复筛。Crossref 主题查询返回 137 条，arXiv 官方主题 API 返回 40 条，另核出版社、项目和作者代码库。ChemRxiv 官方接口返回 HTTP 403，定向索引检索补充，目录覆盖仍不完整。旧版本的更新在证据确认有实质变化时另计。</p>
+</div>
+</div>
+</body>
+</html>
